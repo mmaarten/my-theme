@@ -1,0 +1,104 @@
+/*!
+ * Block library
+ */
+
+@import "common/variables";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+/**
+ * Variables
+ */
+$custom-editor-colors: map-merge(
+  (
+    "white" : $white,
+  ),
+  $theme-colors
+);
+
+$custom-editor-font-sizes: (
+  "small" : $font-size-sm,
+  "large" : $font-size-lg,
+);
+
+/**
+ * Custom editor colors
+ */
+@each $name, $value in $custom-editor-colors {
+  .has-#{$name}-color {
+    color: $value;
+  }
+
+  .has-#{$name}-background-color {
+    background-color: $value;
+  }
+}
+
+/**
+ * Custom editor font sizes
+ *
+ * Not needed when 'wp-block-library' stylesheet is enqueued.
+ * We include them for when not enqueued.
+ */
+@each $name, $value in $custom-editor-font-sizes {
+  .has-#{$name}-font-size {
+    font-size: $value;
+  }
+}
+
+/**
+ * Set padding for paragraphs with background color.
+ */
+p.has-background {
+  padding: (map-get($spacers, 4) / $line-height-base) map-get($spacers, 4);
+}
+
+/**
+ * Set spacing and max widths according to the 'align' setting.
+ */
+
+.hentry .entry-content,
+.hentry .entry-summary {
+  @include clearfix();
+}
+
+.hentry .entry-content > *,
+.hentry .entry-summary > * {
+  margin: map-get($spacers, 3) auto;
+
+  @include make-container-max-widths((
+    "sm" : map-get($container-max-widths, "sm") - $grid-gutter-width,
+    "md" : map-get($container-max-widths, "md") - $grid-gutter-width,
+    "lg" : map-get($container-max-widths, "lg") - $grid-gutter-width,
+  ));
+
+  @include media-breakpoint-up( md ) {
+    margin-top: map-get($spacers, 5);
+    margin-bottom: map-get($spacers, 5);
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  &.alignwide {
+    clear: both;
+
+    @include make-container-max-widths((
+      "xl" : map-get($container-max-widths, "xl") - $grid-gutter-width,
+    ));
+  }
+
+  &.alignfull {
+    clear: both;
+    // Stretch outside container to fit viewport width.
+    position: relative;
+    left: -#{$grid-gutter-width/2};
+    width: calc(100% + (#{$grid-gutter-width}));
+    max-width: calc(100% + (#{$grid-gutter-width}));
+  }
+}

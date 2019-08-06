@@ -1,0 +1,168 @@
+/**
+ * Navbar
+ */
+
+$site-logo-max-height:    $navbar-brand-height + $navbar-brand-padding-y * 2;
+$site-logo-max-height-lg: $site-logo-max-height * 2;
+$navbar-padding-y-lg :    $navbar-padding-y * 2;
+
+.navbar {
+
+  // Animate background color changes
+  @include transition( background-color 300ms ease-in-out );
+
+  // Set button spacing
+  .nav-item .btn {
+    margin-top: $navbar-padding-y;
+    margin-bottom: $navbar-padding-y;
+  }
+
+  // Not expandable
+  &:not([class*="navbar-expand"]) {
+    // Hide large logos
+    .logo-lg:not(.logo-sm) {
+      display: none;
+    }
+  }
+
+  // Header is stuck
+  #sticky-header.is-stuck & {
+    // Hide large logos
+    .logo-lg:not(.logo-sm) {
+      display: none;
+    }
+  }
+
+  /**
+   * Containers inside navbars do not always align properly
+   * according to other container elements.
+   */
+
+  @include media-breakpoint-down( sm ) {
+    > .container,
+    > .container-fluid {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  @include media-breakpoint-up( sm ) {
+    > .container,
+    > .container-fluid {
+      padding-left: $grid-gutter-width / 2 !important;
+      padding-right: $grid-gutter-width / 2 !important;
+    }
+  }
+}
+
+// Brand
+.navbar-brand {
+  .site-title,
+  a {
+    display: inline-block;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    text-decoration: inherit;
+    white-space: inherit;
+  }
+
+  p.site-title,
+  h1.site-title {
+    margin: 0;
+  }
+
+  .wp-custom-logo & {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .site-logo {
+    display: flex; // Remove spacing
+    align-items: center;
+    line-height: 1;
+
+    // Make image fit vertically
+    img {
+      max-height: $site-logo-max-height;
+      width: auto;
+    }
+  }
+}
+
+// Light theme
+.navbar-light {
+  // Hide light logos
+  .logo-light:not(.logo-dark) {
+    display: none;
+  }
+
+  // Give disabled links the default color
+  .nav-link.disabled {
+    color: $navbar-light-color !important;
+  }
+}
+
+// Dark theme
+.navbar-dark {
+  // Hide dark logos
+  .logo-dark:not(.logo-light) {
+    display: none;
+  }
+
+  // Give disabled links the default color
+  .nav-link.disabled {
+    color: $navbar-dark-color !important;
+  }
+}
+
+// Expandable
+.navbar-expand {
+  @each $breakpoint in map-keys( $grid-breakpoints ) {
+
+    $next : breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+
+    &#{ $infix } {
+
+      // Collapsed
+      @include media-breakpoint-down( $breakpoint ) {
+        // Hide large logos
+        .logo-lg:not(.logo-sm) {
+          display: none;
+        }
+      }
+
+      // Expanded
+      @include media-breakpoint-up( $next ) {
+        .navbar-nav {
+          // Make sure all items are aligned properly
+          align-items: center;
+        }
+
+        // Set button spacing
+        .nav-item .btn {
+          margin: 0 $navbar-nav-link-padding-x;
+        }
+
+        // Not stuck
+        #sticky-header:not(.is-stuck) & {
+          // Increase vertical padding
+          padding-top: $navbar-padding-y-lg;
+          padding-bottom: $navbar-padding-y-lg;
+
+          .site-logo img {
+            // Increase max height
+            max-height: $site-logo-max-height-lg;
+          }
+
+          // Hide small logos
+          .logo-sm:not(.logo-lg) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

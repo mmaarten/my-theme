@@ -1,0 +1,24 @@
+{
+  "name": "mmaarten/theme",
+  "type": "wordpress-theme",
+	"license": "GPL-2.0",
+	"minimum-stability": "stable",
+	"keywords": [
+		"wordpress",
+    "theme",
+    "bootstrap"
+	],
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+    "phpcompatibility/php-compatibility": "^9.2",
+    "wp-coding-standards/wpcs": "^2.1"
+  },
+	"require": {
+		"composer/installers": "^1.5",
+		"wp-bootstrap/wp-bootstrap-navwalker": "^4.2"
+	},
+  "scripts": {
+		"phpcs" : "./vendor/bin/phpcs",
+    "phpcbf" : "./vendor/bin/phpcbf"
+	}
+}
