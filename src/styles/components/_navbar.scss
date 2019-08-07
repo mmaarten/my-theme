@@ -2,6 +2,10 @@
  * Navbar
  */
 
+$site-logo-max-height: $navbar-brand-height + $navbar-brand-padding-y * 2;
+$site-logo-max-height-lg: $site-logo-max-height * 2;
+$navbar-padding-y-lg: $navbar-brand-padding-y * 2;
+
 .navbar {
 
   // Set button spacing
@@ -60,7 +64,7 @@
 
     // Make image fit vertically
     img {
-      max-height: $navbar-brand-height + $navbar-brand-padding-y * 2;
+      max-height: $site-logo-max-height;
       width: auto;
     }
   }
@@ -92,6 +96,13 @@
     &#{ $infix } {
       // Expanded
       @include media-breakpoint-up( $next ) {
+        padding-top: $navbar-padding-y-lg;
+        padding-bottom: $navbar-padding-y-lg;
+
+        .site-logo img {
+          max-height: $site-logo-max-height-lg;
+        }
+
         .navbar-nav {
           // Make sure all items are aligned properly
           align-items: center;
