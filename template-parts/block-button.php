@@ -2,6 +2,9 @@
 /**
  * Template for displaying a button block
  *
+ * @uses get_fields()
+ * @uses acf_esc_attr_e()
+ *
  * @var array      $block The block settings and attributes.
  * @var string     $content The block inner HTML (empty).
  * @var bool       $is_preview True during AJAX preview.
