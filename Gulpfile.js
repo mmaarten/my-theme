@@ -1,6 +1,5 @@
 var gulp  = require( 'gulp' );
 var zip   = require( 'gulp-zip' );
-var info  = require( './package.json' );
 var wpPot = require( 'gulp-wp-pot' );
 
 gulp.task( 'dist-archive', function(){
@@ -29,13 +28,13 @@ gulp.task( 'pot', function () {
 	var src = [
 		'**/*.php',
 		'!vendor/**',
-		'!node_modules/**'
+		'!node_modules/**',
 	];
 
     return gulp.src( src )
         .pipe( wpPot( {
             domain: 'my-theme',
-            package: 'MyTheme'
+            package: 'MyTheme',
         }))
         .pipe( gulp.dest( 'languages/my-theme.pot' ) );
 });
