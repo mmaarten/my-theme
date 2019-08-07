@@ -80,6 +80,9 @@ function my_theme_setup() {
 	 * @link https://codex.wordpress.org/Theme_Logo
 	 */
 	add_theme_support( 'custom-logo' );
+
+	// Add custom image sizes.
+	add_image_size( 'my-theme-full-width', 1920, 1080 );
 }
 
 add_action( 'after_setup_theme', 'my_theme_setup' );
@@ -99,3 +102,19 @@ function my_theme_content_width() {
 }
 
 add_action( 'after_setup_theme', 'my_theme_content_width', 0 );
+
+/**
+ * Modify of the list of image sizes that are available in the WordPress Media Library.
+ *
+ * @param array $sizes List of image size names.
+ *
+ * @return array
+ */
+function my_theme_image_size_names( $sizes ) {
+
+	return $sizes + array(
+		'my-theme-full-width' => __( 'Full Page Width', 'my-theme' ),
+	);
+}
+
+add_filter( 'image_size_names_choose', 'my_theme_image_size_names' );
