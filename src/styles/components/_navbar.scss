@@ -52,6 +52,7 @@ $navbar-padding-y-lg: $navbar-brand-padding-y * 2;
     margin: 0;
   }
 
+  // Remove vertical padding when logo is used.
   .wp-custom-logo & {
     padding-top: 0;
     padding-bottom: 0;
