@@ -49,3 +49,8 @@ require get_template_directory() . '/inc/fields.php';
  * Add options page.
  */
 require get_template_directory() . '/inc/options-page.php';
+
+/**
+ * Register block types.
+ */
+require get_template_directory() . '/inc/blocks.php';
