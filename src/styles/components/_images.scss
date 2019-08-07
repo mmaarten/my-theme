@@ -1,0 +1,5 @@
+
+// Make images responsive
+img {
+  @extend .img-fluid;
+}
