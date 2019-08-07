@@ -39,3 +39,8 @@ require get_template_directory() . '/inc/template-functions.php';
  * Custom block editor functionality.
  */
 require get_template_directory() . '/inc/editor.php';
+
+/**
+ * Custom fields related functions.
+ */
+require get_template_directory() . '/inc/fields.php';
