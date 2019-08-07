@@ -44,3 +44,8 @@ require get_template_directory() . '/inc/editor.php';
  * Custom fields related functions.
  */
 require get_template_directory() . '/inc/fields.php';
+
+/**
+ * Add options page.
+ */
+require get_template_directory() . '/inc/options-page.php';
