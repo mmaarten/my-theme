@@ -22,14 +22,18 @@ function my_theme_register_block_types() {
 		return;
 	}
 
-	// Register a testimonial block.
+	// Register button block.
 	acf_register_block_type(
 		array(
-			'name'            => 'button',
-			'title'           => __( 'Button', 'my-theme' ),
-			'description'     => __( 'Displays a button.', 'my-theme' ),
-			'render_template' => 'template-parts/block-button.php',
-			'category'        => 'common',
+			'name'              => 'button',
+			'title'             => __( 'Button', 'my-theme' ),
+			'description'       => __( 'Displays a button.', 'my-theme' ),
+			'render_template'   => 'template-parts/block-button.php',
+			'category'          => 'common',
+			'supports'          => array(
+				'anchor' => true,
+				'align'  => array( 'left', 'center', 'right' ),
+			),
 		)
 	);
 }
