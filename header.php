@@ -37,7 +37,13 @@
 		<header id="masthead" class="site-header">
 
 			<?php get_template_part( 'template-parts/top', 'navigation' ); ?>
-			<?php get_template_part( 'template-parts/main', 'navigation' ); ?>
+
+			<div id="sticky-header">
+
+				<?php get_template_part( 'template-parts/main', 'navigation' ); ?>
+
+			</div><!-- #sticky-header -->
+
 			<?php get_template_part( 'template-parts/header', 'widgets' ); ?>
 
 		</header><!-- #masthead -->

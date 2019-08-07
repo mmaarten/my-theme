@@ -1,0 +1,12 @@
+/**
+ * Sticky header
+ */
+
+#sticky-header.is-stuck {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $zindex-sticky;
+  animation: my-theme-slideDown 0.3s ease-out;
+  box-shadow: $box-shadow-sm;
+}
