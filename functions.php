@@ -11,15 +11,11 @@
 require get_template_directory() . '/inc/common.php';
 
 /**
- * Include Composer autoloader.
- */
-require get_template_directory() . '/vendor/autoload.php';
-
-/**
  * Include files from inside the /inc directory.
  */
 my_theme_inc(
 	array(
+		'autoload.php',           // Include autoloader.
 		'setup.php',              // Set up theme defaults and register support for features.
 		'nav-menus.php',          // Custom navigation menu functions.
 		'widgets.php',            // Register widget areas.
