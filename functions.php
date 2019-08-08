@@ -6,61 +6,25 @@
  */
 
 /**
- * Set up theme defaults and register support for features.
+ * Load common helper functions.
  */
-require get_template_directory() . '/inc/setup.php';
+require get_template_directory() . '/inc/common.php';
 
 /**
- * Custom navigation menu functions.
+ * Include files from inside the /inc directory.
  */
-require get_template_directory() . '/inc/nav-menus.php';
+$my_theme_includes = array(
+	'setup.php'              => true, // Set up theme defaults and register support for features.
+	'nav-menus.php'          => true, // Custom navigation menu functions.
+	'widgets.php'            => true, // Register widget areas.
+	'scripts.php'            => true, // Enqueue scripts and styles.
+	'template-tags.php'      => true, // Custom template tags for this theme.
+	'template-functions.php' => true, // Functions which enhance the theme by hooking into WordPress.
+	'editor.php'             => true, // Custom editor features.
+	'fields.php'             => true, // Custom fields related functions.
+	'options-page.php'       => true, // Add options page.
+	'blocks.php'             => true, // Register block types.
+	'hero-image.php'         => true, // Include hero image.
+);
 
-/**
- * Register widget areas.
- */
-require get_template_directory() . '/inc/widgets.php';
-
-/**
- * Enqueue scripts and styles.
- */
-require get_template_directory() . '/inc/scripts.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Custom block editor functionality.
- */
-require get_template_directory() . '/inc/editor.php';
-
-/**
- * Custom fields related functions.
- */
-require get_template_directory() . '/inc/fields.php';
-
-/**
- * Add options page.
- */
-require get_template_directory() . '/inc/options-page.php';
-
-/**
- * Register block types.
- */
-require get_template_directory() . '/inc/blocks.php';
-
-/**
- * Include attachment related functions.
- */
-require get_template_directory() . '/inc/attachments.php';
-
-/**
- * Include hero image.
- */
-require get_template_directory() . '/inc/hero-image.php';
+my_theme_inc( array_keys( array_filter( $my_theme_includes ) ) );
