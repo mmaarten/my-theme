@@ -26,6 +26,5 @@ my_theme_inc(
 		'fields.php',             // Custom fields related functions.
 		'options-page.php',       // Add options page.
 		'blocks.php',             // Register block types.
-		'hero-image.php',         // Include hero image.
 	)
 );
