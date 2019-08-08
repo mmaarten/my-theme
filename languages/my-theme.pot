@@ -70,6 +70,14 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: inc/blocks.php:29, template-parts/block-button.php:22
+msgid "Button"
+msgstr ""
+
+#: inc/blocks.php:30
+msgid "Displays a button."
+msgstr ""
+
 #: inc/editor.php:18
 msgid "Primary"
 msgstr ""
@@ -130,6 +138,10 @@ msgstr ""
 msgid "LG"
 msgstr ""
 
+#: inc/options-page.php:27, inc/options-page.php:28
+msgid "Theme Settings"
+msgstr ""
+
 #: inc/setup.php:50
 msgid "Top Left"
 msgstr ""
@@ -152,6 +164,10 @@ msgstr ""
 
 #: inc/setup.php:55
 msgid "Footer Right"
+msgstr ""
+
+#: inc/setup.php:116
+msgid "Full Page Width"
 msgstr ""
 
 #: inc/template-functions.php:75
@@ -258,6 +274,52 @@ msgstr ""
 
 #: inc/widgets.php:50
 msgid "Footer section."
+msgstr ""
+
+#: inc/widgets.php:66
+msgid "first"
+msgstr ""
+
+#: inc/widgets.php:67
+msgid "second"
+msgstr ""
+
+#: inc/widgets.php:68
+msgid "thirth"
+msgstr ""
+
+#: inc/widgets.php:69
+msgid "fourth"
+msgstr ""
+
+#: inc/widgets.php:70
+msgid "fifth"
+msgstr ""
+
+#: inc/widgets.php:71
+msgid "sixth"
+msgstr ""
+
+#: inc/widgets.php:72
+msgid "seventh"
+msgstr ""
+
+#: inc/widgets.php:73
+msgid "eighth"
+msgstr ""
+
+#: inc/widgets.php:74
+msgid "ninth"
+msgstr ""
+
+#. translators: %d: column number.
+#: inc/widgets.php:82
+msgid "Footer Column %d"
+msgstr ""
+
+#. translators: %s: column number (ordinal).
+#: inc/widgets.php:84
+msgid "%s column in footer section."
 msgstr ""
 
 #: page-templates/full-width-fixed.php:3
