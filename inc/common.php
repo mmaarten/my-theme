@@ -13,6 +13,7 @@
 function my_theme_inc( $files ) {
 
 	foreach ( (array) $files as $file ) {
+
 		$located = locate_template( "inc/$file" );
 
 		if ( ! $located ) {
