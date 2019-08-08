@@ -8,7 +8,7 @@
 /**
  * Include files from inside the /inc directory.
  *
- * @param string|array $files The files to include.
+ * @param string|array $files The file(s) to include.
  */
 function my_theme_inc( $files ) {
 
