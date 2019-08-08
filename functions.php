@@ -54,3 +54,13 @@ require get_template_directory() . '/inc/options-page.php';
  * Register block types.
  */
 require get_template_directory() . '/inc/blocks.php';
+
+/**
+ * Include attachment related functions.
+ */
+require get_template_directory() . '/inc/attachments.php';
+
+/**
+ * Include hero image.
+ */
+require get_template_directory() . '/inc/hero-image.php';
