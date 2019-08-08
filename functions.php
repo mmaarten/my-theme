@@ -11,6 +11,11 @@
 require get_template_directory() . '/inc/common.php';
 
 /**
+ * Include Composer autoloader.
+ */
+require get_template_directory() . '/vendor/autoload.php';
+
+/**
  * Include files from inside the /inc directory.
  */
 my_theme_inc(
