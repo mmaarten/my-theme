@@ -133,4 +133,12 @@
 	</rule>
 	-->
 
+	<rule ref="WordPress.Security.EscapeOutput">
+		<properties>
+			<property name="customAutoEscapedFunctions" type="array">
+				<element value="my_theme_html_atts"/>
+			</property>
+		</properties>
+	</rule>
+
 </ruleset>
