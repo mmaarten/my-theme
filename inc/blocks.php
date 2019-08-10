@@ -146,8 +146,8 @@ function button_block( $block, $content = '', $is_preview = false, $post_id = 0 
 
 	?>
 
-	<p <?php echo my_theme_html_atts( $wrapper ); ?>>
-		<a <?php echo my_theme_html_atts( $button ); ?>><?php echo esc_html( $fields['text'] ); ?></a>
+	<p <?php echo html_atts( $wrapper ); ?>>
+		<a <?php echo html_atts( $button ); ?>><?php echo esc_html( $fields['text'] ); ?></a>
 	</p>
 
 	<?php
