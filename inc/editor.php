@@ -103,7 +103,7 @@ function block_editor_setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\block_editor_setup' );
 
 /**
- * Enqueu block assets for both editor and front-end.
+ * Enqueue block assets for both editor and front-end.
  */
 function block_assets() {
 
