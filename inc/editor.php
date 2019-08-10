@@ -8,7 +8,7 @@
 /**
  * Setup
  */
-function my_theme_editor_setup() {
+function my_theme_block_editor_setup() {
 
 	// Set editor colors.
 	add_theme_support(
@@ -98,7 +98,7 @@ function my_theme_editor_setup() {
 	add_theme_support( 'responsive-embeds' );
 }
 
-add_action( 'after_setup_theme', 'my_theme_editor_setup' );
+add_action( 'after_setup_theme', 'my_theme_block_editor_setup' );
 
 /**
  * Enqueu block assets for both editor and front-end.
