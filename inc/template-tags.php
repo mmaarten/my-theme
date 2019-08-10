@@ -284,3 +284,114 @@ function breadcrumb_nav( $before = '', $after = '' ) {
 
 		// phpcs:enable
 }
+
+/**
+ * Display image gallery
+ *
+ * @param array $args The arguments.
+ */
+function gallery( $args = array() ) {
+
+	static $instance = 0;
+
+	$instance++;
+
+	$args = wp_parse_args(
+		$args,
+		array(
+			'ids'        => array(),
+			'size'       => 'thumbnail',
+			'link'       => '',
+			'columns'    => 3,
+			'orderby'    => 'menu_order',
+			'order'      => 'DESC',
+		)
+	);
+
+	$attachments = get_posts(
+		array(
+			'post__in'       => $args['ids'],
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'post_mime_type' => 'image',
+			'orderby'        => $args['orderby'],
+			'order'          => $args['order'],
+		)
+	);
+
+	if ( ! $attachments ) {
+		return;
+	}
+
+	$gallery_id = "gallery-$instance";
+
+	$gallery = array(
+		'id'    => $gallery_id,
+		'class' => sprintf( 'gallery gallery-size-%s', sanitize_html_class( $args['size'] ) ),
+	);
+
+	$columns = is_array( $args['columns'] ) ? $args['columns'] : array( 'xs' => $args['columns'] );
+
+	foreach ( array( 'xs', 'sm', 'md', 'lg', 'xl' ) as $breakpoint ) {
+
+		if ( empty( $columns[ $breakpoint ] ) ) {
+			continue;
+		}
+
+		$slug = 'xs' === $breakpoint ? '' : "-$breakpoint";
+
+		$gallery['class'] .= sprintf( ' gallery-columns%s-%d', $slug, $columns[ $breakpoint ] );
+	}
+
+	echo '<' . html_atts( $gallery ) . '>';
+
+	foreach ( $attachments as $attachment ) {
+
+		$attr = trim( $attachment->post_excerpt ) ? array( 'aria-describedby' => "$gallery_id-{$attachment->ID}" ) : '';
+
+		echo '<figure class="gallery-item">';
+
+		echo '<div class="gallery-icon">';
+
+		if ( 'file' === $args['link'] ) {
+
+			echo wp_get_attachment_link( $attachment, $args['size'], false, false, false, $attr );
+
+		} elseif ( 'none' === $args['link'] ) {
+
+			echo wp_get_attachment_image( $attachment, $args['size'], false, $attr );
+
+		} elseif ( 'lightbox' === $args['link'] ) {
+
+			list( $linked ) = (array) wp_get_attachment_image_src( $attachment, 'theme-full-width' );
+
+			printf(
+				'<a href="%s" data-fancybox="%s" data-caption="%s">%s</a>',
+				esc_url( $linked ),
+				esc_attr( $gallery_id ),
+				esc_attr( $attachment->post_excerpt ), // TODO : Don't use attribute for caption.
+				wp_get_attachment_image( $attachment, $args['size'], false, $attr )
+			);
+
+		} else {
+
+			echo wp_get_attachment_link( $attachment, $args['size'], true, false, false, $attr );
+		}
+
+		echo '</div><!-- .gallery-icon -->';
+
+		if ( trim( $attachment->post_excerpt ) ) {
+
+			printf(
+				'<figcaption class="wp-caption-text gallery-caption" id="%s-%s">%s</figcaption>',
+				esc_attr( $gallery_id ),
+				esc_attr( $attachment->ID ),
+				esc_html( $attachment->post_excerpt )
+			);
+		}
+
+		echo '</figure><!-- .gallery-item -->';
+	}
+
+	echo '</div><!-- .gallery -->';
+}
