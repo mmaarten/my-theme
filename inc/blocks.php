@@ -30,7 +30,7 @@ function register_block_types() {
 			'name'            => 'button',
 			'title'           => __( 'Button', 'my-theme' ),
 			'description'     => __( 'Displays a button.', 'my-theme' ),
-			'render_callback' => 'my_theme_button_block',
+			'render_callback' => __NAMESPACE__ . '\button_block',
 			'category'        => 'common',
 			'supports'        => array(
 				'anchor' => true,
