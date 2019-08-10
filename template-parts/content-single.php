@@ -19,7 +19,7 @@
 
 		<div class="entry-meta">
 
-			<?php my_theme_posted_on(); ?>
+			<?php MyTheme\posted_on(); ?>
 
 		</div><!-- .entry-meta -->
 
@@ -27,7 +27,7 @@
 
 	</header><!-- .entry-header -->
 
-	<?php my_theme_post_thumbnail(); ?>
+	<?php MyTheme\post_thumbnail(); ?>
 
 	<div class="entry-content">
 
@@ -37,7 +37,7 @@
 
 	<footer class="entry-footer">
 
-		<?php my_theme_entry_footer(); ?>
+		<?php MyTheme\entry_footer(); ?>
 
 	</footer><!-- .entry-footer -->
 

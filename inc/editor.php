@@ -5,10 +5,12 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Setup
  */
-function my_theme_block_editor_setup() {
+function block_editor_setup() {
 
 	// Set editor colors.
 	add_theme_support(
@@ -98,12 +100,12 @@ function my_theme_block_editor_setup() {
 	add_theme_support( 'responsive-embeds' );
 }
 
-add_action( 'after_setup_theme', 'my_theme_block_editor_setup' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\block_editor_setup' );
 
 /**
  * Enqueu block assets for both editor and front-end.
  */
-function my_theme_block_assets() {
+function block_assets() {
 
 	if ( ! is_admin() ) {
 		$theme         = wp_get_theme();
@@ -114,12 +116,12 @@ function my_theme_block_assets() {
 	}
 }
 
-add_action( 'enqueue_block_assets', 'my_theme_block_assets' );
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\block_assets' );
 
 /**
  * Enqueue block assets for the editing interface
  */
-function my_theme_block_editor_assets() {
+function block_editor_assets() {
 
 	$theme         = wp_get_theme();
 	$theme_version = $theme->get( 'Version' );
@@ -128,4 +130,4 @@ function my_theme_block_editor_assets() {
 	wp_enqueue_style( 'my_theme-editor', get_template_directory_uri() . '/dist/styles/editor.css', array(), "{$theme_version}.{$css_version}" );
 }
 
-add_action( 'enqueue_block_editor_assets', 'my_theme_block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\block_editor_assets' );

@@ -87,7 +87,7 @@
 		 Multiple valid prefixes can be provided as a comma-delimited list. -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="my_theme" />
+			<property name="prefixes" type="array" value="my_theme,MyTheme" />
 		</properties>
 	</rule>
 
@@ -99,7 +99,7 @@
 	-->
 
 
-	<config name="testVersion" value="5.2-99.0"/>
+	<config name="testVersion" value="5.3-99.0"/>
 	<rule ref="PHPCompatibility">
 		<!-- Whitelist PHP native classes, interfaces, functions and constants which
 			 are back-filled by WP.

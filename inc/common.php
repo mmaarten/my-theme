@@ -5,12 +5,14 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Include files from inside the /inc directory.
  *
  * @param string|array $files The file(s) to include.
  */
-function my_theme_inc( $files ) {
+function inc( $files ) {
 
 	foreach ( (array) $files as $file ) {
 
@@ -32,7 +34,7 @@ function my_theme_inc( $files ) {
  *
  * @return string
  */
-function my_theme_html_atts( $atts ) {
+function html_atts( $atts ) {
 
 	$html = '';
 

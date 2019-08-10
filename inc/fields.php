@@ -9,6 +9,8 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Populate field choices with editor color names.
  *
@@ -18,7 +20,7 @@
  *
  * @return array
  */
-function my_theme_editor_colors_field( $field ) {
+function editor_colors_field( $field ) {
 
 	// Check field CSS class.
 	if ( ! preg_match( '/(^| )my-theme-editor-colors-field( |$)/', $field['wrapper']['class'] ) ) {
@@ -40,7 +42,7 @@ function my_theme_editor_colors_field( $field ) {
 	return $field;
 }
 
-add_action( 'acf/load_field/type=select', 'my_theme_editor_colors_field' );
+add_action( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_colors_field' );
 
 /**
  * Populate field choices with editor font size names.
@@ -51,7 +53,7 @@ add_action( 'acf/load_field/type=select', 'my_theme_editor_colors_field' );
  *
  * @return array
  */
-function my_theme_editor_font_sizes_field( $field ) {
+function editor_font_sizes_field( $field ) {
 
 	// Check field CSS class.
 	if ( ! preg_match( '/(^| )my-theme-editor-font-sizes-field( |$)/', $field['wrapper']['class'] ) ) {
@@ -73,4 +75,4 @@ function my_theme_editor_font_sizes_field( $field ) {
 	return $field;
 }
 
-add_action( 'acf/load_field/type=select', 'my_theme_editor_font_sizes_field' );
+add_action( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_font_sizes_field' );

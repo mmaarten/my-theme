@@ -27,7 +27,7 @@ require get_template_directory() . '/vendor/wp-bootstrap/wp-bootstrap-navwalker/
  *
  * @return array
  */
-function my_theme_nav_menu_button( $atts, $item, $nav_menu, $depth ) {
+function nav_menu_button( $atts, $item, $nav_menu, $depth ) {
 
 	// Get button classes.
 
@@ -74,7 +74,7 @@ function my_theme_nav_menu_button( $atts, $item, $nav_menu, $depth ) {
 	return $atts;
 }
 
-add_filter( 'nav_menu_link_attributes', 'my_theme_nav_menu_button', 15, 4 );
+add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_button' ), 15, 4 );
 
 /**
  * Toggle modal on item click.
@@ -92,7 +92,7 @@ add_filter( 'nav_menu_link_attributes', 'my_theme_nav_menu_button', 15, 4 );
  *
  * @return array
  */
-function my_theme_nav_menu_modal( $atts, $item, $nav_menu, $depth ) {
+function nav_menu_modal( $atts, $item, $nav_menu, $depth ) {
 	if ( in_array( '-modal', $item->classes, true ) ) {
 		$atts['data-toggle'] = 'modal';
 	}
@@ -100,4 +100,4 @@ function my_theme_nav_menu_modal( $atts, $item, $nav_menu, $depth ) {
 	return $atts;
 }
 
-add_filter( 'nav_menu_link_attributes', 'my_theme_nav_menu_modal', 10, 4 );
+add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_modal' ), 10, 4 );

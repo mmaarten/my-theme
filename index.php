@@ -40,7 +40,7 @@ get_header();
 					// End of the Loop.
 				endwhile;
 
-				my_theme_pagination();
+				MyTheme\pagination();
 
 				else :
 

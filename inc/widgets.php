@@ -5,12 +5,14 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Register widget areas.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function my_theme_widgets_init() {
+function widgets_init() {
 
 	$defaults = array(
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
@@ -52,7 +54,7 @@ function my_theme_widgets_init() {
 	);
 }
 
-add_action( 'widgets_init', 'my_theme_widgets_init' );
+add_action( 'widgets_init', __NAMESPACE__ . '\widgets_init' );
 
 /**
  * Register widget areas described as footer columns.
@@ -60,7 +62,7 @@ add_action( 'widgets_init', 'my_theme_widgets_init' );
  * @param int   $amount The amount of sidebars to register.
  * @param array $args   Arguments for function register_sidebar.
  */
-function my_theme_register_footer_columns( $amount, $args = array() ) {
+function register_footer_columns( $amount, $args = array() ) {
 
 	$ordinals = array(
 		1 => __( 'first', 'my-theme' ),

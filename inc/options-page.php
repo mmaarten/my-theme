@@ -9,6 +9,8 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Add options page
  *
@@ -16,7 +18,7 @@
  *
  * @uses acf_add_options_page()
  */
-function my_theme_add_options_page() {
+function add_options_page() {
 
 	if ( ! function_exists( 'acf_add_options_page' ) ) {
 		return;
@@ -32,4 +34,4 @@ function my_theme_add_options_page() {
 
 }
 
-add_action( 'acf/init', 'my_theme_add_options_page' );
+add_action( 'acf/init', __NAMESPACE__ . '\add_options_page' );

@@ -5,6 +5,8 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Include Composer autoloader.
  */

@@ -7,10 +7,12 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Prints HTML with meta information for the current post-date/time.
  */
-function my_theme_posted_on() {
+function posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -46,7 +48,7 @@ function my_theme_posted_on() {
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
-function my_theme_entry_footer() {
+function entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' === get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
@@ -107,7 +109,7 @@ function my_theme_entry_footer() {
  * Wraps the post thumbnail in an anchor element on index views, or a div
  * element when on single views.
  */
-function my_theme_post_thumbnail() {
+function post_thumbnail() {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
 	}
@@ -145,7 +147,7 @@ function my_theme_post_thumbnail() {
  *
  * @param array $args Arguments for the paginate_links function.
  */
-function my_theme_pagination( $args = array() ) {
+function pagination( $args = array() ) {
 
 	if ( $GLOBALS['wp_query']->max_num_pages <= 1 ) {
 		return;
@@ -190,7 +192,7 @@ function my_theme_pagination( $args = array() ) {
 /**
  * Display navigation to next/previous post when applicable.
  */
-function my_theme_post_nav() {
+function post_nav() {
 
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
@@ -238,7 +240,7 @@ function my_theme_post_nav() {
  * @param string $before The HTML to render before the navigation.
  * @param string $after  The HTML to render after the navigation.
  */
-function my_theme_breadcrumb_nav( $before = '', $after = '' ) {
+function breadcrumb_nav( $before = '', $after = '' ) {
 
 	// Check Dependency.
 	if ( ! function_exists( 'bcn_display_list' ) ) {

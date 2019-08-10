@@ -5,14 +5,16 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
- * Note that this function my_theme_is hooked into the after_setup_theme hook, which
+ * Note that this function is hooked into the after_setup_theme hook, which
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function my_theme_setup() {
+function setup() {
 	/**
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
@@ -85,7 +87,7 @@ function my_theme_setup() {
 	add_image_size( 'my-theme-full-width', 1920, 1080 );
 }
 
-add_action( 'after_setup_theme', 'my_theme_setup' );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -94,14 +96,14 @@ add_action( 'after_setup_theme', 'my_theme_setup' );
  *
  * @global int $content_width
  */
-function my_theme_content_width() {
+function content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	$GLOBALS['content_width'] = apply_filters( 'my_theme_content_width', 1140 );
 }
 
-add_action( 'after_setup_theme', 'my_theme_content_width', 0 );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\content_width', 0 );
 
 /**
  * Modify of the list of image sizes that are available in the WordPress Media Library.
@@ -110,11 +112,11 @@ add_action( 'after_setup_theme', 'my_theme_content_width', 0 );
  *
  * @return array
  */
-function my_theme_image_size_names( $sizes ) {
+function image_size_names( $sizes ) {
 
 	return $sizes + array(
 		'my-theme-full-width' => __( 'Full Page Width', 'my-theme' ),
 	);
 }
 
-add_filter( 'image_size_names_choose', 'my_theme_image_size_names' );
+add_filter( 'image_size_names_choose', __NAMESPACE__ . '\image_size_names' );

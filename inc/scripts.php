@@ -5,10 +5,12 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Enqueue scripts and styles.
  */
-function my_theme_scripts() {
+function scripts() {
 
 	$theme         = wp_get_theme();
 	$theme_version = $theme->get( 'Version' );
@@ -24,4 +26,4 @@ function my_theme_scripts() {
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'my_theme_scripts' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\scripts' );

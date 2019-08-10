@@ -9,6 +9,8 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Register block types
  *
@@ -16,7 +18,7 @@
  *
  * @uses acf_register_block_type()
  */
-function my_theme_register_block_types() {
+function register_block_types() {
 
 	if ( ! function_exists( 'acf_register_block_type' ) ) {
 		return;
@@ -38,7 +40,7 @@ function my_theme_register_block_types() {
 	);
 }
 
-add_action( 'acf/init', 'my_theme_register_block_types' );
+add_action( 'acf/init', __NAMESPACE__ . '\register_block_types' );
 
 /**
  * Button block
@@ -53,7 +55,7 @@ add_action( 'acf/init', 'my_theme_register_block_types' );
  *
  * @package MyTheme
  */
-function my_theme_button_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
+function button_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
 
 	// Get field data.
 	$fields = wp_parse_args(
