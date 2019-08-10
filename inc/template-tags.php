@@ -338,9 +338,10 @@ function gallery( $args = array() ) {
 			continue;
 		}
 
-		$slug = 'xs' === $breakpoint ? '' : "-$breakpoint";
+		$value = intval( $columns[ $breakpoint ] );
+		$slug  = 'xs' === $breakpoint ? '' : "-$breakpoint";
 
-		$gallery['class'] .= sprintf( ' gallery-columns%s-%d', $slug, $columns[ $breakpoint ] );
+		$gallery['class'] .= " gallery-columns$slug-$value";
 	}
 
 	echo '<' . html_atts( $gallery ) . '>';
