@@ -5,6 +5,8 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Include WP_Bootstrap_Navwalker.
  *
@@ -74,7 +76,7 @@ function nav_menu_button( $atts, $item, $nav_menu, $depth ) {
 	return $atts;
 }
 
-add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_button' ), 15, 4 );
+add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_button', 15, 4 );
 
 /**
  * Toggle modal on item click.
@@ -100,4 +102,4 @@ function nav_menu_modal( $atts, $item, $nav_menu, $depth ) {
 	return $atts;
 }
 
-add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_modal' ), 10, 4 );
+add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_modal', 10, 4 );

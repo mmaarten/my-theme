@@ -5,6 +5,8 @@
  * @package MyTheme
  */
 
+namespace MyTheme;
+
 /**
  * Load common helper functions.
  */
@@ -13,7 +15,7 @@ require get_template_directory() . '/inc/common.php';
 /**
  * Include files from inside the /inc directory.
  */
-my_theme_inc(
+inc(
 	array(
 		'autoload.php',           // Include autoloader.
 		'setup.php',              // Set up theme defaults and register support for features.
