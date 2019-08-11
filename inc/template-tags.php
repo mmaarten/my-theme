@@ -491,3 +491,64 @@ function modal( $args = array() ) {
 
 	<?php
 }
+
+/**
+ * Display an attachment image that covers the registered image size dimensions.
+ *
+ * @link https://codex.wordpress.org/Function_Reference/get_intermediate_image_sizes#Examples
+ *
+ * @global $_wp_additional_image_sizes
+ *
+ * @param int    $attachment_id The attachment ID.
+ * @param string $size          The registered image size.
+ */
+function attachment_cover_image( $attachment_id, $size = 'large' ) {
+
+	// Stop when image size is not registered.
+	if ( ! in_array( $size, get_intermediate_image_sizes(), true ) ) {
+		return;
+	}
+
+	// Get image size dimensions.
+
+	global $_wp_additional_image_sizes;
+
+	if ( in_array( $size, array( 'thumbnail', 'medium', 'large' ), true ) ) {
+		$size_width  = (int) get_option( "{$size}_size_w" );
+		$size_height = (int) get_option( "{$size}_size_h" );
+	} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
+		$size_width  = (int) $_wp_additional_image_sizes[ $size ]['width'];
+		$size_height = (int) $_wp_additional_image_sizes[ $size ]['height'];
+	} else {
+		return;
+	}
+
+	// Get image URL.
+
+	list( $image_url ) = (array) wp_get_attachment_image_src( $attachment_id, $size );
+
+	if ( ! $image_url ) {
+		return;
+	}
+
+	// Output.
+
+	$wrapper = array(
+		'class' => 'embed-responsive bg-cover bg-center',
+		'style' => sprintf( 'background-image:url(%s);padding-top:%d%%;', $image_url, $size_height / $size_width * 100 ),
+	);
+
+	echo '<div' . html_atts( $wrapper ) . '>';
+
+	echo wp_get_attachment_image(
+		$attachment_id,
+		$size,
+		false,
+		array(
+			'class' => 'embed-responsive-item',
+			'style' => 'opacity:0;',
+		)
+	);
+
+	echo '</div>';
+}
