@@ -286,7 +286,7 @@ function breadcrumb_nav( $before = '', $after = '' ) {
 }
 
 /**
- * Display image gallery
+ * Display an image gallery
  *
  * @param array $args The arguments.
  */
@@ -395,4 +395,99 @@ function gallery( $args = array() ) {
 	}
 
 	echo '</div><!-- .gallery -->';
+}
+
+/**
+ * Display a modal
+ *
+ * @param array $args The arguments.
+ */
+function modal( $args = array() ) {
+
+	if ( empty( $args['id'] ) ) {
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+		trigger_error( 'Modal id is required.', E_USER_WARNING );
+		return;
+	}
+
+	$args = wp_parse_args(
+		$args,
+		array(
+			'id'       => '',
+			'title'    => '',
+			'body'     => '',
+			'size'     => '',
+			'centered' => false,
+		)
+	);
+
+	// Title HTML attributes.
+
+	$title = array(
+		'id'    => "{$args['id']}-titel",
+		'class' => 'modal-title',
+	);
+
+	// Modal HTML attributes.
+
+	$modal = array(
+		'id'          => $args['id'],
+		'class'       => 'modal',
+		'tabindex'    => -1,
+		'role'        => 'dialog',
+		'aria-hidden' => 'true',
+	);
+
+	if ( $args['title'] ) {
+		$modal['aria-labelledby'] = $title['id'];
+	}
+
+	if ( $args['size'] ) {
+		$modal['class'] .= sprintf( ' modal-%s', sanitize_html_class( $args['size'] ) );
+	}
+
+	// Dialog HTML attributes.
+
+	$dialog = array(
+		'class' => 'modal-dialog',
+		'role'  => 'document',
+	);
+
+	if ( $args['centered'] ) {
+		$dialog['class'] .= ' modal-dialog-centered';
+	}
+
+	?>
+
+	<div<?php echo html_atts( $modal ); ?>>
+
+		<div<?php echo html_atts( $dialog ); ?>>
+
+			<div class="modal-content">
+
+				<div class="modal-header">
+
+					<?php if ( $args['title'] ) : ?>
+					<h5<?php echo html_atts( $title ); ?>><?php echo esc_html( $args['title'] ); ?></h5>
+					<?php endif; ?>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_attr_e( 'Close', 'my-theme' ); ?>">
+					<span aria-hidden="true">&times;</span>
+					</button>
+
+				</div><!-- modal-header -->
+
+				<div class="modal-body">
+
+					<?php echo $args['body']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+
+				</div><!-- modal-body -->
+
+			</div><!-- modal-content -->
+
+		</div><!-- modal-dialog -->
+
+	</div><!-- modal -->
+
+	<?php
 }
