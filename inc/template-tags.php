@@ -535,7 +535,7 @@ function attachment_cover_image( $attachment_id, $size = 'large' ) {
 
 	$wrapper = array(
 		'class' => 'embed-responsive bg-cover bg-center',
-		'style' => sprintf( 'background-image:url(%s);padding-top:%d%%;', $image_url, $size_height / $size_width * 100 ),
+		'style' => sprintf( 'background-image:url(%s);padding-top:%d%%;', esc_url( $image_url ), $size_height / $size_width * 100 ),
 	);
 
 	echo '<div' . html_atts( $wrapper ) . '>';
