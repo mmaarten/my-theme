@@ -25,8 +25,5 @@ inc(
 		'template-tags.php',      // Custom template tags for this theme.
 		'template-functions.php', // Functions which enhance the theme by hooking into WordPress.
 		'editor.php',             // Custom editor features.
-		'fields.php',             // Custom fields related functions.
-		'options-page.php',       // Add options page.
-		'blocks.php',             // Register block types.
 	)
 );

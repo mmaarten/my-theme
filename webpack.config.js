@@ -9,6 +9,7 @@ const imageminMozjpeg             = require('imagemin-mozjpeg');
 const BrowserSyncPlugin           = require('browser-sync-webpack-plugin');
 const WebpackBar                  = require('webpackbar');
 const CopyWebpackPlugin           = require('copy-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const config                      = require('./src/config.json');
 
 module.exports = {
@@ -121,7 +122,9 @@ module.exports = {
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
-      jQuery: 'jquery',
+		$: 'jquery',
+		jQuery: 'jquery',
+		'window.jQuery': 'jquery',
       Popper: 'popper.js/dist/umd/popper.js',
     }),
     // Synchronised browser testing
@@ -131,9 +134,18 @@ module.exports = {
     // Copy
     new CopyWebpackPlugin(config.copy),
     // Elegant ProgressBar and Profiler
-    new WebpackBar()
+    new WebpackBar(),
+	new FriendlyErrorsWebpackPlugin(),
   ],
   optimization: {
+	  splitChunks: {
+      cacheGroups: {
+        vendors: {
+			test: /[\\/]node_modules[\\/]/,
+          filename: '[name].bundle.js'
+        }
+      }
+  },
     minimizer: [
       // JS minifier
       new UglifyJsPlugin({
