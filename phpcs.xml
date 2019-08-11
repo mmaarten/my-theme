@@ -136,7 +136,7 @@
 	<rule ref="WordPress.Security.EscapeOutput">
 		<properties>
 			<property name="customAutoEscapedFunctions" type="array">
-				<element value="html_atts"/>
+				<!--<element value="html_atts"/>-->
 			</property>
 		</properties>
 	</rule>

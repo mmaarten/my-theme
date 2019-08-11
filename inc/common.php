@@ -26,21 +26,3 @@ function inc( $files ) {
 		include_once $located;
 	}
 }
-
-/**
- * Parse HTML attributes array into a string.
- *
- * @param array $atts The attribute name-value pairs.
- *
- * @return string
- */
-function html_atts( $atts ) {
-
-	$html = '';
-
-	foreach ( $atts as $name => $value ) {
-		$html .= sprintf( ' %s="%s"', esc_attr( $name ), esc_attr( $value ) );
-	}
-
-	return $html;
-}
