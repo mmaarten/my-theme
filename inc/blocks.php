@@ -42,6 +42,8 @@ function register_block_types() {
 	);
 }
 
+add_action( 'acf/init', __NAMESPACE__ . '\register_block_types' );
+
 /**
  * Button block callback function
  *
