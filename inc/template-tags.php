@@ -10,6 +10,56 @@
 namespace MyTheme;
 
 /**
+ * Image cover
+ *
+ * @global _wp_additional_image_sizes
+ *
+ * @param int|WP_Post $attachment Image attachment post.
+ * @param string      $size       The registered image size.
+ *
+ * @return string HTML markup.
+ */
+function get_attachment_image_cover( $attachment, $size = 'thumbnail' ) {
+
+	if ( 'attachment' !== get_post_type( $attachment ) ) {
+
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+		trigger_error( 'Argument attachment is not an attachment.', E_USER_WARNING );
+
+		return false;
+	}
+
+	global $_wp_additional_image_sizes;
+
+	if ( in_array( $size, array( 'thumbnail', 'medium', 'large' ), true ) ) {
+
+		$size_w = (int) get_option( "{$size}_size_w" );
+		$size_h = (int) get_option( "{$size}_size_h" );
+
+	} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
+
+		$size_w = (int) $_wp_additional_image_sizes[ $size ]['width'];
+		$size_h = (int) $_wp_additional_image_sizes[ $size ]['height'];
+
+	} else {
+
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+		trigger_error( sprintf( 'Unable to find size information for image size <code>%s</code>.', esc_html( $size ) ), E_USER_WARNING );
+
+		return false;
+	}
+
+	list( $image_url ) = (array) wp_get_attachment_image_src( $attachment, $size );
+
+	return sprintf(
+		'<span class="image-cover" style="background-image:url(%s);padding-top:%d%%;">%s</span>',
+		esc_url( $image_url ),
+		esc_attr( $size_h / $size_w * 100 ),
+		wp_get_attachment_image( $attachment, $size )
+	);
+}
+
+/**
  * Prints HTML with meta information for the current post-date/time.
  */
 function posted_on() {
