@@ -511,15 +511,25 @@ function gallery_block( $block, $content = '', $is_preview = false, $post_id = 0
 
 		if ( 'file' === $args['link'] ) {
 
-			echo wp_get_attachment_link( $id, $atts['size'], false, false, false, $atts );
+			echo wp_get_attachment_link( $attachment, $atts['size'], false, false, false, $atts );
 
 		} elseif ( 'none' === $args['link'] ) {
 
-			echo wp_get_attachment_image( $id, $atts['size'], false, $atts );
+			echo wp_get_attachment_image( $attachment, $atts['size'], false, $atts );
+
+		} elseif ( 'lightbox' === $args['link'] ) {
+
+			list( $linked_url ) = (array) wp_get_attachment_image_src( $attachment, 'theme-full-width' );
+
+			printf( '<a href="%s" data-fancybox="%s">', esc_url( $linked_url ), esc_attr( $gallery['id'] ) );
+
+			echo wp_get_attachment_image( $attachment, $atts['size'], false, $atts );
+
+			echo '</a>';
 
 		} else {
 
-			echo wp_get_attachment_link( $id, $atts['size'], true, false, false, $atts );
+			echo wp_get_attachment_link( $attachment, $atts['size'], true, false, false, $atts );
 		}
 
 		echo '</div><!-- .gallery-icon -->';
