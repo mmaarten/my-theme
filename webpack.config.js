@@ -56,7 +56,7 @@ module.exports = {
           {
             // Interpret @import and url() like import/require() and will resolve them.
             loader: 'css-loader',
-            options: { sourceMap: true }
+            options: { sourceMap: true },
           },
           {
             // Process post CSS actions
@@ -65,20 +65,20 @@ module.exports = {
               sourceMap: true,
               plugins: function() {
                 return [ require('autoprefixer') ];
-              }
-            }
+              },
+            },
           },
           {
             // Rewrite relative paths in url() statements based on the original source file.
             loader: 'resolve-url-loader',
-            options: { sourceMap: true }
+            options: { sourceMap: true },
           },
           {
             // Load a Sass/SCSS file and compile it to CSS.
             loader: 'sass-loader',
-            options: { sourceMap: true }
-          }
-        ]
+            options: { sourceMap: true },
+          },
+        ],
       },
       {
           test: /\.js$/,
@@ -87,9 +87,9 @@ module.exports = {
             // Transpile ES6+ to ES5
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
-            }
-          }
+              presets: ['@babel/preset-env'],
+            },
+          },
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
@@ -97,9 +97,9 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: { name: '[path][name].[ext]', limit: 4096 }
-          }
-        ]
+            options: { name: '[path][name].[ext]', limit: 4096 },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
@@ -107,18 +107,18 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: { name: 'vendor/[name].[ext]', limit: 4096 }
-          }
-        ]
-      }
-    ]
+            options: { name: 'vendor/[name].[ext]', limit: 4096 },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     // Remove all files inside output.path director
     new CleanWebpackPlugin(),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css'
+      filename: 'styles/[name].css',
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
@@ -138,14 +138,6 @@ module.exports = {
 	new FriendlyErrorsWebpackPlugin(),
   ],
   optimization: {
-	  splitChunks: {
-      cacheGroups: {
-        vendors: {
-			test: /[\\/]node_modules[\\/]/,
-          filename: '[name].bundle.js'
-        }
-      }
-  },
     minimizer: [
       // JS minifier
       new UglifyJsPlugin({
@@ -156,8 +148,8 @@ module.exports = {
         uglifyOptions: {
           warnings: true,
           output: { comments: false },
-          compress: { drop_console: true }
-        }
+          compress: { drop_console: true },
+        },
       }),
       // CSS minifier
       new OptimizeCssAssetsPlugin({
@@ -165,7 +157,7 @@ module.exports = {
           sourceMap: true,
           map: { // Remove all source maps
             inline: false,
-            annotation: true
+            annotation: true,
           },
           preset: ['default', { discardComments: { removeAll: true } }],
         },
@@ -184,7 +176,7 @@ module.exports = {
           ],
         },
         plugins: [imageminMozjpeg({ quality: 75 })],
-      })
-    ]
-  }
+      }),
+    ],
+  },
 };
