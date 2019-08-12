@@ -26,6 +26,21 @@ function register_block_types() {
 		return;
 	}
 
+	// Register heading block.
+	acf_register_block_type(
+		array(
+			'name'            => 'heading',
+			'title'           => __( 'Heading', 'my-theme' ),
+			'description'     => __( 'Displays a heading.', 'my-theme' ),
+			'render_callback' => __NAMESPACE__ . '\heading_block',
+			'category'        => 'common',
+			'supports'        => array(
+				'anchor' => true,
+				'align'  => array( 'left', 'center', 'right', 'wide', 'full' ),
+			),
+		)
+	);
+
 	// Register button block.
 	acf_register_block_type(
 		array(
@@ -41,7 +56,7 @@ function register_block_types() {
 		)
 	);
 
-	// Register card block.
+	// Register post block.
 	acf_register_block_type(
 		array(
 			'name'            => 'post',
@@ -55,9 +70,113 @@ function register_block_types() {
 			),
 		)
 	);
+
+	// Register gallery block.
+	acf_register_block_type(
+		array(
+			'name'            => 'gallery',
+			'title'           => __( 'Gallery', 'my-theme' ),
+			'description'     => __( 'Displays an image gallery.', 'my-theme' ),
+			'render_callback' => __NAMESPACE__ . '\gallery_block',
+			'category'        => 'common',
+			'supports'        => array(
+				'anchor' => true,
+				'align'  => array( 'wide', 'full' ),
+			),
+		)
+	);
 }
 
 add_action( 'acf/init', __NAMESPACE__ . '\register_block_types' );
+
+/**
+ * Heading block callback function
+ *
+ * @uses get_fields()
+ * @uses acf_esc_attr_e()
+ *
+ * @param array      $block      The block settings and attributes.
+ * @param string     $content    The block inner HTML (empty).
+ * @param bool       $is_preview True during AJAX preview.
+ * @param int|string $post_id    The post ID this block is saved to.
+ */
+function heading_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
+
+	/**
+	 * Arguments
+	 */
+
+	$defaults = array(
+		'text'  => __( 'Heading', 'my-theme' ),
+		'type'  => 'h2',
+		'color' => '',
+	);
+
+	$args = wp_parse_args( get_fields(), $defaults );
+
+	$tag = $defaults['type'];
+
+	if ( preg_match( '/^h\d{1,6}$/', $args['type'] ) ) {
+		$tag = $args['type'];
+	}
+
+	/**
+	 * Wrapper HTML attributes
+	 */
+
+	$wrapper = array();
+
+	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
+
+	if ( ! empty( $block['anchor'] ) ) {
+		$wrapper['id'] = $block['anchor'];
+	}
+
+	// Clear floats when alignment is set.
+	if ( ! empty( $block['align'] ) ) {
+		$wrapper['class'] .= ' clearfix';
+	}
+
+	if ( ! empty( $block['className'] ) ) {
+		$wrapper['class'] .= " {$block['className']}";
+	}
+
+	/**
+	 * Heading HTML attributes
+	 */
+
+	$heading = array( 'class' => 'heading' );
+
+	if ( $args['color'] ) {
+		$heading['class'] .= " text-{$args['color']}";
+	}
+
+	/**
+	 * Output
+	 */
+
+	?>
+
+	<div <?php acf_esc_attr_e( $wrapper ); ?>>
+
+		<?php
+
+		printf( '<%s %s>', esc_html( $tag ), acf_esc_attr( $heading ) );
+
+		echo esc_html( $args['text'] );
+
+		if ( trim( $args['text_2'] ) ) {
+			printf( ' <small>%s</small>', esc_html( $args['text_2'] ) );
+		}
+
+		printf( '</%s>', esc_html( $tag ) );
+
+		?>
+
+	</div>
+
+	<?php
+}
 
 /**
  * Button block callback function
@@ -253,4 +372,146 @@ function post_block( $block, $content = '', $is_preview = false, $post_id = 0 ) 
 	</div>
 
 	<?php
+}
+
+/**
+ * Gallery block callback function
+ *
+ * @uses get_fields()
+ * @uses acf_esc_attr_e()
+ *
+ * @param array      $block      The block settings and attributes.
+ * @param string     $content    The block inner HTML (empty).
+ * @param bool       $is_preview True during AJAX preview.
+ * @param int|string $post_id    The post ID this block is saved to.
+ */
+function gallery_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
+
+	static $instance = 0;
+
+	$instance++;
+
+	/**
+	 * Arguments
+	 */
+
+	$args = wp_parse_args(
+		get_fields(),
+		array(
+			'ids'     => array(),
+			'size'    => '',
+			'columns' => 3,
+			'link'    => '',
+			'orderby' => 'menu_order',
+			'order'   => 'ASC',
+		)
+	);
+
+	if ( ! $args['ids'] ) {
+		return;
+	}
+
+	$attachments = get_posts(
+		array(
+			'post__in'       => (array) $args['ids'],
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'post_mime_type' => 'images',
+			'orderby'        => $args['orderby'],
+			'order'          => $args['order'],
+		)
+	);
+
+	if ( ! $attachments ) {
+		return;
+	}
+
+	/**
+	 * Wrapper HTML attributes
+	 */
+
+	$wrapper = array();
+
+	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
+
+	if ( ! empty( $block['anchor'] ) ) {
+		$wrapper['id'] = $block['anchor'];
+	}
+
+	if ( ! empty( $block['align'] ) ) {
+		$wrapper['class'] .= " align{$block['align']}";
+	}
+
+	if ( ! empty( $block['className'] ) ) {
+		$wrapper['class'] .= " {$block['className']}";
+	}
+
+	/**
+	 * Gallery HTML attributes
+	 */
+
+	$gallery = array(
+		'id'    => "gallery-$instance",
+		'class' => sprintf(
+			'gallery gallery-columns-%d gallery-size-%s ',
+			esc_attr( $args['columns'] ),
+			sanitize_html_class( $args['size'] )
+		),
+	);
+
+	/**
+	 * Output
+	 */
+
+	echo '<div ' . acf_esc_attr( $wrapper ) . '>';
+
+	echo '<div ' . acf_esc_attr( $gallery ) . '>';
+
+	foreach ( $attachments as $attachment ) {
+
+		$attr = trim( $attachment->post_excerpt ) ? array( 'aria-describedby' => "{$gallery['id']}-{$attachment->ID}" ) : '';
+
+		$image_meta = wp_get_attachment_metadata( $id );
+
+		$orientation = '';
+		if ( isset( $image_meta['height'], $image_meta['width'] ) ) {
+			$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
+		}
+
+		echo '<figure class="gallery-item">';
+
+		printf( '<div class="gallery-icon %s">', esc_attr( $orientation ) );
+
+		if ( 'file' === $args['link'] ) {
+
+			echo wp_get_attachment_link( $id, $args['size'], false, false, false, $attr );
+
+		} elseif ( 'none' === $args['link'] ) {
+
+			echo wp_get_attachment_image( $id, $args['size'], false, $attr );
+
+		} else {
+
+			echo wp_get_attachment_link( $id, $args['size'], true, false, false, $attr );
+		}
+
+		echo '</div><!-- .gallery-icon -->';
+
+		if ( trim( $attachment->post_excerpt ) ) {
+
+			printf(
+				'<figcaption class="wp-caption-text gallery-caption" id="%s">%s</figcaption>',
+				esc_attr( "{$gallery['id']}-{$attachment->ID}" ),
+				esc_html( $attachment->post_excerpt )
+			);
+		}
+
+		echo '</figure><!-- gallery-item -->';
+
+	}
+
+	echo '</div><!-- .gallery -->';
+
+	echo '</div>';
+
 }
