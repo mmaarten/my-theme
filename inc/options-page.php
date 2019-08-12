@@ -21,6 +21,8 @@ namespace MyTheme;
 function add_options_page() {
 
 	if ( ! function_exists( 'acf_add_options_page' ) ) {
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
+		trigger_error( 'Function <code>acf_add_options_page</code> does not exist.', E_USER_WARNING );
 		return;
 	}
 
