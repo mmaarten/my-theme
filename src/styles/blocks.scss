@@ -57,13 +57,11 @@ p.has-background {
  * Set spacing and max widths according to the 'align' setting.
  */
 
-.hentry .entry-content,
-.hentry .entry-summary {
+.hentry .entry-content {
   @include clearfix();
 }
 
-.hentry .entry-content > *,
-.hentry .entry-summary > * {
+.hentry .entry-content > * {
   margin: map-get($spacers, 3) auto;
 
   @include make-container-max-widths((

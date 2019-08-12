@@ -40,6 +40,21 @@ function register_block_types() {
 			),
 		)
 	);
+
+	// Register card block.
+	acf_register_block_type(
+		array(
+			'name'            => 'post',
+			'title'           => __( 'Post', 'my-theme' ),
+			'description'     => __( 'Displays a post.', 'my-theme' ),
+			'render_callback' => __NAMESPACE__ . '\post_block',
+			'category'        => 'common',
+			'supports'        => array(
+				'anchor' => true,
+				'align'  => array( 'wide', 'full' ),
+			),
+		)
+	);
 }
 
 add_action( 'acf/init', __NAMESPACE__ . '\register_block_types' );
@@ -149,6 +164,93 @@ function button_block( $block, $content = '', $is_preview = false, $post_id = 0 
 		<a <?php acf_esc_attr_e( $button ); ?>><?php echo esc_html( $args['text'] ); ?></a>
 
 	</p>
+
+	<?php
+}
+
+/**
+ * Post block callback function
+ *
+ * @uses get_fields()
+ * @uses acf_esc_attr_e()
+ *
+ * @param array      $block      The block settings and attributes.
+ * @param string     $content    The block inner HTML (empty).
+ * @param bool       $is_preview True during AJAX preview.
+ * @param int|string $post_id    The post ID this block is saved to.
+ */
+function post_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
+
+	/**
+	 * Arguments
+	 */
+
+	$args = wp_parse_args(
+		get_fields(),
+		array(
+			'post'     => 0,
+			'template' => '',
+		)
+	);
+
+	/**
+	 * Wrapper HTML attributes
+	 */
+
+	$wrapper = array();
+
+	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
+
+	if ( ! empty( $block['anchor'] ) ) {
+		$wrapper['id'] = $block['anchor'];
+	}
+
+	if ( ! empty( $block['align'] ) ) {
+		$wrapper['class'] .= " align{$block['align']}";
+	}
+
+	if ( ! empty( $block['className'] ) ) {
+		$wrapper['class'] .= " {$block['className']}";
+	}
+
+	/**
+	 * Output
+	 */
+
+	$the_query = new \WP_Query(
+		array(
+			'p'              => $args['post'],
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+		)
+	);
+
+	?>
+
+	<div <?php acf_esc_attr_e( $wrapper ); ?>>
+
+		<?php
+
+		if ( $the_query->have_posts() ) {
+
+			while ( $the_query->have_posts() ) {
+
+				$the_query->the_post();
+
+				get_template_part( 'template-parts/content', $args['template'] );
+			}
+
+			wp_reset_postdata();
+
+		} else {
+
+			printf( '<div class="alert alert-info">%s</div>', esc_html__( 'Post not found.', 'my-theme' ) );
+
+		}
+
+		?>
+
+	</div>
 
 	<?php
 }
