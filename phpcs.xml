@@ -136,7 +136,8 @@
 	<rule ref="WordPress.Security.EscapeOutput">
 		<properties>
 			<property name="customAutoEscapedFunctions" type="array">
-				<!--<element value="html_atts"/>-->
+				<element value="acf_esc_attr"/>
+				<element value="acf_esc_attr_e"/>
 			</property>
 		</properties>
 	</rule>
