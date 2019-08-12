@@ -124,9 +124,9 @@ function heading_block( $block, $content = '', $is_preview = false, $post_id = 0
 	 * Wrapper HTML attributes
 	 */
 
-	$wrapper = array();
-
-	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
+	$wrapper = array(
+		'class' => 'wp-block-' . str_replace( '/', '-', $block['name'] ),
+	);
 
 	if ( ! empty( $block['anchor'] ) ) {
 		$wrapper['id'] = $block['anchor'];
@@ -213,9 +213,9 @@ function button_block( $block, $content = '', $is_preview = false, $post_id = 0 
 	 * Wrapper HTML attributes
 	 */
 
-	$wrapper = array();
-
-	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
+	$wrapper = array(
+		'class' => 'wp-block-' . str_replace( '/', '-', $block['name'] ),
+	);
 
 	if ( ! empty( $block['anchor'] ) ) {
 		$wrapper['id'] = $block['anchor'];
@@ -316,9 +316,9 @@ function post_block( $block, $content = '', $is_preview = false, $post_id = 0 ) 
 	 * Wrapper HTML attributes
 	 */
 
-	$wrapper = array();
-
-	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
+	$wrapper = array(
+		'class' => 'wp-block-' . str_replace( '/', '-', $block['name'] ),
+	);
 
 	if ( ! empty( $block['anchor'] ) ) {
 		$wrapper['id'] = $block['anchor'];
@@ -430,9 +430,9 @@ function gallery_block( $block, $content = '', $is_preview = false, $post_id = 0
 	 * Wrapper HTML attributes
 	 */
 
-	$wrapper = array();
-
-	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
+	$wrapper = array(
+		'class' => 'wp-block-' . str_replace( '/', '-', $block['name'] ),
+	);
 
 	if ( ! empty( $block['anchor'] ) ) {
 		$wrapper['id'] = $block['anchor'];
@@ -452,12 +452,31 @@ function gallery_block( $block, $content = '', $is_preview = false, $post_id = 0
 
 	$gallery = array(
 		'id'    => "gallery-$instance",
-		'class' => sprintf(
-			'gallery gallery-columns-%d gallery-size-%s ',
-			esc_attr( $args['columns'] ),
-			sanitize_html_class( $args['size'] )
-		),
+		'class' => 'gallery',
 	);
+
+	$columns = is_array( $args['columns'] ) ? $args['columns'] : array( 'xs' => $args['columns'] );
+
+	foreach ( array( 'xs', 'sm', 'md', 'lg', 'xl' ) as $breakpoint ) {
+
+		if ( ! isset( $columns[ $breakpoint ] ) ) {
+			continue;
+		}
+
+		$value = intval( $columns[ $breakpoint ] );
+
+		if ( ! $value ) {
+			continue;
+		}
+
+		$slug = 'xs' === $breakpoint ? '' : " -$breakpoint";
+
+		$gallery['class'] .= " gallery-columns$slug-$value";
+	}
+
+	if ( $args['size'] ) {
+		$gallery['class'] .= ' gallery-size-' . sanitize_html_class( $args['size'] );
+	}
 
 	/**
 	 * Output
@@ -521,5 +540,4 @@ function gallery_block( $block, $content = '', $is_preview = false, $post_id = 0
 	echo '</div><!-- .gallery -->';
 
 	echo '</div>';
-
 }
