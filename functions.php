@@ -27,5 +27,6 @@ inc(
 		'editor.php',             // Custom editor features.
 		'fields.php',             // Extra fields functionality.
 		'blocks.php',             // Register block types.
+		'options-page.php',       // Add options page.
 	)
 );
