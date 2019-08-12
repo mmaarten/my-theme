@@ -469,7 +469,7 @@ function gallery_block( $block, $content = '', $is_preview = false, $post_id = 0
 
 	foreach ( $attachments as $attachment ) {
 
-		$attr = trim( $attachment->post_excerpt ) ? array( 'aria-describedby' => "{$gallery['id']}-{$attachment->ID}" ) : '';
+		$atts = trim( $attachment->post_excerpt ) ? array( 'aria-describedby' => "{$gallery['id']}-{$attachment->ID}" ) : '';
 
 		$image_meta = wp_get_attachment_metadata( $id );
 
@@ -478,21 +478,29 @@ function gallery_block( $block, $content = '', $is_preview = false, $post_id = 0
 			$orientation = ( $image_meta['height'] > $image_meta['width'] ) ? 'portrait' : 'landscape';
 		}
 
+		$icon = array(
+			'class' => 'gallery-icon',
+		);
+
+		if ( $orientation ) {
+			$icon['class'] .= " $orientation";
+		}
+
 		echo '<figure class="gallery-item">';
 
-		printf( '<div class="gallery-icon %s">', esc_attr( $orientation ) );
+		echo '<div ' . acf_esc_attr( $icon ) . '>';
 
 		if ( 'file' === $args['link'] ) {
 
-			echo wp_get_attachment_link( $id, $args['size'], false, false, false, $attr );
+			echo wp_get_attachment_link( $id, $atts['size'], false, false, false, $atts );
 
 		} elseif ( 'none' === $args['link'] ) {
 
-			echo wp_get_attachment_image( $id, $args['size'], false, $attr );
+			echo wp_get_attachment_image( $id, $atts['size'], false, $atts );
 
 		} else {
 
-			echo wp_get_attachment_link( $id, $args['size'], true, false, false, $attr );
+			echo wp_get_attachment_link( $id, $atts['size'], true, false, false, $atts );
 		}
 
 		echo '</div><!-- .gallery-icon -->';
