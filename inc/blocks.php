@@ -32,7 +32,7 @@ function register_block_types() {
 			'name'            => 'button',
 			'title'           => __( 'Button', 'my-theme' ),
 			'description'     => __( 'Displays a button.', 'my-theme' ),
-			'render_callback' => __NAMESPACE__ . '\render_button_block',
+			'render_callback' => __NAMESPACE__ . '\button_block',
 			'category'        => 'common',
 			'supports'        => array(
 				'anchor' => true,
@@ -55,7 +55,7 @@ add_action( 'acf/init', __NAMESPACE__ . '\register_block_types' );
  * @param bool       $is_preview True during AJAX preview.
  * @param int|string $post_id    The post ID this block is saved to.
  */
-function render_button_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
+function button_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
 
 	/**
 	 * Arguments
