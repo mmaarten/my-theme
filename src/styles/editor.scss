@@ -21,6 +21,9 @@
   color: $body-color;
   text-align: left; // 3
 
+  // Disable all links
+  pointer-events: none;
+
   // Import front styles
   @import "main";
 }
