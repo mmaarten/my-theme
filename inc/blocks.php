@@ -120,7 +120,7 @@ function render_button_block( $block, $content = '', $is_preview = false, $post_
 	}
 
 	if ( $args['size'] ) {
-		$button['class'] .= " btn-{$args['type']}";
+		$button['class'] .= " btn-{$args['size']}";
 	}
 
 	if ( $args['block'] ) {
@@ -133,6 +133,9 @@ function render_button_block( $block, $content = '', $is_preview = false, $post_
 
 	if ( ! empty( $block['align'] ) ) {
 		$button['class'] .= " align{$block['align']}";
+		if ( ! $args['block'] ) {
+			$button['class'] .= ' d-table';
+		}
 	}
 
 	/**
@@ -141,9 +144,9 @@ function render_button_block( $block, $content = '', $is_preview = false, $post_
 
 	?>
 
-	<p<?php acf_esc_attr_e( $wrapper ); ?>>
+	<p <?php acf_esc_attr_e( $wrapper ); ?>>
 
-		<a<?php acf_esc_attr_e( $button ); ?>><?php echo esc_html( $args['text'] ); ?></a>
+		<a <?php acf_esc_attr_e( $button ); ?>><?php echo esc_html( $args['text'] ); ?></a>
 
 	</p>
 

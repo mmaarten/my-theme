@@ -189,7 +189,8 @@
         [
             {
                 "param": "block",
-                "operator": "=="
+                "operator": "==",
+                "value": "acf\/button"
             }
         ]
     ],
@@ -201,5 +202,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1565619184
+    "modified": 1565619338
 }
