@@ -60,27 +60,3 @@ function pingback_header() {
 }
 
 add_action( 'wp_head', __NAMESPACE__ . '\pingback_header' );
-
-/**
- * Filter custom logo output.
- *
- * @param mixed $html The HTML Markup.
- *
- * @return string
- */
-function modify_custom_logo( $html ) {
-
-	$html = str_replace(
-		'class="custom-logo-link"',
-		sprintf(
-			'class="custom-logo-link site-logo" itemprop="url" title="%s"',
-			esc_attr_x( 'Home', 'Used as link title to refer to homepage.', 'my-theme' )
-		),
-		$html
-	);
-	$html = str_replace( 'class="custom-logo"', 'class="custom-logo img-fluid"', $html );
-
-	return $html;
-}
-
-add_filter( 'get_custom_logo', __NAMESPACE__ . '\modify_custom_logo' );

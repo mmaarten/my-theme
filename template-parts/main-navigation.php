@@ -15,7 +15,9 @@
 
 			<?php if ( has_custom_logo() ) : ?>
 
-				<?php the_custom_logo(); ?>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo" rel="home" itemprop="url">
+					<?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'class' => 'img-fluid' ) ); ?>
+				</a>
 
 			<?php elseif ( is_front_page() && is_home() ) : ?>
 
