@@ -2,26 +2,26 @@
  * Cover image
  */
 
+$image-sizes: ();
+
 .cover-image {
   position: relative;
   display: block;
   width: 100%;
   padding: 0;
   overflow: hidden;
-  background: no-repeat center;
-  background-size: cover;
 
   // Stretch image to keep right click actions.
   img {
-    opacity: 0;
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
     max-width: none;
     max-height: none;
+    object-fit: cover;
+    object-position: center;
     border: 0;
   }
 }
