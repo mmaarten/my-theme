@@ -60,7 +60,6 @@
 					'menu_id'        => 'primary-menu',
 					'menu_class'     => 'navbar-nav mr-auto main-menu',
 					'fallback_cb'    => null,
-					'walker'         => new WP_Bootstrap_Navwalker(),
 				)
 			);
 
@@ -72,7 +71,6 @@
 					'menu_id'        => 'primary-menu',
 					'menu_class'     => 'navbar-nav ml-auto main-menu',
 					'fallback_cb'    => null,
-					'walker'         => new WP_Bootstrap_Navwalker(),
 				)
 			);
 

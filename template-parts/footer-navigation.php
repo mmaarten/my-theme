@@ -24,7 +24,6 @@ if ( ! has_nav_menu( 'footer-left' ) && ! has_nav_menu( 'footer-right' ) ) {
 				'container'      => false,
 				'depth'          => 1,
 				'fallback_cb'    => null,
-				'walker'         => new WP_Bootstrap_Navwalker(),
 			)
 		);
 
@@ -35,7 +34,6 @@ if ( ! has_nav_menu( 'footer-left' ) && ! has_nav_menu( 'footer-right' ) ) {
 				'container'      => false,
 				'depth'          => 1,
 				'fallback_cb'    => null,
-				'walker'         => new WP_Bootstrap_Navwalker(),
 			)
 		);
 
