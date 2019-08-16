@@ -8,53 +8,92 @@
 namespace MyTheme;
 
 /**
- * Is nav menu nav
+ * Include WP_Bootstrap_Navwalker.
  *
- * Check if nav menu has a `nav` or `navbar-nav` CSS class.
- *
- * @param stdClass $nav_menu An object of wp_nav_menu() arguments.
- *
- * @return bool
+ * @link https://github.com/wp-bootstrap/wp-bootstrap-navwalker
  */
-function is_nav_menu_nav( $nav_menu ) {
-	return preg_match( '/(^| )(nav|navbar-nav)( |$)/', $nav_menu->menu_class );
-}
+require get_template_directory() . '/vendor/wp-bootstrap/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
 
 /**
- * CSS Class
+ * Set default walker
  *
- * Add custom CSS classes to the nav menu item.
- *
- * @param array    $classes   Array of the CSS classes.
- * @param WP_Post  $item      The current menu item.
- * @param stdClass $nav_menu  An object of wp_nav_menu() arguments.
- * @param int      $depth     Depth of menu item.
+ * @param array $args Array of wp_nav_menu() arguments.
  *
  * @return array
  */
-function nav_menu_css_class( $classes, $item, $nav_menu, $depth ) {
+function set_default_navwalker( $args ) {
 
-	if ( ! is_nav_menu_nav( $nav_menu ) ) {
-		return $classes;
+	// Stop when set.
+	if ( ! empty( $args['walker'] ) ) {
+		return $args;
 	}
 
-	if ( 0 === $depth ) {
-		if ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
-			$classes[] = 'dropdown';
-		} else {
-			$classes[] = 'nav-item';
-		}
+	// Check if menu has 'nav' or 'navbar-nav' class.
+	if ( preg_match( '/(^| )(nav|navbar-nav)( |$)/', $args['menu_class'] ) ) {
+
+		// Set bootstrap navwalker.
+		$args['walker'] = new \WP_Bootstrap_Navwalker();
 	}
 
-	return $classes;
+	return $args;
 }
 
-add_filter( 'nav_menu_css_class', __NAMESPACE__ . '\nav_menu_css_class', 10, 4 );
+add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\set_default_navwalker' );
 
 /**
- * Link Attributes
+ * Setup modifications
  *
- * Alter nav menu item link attributes.
+ * Take mod related classes out of menu item classes and
+ * store them for later use.
+ *
+ * @global my_theme_nav_menu_mods
+ *
+ * @param array    $items The menu items.
+ * @param stdClass $args  An object containing wp_nav_menu() arguments.
+ *
+ * @return array
+ */
+function setup_nav_menu_mods( $items, $args ) {
+
+	$mod_classes = &$GLOBALS['my_theme_nav_menu_mods'];
+
+	$patterns = array(
+		'^btn($|-.*)',
+		'^toggle-(modal|collapse)$',
+	);
+
+	$pattern = '(' . implode( ')|(', $patterns ) . ')';
+
+	// Loop items.
+	foreach ( $items as &$item ) {
+
+		$item_classes = array();
+
+		// Loop item classes.
+		foreach ( $item->classes as $class ) {
+
+			if ( preg_match( "/$pattern/", $class ) ) {
+
+				$mod_classes[ $item->ID ][ $class ] = $class;
+
+			} else {
+
+				$item_classes[] = $class;
+			}
+		}
+
+		$item->classes = $item_classes;
+	}
+
+	return $items;
+}
+
+add_filter( 'wp_nav_menu_objects', __NAMESPACE__ . '\setup_nav_menu_mods', 10, 2 );
+
+/**
+ * Modify link attributes
+ *
+ * @global my_theme_nav_menu_mods
  *
  * @param array    $atts      The HTML attributes applied to the menu item's <a> element.
  * @param WP_Post  $item      The current menu item.
@@ -65,64 +104,61 @@ add_filter( 'nav_menu_css_class', __NAMESPACE__ . '\nav_menu_css_class', 10, 4 )
  */
 function nav_menu_link_attributes( $atts, $item, $nav_menu, $depth ) {
 
-	if ( ! is_nav_menu_nav( $nav_menu ) ) {
+	if ( ! isset( $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ] ) ) {
 		return $atts;
 	}
+
+	$mod_classes = $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ];
 
 	// Make sure 'class' attribute is set.
 	if ( ! isset( $atts['class'] ) ) {
 		$atts['class'] = '';
 	}
 
-	// Nav link.
-	if ( 0 === $depth ) {
-		$atts['class'] .= ' nav-link';
+	/**
+	 * Button
+	 * -------------------------------------------------------------------------
+	 */
 
-		// Dropdown.
-		if ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
-			$atts['href']          = '#';
-			$atts['class']        .= ' dropdown-toggle';
-			$atts['data-toggle']   = 'dropdown';
-			$atts['aria-haspopup'] = 'true';
-			$atts['aria-expanded'] = 'false';
+	// Get button classes.
+	$btn_classes = array_filter(
+		$mod_classes,
+		function( $class ) {
+			return preg_match( '/^btn($|-.+)/', $class ) ? true : false;
 		}
-	} elseif ( 1 === $depth ) {
-		// Dropdown item.
-		$atts['class'] .= ' dropdown-item';
+	);
+
+	if ( $btn_classes ) {
+
+		// Remove 'nav-link' class.
+		$atts['class'] = preg_replace( '/(^| )nav-link( |$)/', '', $atts['class'] );
+
+		// Add button attributes.
+		$atts['class'] .= ' ' . implode( ' ', $btn_classes );
+		$atts['role']   = 'button';
 	}
 
-	// Active.
-	if ( $item->current || $item->current_item_ancestor || $item->current_item_parent ) {
-		$atts['class'] .= ' active';
+	/**
+	 * Toggle
+	 * -------------------------------------------------------------------------
+	 */
+
+	// Toggle modal.
+	if ( isset( $mod_classes['toggle-modal'] ) ) {
+		$atts['data-toggle'] = 'modal';
 	}
+
+	// Toggle collapse.
+	if ( isset( $mod_classes['toggle-collapse'] ) ) {
+		$atts['data-toggle'] = 'collapse';
+	}
+
+	/* ---------------------------------------------------------------------- */
 
 	// Sanitize 'class' attribute.
 	$atts['class'] = trim( $atts['class'] );
 
-	// Return.
 	return $atts;
 }
 
 add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_link_attributes', 10, 4 );
-
-/**
- * Submenu CSS Class
- *
- * Add custom CSS classes to the nav menu submenu.
- *
- * @param array    $classes   Array of the CSS classes that are applied to the menu <ul> element.
- * @param stdClass $nav_menu  An object of wp_nav_menu() arguments.
- * @param int      $depth     Depth of menu item.
- *
- * @return array
- */
-function nav_menu_submenu_css_class( $classes, $nav_menu, $depth ) {
-
-	if ( is_nav_menu_nav( $nav_menu ) ) {
-		$classes[] = 'dropdown-menu';
-	}
-
-	return $classes;
-}
-
-add_filter( 'nav_menu_submenu_css_class', __NAMESPACE__ . '\nav_menu_submenu_css_class', 10, 3 );
