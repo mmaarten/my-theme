@@ -9,7 +9,10 @@
       ],
   	"blocks": [
   		"styles/blocks.scss"
-  	]
+  	],
+    "customizer": [
+    	"scripts/customizer.js"
+    ],
   },
   "copy" : [
     "images/**/*",

@@ -24,6 +24,7 @@ inc(
 		'scripts.php',            // Enqueue scripts and styles.
 		'template-tags.php',      // Custom template tags for this theme.
 		'template-functions.php', // Functions which enhance the theme by hooking into WordPress.
+		'customizer.php',         // Customizer additions.
 		'editor.php',             // Custom editor features.
 		'fields.php',             // Extra fields functionality.
 		'blocks.php',             // Register block types.
