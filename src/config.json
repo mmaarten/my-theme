@@ -12,7 +12,7 @@
   	],
     "customizer": [
     	"scripts/customizer.js"
-    ],
+    ]
   },
   "copy" : [
     "images/**/*",
