@@ -6,6 +6,8 @@ $site-logo-max-height:    $navbar-brand-height + $navbar-brand-padding-y * 2;
 $site-logo-max-height-lg: $site-logo-max-height * 2;
 $navbar-padding-y-lg:     $navbar-padding-y * 2;
 
+$navbar-expand: "lg";
+
 .navbar {
 
   // Animate background color changes
@@ -31,25 +33,6 @@ $navbar-padding-y-lg:     $navbar-padding-y * 2;
   .nav-item .btn {
     margin-top: $navbar-padding-y;
     margin-bottom: $navbar-padding-y;
-  }
-
-  /**
-   * Containers inside navbars do not always align properly
-   * according to other container elements.
-   */
-  @include media-breakpoint-down( sm ) {
-    > .container,
-    > .container-fluid {
-      @include media-breakpoint-down( sm ) {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-      }
-
-      @include media-breakpoint-down( sm ) {
-        padding-left: $grid-gutter-width / 2 !important;
-        padding-right: $grid-gutter-width / 2 !important;
-      }
-    }
   }
 }
 
@@ -122,15 +105,25 @@ $navbar-padding-y-lg:     $navbar-padding-y * 2;
     $next : breakpoint-next($breakpoint, $grid-breakpoints);
     $infix: breakpoint-infix($next, $grid-breakpoints);
 
-    // Collapsed
-    @include media-breakpoint-down( $breakpoint ) {
-      // Hide large logos
-      .logo-lg:not(.logo-sm) {
-        display: none;
+    &#{$infix} {
+      @include media-breakpoint-between( sm, $breakpoint ) {
+        // Bootstrap removes container padding when collapsed.
+        // Set back to align with content.
+        > .container,
+        > .container-fluid {
+          padding-left: $grid-gutter-width / 2 !important;
+          padding-right: $grid-gutter-width / 2 !important;
+        }
       }
-    }
 
-    &#{ $infix } {
+      // Collapsed
+      @include media-breakpoint-down( $breakpoint ) {
+        // Hide large logos
+        .logo-lg:not(.logo-sm) {
+          display: none;
+        }
+      }
+
       // Expanded
       @include media-breakpoint-up( $next ) {
         .navbar-nav {

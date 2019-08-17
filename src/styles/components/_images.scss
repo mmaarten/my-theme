@@ -1,32 +1,5 @@
 
-$image-sizes: (
-  "thumbnail": ( 150, 150 ),
-);
-
 // Make images responsive
 img {
   @extend .img-fluid;
-}
-
-/**
- * Cover image size
- */
-.cover-image-size {
-  @extend .embed-responsive;
-
-  img {
-    @extend .embed-responsive-item;
-
-    object-fit: cover;
-    object-position: center;
-  }
-}
-
-@each $_size, $_dimensions in $image-sizes {
-  $_width : nth($_dimensions, 1);
-  $_height : nth($_dimensions, 2);
-
-  .cover-image-size-#{$_size}::before {
-    padding-top: percentage($_height / $_width);
-  }
 }

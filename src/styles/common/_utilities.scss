@@ -45,47 +45,6 @@
 }
 
 /**
- * Object fit
- */
-@each $value in ("fill", "contain", "cover", "scale-down", "none") {
-  .object-fit-#{$value} {
-    object-fit: unquote($value) !important;
-  }
-}
-
-/**
- * Object position
- */
-@each $x in ("left", "center", "right") {
-  @each $y in ("top", "center", "bottom") {
-    @if ($x == $y) {
-      .object-position-#{$x} {
-        object-position: unquote($x) !important;
-      }
-    }
-
-    .object-position-#{$x}-#{$y} {
-      object-position: unquote($x) unquote($y) !important;
-    }
-  }
-}
-
-/**
- * Viewport height
- */
-$from : 1;
-$until : 100;
-$steps : 5;
-
-@for $i from $from through max($from, $until / $steps) {
-  $value : $i * $steps;
-
-  .min-vh-#{$value} {
-    min-height: #{$value}vh;
-  }
-}
-
-/**
  * Text YIG
  */
 @each $color, $value in $theme-colors {

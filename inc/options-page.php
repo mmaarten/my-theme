@@ -28,8 +28,8 @@ function add_options_page() {
 
 	acf_add_options_page(
 		array(
-			'page_title' => __( 'Theme Settings', 'my-theme' ),
-			'menu_title' => __( 'Theme Settings', 'my-theme' ),
+			'page_title' => __( 'Site Options', 'my-theme' ),
+			'menu_title' => __( 'Site Options', 'my-theme' ),
 			'menu_slug'  => 'theme-settings',
 		)
 	);

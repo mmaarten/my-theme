@@ -4,7 +4,7 @@
  *
  * Dependency: Advanced Custom Fields
  *
- * @link https://www.advancedcustomfields.com/
+ * @link https://www.advancedcustomfields.com
  *
  * @package MyTheme
  */
@@ -12,7 +12,7 @@
 namespace MyTheme;
 
 /**
- * Populate field choices with editor color names.
+ * Populate select field with editor color names.
  *
  * Usage: Add field CSS class 'my-theme-editor-colors-field'.
  *
@@ -20,32 +20,27 @@ namespace MyTheme;
  *
  * @return array
  */
-function editor_colors_field( $field ) {
+function editor_color_names_field( $field ) {
 
-	// Check field CSS class.
 	if ( ! preg_match( '/(^| )my-theme-editor-colors-field( |$)/', $field['wrapper']['class'] ) ) {
 		return $field;
 	}
 
-	// Check theme support.
 	if ( ! current_theme_supports( 'editor-color-palette' ) ) {
 		return $field;
 	}
 
-	// Get feature arguments.
-	$args = get_theme_support( 'editor-color-palette' );
+	$settings = get_theme_support( 'editor-color-palette' );
 
-	// Add field choices.
-	$field['choices'] = wp_list_pluck( $args[0], 'name', 'slug' );
+	$field['choices'] = wp_list_pluck( $settings[0], 'name', 'slug' );
 
-	// Return.
 	return $field;
 }
 
-add_action( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_colors_field' );
+add_filter( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_color_names_field' );
 
 /**
- * Populate field choices with editor font size names.
+ * Populate select field with editor font size names.
  *
  * Usage: Add field CSS class 'my-theme-editor-font-sizes-field'.
  *
@@ -55,24 +50,50 @@ add_action( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_colors_field'
  */
 function editor_font_sizes_field( $field ) {
 
-	// Check field CSS class.
 	if ( ! preg_match( '/(^| )my-theme-editor-font-sizes-field( |$)/', $field['wrapper']['class'] ) ) {
 		return $field;
 	}
 
-	// Check theme support.
 	if ( ! current_theme_supports( 'editor-font-sizes' ) ) {
 		return $field;
 	}
 
-	// Get feature arguments.
-	$args = get_theme_support( 'editor-font-sizes' );
+	$settings = get_theme_support( 'editor-font-sizes' );
 
-	// Add field choices.
-	$field['choices'] = wp_list_pluck( $args[0], 'name', 'slug' );
+	$field['choices'] = wp_list_pluck( $settings[0], 'name', 'slug' );
 
-	// Return.
 	return $field;
 }
 
-add_action( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_font_sizes_field' );
+add_filter( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_font_sizes_field' );
+
+/**
+ * Populate select field with image size names.
+ *
+ * Usage: Add field CSS class 'my-theme-image-sizes-field'.
+ *
+ * @param array $field The field settings.
+ *
+ * @return array
+ */
+function image_sizes_field( $field ) {
+
+	if ( ! preg_match( '/(^| )my-theme-image-sizes-field( |$)/', $field['wrapper']['class'] ) ) {
+		return $field;
+	}
+
+	$field['choices'] = apply_filters(
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		'image_size_names_choose',
+		array(
+			'thumbnail' => __( 'Thumbnail', 'my-theme' ),
+			'medium'    => __( 'Medium', 'my-theme' ),
+			'large'     => __( 'Large', 'my-theme' ),
+			'full'      => __( 'Full', 'my-theme' ),
+		)
+	);
+
+	return $field;
+}
+
+add_filter( 'acf/load_field/type=select', __NAMESPACE__ . '\image_sizes_field' );
