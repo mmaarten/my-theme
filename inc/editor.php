@@ -107,8 +107,6 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\block_editor_setup' );
  */
 function block_assets() {
 
-	wp_dequeue_style( 'wp-block-library' );
-
 	if ( ! is_admin() ) {
 		$theme         = wp_get_theme();
 		$theme_version = $theme->get( 'Version' );
