@@ -11,12 +11,6 @@ based on the [Underscores](https://github.com/automattic/_s) theme by [Automatti
 - [Bootstrap](https://getbootstrap.com/) 4 CSS framework
 - [Fontawesome](https://fontawesome.com/) icon library.
 
-## Bootstrap Implementation
-
-- Menu navigations: [WP_Bootstrap_Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
-- Breadcrumb navigation. When using [Breadcrumb NavXT](https://nl.wordpress.org/plugins/breadcrumb-navxt/) plugin.
-- [Gravity Forms](https://www.gravityforms.com/)
-
 ## Requirements
 
 - [Node JS](https://nodejs.org)
