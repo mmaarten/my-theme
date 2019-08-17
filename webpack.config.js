@@ -124,7 +124,7 @@ module.exports = {
     new CopyWebpackPlugin(config.copy),
     // Elegant ProgressBar and Profiler
     new WebpackBar(),
-	new FriendlyErrorsWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin(),
   ],
   optimization: {
     minimizer: [
