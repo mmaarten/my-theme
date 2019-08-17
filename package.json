@@ -22,7 +22,7 @@
     "extends @wordpress/browserslist-config"
   ],
   "author": "",
-  "license": "GPL-2.0",
+  "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@wordpress/browserslist-config": "^2.6.0",
     "autoprefixer": "^9.6.1",
