@@ -103,6 +103,21 @@ function block_editor_setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\block_editor_setup' );
 
 /**
+ * Filter whether a post is able to be edited in the block editor.
+ *
+ * @param bool    $use_block_editor Whether the post can be edited or not.
+ * @param WP_Post $post             The post being checked.
+ *
+ * @return bool
+ */
+function use_block_editor_for_post( $use_block_editor, $post ) {
+
+	return $use_block_editor;
+}
+
+add_filter( 'use_block_editor_for_post', __NAMESPACE__ . 'use_block_editor_for_post', 10, 2 );
+
+/**
  * Enqueue block assets for the editing interface
  */
 function enqueue_block_editor_assets() {

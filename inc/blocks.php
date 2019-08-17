@@ -82,21 +82,6 @@ function allowed_block_types( $allowed_block_types, $post ) {
 add_filter( 'allowed_block_types', __NAMESPACE__ . 'allowed_block_types', 10, 2 );
 
 /**
- * Filter whether a post is able to be edited in the block editor.
- *
- * @param bool    $use_block_editor Whether the post can be edited or not.
- * @param WP_Post $post             The post being checked.
- *
- * @return bool
- */
-function use_block_editor_for_post( $use_block_editor, $post ) {
-
-	return $use_block_editor;
-}
-
-add_filter( 'use_block_editor_for_post', __NAMESPACE__ . 'use_block_editor_for_post', 10, 2 );
-
-/**
  * Enqueue block assets for both editor and front-end.
  *
 // Dequeue WordPress front-end stylesheet
