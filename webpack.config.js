@@ -81,17 +81,6 @@ module.exports = {
         ],
       },
       {
-          test: /\.js$/,
-          include: path.resolve(__dirname, 'src'),
-          use: {
-            // Transpile ES6+ to ES5
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env'],
-            },
-          },
-      },
-      {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
         include: path.resolve(__dirname, 'src'),
         use: [
