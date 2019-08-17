@@ -103,25 +103,9 @@ function block_editor_setup() {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\block_editor_setup' );
 
 /**
- * Enqueue block assets for both editor and front-end.
- */
-function block_assets() {
-
-	if ( ! is_admin() ) {
-		$theme         = wp_get_theme();
-		$theme_version = $theme->get( 'Version' );
-
-		$css_version = filemtime( get_template_directory() . '/dist/styles/blocks.css' );
-		wp_enqueue_style( 'my_theme-blocks', get_template_directory_uri() . '/dist/styles/blocks.css', array(), "{$theme_version}.{$css_version}" );
-	}
-}
-
-add_action( 'enqueue_block_assets', __NAMESPACE__ . '\block_assets' );
-
-/**
  * Enqueue block assets for the editing interface
  */
-function block_editor_assets() {
+function enqueue_block_editor_assets() {
 
 	$theme         = wp_get_theme();
 	$theme_version = $theme->get( 'Version' );
@@ -130,4 +114,4 @@ function block_editor_assets() {
 	wp_enqueue_style( 'my_theme-editor', get_template_directory_uri() . '/dist/styles/editor.css', array(), "{$theme_version}.{$css_version}" );
 }
 
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets' );
