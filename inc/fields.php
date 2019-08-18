@@ -14,15 +14,15 @@ namespace MyTheme;
 /**
  * Populate select field with editor color names.
  *
- * Usage: Add field CSS class 'my-theme-editor-colors-field'.
+ * Usage: Add field CSS class 'my-theme-colors-field'.
  *
  * @param array $field The field settings.
  *
  * @return array
  */
-function editor_color_names_field( $field ) {
+function colors_field( $field ) {
 
-	if ( ! preg_match( '/(^| )my-theme-editor-colors-field( |$)/', $field['wrapper']['class'] ) ) {
+	if ( ! preg_match( '/(^| )my-theme-colors-field( |$)/', $field['wrapper']['class'] ) ) {
 		return $field;
 	}
 
@@ -37,20 +37,20 @@ function editor_color_names_field( $field ) {
 	return $field;
 }
 
-add_filter( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_color_names_field' );
+add_filter( 'acf/load_field/type=select', __NAMESPACE__ . '\colors_field' );
 
 /**
  * Populate select field with editor font size names.
  *
- * Usage: Add field CSS class 'my-theme-editor-font-sizes-field'.
+ * Usage: Add field CSS class 'my-theme-font-sizes-field'.
  *
  * @param array $field The field settings.
  *
  * @return array
  */
-function editor_font_sizes_field( $field ) {
+function font_sizes_field( $field ) {
 
-	if ( ! preg_match( '/(^| )my-theme-editor-font-sizes-field( |$)/', $field['wrapper']['class'] ) ) {
+	if ( ! preg_match( '/(^| )my-theme-font-sizes-field( |$)/', $field['wrapper']['class'] ) ) {
 		return $field;
 	}
 
@@ -65,7 +65,7 @@ function editor_font_sizes_field( $field ) {
 	return $field;
 }
 
-add_filter( 'acf/load_field/type=select', __NAMESPACE__ . '\editor_font_sizes_field' );
+add_filter( 'acf/load_field/type=select', __NAMESPACE__ . '\font_sizes_field' );
 
 /**
  * Populate select field with image size names.
