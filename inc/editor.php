@@ -118,6 +118,43 @@ function use_block_editor_for_post( $use_block_editor, $post ) {
 add_filter( 'use_block_editor_for_post', __NAMESPACE__ . 'use_block_editor_for_post', 10, 2 );
 
 /**
+ * Filter the allowed block types for the editor.
+ *
+// Set limitions.
+$allowed_block_types = array(
+	'core/block', // Required for reusable blocks.
+	'core/heading',
+	'core/paragraph',
+	'core/image',
+	'core/list',
+	'core/embed',
+	'core/html',
+	'core/shortcode',
+	'core/template',
+	'core/video',
+	'core/columns',
+);
+ *
+ * @uses acf_get_block_types()
+ *
+ * @param bool|array $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
+ * @param object     $post                The post resource data.
+ *
+ * @return bool|array
+ */
+function allowed_block_types( $allowed_block_types, $post ) {
+
+	// Include our ACF block types when limitions are set.
+	if ( is_array( $allowed_block_types ) && function_exists( 'acf_get_block_types' ) ) {
+		$allowed_block_types = array_merge( $allowed_block_types, array_keys( acf_get_block_types() ) );
+	}
+
+	return $allowed_block_types;
+}
+
+add_filter( 'allowed_block_types', __NAMESPACE__ . 'allowed_block_types', 10, 2 );
+
+/**
  * Enqueue block assets for the editing interface
  */
 function enqueue_block_editor_assets() {
