@@ -57,13 +57,6 @@ function setup_nav_menu_mods( $items, $args ) {
 
 	$mod_classes = &$GLOBALS['my_theme_nav_menu_mods'];
 
-	$patterns = array(
-		'^btn($|-.*)',
-		'^toggle-(modal|collapse)$',
-	);
-
-	$pattern = '(' . implode( ')|(', $patterns ) . ')';
-
 	// Loop items.
 	foreach ( $items as &$item ) {
 
@@ -72,9 +65,11 @@ function setup_nav_menu_mods( $items, $args ) {
 		// Loop item classes.
 		foreach ( $item->classes as $class ) {
 
-			if ( preg_match( "/$pattern/", $class ) ) {
+			if ( preg_match( '/^mod-(.+)/', $class, $matches ) ) {
 
-				$mod_classes[ $item->ID ][ $class ] = $class;
+				list(, $mod_class ) = $matches;
+
+				$mod_classes[ $item->ID ][ $mod_class ] = $mod_class;
 
 			} else {
 
@@ -91,6 +86,25 @@ function setup_nav_menu_mods( $items, $args ) {
 add_filter( 'wp_nav_menu_objects', __NAMESPACE__ . '\setup_nav_menu_mods', 10, 2 );
 
 /**
+ * Get item modifications.
+ *
+ * @global my_theme_nav_menu_mods
+ *
+ * @param WP_Post $item The menu item.
+ *
+ * @return array|null
+ */
+function get_nav_menu_mods( $item ) {
+
+	if ( isset( $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ] ) ) {
+
+		return $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ];
+	}
+
+	return null;
+}
+
+/**
  * Modify link attributes
  *
  * @global my_theme_nav_menu_mods
@@ -104,11 +118,11 @@ add_filter( 'wp_nav_menu_objects', __NAMESPACE__ . '\setup_nav_menu_mods', 10, 2
  */
 function nav_menu_link_attributes( $atts, $item, $nav_menu, $depth ) {
 
-	if ( ! isset( $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ] ) ) {
+	$mod_classes = get_nav_menu_mods( $item );
+
+	if ( ! $mod_classes ) {
 		return $atts;
 	}
-
-	$mod_classes = $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ];
 
 	// Make sure 'class' attribute is set.
 	if ( ! isset( $atts['class'] ) ) {
