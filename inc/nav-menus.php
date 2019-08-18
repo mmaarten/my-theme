@@ -53,7 +53,7 @@ add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\set_default_navwalker' );
  *
  * @return array
  */
-function setup_nav_menu_mods( $items, $args ) {
+function nav_menu_mod_classes( $items, $args ) {
 
 	$mod_classes = &$GLOBALS['my_theme_nav_menu_mods'];
 
@@ -83,7 +83,7 @@ function setup_nav_menu_mods( $items, $args ) {
 	return $items;
 }
 
-add_filter( 'wp_nav_menu_objects', __NAMESPACE__ . '\setup_nav_menu_mods', 10, 2 );
+add_filter( 'wp_nav_menu_objects', __NAMESPACE__ . '\nav_menu_mod_classes', 10, 2 );
 
 /**
  * Get item modifications.
