@@ -39,7 +39,7 @@ function html_atts( $attributes ) {
 	$return = '';
 
 	foreach ( $attributes as $name => $value ) {
-		$return = sprintf( ' %s="%s"', esc_attr( $name ), esc_attr( $value ) );
+		$return .= sprintf( ' %s="%s"', esc_attr( $name ), esc_attr( $value ) );
 	}
 
 	return $return;
