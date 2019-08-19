@@ -288,8 +288,10 @@ function breadcrumb_nav( $before = '', $after = '' ) {
 /**
  * Display a carousel
  *
+ * @link https://getbootstrap.com/docs/4.0/components/carousel/
+ *
  * @param array $query_args Arguments for the WP_Query object.
- * @param array $args       Carousel specific arguments.
+ * @param array $args       Carousel specific arguments (see below).
  */
 function carousel( $query_args, $args = array() ) {
 
@@ -300,16 +302,19 @@ function carousel( $query_args, $args = array() ) {
 	/**
 	 * Arguments
 	 *
-	 * @var bool   autplay        Autoplay when carousel is loaded.
-	 * @var bool   indicators     Whether to show the indicators.
-	 * @var bool   controls       Whether to show the prev-next navigation.
-	 * @var string item_template  The template part for the item. (optional, default: carousel-item)
-	 *                            When set: carousel-item-{item_template}
+	 * @var string id             The Carousel ID. (optional)
+	 * @var bool   autoplay       Autoplay when carousel is loaded. (optional, default: true)
+	 * @var bool   indicators     Whether to show the indicators. (optional, default: true)
+	 * @var bool   controls       Whether to show the prev-next navigation. (optional, default: true)
+	 * @var string item_template  The template part for the item. (optional, default: (empty))
+	 *                            Template file: template-parts/carousel-item-{item_template}.php
+	 *                                           or template-parts/carousel-item.php
 	 */
 
 	$args = wp_parse_args(
 		$args,
 		array(
+			'id'            => '',
 			'autoplay'      => true,
 			'indicators'    => true,
 			'controls'      => true,
