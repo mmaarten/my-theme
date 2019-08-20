@@ -23,7 +23,7 @@
 
 	<div class="carousel-caption d-none d-md-block">
 
-		<?php the_title( '<h5>', '</h5>' ); ?>
+		<?php the_title( '<h2 class="h5 entry-title">', '</h2>' ); ?>
 
 		<?php the_excerpt(); ?>
 

@@ -152,7 +152,7 @@ function allowed_block_types( $allowed_block_types, $post ) {
 	return $allowed_block_types;
 }
 
-add_filter( 'allowed_block_types', __NAMESPACE__ . 'allowed_block_types', 10, 2 );
+add_filter( 'allowed_block_types', __NAMESPACE__ . '\allowed_block_types', 10, 2 );
 
 /**
  * Enqueue block assets for the editing interface

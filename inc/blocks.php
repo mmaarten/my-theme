@@ -40,6 +40,21 @@ function register_block_types() {
 			),
 		)
 	);
+
+	// Register button block.
+	acf_register_block_type(
+		array(
+			'name'            => 'carousel',
+			'title'           => __( 'Carousel', 'my-theme' ),
+			'description'     => __( 'Displays a carousel.', 'my-theme' ),
+			'render_callback' => __NAMESPACE__ . '\carousel_block',
+			'category'        => 'common',
+			'supports'        => array(
+				'anchor' => true,
+				'align'  => array( 'wide', 'full' ),
+			),
+		)
+	);
 }
 
 add_action( 'acf/init', __NAMESPACE__ . '\register_block_types' );
@@ -170,4 +185,94 @@ function button_block( $block, $content = '', $is_preview = false, $post_id = 0 
 	</p>
 
 	<?php
+}
+
+/**
+ * Carousel block callback function
+ *
+ * @uses get_fields()
+ * @uses acf_esc_attr_e()
+ *
+ * @param array      $block      The block settings and attributes.
+ * @param string     $content    The block inner HTML (empty).
+ * @param bool       $is_preview True during AJAX preview.
+ * @param int|string $post_id    The post ID this block is saved to.
+ */
+function carousel_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
+
+	/**
+	 * Arguments
+	 */
+
+	$args = wp_parse_args(
+		get_fields(),
+		array(
+			'posts'         => array(),
+			'autoplay'      => true,
+			'indicators'    => true,
+			'controls'      => true,
+			'item_template' => '',
+		)
+	);
+
+	if ( empty( $args['posts'] ) ) {
+
+		if ( $is_preview ) {
+			printf(
+				'<div class="alert alert-warning" role="alert">%s</div>',
+				esc_html__( 'No items to display.', 'my-theme' )
+			);
+		}
+
+		return;
+	}
+
+	$is_attachment = 'attachment' === get_post_type( $args['posts'][0] );
+
+	/**
+	 * Wrapper HTML attributes
+	 */
+
+	$wrapper = array();
+
+	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
+
+	if ( ! empty( $block['anchor'] ) ) {
+		$wrapper['id'] = $block['anchor'];
+	}
+
+	// Clear floats when alignment is set.
+	if ( ! empty( $block['align'] ) ) {
+		$wrapper['class'] .= " align{$block['align']}";
+	}
+
+	if ( ! empty( $block['className'] ) ) {
+		$wrapper['class'] .= " {$block['className']}";
+	}
+
+	/**
+	 * Output
+	 */
+
+	echo '<div ' . acf_esc_attr( $wrapper ) . '>';
+
+	carousel(
+		array(
+			'post_type'      => $is_attachment ? 'attachment' : 'any',
+			'post_status'    => $is_attachment ? 'inherit' : 'publish',
+			'post_mime_type' => $is_attachment ? 'image' : '',
+			'post__in'       => $args['posts'],
+			'orderby'        => 'post__in',
+			'order'          => 'DESC',
+			'posts_per_page' => min( 500, count( $args['posts'] ) ),
+		),
+		array(
+			'autoplay'      => $args['autoplay'],
+			'indicators'    => $args['indicators'],
+			'controls'      => $args['controls'],
+			'item_template' => $args['item_template'],
+		)
+	);
+
+	echo '</div>';
 }
