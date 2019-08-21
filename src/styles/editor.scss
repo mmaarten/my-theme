@@ -13,6 +13,9 @@
 }
 
 .acf-block-preview {
+
+  // Set <body> style
+  //@include reset-text();
   @include font-size($font-size-base);
 
   font-family: $font-family-base;
@@ -22,7 +25,24 @@
   text-align: left; // 3
 
   // Disable all links
-  pointer-events: none;
+  *,
+  *::before,
+  *::after {
+    pointer-events: none !important;
+  }
+
+  // Reset WP card
+  .card {
+    position: unset;
+    margin-top: unset;
+    padding: unset;
+    min-width: unset;
+    max-width: unset;
+    border: unset;
+    box-shadow: unset;
+    background: unset;
+    box-sizing: unset;
+  }
 
   // Import front styles
   @import "main";
