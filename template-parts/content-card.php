@@ -17,7 +17,7 @@
 
 		<?php the_title( '<h2 class="h5 card-title entry-title">', '</h2>' ); ?>
 
-		<?php if ( has_excerpt() ) : ?>
+		<?php if ( get_the_excerpt() ) : ?>
 
 		<div class="card-text entry-summary">
 
