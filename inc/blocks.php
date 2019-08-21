@@ -17,6 +17,21 @@ namespace MyTheme;
  * @link https://www.advancedcustomfields.com/resources/acf_register_block_type/#examples
  *
  * @uses acf_register_block_type()
+ *
+ * @example
+acf_register_block_type(
+	array(
+		'name'            => 'my-block',
+		'title'           => __( 'My Block', 'my-theme' ),
+		'description'     => __( 'Displays my block.', 'my-theme' ),
+		'render_callback' => __NAMESPACE__ . '\my_block',
+		'category'        => 'common',
+		'supports'        => array(
+			'anchor' => true,
+			'align'  => array( 'wide', 'full' ),
+		),
+	)
+);
  */
 function register_block_types() {
 
@@ -25,36 +40,6 @@ function register_block_types() {
 		trigger_error( 'Function <code>acf_register_block_type</code> does not exist.', E_USER_WARNING );
 		return;
 	}
-
-	// Register button block.
-	acf_register_block_type(
-		array(
-			'name'            => 'button',
-			'title'           => __( 'Button', 'my-theme' ),
-			'description'     => __( 'Displays a button.', 'my-theme' ),
-			'render_callback' => __NAMESPACE__ . '\button_block',
-			'category'        => 'common',
-			'supports'        => array(
-				'anchor' => true,
-				'align'  => array( 'left', 'center', 'right' ),
-			),
-		)
-	);
-
-	// Register button block.
-	acf_register_block_type(
-		array(
-			'name'            => 'carousel',
-			'title'           => __( 'Carousel', 'my-theme' ),
-			'description'     => __( 'Displays a carousel.', 'my-theme' ),
-			'render_callback' => __NAMESPACE__ . '\carousel_block',
-			'category'        => 'common',
-			'supports'        => array(
-				'anchor' => true,
-				'align'  => array( 'wide', 'full' ),
-			),
-		)
-	);
 }
 
 add_action( 'acf/init', __NAMESPACE__ . '\register_block_types' );
@@ -79,200 +64,64 @@ function enqueue_block_assets() {
 add_action( 'enqueue_block_assets', __NAMESPACE__ . '\enqueue_block_assets' );
 
 /**
- * Button block callback function
+ * My Block Callback Function.
+ *
+ * @link https://owlcarousel2.github.io/OwlCarousel2/
+ * @link https://www.advancedcustomfields.com/resources/acf_register_block_type/#examples
  *
  * @uses get_fields()
- * @uses acf_esc_attr_e()
+ * @uses acf_esc_attr()
  *
  * @param array      $block      The block settings and attributes.
  * @param string     $content    The block inner HTML (empty).
  * @param bool       $is_preview True during AJAX preview.
  * @param int|string $post_id    The post ID this block is saved to.
  */
-function button_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
+function my_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
 
 	/**
 	 * Arguments
+	 * -------------------------------------------------------------------------
 	 */
 
 	$args = wp_parse_args(
 		get_fields(),
 		array(
-			'text'     => __( 'Button', 'my-theme' ),
-			'link'     => '#',
-			'link_tab' => false,
-			'type'     => 'primary',
-			'size'     => '',
-			'outline'  => false,
-			'block'    => false,
-			'toggle'   => '',
+			'my_field' => '',
 		)
 	);
 
 	/**
 	 * Wrapper HTML attributes
+	 * -------------------------------------------------------------------------
 	 */
 
 	$wrapper = array();
 
+	// Add block specific class.
 	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
 
-	if ( ! empty( $block['anchor'] ) ) {
-		$wrapper['id'] = $block['anchor'];
-	}
-
-	// Clear floats when alignment is set.
-	if ( ! empty( $block['align'] ) ) {
-		$wrapper['class'] .= ' clearfix';
-	}
-
-	if ( ! empty( $block['className'] ) ) {
-		$wrapper['class'] .= " {$block['className']}";
-	}
-
-	/**
-	 * Button HTML attributes
-	 */
-
-	$button = array(
-		'class' => 'btn',
-		'role'  => 'button',
-	);
-
-	if ( $args['link'] ) {
-		$button['href'] = esc_url( $args['link'] );
-	}
-
-	if ( $args['link_tab'] ) {
-		$button['target'] = '_blank';
-	}
-
-	if ( $args['outline'] ) {
-		$button['class'] .= " btn-outline-{$args['type']}";
-	} else {
-		$button['class'] .= " btn-{$args['type']}";
-	}
-
-	if ( $args['size'] ) {
-		$button['class'] .= " btn-{$args['size']}";
-	}
-
-	if ( $args['block'] ) {
-		$button['class'] .= ' btn-block';
-	}
-
-	if ( $args['toggle'] ) {
-		$button['data-toggle'] .= $args['toggle'];
-	}
-
-	if ( ! empty( $block['align'] ) ) {
-		$button['class'] .= " align{$block['align']}";
-		if ( ! $args['block'] ) {
-			$button['class'] .= ' d-table';
-		}
-	}
-
-	/**
-	 * Output
-	 */
-
-	?>
-
-	<p <?php acf_esc_attr_e( $wrapper ); ?>>
-
-		<a <?php acf_esc_attr_e( $button ); ?>><?php echo esc_html( $args['text'] ); ?></a>
-
-	</p>
-
-	<?php
-}
-
-/**
- * Carousel block callback function
- *
- * @uses get_fields()
- * @uses acf_esc_attr_e()
- *
- * @param array      $block      The block settings and attributes.
- * @param string     $content    The block inner HTML (empty).
- * @param bool       $is_preview True during AJAX preview.
- * @param int|string $post_id    The post ID this block is saved to.
- */
-function carousel_block( $block, $content = '', $is_preview = false, $post_id = 0 ) {
-
-	/**
-	 * Arguments
-	 */
-
-	$args = wp_parse_args(
-		get_fields(),
-		array(
-			'posts'         => array(),
-			'autoplay'      => true,
-			'indicators'    => true,
-			'controls'      => true,
-			'item_template' => '',
-		)
-	);
-
-	if ( empty( $args['posts'] ) ) {
-
-		if ( $is_preview ) {
-			printf(
-				'<div class="alert alert-warning" role="alert">%s</div>',
-				esc_html__( 'No items to display.', 'my-theme' )
-			);
-		}
-
-		return;
-	}
-
-	$is_attachment = 'attachment' === get_post_type( $args['posts'][0] );
-
-	/**
-	 * Wrapper HTML attributes
-	 */
-
-	$wrapper = array();
-
-	$wrapper['class'] = 'wp-block-' . str_replace( '/', '-', $block['name'] );
-
-	if ( ! empty( $block['anchor'] ) ) {
-		$wrapper['id'] = $block['anchor'];
-	}
-
-	// Clear floats when alignment is set.
+	// Apply 'align' setting.
 	if ( ! empty( $block['align'] ) ) {
 		$wrapper['class'] .= " align{$block['align']}";
 	}
 
+	// Apply 'custom CSS classes' setting.
 	if ( ! empty( $block['className'] ) ) {
 		$wrapper['class'] .= " {$block['className']}";
 	}
 
+	// Apply 'anchor' setting.
+	if ( ! empty( $block['anchor'] ) ) {
+		$wrapper['id'] = $block['anchor'];
+	}
+
 	/**
 	 * Output
+	 * -------------------------------------------------------------------------
 	 */
 
 	echo '<div ' . acf_esc_attr( $wrapper ) . '>';
-
-	carousel(
-		array(
-			'post_type'      => $is_attachment ? 'attachment' : 'any',
-			'post_status'    => $is_attachment ? 'inherit' : 'publish',
-			'post_mime_type' => $is_attachment ? 'image' : '',
-			'post__in'       => $args['posts'],
-			'orderby'        => 'post__in',
-			'order'          => 'DESC',
-			'posts_per_page' => min( 500, count( $args['posts'] ) ),
-		),
-		array(
-			'autoplay'      => $args['autoplay'],
-			'indicators'    => $args['indicators'],
-			'controls'      => $args['controls'],
-			'item_template' => $args['item_template'],
-		)
-	);
 
 	echo '</div>';
 }
