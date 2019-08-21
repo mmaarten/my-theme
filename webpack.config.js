@@ -43,6 +43,10 @@ module.exports = {
     // Disable extensions filter
     enforceExtension: false,
   },
+  // Exclude dependencies from the output bundles
+  externals: {
+    jquery: 'jQuery',
+  },
   module:
   {
     rules: [
