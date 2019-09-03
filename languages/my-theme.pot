@@ -30,6 +30,11 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
+#. translators: %s: The name of the author.
+#: author.php:38
+msgid "All posts by %s"
+msgstr ""
+
 #. translators: 1: title.
 #: comments.php:35
 msgid "One thought on &ldquo;%1$s&rdquo;"
@@ -70,255 +75,242 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: inc/blocks.php:29, template-parts/block-button.php:22
-msgid "Button"
-msgstr ""
-
-#: inc/blocks.php:30
-msgid "Displays a button."
-msgstr ""
-
-#: inc/editor.php:18
+#: inc/editor.php:20
 msgid "Primary"
 msgstr ""
 
-#: inc/editor.php:23
+#: inc/editor.php:25
 msgid "Secondary"
 msgstr ""
 
-#: inc/editor.php:28
+#: inc/editor.php:30
 msgid "Success"
 msgstr ""
 
-#: inc/editor.php:33
+#: inc/editor.php:35
 msgid "Info"
 msgstr ""
 
-#: inc/editor.php:38
+#: inc/editor.php:40
 msgid "Warning"
 msgstr ""
 
-#: inc/editor.php:43
+#: inc/editor.php:45
 msgid "Danger"
 msgstr ""
 
-#: inc/editor.php:48
+#: inc/editor.php:50
 msgid "Light"
 msgstr ""
 
-#: inc/editor.php:53
+#: inc/editor.php:55
 msgid "Dark"
 msgstr ""
 
-#: inc/editor.php:58
+#: inc/editor.php:60
 msgid "White"
 msgstr ""
 
-#: inc/editor.php:71
+#: inc/editor.php:73
 msgid "Small"
 msgstr ""
 
-#: inc/editor.php:72
+#: inc/editor.php:74
 msgid "SM"
 msgstr ""
 
-#: inc/editor.php:77
+#: inc/editor.php:79
 msgid "Normal"
 msgstr ""
 
-#: inc/editor.php:78
+#: inc/editor.php:80
 msgid "MD"
 msgstr ""
 
-#: inc/editor.php:83
+#: inc/editor.php:85
 msgid "Large"
 msgstr ""
 
-#: inc/editor.php:84
+#: inc/editor.php:86
 msgid "LG"
 msgstr ""
 
-#: inc/options-page.php:27, inc/options-page.php:28
-msgid "Theme Settings"
-msgstr ""
-
-#: inc/setup.php:50
-msgid "Top Left"
-msgstr ""
-
-#: inc/setup.php:51
-msgid "Top Right"
+#: inc/options-page.php:31, inc/options-page.php:32
+msgid "Site Options"
 msgstr ""
 
 #: inc/setup.php:52
-msgid "Primary Left"
+msgid "Top Left"
 msgstr ""
 
 #: inc/setup.php:53
-msgid "Primary Right"
+msgid "Top Right"
 msgstr ""
 
 #: inc/setup.php:54
-msgid "Footer Left"
+msgid "Primary Left"
 msgstr ""
 
 #: inc/setup.php:55
+msgid "Primary Right"
+msgstr ""
+
+#: inc/setup.php:56
+msgid "Footer Left"
+msgstr ""
+
+#: inc/setup.php:57
 msgid "Footer Right"
 msgstr ""
 
-#: inc/setup.php:116
+#: inc/setup.php:120
 msgid "Full Page Width"
 msgstr ""
 
-#: inc/template-functions.php:75
-msgctxt "Used as link title to refer to homepage."
-msgid "Home"
-msgstr ""
-
 #. translators: %s: post date.
-#: inc/template-tags.php:29
+#: inc/template-tags.php:31
 msgctxt "post date"
 msgid "Posted on %s"
 msgstr ""
 
 #. translators: %s: post author.
-#: inc/template-tags.php:39
+#: inc/template-tags.php:41
 msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:53
+#: inc/template-tags.php:55
 msgid ", "
 msgstr ""
 
 #. translators: 1: list of categories.
-#: inc/template-tags.php:56
+#: inc/template-tags.php:58
 msgid "Posted in %1$s"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:60
+#: inc/template-tags.php:62
 msgctxt "list item separator"
 msgid ", "
 msgstr ""
 
 #. translators: 1: list of tags.
-#: inc/template-tags.php:63
+#: inc/template-tags.php:65
 msgid "Tagged %1$s"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/template-tags.php:73
-msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+#: inc/template-tags.php:75
+msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
 msgstr ""
 
 #. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:90
-msgid "Edit <span class=\"screen-reader-text\">%s</span>"
-msgstr ""
-
-#: inc/template-tags.php:159
-msgid "&laquo;"
-msgstr ""
-
-#: inc/template-tags.php:160
-msgid "&raquo;"
+#: inc/template-tags.php:92
+msgid "Edit <span class=\"sr-only\">%s</span>"
 msgstr ""
 
 #: inc/template-tags.php:161
+msgid "&laquo;"
+msgstr ""
+
+#: inc/template-tags.php:162
+msgid "&raquo;"
+msgstr ""
+
+#: inc/template-tags.php:163
 msgid "Posts navigation"
 msgstr ""
 
-#: inc/template-tags.php:206
+#: inc/template-tags.php:208
 msgid "Post navigation"
 msgstr ""
 
-#: inc/template-tags.php:213
+#: inc/template-tags.php:215
 msgctxt "Previous post link"
 msgid "&laquo; %title"
 msgstr ""
 
-#: inc/template-tags.php:217
+#: inc/template-tags.php:219
 msgctxt "Next post link"
 msgid "%title &raquo;"
 msgstr ""
 
-#: inc/widgets.php:25
+#: inc/widgets.php:27
 msgid "Header"
 msgstr ""
 
-#: inc/widgets.php:26
+#: inc/widgets.php:28
 msgid "Header section."
 msgstr ""
 
-#: inc/widgets.php:33
+#: inc/widgets.php:35
 msgid "Left Sidebar"
 msgstr ""
 
-#: inc/widgets.php:34
+#: inc/widgets.php:36
 msgid "Section on the left side."
 msgstr ""
 
-#: inc/widgets.php:41
+#: inc/widgets.php:43
 msgid "Right Sidebar"
 msgstr ""
 
-#: inc/widgets.php:42
+#: inc/widgets.php:44
 msgid "Section on the right side."
 msgstr ""
 
-#: inc/widgets.php:49
+#: inc/widgets.php:51
 msgid "Footer"
 msgstr ""
 
-#: inc/widgets.php:50
+#: inc/widgets.php:52
 msgid "Footer section."
 msgstr ""
 
-#: inc/widgets.php:66
+#: inc/widgets.php:68
 msgid "first"
 msgstr ""
 
-#: inc/widgets.php:67
+#: inc/widgets.php:69
 msgid "second"
 msgstr ""
 
-#: inc/widgets.php:68
+#: inc/widgets.php:70
 msgid "thirth"
 msgstr ""
 
-#: inc/widgets.php:69
+#: inc/widgets.php:71
 msgid "fourth"
 msgstr ""
 
-#: inc/widgets.php:70
+#: inc/widgets.php:72
 msgid "fifth"
 msgstr ""
 
-#: inc/widgets.php:71
+#: inc/widgets.php:73
 msgid "sixth"
 msgstr ""
 
-#: inc/widgets.php:72
+#: inc/widgets.php:74
 msgid "seventh"
 msgstr ""
 
-#: inc/widgets.php:73
+#: inc/widgets.php:75
 msgid "eighth"
 msgstr ""
 
-#: inc/widgets.php:74
+#: inc/widgets.php:76
 msgid "ninth"
 msgstr ""
 
 #. translators: %d: column number.
-#: inc/widgets.php:82
+#: inc/widgets.php:84
 msgid "Footer Column %d"
 msgstr ""
 
 #. translators: %s: column number (ordinal).
-#: inc/widgets.php:84
+#: inc/widgets.php:86
 msgid "%s column in footer section."
 msgstr ""
 
@@ -355,6 +347,6 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: template-parts/main-navigation.php:45
+#: template-parts/main-navigation.php:47
 msgid "Toggle navigation"
 msgstr ""
