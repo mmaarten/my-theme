@@ -6,7 +6,6 @@ const OptimizeCssAssetsPlugin     = require('optimize-css-assets-webpack-plugin'
 const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
 const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 const imageminMozjpeg             = require('imagemin-mozjpeg');
-const BrowserSyncPlugin           = require('browser-sync-webpack-plugin');
 const WebpackBar                  = require('webpackbar');
 const CopyWebpackPlugin           = require('copy-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
@@ -119,10 +118,6 @@ module.exports = {
 		jQuery: 'jquery',
 		'window.jQuery': 'jquery',
       Popper: 'popper.js/dist/umd/popper.js',
-    }),
-    // Synchronised browser testing
-    new BrowserSyncPlugin(config.browserSync, {
-      injectCss : true,
     }),
     // Copy
     new CopyWebpackPlugin(config.copy),
