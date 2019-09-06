@@ -18,10 +18,5 @@
     "images/**/*",
     "fonts/**/*"
   ],
-  "publicPath": "/wp-content/themes/my-theme",
-  "browserSync" : {
-    "proxy": "http://localhost:8080",
-    "notify": false,
-    "files": ["**/*.php"]
-  }
+  "publicPath": "/wp-content/themes/my-theme"
 }

@@ -4,10 +4,10 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Prints HTML with meta information for the current post-date/time.

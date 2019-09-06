@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
 ?>
@@ -17,7 +17,7 @@
 
 	</header><!-- .entry-header -->
 
-	<?php MyTheme\post_thumbnail(); ?>
+	<?php My\Theme\post_thumbnail(); ?>
 
 	<div class="entry-content">
 

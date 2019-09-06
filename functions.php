@@ -2,10 +2,10 @@
 /**
  * Theme functions and definitions
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Load common helper functions.

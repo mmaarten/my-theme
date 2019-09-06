@@ -1,12 +1,11 @@
 {
-  "name": "mmaarten/theme",
+  "name": "my/theme",
   "type": "wordpress-theme",
 	"license": "GPL-2.0",
 	"minimum-stability": "stable",
 	"keywords": [
 		"wordpress",
-    "theme",
-    "bootstrap"
+    "theme"
 	],
 	"require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",

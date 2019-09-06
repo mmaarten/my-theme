@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Author_Templates/
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
 get_header();
@@ -66,7 +66,7 @@ get_header();
 					// End of the Loop.
 				endwhile;
 
-				MyTheme\pagination();
+				My\Theme\pagination();
 
 				else :
 

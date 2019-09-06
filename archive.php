@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
 get_header();
@@ -42,7 +42,7 @@ get_header();
 					// End of the Loop.
 				endwhile;
 
-				MyTheme\pagination();
+				My\Theme\pagination();
 
 				else :
 

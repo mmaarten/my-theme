@@ -2,10 +2,10 @@
 /**
  * Widgets
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Register widget areas.

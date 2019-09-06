@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
 ?>
@@ -19,7 +19,7 @@
 
 		<div class="entry-meta">
 
-			<?php MyTheme\posted_on(); ?>
+			<?php My\Theme\posted_on(); ?>
 
 		</div><!-- .entry-meta -->
 
@@ -27,7 +27,7 @@
 
 	</header><!-- .entry-header -->
 
-	<?php MyTheme\post_thumbnail(); ?>
+	<?php My\Theme\post_thumbnail(); ?>
 
 	<div class="entry-summary">
 
@@ -37,7 +37,7 @@
 
 	<footer class="entry-footer">
 
-		<?php MyTheme\entry_footer(); ?>
+		<?php My\Theme\entry_footer(); ?>
 
 	</footer><!-- .entry-footer -->
 

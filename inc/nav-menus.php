@@ -2,10 +2,10 @@
 /**
  * Navigation Menus
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Include WP_Bootstrap_Navwalker.

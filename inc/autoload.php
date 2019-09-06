@@ -2,10 +2,10 @@
 /**
  * Autoload
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Include Composer autoloader.

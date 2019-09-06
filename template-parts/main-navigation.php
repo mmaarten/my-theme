@@ -2,7 +2,7 @@
 /**
  * The template for displaying site navigation
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
 ?>

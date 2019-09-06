@@ -2,10 +2,10 @@
 /**
  * Functions which enhance the theme by hooking into WordPress
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Adds custom classes to the array of body classes.

@@ -2,10 +2,10 @@
 /**
  * Editor
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Setup

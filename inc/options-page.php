@@ -6,10 +6,10 @@
  *
  * @link https://www.advancedcustomfields.com/
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Add options page

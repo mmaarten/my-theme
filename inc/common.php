@@ -2,10 +2,10 @@
 /**
  * Common helper functions
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Include files from inside the /inc directory.

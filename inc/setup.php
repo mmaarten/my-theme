@@ -2,10 +2,10 @@
 /**
  * Setup
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Sets up theme defaults and registers support for various WordPress features.

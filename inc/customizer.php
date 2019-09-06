@@ -2,10 +2,10 @@
 /**
  * Customizer
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.

@@ -2,10 +2,10 @@
 /**
  * Scripts
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
-namespace MyTheme;
+namespace My\Theme;
 
 /**
  * Enqueue scripts and styles.

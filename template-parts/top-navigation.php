@@ -2,7 +2,7 @@
 /**
  * Header Navigation
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
 if ( ! has_nav_menu( 'top-left' ) && ! has_nav_menu( 'top-right' ) ) {

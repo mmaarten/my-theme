@@ -2,7 +2,7 @@
 /**
  * Footer Navigation
  *
- * @package MyTheme
+ * @package My/Theme
  */
 
 if ( ! has_nav_menu( 'footer-left' ) && ! has_nav_menu( 'footer-right' ) ) {
