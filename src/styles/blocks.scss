@@ -16,8 +16,9 @@ $custom-editor-colors: map-merge(
 );
 
 $custom-editor-font-sizes: (
-  "small" : $font-size-sm,
-  "large" : $font-size-lg,
+  "small"  : $font-size-sm,
+  "normal" : $font-size-base,
+  "large"  : $font-size-lg,
 );
 
 /**
