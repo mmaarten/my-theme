@@ -27,26 +27,6 @@ function block_editor_setup() {
 				'color' => '#6c757d', // Value of $secondary.
 			),
 			array(
-				'name'  => __( 'Success', 'my-theme' ),
-				'slug'  => 'success',
-				'color' => '#28a745', // Value of $success.
-			),
-			array(
-				'name'  => __( 'Info', 'my-theme' ),
-				'slug'  => 'info',
-				'color' => '#17a2b8', // Value of $info.
-			),
-			array(
-				'name'  => __( 'Warning', 'my-theme' ),
-				'slug'  => 'warning',
-				'color' => '#ffc107', // Value of $warning.
-			),
-			array(
-				'name'  => __( 'Danger', 'my-theme' ),
-				'slug'  => 'danger',
-				'color' => '#dc3545', // Value of $danger.
-			),
-			array(
 				'name'  => __( 'Light', 'my-theme' ),
 				'slug'  => 'light',
 				'color' => '#f8f9fa', // Value of $light.
@@ -56,11 +36,6 @@ function block_editor_setup() {
 				'slug'  => 'dark',
 				'color' => '#343a40', // Value of $dark.
 			),
-			array(
-				'name'  => __( 'White', 'my-theme' ),
-				'slug'  => 'white',
-				'color' => '#ffffff', // Value of $white.
-			),
 		)
 	);
 
@@ -68,7 +43,7 @@ function block_editor_setup() {
 	add_theme_support(
 		'editor-font-sizes',
 		array(
-			// 'normal' slug is required to set default font size
+			// 'normal' slug is required to set default font size.
 			array(
 				'name'      => __( 'Small', 'my-theme' ),
 				'shortName' => __( 'SM', 'my-theme' ),
@@ -77,7 +52,7 @@ function block_editor_setup() {
 			),
 			array(
 				'name'      => __( 'Normal', 'my-theme' ),
-				'shortName' => __( 'MD', 'my-theme' ),
+				'shortName' => __( 'N', 'my-theme' ),
 				'size'      => 16, // Value of $font-size-base.
 				'slug'      => 'normal',
 			),
