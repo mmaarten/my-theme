@@ -33,7 +33,7 @@ function posted_on()
         '<a href="' . esc_url(get_permalink()) . '" rel="bookmark">' . $time_string . '</a>'
     );
 
-    echo '<span class="posted-on">' . $posted_on . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo '<span class="posted-on">' . $posted_on . '</span>';
 
     // Byline.
 
@@ -43,7 +43,7 @@ function posted_on()
         '<span class="author vcard"><a class="url fn n" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
     );
 
-    echo '<span class="byline"> ' . $byline . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo '<span class="byline"> ' . $byline . '</span>';
 }
 
 /**
@@ -57,14 +57,14 @@ function entry_footer()
         $categories_list = get_the_category_list(esc_html__(', ', 'my-theme'));
         if ($categories_list) {
             /* translators: 1: list of categories. */
-            printf('<span class="cat-links">' . esc_html__('Posted in %1$s', 'my-theme') . '</span>', $categories_list); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            printf('<span class="cat-links">' . esc_html__('Posted in %1$s', 'my-theme') . '</span>', $categories_list);
         }
 
         /* translators: used between list items, there is a space after the comma */
         $tags_list = get_the_tag_list('', esc_html_x(', ', 'list item separator', 'my-theme'));
         if ($tags_list) {
             /* translators: 1: list of tags. */
-            printf('<span class="tags-links">' . esc_html__('Tagged %1$s', 'my-theme') . '</span>', $tags_list); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            printf('<span class="tags-links">' . esc_html__('Tagged %1$s', 'my-theme') . '</span>', $tags_list);
         }
     }
 
@@ -179,7 +179,7 @@ function pagination($args = array())
 
         <?php foreach ($links as $key => $link) : ?>
             <li class="page-item<?php echo strpos($link, 'current') ? ' active' : ''; ?>">
-                <?php echo str_replace('page-numbers', 'page-link', $link); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                <?php echo str_replace('page-numbers', 'page-link', $link); ?>
             </li><!-- .page-item -->
 
         <?php endforeach; ?>
@@ -248,7 +248,6 @@ function breadcrumb_nav($before = '', $after = '')
 
     // Check Dependency.
     if (! function_exists('bcn_display_list')) {
-		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
         trigger_error('function `bcn_display_list` does not exist.', E_USER_WARNING);
 
         return;

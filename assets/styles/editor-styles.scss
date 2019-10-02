@@ -1,0 +1,71 @@
+/*!
+ * Editor Normalization Styles
+ *
+ * @link `https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/editor-styles.scss⁩`
+ * @package My/Blocks
+ */
+@import "~bootstrap/scss/functions";
+@import "common/variables";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+body {
+  // See `body` ~bootstrap/scss/reboot
+  font-family: $font-family-base;
+  @include font-size($font-size-base);
+  line-height: $line-height-base;
+  color: $body-color;
+  font-weight: $font-weight-base;
+}
+
+// See ~bootstrap/scss/reboot
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: $headings-margin-bottom;
+}
+
+// See ~bootstrap/scss/type
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $headings-margin-bottom;
+  font-family: $headings-font-family;
+  font-weight: $headings-font-weight;
+  line-height: $headings-line-height;
+  color: $headings-color;
+}
+
+// See ~bootstrap/scss/type
+h1 { @include font-size($h1-font-size); }
+h2 { @include font-size($h2-font-size); }
+h3 { @include font-size($h3-font-size); }
+h4 { @include font-size($h4-font-size); }
+h5 { @include font-size($h5-font-size); }
+h6 { @include font-size($h6-font-size); }
+
+// See ~bootstrap/scss/reboot
+p {
+  margin-top: 0;
+  margin-bottom: $paragraph-margin-bottom;
+}
+
+// See ~bootstrap/scss/reboot
+ol, ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+// See ~bootstrap/scss/reboot
+ol ol, ul ul, ol ul, ul ol {
+  margin-bottom: 0;
+}
+
+// See ~bootstrap/scss/reboot
+a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+  background-color: transparent; // Remove the gray background on active links in IE 10.
+
+  @include hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}

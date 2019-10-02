@@ -14,13 +14,14 @@ namespace My\Theme;
  */
 function inc($files)
 {
-
     foreach ((array) $files as $file) {
         $located = locate_template("inc/$file");
 
         if (! $located) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-            trigger_error(sprintf('Error locating file <code>inc/%s</code> for inclusion.', esc_html($file)), E_USER_ERROR);
+            trigger_error(
+                sprintf('Error locating file <code>inc/%s</code> for inclusion.', esc_html($file)),
+                E_USER_ERROR
+            );
         }
 
         include_once $located;

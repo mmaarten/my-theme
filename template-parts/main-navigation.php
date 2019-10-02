@@ -17,13 +17,10 @@
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" rel="home" itemprop="url">
                     <?php echo wp_get_attachment_image(get_theme_mod('custom_logo'), 'full', false, array( 'class' => 'img-fluid' )); ?>
                 </a>
-
             <?php elseif (is_front_page() && is_home()) : ?>
                 <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home" itemprop="url"><?php bloginfo('name'); ?></a></h1>
-
             <?php else : ?>
                 <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home" itemprop="url"><?php bloginfo('name'); ?></a></p>
-
             <?php endif; ?>
 
             <?php
@@ -31,7 +28,6 @@
             $my_theme_description = get_bloginfo('description', 'display');
 
             if ($my_theme_description || is_customize_preview()) {
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 printf('<p class="sr-only site-description">%s</p>', $my_theme_description);
             }
 
