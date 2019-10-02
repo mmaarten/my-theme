@@ -124,9 +124,9 @@ module.exports = {
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
-		$: 'jquery',
-		jQuery: 'jquery',
-		'window.jQuery': 'jquery',
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
       Popper: 'popper.js/dist/umd/popper.js',
     }),
     // Copy
