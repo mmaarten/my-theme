@@ -9,6 +9,9 @@
     "editor-styles": [
       "styles/editor-styles.scss"
   	],
+    "block-styles": [
+      "styles/block-styles.scss"
+  	],
     "customizer": [
     	"scripts/customizer.js"
     ]
