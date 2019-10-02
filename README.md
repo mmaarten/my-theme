@@ -7,7 +7,6 @@ based on the [Underscores](https://github.com/automattic/_s) theme by [Automatti
 
 - [Sass](https://sass-lang.com/) for stylesheets
 - [Webpack](https://webpack.js.org/) for compiling assets, optimising images, and concatenating and minifying files
-- Browsersync
 - [Bootstrap](https://getbootstrap.com/) 4 CSS framework
 - [Fontawesome](https://fontawesome.com/) icon library.
 
@@ -33,7 +32,7 @@ Run `composer install` to install additional dependencies.
 
 ### Build commands
 
-Run `npm run start` to compile assets when files change. start Browsersync session.
+Run `npm run start` to compile assets when files change.
 
 Run `npm run build` to compile assets.
 
