@@ -1,61 +1,53 @@
-/*!
- * Block library
- */
-@import "common/variables";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+//
+// Variables
+//
 
-/**
- * Variables
- */
-$custom-editor-colors: map-merge(
-  (
-    "white" : $white,
-  ),
-  $theme-colors
-);
+$editor-colors: ();
+$editor-colors: map-merge($theme-colors, $editor-colors);
 
-$custom-editor-font-sizes: (
+$editor-font-sizes: (
   "small"  : $font-size-sm,
   "normal" : $font-size-base,
   "large"  : $font-size-lg,
 );
 
-/**
- * Custom editor colors
- */
-@each $name, $value in $custom-editor-colors {
-  .has-#{$name}-color {
-    color: $value;
-  }
+//
+// Text colors
+//
 
-  .has-#{$name}-background-color {
-    background-color: $value;
+@each $color, $value in $editor-colors {
+  @include text-emphasis-variant(".has-#{$color}-color", $value);
+}
+
+//
+// Background colors
+//
+
+@each $color, $value in $editor-colors {
+  @include bg-variant(".has-#{$color}-background-color", $value);
+}
+
+//
+// Font sizes
+//
+
+@each $font-size, $value in $editor-font-sizes {
+  .has-#{$font-size}-font-size {
+    @include font-size($value);
   }
 }
 
-/**
- * Custom editor font sizes
- *
- * Not needed when 'wp-block-library' stylesheet is enqueued.
- * We include them for when not enqueued.
- */
-@each $name, $value in $custom-editor-font-sizes {
-  .has-#{$name}-font-size {
-    font-size: $value;
-  }
-}
+//
+// Set padding for paragraphs with background color.
+//
 
-/**
- * Set padding for paragraphs with background color.
- */
 p.has-background {
   padding: (map-get($spacers, 4) / $line-height-base) map-get($spacers, 4);
 }
 
-/**
- * Set spacing and max widths according to the 'align' setting.
- */
+//
+// Set spacing and max widths according to the 'align' setting.
+//
 
 .hentry .entry-header,
 .hentry .entry-footer {
