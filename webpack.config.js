@@ -9,7 +9,7 @@ const imageminMozjpeg             = require('imagemin-mozjpeg');
 const WebpackBar                  = require('webpackbar');
 const CopyWebpackPlugin           = require('copy-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const config                      = require('./src/config.json');
+const config                      = require('./assets/config.json');
 
 module.exports = {
   context: path.resolve(__dirname, 'assets'),
