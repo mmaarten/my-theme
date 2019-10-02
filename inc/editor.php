@@ -87,7 +87,7 @@ add_action('after_setup_theme', __NAMESPACE__ . '\block_editor_setup');
 function block_editor_settings($settings)
 {
     // Styles.
-    $styles_file = get_template_directory() . '/build/editor-styles.css';
+    $styles_file = get_template_directory() . '/build/styles/editor-styles.css';
     if (file_exists($styles_file)) {
         $settings['styles'][] = ['css' => file_get_contents($styles_file)];
     }

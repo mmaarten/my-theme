@@ -18,7 +18,7 @@ function enqueue_scripts()
     $css_version = filemtime(get_template_directory() . '/build/styles/style.css');
     wp_enqueue_style(
         'my_theme-style',
-        get_template_directory_uri() . '/dist/styles/style.css',
+        get_template_directory_uri() . '/build/styles/style.css',
         [],
         "{$theme_version}.{$css_version}"
     );
@@ -26,7 +26,7 @@ function enqueue_scripts()
     $js_version = filemtime(get_template_directory() . '/build/scripts/script.js');
     wp_enqueue_script(
         'my_theme-script',
-        get_template_directory_uri() . '/dist/scripts/script.js',
+        get_template_directory_uri() . '/build/scripts/script.js',
         ['jquery'],
         "{$theme_version}.$js_version",
         true

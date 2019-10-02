@@ -27,7 +27,7 @@ if (! is_readable($autoloader)) {
  * Check build.
  */
 
-$build_file = dirname(__FILE__) . '/build/style.css';
+$build_file = dirname(__FILE__) . '/build/styles/style.css';
 
 if (! is_readable($build_file)) {
     trigger_error(
@@ -52,7 +52,7 @@ require $autoloader;
 require get_template_directory() . '/inc/common.php';
 
 // Include files from inside the /inc directory.
-inc(
+\My\Theme\inc(
     [
         'setup.php',              // Set up theme defaults and register support for features.
         'nav-menus.php',          // Custom navigation menu functions.

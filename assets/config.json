@@ -3,6 +3,9 @@
   	"style": [
       "styles/style.scss"
   	],
+    "script": [
+      "scripts/script.js"
+    ],
     "editor-styles": [
       "styles/editor-styles.scss"
   	],
