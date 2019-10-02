@@ -26,6 +26,5 @@ inc(
         'template-functions.php', // Functions which enhance the theme by hooking into WordPress.
         'customizer.php',         // Customizer additions.
         'editor.php',             // Custom editor features.
-        'options-page.php',       // Add options page.
     )
 );
