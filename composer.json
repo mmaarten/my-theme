@@ -1,24 +1,27 @@
 {
   "name": "my/theme",
   "type": "wordpress-theme",
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-or-later",
 	"minimum-stability": "stable",
 	"keywords": [
 		"wordpress",
-    "theme"
+    "theme",
 	],
-	"require-dev": {
+  "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-		"squizlabs/php_codesniffer": "^3.4.2",
-		"phpcompatibility/php-compatibility": "^9.2.0",
-		"wp-coding-standards/wpcs": "^2.1.1"
+    "squizlabs/php_codesniffer": "^3.4.2",
+    "phpcompatibility/php-compatibility": "^9.2.0"
   },
-	"require": {
-		"composer/installers": "^1.5",
-    "wp-bootstrap/wp-bootstrap-navwalker": "^4.2"
-	},
+  "require": {
+    "composer/installers": "^1.5"
+  },
   "scripts": {
-		"phpcs" : "./vendor/bin/phpcs",
-    "phpcbf" : "./vendor/bin/phpcbf"
-	}
+    "phpcs": "./vendor/bin/phpcs",
+    "phpcbf": "./vendor/bin/phpcbf"
+  },
+  "autoload": {
+    "psr-4": {
+      "My\\Theme\\": "src/"
+    }
+  }
 }

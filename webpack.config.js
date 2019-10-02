@@ -12,12 +12,12 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const config                      = require('./src/config.json');
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
+  context: path.resolve(__dirname, 'assets'),
   entry: config.entry,
   output: {
     filename: 'scripts/[name].js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: `${config.publicPath}/dist/`,
+    path: path.resolve(__dirname, 'build'),
+    publicPath: `${config.publicPath}/build/`,
   },
   stats: {
     hash: false,
@@ -36,7 +36,7 @@ module.exports = {
   resolve: {
     // Directories where to look for modules
     modules: [
-      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'assets'),
       'node_modules',
     ],
     // Disable extensions filter
@@ -85,7 +85,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
-        include: path.resolve(__dirname, 'src'),
+        include: path.resolve(__dirname, 'assets'),
         use: [
           {
             loader: 'file-loader',
