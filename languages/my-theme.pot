@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the MyTheme package.
 msgid ""
 msgstr ""
-"Project-Id-Version: My\Theme\n"
+"Project-Id-Version: MyTheme\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,7 +31,7 @@ msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
 #. translators: %s: The name of the author.
-#: author.php:38
+#: author.php:37
 msgid "All posts by %s"
 msgstr ""
 
@@ -52,12 +52,22 @@ msgstr[1] ""
 msgid "Comments are closed."
 msgstr ""
 
+#. translators: %1$s Code to run.
+#: functions.php:18
+msgid "Autoloader not found. Run %1$s"
+msgstr ""
+
+#. translators: %1$s Code to run.
+#: functions.php:36
+msgid "Not build. Run %1$s"
+msgstr ""
+
 #: header.php:35
 msgid "Skip to content"
 msgstr ""
 
 #. translators: %s: search query.
-#: search.php:29
+#: search.php:28
 msgid "Search Results for: %s"
 msgstr ""
 
@@ -84,154 +94,130 @@ msgid "Secondary"
 msgstr ""
 
 #: inc/editor.php:30
-msgid "Success"
-msgstr ""
-
-#: inc/editor.php:35
-msgid "Info"
-msgstr ""
-
-#: inc/editor.php:40
-msgid "Warning"
-msgstr ""
-
-#: inc/editor.php:45
-msgid "Danger"
-msgstr ""
-
-#: inc/editor.php:50
 msgid "Light"
 msgstr ""
 
-#: inc/editor.php:55
+#: inc/editor.php:35
 msgid "Dark"
 msgstr ""
 
-#: inc/editor.php:60
-msgid "White"
-msgstr ""
-
-#: inc/editor.php:73
+#: inc/editor.php:48
 msgid "Small"
 msgstr ""
 
-#: inc/editor.php:74
+#: inc/editor.php:49
 msgid "SM"
 msgstr ""
 
-#: inc/editor.php:79
+#: inc/editor.php:54
 msgid "Normal"
 msgstr ""
 
-#: inc/editor.php:80
-msgid "MD"
+#: inc/editor.php:55
+msgid "N"
 msgstr ""
 
-#: inc/editor.php:85
+#: inc/editor.php:60
 msgid "Large"
 msgstr ""
 
-#: inc/editor.php:86
+#: inc/editor.php:61
 msgid "LG"
 msgstr ""
 
-#: inc/options-page.php:31, inc/options-page.php:32
-msgid "Site Options"
-msgstr ""
-
-#: inc/setup.php:52
+#: inc/setup.php:53
 msgid "Top Left"
 msgstr ""
 
-#: inc/setup.php:53
+#: inc/setup.php:54
 msgid "Top Right"
 msgstr ""
 
-#: inc/setup.php:54
+#: inc/setup.php:55
 msgid "Primary Left"
 msgstr ""
 
-#: inc/setup.php:55
+#: inc/setup.php:56
 msgid "Primary Right"
 msgstr ""
 
-#: inc/setup.php:56
+#: inc/setup.php:57
 msgid "Footer Left"
 msgstr ""
 
-#: inc/setup.php:57
+#: inc/setup.php:58
 msgid "Footer Right"
 msgstr ""
 
-#: inc/setup.php:120
+#: inc/setup.php:118
 msgid "Full Page Width"
 msgstr ""
 
 #. translators: %s: post date.
-#: inc/template-tags.php:31
+#: inc/template-tags.php:32
 msgctxt "post date"
 msgid "Posted on %s"
 msgstr ""
 
 #. translators: %s: post author.
-#: inc/template-tags.php:41
+#: inc/template-tags.php:42
 msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:55
+#: inc/template-tags.php:57
 msgid ", "
 msgstr ""
 
 #. translators: 1: list of categories.
-#: inc/template-tags.php:58
+#: inc/template-tags.php:60
 msgid "Posted in %1$s"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:62
+#: inc/template-tags.php:64
 msgctxt "list item separator"
 msgid ", "
 msgstr ""
 
 #. translators: 1: list of tags.
-#: inc/template-tags.php:65
+#: inc/template-tags.php:67
 msgid "Tagged %1$s"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/template-tags.php:75
+#: inc/template-tags.php:77
 msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
 msgstr ""
 
 #. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:92
+#: inc/template-tags.php:94
 msgid "Edit <span class=\"sr-only\">%s</span>"
 msgstr ""
 
-#: inc/template-tags.php:161
+#: inc/template-tags.php:164
 msgid "&laquo;"
 msgstr ""
 
-#: inc/template-tags.php:162
+#: inc/template-tags.php:165
 msgid "&raquo;"
 msgstr ""
 
-#: inc/template-tags.php:163
+#: inc/template-tags.php:166
 msgid "Posts navigation"
 msgstr ""
 
-#: inc/template-tags.php:208
+#: inc/template-tags.php:211
 msgid "Post navigation"
 msgstr ""
 
-#: inc/template-tags.php:215
+#: inc/template-tags.php:218
 msgctxt "Previous post link"
 msgid "&laquo; %title"
 msgstr ""
 
-#: inc/template-tags.php:219
+#: inc/template-tags.php:222
 msgctxt "Next post link"
 msgid "%title &raquo;"
 msgstr ""
@@ -268,52 +254,6 @@ msgstr ""
 msgid "Footer section."
 msgstr ""
 
-#: inc/widgets.php:68
-msgid "first"
-msgstr ""
-
-#: inc/widgets.php:69
-msgid "second"
-msgstr ""
-
-#: inc/widgets.php:70
-msgid "thirth"
-msgstr ""
-
-#: inc/widgets.php:71
-msgid "fourth"
-msgstr ""
-
-#: inc/widgets.php:72
-msgid "fifth"
-msgstr ""
-
-#: inc/widgets.php:73
-msgid "sixth"
-msgstr ""
-
-#: inc/widgets.php:74
-msgid "seventh"
-msgstr ""
-
-#: inc/widgets.php:75
-msgid "eighth"
-msgstr ""
-
-#: inc/widgets.php:76
-msgid "ninth"
-msgstr ""
-
-#. translators: %d: column number.
-#: inc/widgets.php:84
-msgid "Footer Column %d"
-msgstr ""
-
-#. translators: %s: column number (ordinal).
-#: inc/widgets.php:86
-msgid "%s column in footer section."
-msgstr ""
-
 #: page-templates/full-width-fixed.php:3
 msgid "Full Width Fixed"
 msgstr ""
@@ -327,15 +267,15 @@ msgid "Nothing Found"
 msgstr ""
 
 #. translators: 1: link to WP admin new post page.
-#: template-parts/content-none.php:29
+#: template-parts/content-none.php:28
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
-#: template-parts/content-none.php:43
+#: template-parts/content-none.php:41
 msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
 msgstr ""
 
-#: template-parts/content-none.php:49
+#: template-parts/content-none.php:46
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr ""
 
@@ -347,6 +287,6 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: template-parts/main-navigation.php:47
+#: template-parts/main-navigation.php:39
 msgid "Toggle navigation"
 msgstr ""
