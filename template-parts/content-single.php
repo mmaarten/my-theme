@@ -11,34 +11,33 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<header class="entry-header">
+    <header class="entry-header">
 
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+        <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
 
-		<?php if ( 'post' === get_post_type() ) : ?>
+        <?php if ('post' === get_post_type()) : ?>
+        <div class="entry-meta">
 
-		<div class="entry-meta">
+            <?php My\Theme\posted_on(); ?>
 
-			<?php My\Theme\posted_on(); ?>
+        </div><!-- .entry-meta -->
 
-		</div><!-- .entry-meta -->
+        <?php endif; ?>
 
-		<?php endif; ?>
+    </header><!-- .entry-header -->
 
-	</header><!-- .entry-header -->
+    <?php My\Theme\post_thumbnail(); ?>
 
-	<?php My\Theme\post_thumbnail(); ?>
+    <div class="entry-content">
 
-	<div class="entry-content">
+        <?php the_content(); ?>
 
-		<?php the_content(); ?>
+    </div><!-- .entry-content -->
 
-	</div><!-- .entry-content -->
+    <footer class="entry-footer">
 
-	<footer class="entry-footer">
+        <?php My\Theme\entry_footer(); ?>
 
-		<?php My\Theme\entry_footer(); ?>
-
-	</footer><!-- .entry-footer -->
+    </footer><!-- .entry-footer -->
 
 </article><!-- #post-<?php the_ID(); ?> -->

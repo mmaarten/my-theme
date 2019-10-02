@@ -10,72 +10,73 @@ namespace My\Theme;
 /**
  * Setup
  */
-function block_editor_setup() {
+function block_editor_setup()
+{
 
-	// Set editor colors.
-	add_theme_support(
-		'editor-color-palette',
-		array(
-			array(
-				'name'  => __( 'Primary', 'my-theme' ),
-				'slug'  => 'primary',
-				'color' => '#007bff', // Value of $primary.
-			),
-			array(
-				'name'  => __( 'Secondary', 'my-theme' ),
-				'slug'  => 'secondary',
-				'color' => '#6c757d', // Value of $secondary.
-			),
-			array(
-				'name'  => __( 'Light', 'my-theme' ),
-				'slug'  => 'light',
-				'color' => '#f8f9fa', // Value of $light.
-			),
-			array(
-				'name'  => __( 'Dark', 'my-theme' ),
-				'slug'  => 'dark',
-				'color' => '#343a40', // Value of $dark.
-			),
-		)
-	);
+    // Set editor colors.
+    add_theme_support(
+        'editor-color-palette',
+        array(
+            array(
+                'name'  => __('Primary', 'my-theme'),
+                'slug'  => 'primary',
+                'color' => '#007bff', // Value of $primary.
+            ),
+            array(
+                'name'  => __('Secondary', 'my-theme'),
+                'slug'  => 'secondary',
+                'color' => '#6c757d', // Value of $secondary.
+            ),
+            array(
+                'name'  => __('Light', 'my-theme'),
+                'slug'  => 'light',
+                'color' => '#f8f9fa', // Value of $light.
+            ),
+            array(
+                'name'  => __('Dark', 'my-theme'),
+                'slug'  => 'dark',
+                'color' => '#343a40', // Value of $dark.
+            ),
+        )
+    );
 
-	// Set editor font sizes.
-	add_theme_support(
-		'editor-font-sizes',
-		array(
-			// 'normal' slug is required to set default font size.
-			array(
-				'name'      => __( 'Small', 'my-theme' ),
-				'shortName' => __( 'SM', 'my-theme' ),
-				'size'      => 16 * 0.875, // Value of $font-size-sm.
-				'slug'      => 'small',
-			),
-			array(
-				'name'      => __( 'Normal', 'my-theme' ),
-				'shortName' => __( 'N', 'my-theme' ),
-				'size'      => 16, // Value of $font-size-base.
-				'slug'      => 'normal',
-			),
-			array(
-				'name'      => __( 'Large', 'my-theme' ),
-				'shortName' => __( 'LG', 'my-theme' ),
-				'size'      => 16 * 1.25, // Value of $font-size-lg.
-				'slug'      => 'large',
-			),
-		)
-	);
+    // Set editor font sizes.
+    add_theme_support(
+        'editor-font-sizes',
+        array(
+            // 'normal' slug is required to set default font size.
+            array(
+                'name'      => __('Small', 'my-theme'),
+                'shortName' => __('SM', 'my-theme'),
+                'size'      => 16 * 0.875, // Value of $font-size-sm.
+                'slug'      => 'small',
+            ),
+            array(
+                'name'      => __('Normal', 'my-theme'),
+                'shortName' => __('N', 'my-theme'),
+                'size'      => 16, // Value of $font-size-base.
+                'slug'      => 'normal',
+            ),
+            array(
+                'name'      => __('Large', 'my-theme'),
+                'shortName' => __('LG', 'my-theme'),
+                'size'      => 16 * 1.25, // Value of $font-size-lg.
+                'slug'      => 'large',
+            ),
+        )
+    );
 
-	// Add support for Block Styles.
-	add_theme_support( 'wp-block-styles' );
+    // Add support for Block Styles.
+    add_theme_support('wp-block-styles');
 
-	// Enable align 'wide' and 'full' block settings.
-	add_theme_support( 'align-wide' );
+    // Enable align 'wide' and 'full' block settings.
+    add_theme_support('align-wide');
 
-	// Enable responsive embeds.
-	add_theme_support( 'responsive-embeds' );
+    // Enable responsive embeds.
+    add_theme_support('responsive-embeds');
 }
 
-add_action( 'after_setup_theme', __NAMESPACE__ . '\block_editor_setup' );
+add_action('after_setup_theme', __NAMESPACE__ . '\block_editor_setup');
 
 /**
  * Filter whether a post is able to be edited in the block editor.
@@ -85,29 +86,30 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\block_editor_setup' );
  *
  * @return bool
  */
-function use_block_editor_for_post( $use_block_editor, $post ) {
+function use_block_editor_for_post($use_block_editor, $post)
+{
 
-	return $use_block_editor;
+    return $use_block_editor;
 }
 
-add_filter( 'use_block_editor_for_post', __NAMESPACE__ . '\use_block_editor_for_post', 10, 2 );
+add_filter('use_block_editor_for_post', __NAMESPACE__ . '\use_block_editor_for_post', 10, 2);
 
 /**
  * Filter the allowed block types for the editor.
  *
 // Set limitions.
 $allowed_block_types = array(
-	'core/block', // Required for reusable blocks.
-	'core/heading',
-	'core/paragraph',
-	'core/image',
-	'core/list',
-	'core/embed',
-	'core/html',
-	'core/shortcode',
-	'core/template',
-	'core/video',
-	'core/columns',
+    'core/block', // Required for reusable blocks.
+    'core/heading',
+    'core/paragraph',
+    'core/image',
+    'core/list',
+    'core/embed',
+    'core/html',
+    'core/shortcode',
+    'core/template',
+    'core/video',
+    'core/columns',
 );
  *
  * @uses acf_get_block_types()
@@ -117,28 +119,30 @@ $allowed_block_types = array(
  *
  * @return bool|array
  */
-function allowed_block_types( $allowed_block_types, $post ) {
+function allowed_block_types($allowed_block_types, $post)
+{
 
-	// Include our ACF block types when limitions are set.
-	if ( is_array( $allowed_block_types ) && function_exists( 'acf_get_block_types' ) ) {
-		$allowed_block_types = array_merge( $allowed_block_types, array_keys( acf_get_block_types() ) );
-	}
+    // Include our ACF block types when limitions are set.
+    if (is_array($allowed_block_types) && function_exists('acf_get_block_types')) {
+        $allowed_block_types = array_merge($allowed_block_types, array_keys(acf_get_block_types()));
+    }
 
-	return $allowed_block_types;
+    return $allowed_block_types;
 }
 
-add_filter( 'allowed_block_types', __NAMESPACE__ . '\allowed_block_types', 10, 2 );
+add_filter('allowed_block_types', __NAMESPACE__ . '\allowed_block_types', 10, 2);
 
 /**
  * Enqueue block assets for the editing interface
  */
-function enqueue_block_editor_assets() {
+function enqueue_block_editor_assets()
+{
 
-	$theme         = wp_get_theme();
-	$theme_version = $theme->get( 'Version' );
+    $theme         = wp_get_theme();
+    $theme_version = $theme->get('Version');
 
-	$css_version = filemtime( get_template_directory() . '/dist/styles/editor.css' );
-	wp_enqueue_style( 'my_theme-editor', get_template_directory_uri() . '/dist/styles/editor.css', array(), "{$theme_version}.{$css_version}" );
+    $css_version = filemtime(get_template_directory() . '/dist/styles/editor.css');
+    wp_enqueue_style('my_theme-editor', get_template_directory_uri() . '/dist/styles/editor.css', array(), "{$theme_version}.{$css_version}");
 }
 
-add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets' );
+add_action('enqueue_block_editor_assets', __NAMESPACE__ . '\enqueue_block_editor_assets');

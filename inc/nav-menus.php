@@ -21,24 +21,24 @@ require get_template_directory() . '/vendor/wp-bootstrap/wp-bootstrap-navwalker/
  *
  * @return array
  */
-function set_default_navwalker( $args ) {
+function set_default_navwalker($args)
+{
 
-	// Stop when set.
-	if ( ! empty( $args['walker'] ) ) {
-		return $args;
-	}
+    // Stop when set.
+    if (! empty($args['walker'])) {
+        return $args;
+    }
 
-	// Check if menu has 'nav' or 'navbar-nav' class.
-	if ( preg_match( '/(^| )(nav|navbar-nav)( |$)/', $args['menu_class'] ) ) {
+    // Check if menu has 'nav' or 'navbar-nav' class.
+    if (preg_match('/(^| )(nav|navbar-nav)( |$)/', $args['menu_class'])) {
+        // Set bootstrap navwalker.
+        $args['walker'] = new \WP_Bootstrap_Navwalker();
+    }
 
-		// Set bootstrap navwalker.
-		$args['walker'] = new \WP_Bootstrap_Navwalker();
-	}
-
-	return $args;
+    return $args;
 }
 
-add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\set_default_navwalker' );
+add_filter('wp_nav_menu_args', __NAMESPACE__ . '\set_default_navwalker');
 
 /**
  * Setup modifications
@@ -53,37 +53,33 @@ add_filter( 'wp_nav_menu_args', __NAMESPACE__ . '\set_default_navwalker' );
  *
  * @return array
  */
-function nav_menu_mod_classes( $items, $args ) {
+function nav_menu_mod_classes($items, $args)
+{
 
-	$mod_classes = &$GLOBALS['my_theme_nav_menu_mods'];
+    $mod_classes = &$GLOBALS['my_theme_nav_menu_mods'];
 
-	// Loop items.
-	foreach ( $items as &$item ) {
+    // Loop items.
+    foreach ($items as &$item) {
+        $item_classes = array();
 
-		$item_classes = array();
+        // Loop item classes.
+        foreach ($item->classes as $class) {
+            if (preg_match('/^mod-(.+)/', $class, $matches)) {
+                list(, $mod_class ) = $matches;
 
-		// Loop item classes.
-		foreach ( $item->classes as $class ) {
+                $mod_classes[ $item->ID ][ $mod_class ] = $mod_class;
+            } else {
+                $item_classes[] = $class;
+            }
+        }
 
-			if ( preg_match( '/^mod-(.+)/', $class, $matches ) ) {
+        $item->classes = $item_classes;
+    }
 
-				list(, $mod_class ) = $matches;
-
-				$mod_classes[ $item->ID ][ $mod_class ] = $mod_class;
-
-			} else {
-
-				$item_classes[] = $class;
-			}
-		}
-
-		$item->classes = $item_classes;
-	}
-
-	return $items;
+    return $items;
 }
 
-add_filter( 'wp_nav_menu_objects', __NAMESPACE__ . '\nav_menu_mod_classes', 10, 2 );
+add_filter('wp_nav_menu_objects', __NAMESPACE__ . '\nav_menu_mod_classes', 10, 2);
 
 /**
  * Get item modifications.
@@ -94,14 +90,14 @@ add_filter( 'wp_nav_menu_objects', __NAMESPACE__ . '\nav_menu_mod_classes', 10, 
  *
  * @return array|null
  */
-function get_nav_menu_mods( $item ) {
+function get_nav_menu_mods($item)
+{
 
-	if ( isset( $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ] ) ) {
+    if (isset($GLOBALS['my_theme_nav_menu_mods'][ $item->ID ])) {
+        return $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ];
+    }
 
-		return $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ];
-	}
-
-	return null;
+    return null;
 }
 
 /**
@@ -116,63 +112,63 @@ function get_nav_menu_mods( $item ) {
  *
  * @return array
  */
-function nav_menu_link_attributes( $atts, $item, $nav_menu, $depth ) {
+function nav_menu_link_attributes($atts, $item, $nav_menu, $depth)
+{
 
-	$mod_classes = get_nav_menu_mods( $item );
+    $mod_classes = get_nav_menu_mods($item);
 
-	if ( ! $mod_classes ) {
-		return $atts;
-	}
+    if (! $mod_classes) {
+        return $atts;
+    }
 
-	// Make sure 'class' attribute is set.
-	if ( ! isset( $atts['class'] ) ) {
-		$atts['class'] = '';
-	}
+    // Make sure 'class' attribute is set.
+    if (! isset($atts['class'])) {
+        $atts['class'] = '';
+    }
 
-	/**
-	 * Button
-	 * -------------------------------------------------------------------------
-	 */
+    /**
+     * Button
+     * -------------------------------------------------------------------------
+     */
 
-	// Get button classes.
-	$btn_classes = array_filter(
-		$mod_classes,
-		function( $class ) {
-			return preg_match( '/^btn($|-.+)/', $class ) ? true : false;
-		}
-	);
+    // Get button classes.
+    $btn_classes = array_filter(
+        $mod_classes,
+        function ($class) {
+            return preg_match('/^btn($|-.+)/', $class) ? true : false;
+        }
+    );
 
-	if ( $btn_classes ) {
+    if ($btn_classes) {
+        // Remove 'nav-link' class.
+        $atts['class'] = preg_replace('/(^| )nav-link( |$)/', '', $atts['class']);
 
-		// Remove 'nav-link' class.
-		$atts['class'] = preg_replace( '/(^| )nav-link( |$)/', '', $atts['class'] );
+        // Add button attributes.
+        $atts['class'] .= ' ' . implode(' ', $btn_classes);
+        $atts['role']   = 'button';
+    }
 
-		// Add button attributes.
-		$atts['class'] .= ' ' . implode( ' ', $btn_classes );
-		$atts['role']   = 'button';
-	}
+    /**
+     * Toggle
+     * -------------------------------------------------------------------------
+     */
 
-	/**
-	 * Toggle
-	 * -------------------------------------------------------------------------
-	 */
+    // Toggle modal.
+    if (isset($mod_classes['toggle-modal'])) {
+        $atts['data-toggle'] = 'modal';
+    }
 
-	// Toggle modal.
-	if ( isset( $mod_classes['toggle-modal'] ) ) {
-		$atts['data-toggle'] = 'modal';
-	}
+    // Toggle collapse.
+    if (isset($mod_classes['toggle-collapse'])) {
+        $atts['data-toggle'] = 'collapse';
+    }
 
-	// Toggle collapse.
-	if ( isset( $mod_classes['toggle-collapse'] ) ) {
-		$atts['data-toggle'] = 'collapse';
-	}
+    /* ---------------------------------------------------------------------- */
 
-	/* ---------------------------------------------------------------------- */
+    // Sanitize 'class' attribute.
+    $atts['class'] = trim($atts['class']);
 
-	// Sanitize 'class' attribute.
-	$atts['class'] = trim( $atts['class'] );
-
-	return $atts;
+    return $atts;
 }
 
-add_filter( 'nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_link_attributes', 10, 4 );
+add_filter('nav_menu_link_attributes', __NAMESPACE__ . '\nav_menu_link_attributes', 10, 4);

@@ -13,39 +13,39 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
 
-	<?php wp_head(); ?>
+    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 
-	<?php
+    <?php
 
-	if ( function_exists( 'wp_body_open' ) ) {
-		wp_body_open();
-	}
+    if (function_exists('wp_body_open')) {
+        wp_body_open();
+    }
 
-	?>
+    ?>
 
-	<div id="page" class="site">
+    <div id="page" class="site">
 
-		<a class="skip-link sr-only" href="#content"><?php esc_html_e( 'Skip to content', 'my-theme' ); ?></a>
+        <a class="skip-link sr-only" href="#content"><?php esc_html_e('Skip to content', 'my-theme'); ?></a>
 
-		<header id="masthead" class="site-header">
+        <header id="masthead" class="site-header">
 
-			<?php get_template_part( 'template-parts/top', 'navigation' ); ?>
+            <?php get_template_part('template-parts/top', 'navigation'); ?>
 
-			<div id="sticky-header">
+            <div id="sticky-header">
 
-				<?php get_template_part( 'template-parts/main', 'navigation' ); ?>
+                <?php get_template_part('template-parts/main', 'navigation'); ?>
 
-			</div><!-- #sticky-header -->
+            </div><!-- #sticky-header -->
 
-			<?php get_template_part( 'template-parts/header', 'widgets' ); ?>
+            <?php get_template_part('template-parts/header', 'widgets'); ?>
 
-		</header><!-- #masthead -->
+        </header><!-- #masthead -->
 
-		<div id="content" class="site-content">
+        <div id="content" class="site-content">

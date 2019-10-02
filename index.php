@@ -18,47 +18,42 @@ get_header();
 
 <div class="container">
 
-	<div class="row">
+    <div class="row">
 
-		<div id="primary" class="col-md content-area">
+        <div id="primary" class="col-md content-area">
 
-			<main id="main" class="site-main">
+            <main id="main" class="site-main">
 
-			<?php
+            <?php
 
-			if ( have_posts() ) :
+            if (have_posts()) :
+                // Start the Loop.
+                while (have_posts()) :
+                    // Setup postdata.
+                    the_post();
 
-				// Start the Loop.
-				while ( have_posts() ) :
+                    // Include the template for the content.
+                    get_template_part('template-parts/content');
 
-					// Setup postdata.
-					the_post();
+                    // End of the Loop.
+                endwhile;
 
-					// Include the template for the content.
-					get_template_part( 'template-parts/content' );
+                My\Theme\pagination();
+            else :
+                    // Include the template for displaying a message that posts cannot be found.
+                    get_template_part('template-parts/content', 'none');
+            endif;
 
-					// End of the Loop.
-				endwhile;
+            ?>
 
-				My\Theme\pagination();
+            </main><!-- #main -->
 
-				else :
+        </div><!-- #primary -->
 
-					// Include the template for displaying a message that posts cannot be found.
-					get_template_part( 'template-parts/content', 'none' );
+        <?php get_template_part('template-parts/sidebar', 'left'); ?>
+        <?php get_template_part('template-parts/sidebar', 'right'); ?>
 
-			endif;
-
-				?>
-
-			</main><!-- #main -->
-
-		</div><!-- #primary -->
-
-		<?php get_template_part( 'template-parts/sidebar', 'left' ); ?>
-		<?php get_template_part( 'template-parts/sidebar', 'right' ); ?>
-
-	</div><!-- .row -->
+    </div><!-- .row -->
 
 </div><!-- .container -->
 

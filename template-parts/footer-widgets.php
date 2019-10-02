@@ -5,17 +5,17 @@
  * @package My/Theme
  */
 
-if ( ! is_active_sidebar( 'footer' ) ) {
-	return;
+if (! is_active_sidebar('footer')) {
+    return;
 }
 ?>
 
 <aside class="widget-area" role="complementary">
 
-	<div class="container">
+    <div class="container">
 
-		<?php dynamic_sidebar( 'footer' ); ?>
+        <?php dynamic_sidebar('footer'); ?>
 
-	</div><!-- .container -->
+    </div><!-- .container -->
 
 </aside><!-- .widget-area -->

@@ -11,18 +11,18 @@
 
 ?>
 
-		</div><!-- #content -->
+        </div><!-- #content -->
 
-		<footer id="colophon" class="site-footer">
+        <footer id="colophon" class="site-footer">
 
-			<?php get_template_part( 'template-parts/footer', 'widgets' ); ?>
-			<?php get_template_part( 'template-parts/footer', 'navigation' ); ?>
+            <?php get_template_part('template-parts/footer', 'widgets'); ?>
+            <?php get_template_part('template-parts/footer', 'navigation'); ?>
 
-		</footer><!-- #colophon -->
+        </footer><!-- #colophon -->
 
-	</div><!-- #page -->
+    </div><!-- #page -->
 
-	<?php wp_footer(); ?>
+    <?php wp_footer(); ?>
 
 </body>
 </html>

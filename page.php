@@ -13,41 +13,40 @@ get_header();
 
 <div class="container">
 
-	<div class="row">
+    <div class="row">
 
-		<div id="primary" class="col-md content-area">
+        <div id="primary" class="col-md content-area">
 
-			<main id="main" class="site-main">
+            <main id="main" class="site-main">
 
-			<?php
+            <?php
 
-			// Start the Loop.
-			while ( have_posts() ) :
+            // Start the Loop.
+            while (have_posts()) :
+                // Setup postdata.
+                the_post();
 
-				// Setup postdata.
-				the_post();
+                // Include the template for the content.
+                get_template_part('template-parts/content', 'page');
 
-				// Include the template for the content.
-				get_template_part( 'template-parts/content', 'page' );
+                // If comments are open or we have at least one comment, load up the comment template.
+                if (comments_open() || get_comments_number()) :
+                    comments_template();
+                endif;
 
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
+                // End of the Loop.
+            endwhile;
 
-				// End of the Loop.
-			endwhile;
+            ?>
 
-			?>
+            </main><!-- #main -->
 
-			</main><!-- #main -->
+        </div><!-- #primary -->
 
-		</div><!-- #primary -->
+        <?php get_template_part('template-parts/sidebar', 'left'); ?>
+        <?php get_template_part('template-parts/sidebar', 'right'); ?>
 
-		<?php get_template_part( 'template-parts/sidebar', 'left' ); ?>
-		<?php get_template_part( 'template-parts/sidebar', 'right' ); ?>
-
-	</div><!-- .row -->
+    </div><!-- .row -->
 
 </div><!-- .container -->
 
