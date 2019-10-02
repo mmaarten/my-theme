@@ -1,12 +1,12 @@
 {
   "entry": {
   	"main": [
-        "styles/main.scss",
-        "scripts/main.js"
-    	],
+      "styles/main.scss",
+      "scripts/main.js"
+  	],
   	"editor": [
-    		"styles/editor.scss"
-      ],
+  		"styles/editor.scss"
+    ],
   	"blocks": [
   		"styles/blocks.scss"
   	],
