@@ -1,8 +1,7 @@
 {
   "entry": {
   	"style": [
-      "styles/style.scss",
-      "scripts/style.js"
+      "styles/style.scss"
   	],
     "editor-styles": [
       "styles/editor-styles.scss"
