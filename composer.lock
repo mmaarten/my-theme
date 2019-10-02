@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3505b483cf02913c76831ae828522251",
+    "content-hash": "bddb90aad89d793c4dfc0103b1bb4d70",
     "packages": [
         {
             "name": "composer/installers",
@@ -127,6 +127,43 @@
                 "zikula"
             ],
             "time": "2019-08-12T15:00:31+00:00"
+        },
+        {
+            "name": "wp-bootstrap/wp-bootstrap-navwalker",
+            "version": "v4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wp-bootstrap/wp-bootstrap-navwalker.git",
+                "reference": "26a280ad71ad877042fb73b3aa35dc721b0e6a73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wp-bootstrap/wp-bootstrap-navwalker/zipball/26a280ad71ad877042fb73b3aa35dc721b0e6a73",
+                "reference": "26a280ad71ad877042fb73b3aa35dc721b0e6a73",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "require-dev": {
+                "stevegrunwell/wp-enforcer": "^0.5.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Brandon Hubbard"
+                },
+                {
+                    "name": "William Patton",
+                    "email": "will@pattonwebz.com"
+                }
+            ],
+            "description": "A custom WordPress nav walker class to fully implement the Bootstrap 4 navigation style in a custom theme using the WordPress built in menu manager.",
+            "time": "2018-10-30T18:28:10+00:00"
         }
     ],
     "packages-dev": [

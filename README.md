@@ -15,7 +15,7 @@ based on the [Underscores](https://github.com/automattic/_s) theme by [Automatti
 
 - [Node JS](https://nodejs.org)
 - [Composer](https://getcomposer.org/)
-- PHP >= 5.3
+- PHP >= 5.4
 
 ## Installation
 
