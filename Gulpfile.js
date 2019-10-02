@@ -8,7 +8,7 @@ gulp.task( 'dist-archive', function(){
 		'**/*',
 		//'!vendor{,/**}',
 		'!node_modules{,/**}',
-		'!src{,/**}',
+		'!assets{,/**}',
 		'!Gulpfile.js',
 		'!webpack.config.js',
 		'!composer.json',
@@ -19,8 +19,8 @@ gulp.task( 'dist-archive', function(){
 	];
 
 	return gulp.src( src )
-        .pipe( zip('my-theme.zip') )
-        .pipe( gulp.dest( './..' ) );
+    .pipe( zip('my-theme.zip') )
+    .pipe( gulp.dest( './..' ) );
 });
 
 gulp.task( 'pot', function () {
@@ -31,10 +31,10 @@ gulp.task( 'pot', function () {
 		'!node_modules/**',
 	];
 
-    return gulp.src( src )
-        .pipe( wpPot( {
-            domain: 'my-theme',
-            package: 'MyTheme',
-        }))
-        .pipe( gulp.dest( 'languages/my-theme.pot' ) );
+  return gulp.src( src )
+    .pipe( wpPot( {
+        domain: 'my-theme',
+        package: 'MyTheme',
+    }))
+    .pipe( gulp.dest( 'languages/my-theme.pot' ) );
 });
