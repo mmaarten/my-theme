@@ -49,14 +49,14 @@ function setup()
      * top-left, top-right, main-left, main-right, footer-left and footer-right.
      */
     register_nav_menus(
-        array(
+        [
             'top-left'     => esc_html__('Top Left', 'my-theme'),
             'top-right'    => esc_html__('Top Right', 'my-theme'),
             'main-left'    => esc_html__('Primary Left', 'my-theme'),
             'main-right'   => esc_html__('Primary Right', 'my-theme'),
             'footer-left'  => esc_html__('Footer Left', 'my-theme'),
             'footer-right' => esc_html__('Footer Right', 'my-theme'),
-        )
+        ]
     );
 
     /**
@@ -65,13 +65,13 @@ function setup()
      */
     add_theme_support(
         'html5',
-        array(
+        [
             'search-form',
             'comment-form',
             'comment-list',
             'gallery',
             'caption',
-        )
+        ]
     );
 
     // Add theme support for selective refresh for widgets.
@@ -86,8 +86,6 @@ function setup()
 
     // Add custom image sizes.
     add_image_size('my-theme-full-width', 1920, 1080);
-    add_image_size('my-theme-card', 540, 540 / 8 * 6, true);
-    add_image_size('my-theme-carousel', 1100, 1100 / 16 * 9, true);
 }
 
 add_action('after_setup_theme', __NAMESPACE__ . '\setup');
@@ -116,10 +114,9 @@ add_action('after_setup_theme', __NAMESPACE__ . '\content_width', 0);
  */
 function image_size_names($sizes)
 {
-
-    return $sizes + array(
+    return $sizes + [
         'my-theme-full-width' => __('Full Page Width', 'my-theme'),
-    );
+    ];
 }
 
 add_filter('image_size_names_choose', __NAMESPACE__ . '\image_size_names');

@@ -15,12 +15,10 @@ namespace My\Theme;
  */
 function body_classes($classes)
 {
-
-    $include = array(
+    $include = [
         // Common.
         'singular' => is_singular(),
         'hfeed'    => ! is_singular(),
-        'blocks'   => function_exists('has_blocks') && has_blocks(),
         // Browsers & devices.
         'iphone'   => $GLOBALS['is_iphone'],
         'chrome'   => $GLOBALS['is_chrome'],
@@ -36,7 +34,7 @@ function body_classes($classes)
         // Mobile.
         'mobile'   => wp_is_mobile(),
         'desktop'  => ! wp_is_mobile(),
-    );
+    ];
 
     // Add classes.
     foreach ($include as $class => $do_include) {

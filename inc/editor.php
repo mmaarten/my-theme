@@ -15,54 +15,54 @@ function block_editor_setup()
     // Set editor colors.
     add_theme_support(
         'editor-color-palette',
-        array(
-            array(
+        [
+            [
                 'name'  => __('Primary', 'my-theme'),
                 'slug'  => 'primary',
                 'color' => '#007bff', // Value of $primary.
-            ),
-            array(
+            ],
+            [
                 'name'  => __('Secondary', 'my-theme'),
                 'slug'  => 'secondary',
                 'color' => '#6c757d', // Value of $secondary.
-            ),
-            array(
+            ],
+            [
                 'name'  => __('Light', 'my-theme'),
                 'slug'  => 'light',
                 'color' => '#f8f9fa', // Value of $light.
-            ),
-            array(
+            ],
+            [
                 'name'  => __('Dark', 'my-theme'),
                 'slug'  => 'dark',
                 'color' => '#343a40', // Value of $dark.
-            ),
-        )
+            ],
+        ]
     );
 
     // Set editor font sizes.
+    // 'normal' slug is required to set default font size.
     add_theme_support(
         'editor-font-sizes',
-        array(
-            // 'normal' slug is required to set default font size.
-            array(
+        [
+            [
                 'name'      => __('Small', 'my-theme'),
                 'shortName' => __('SM', 'my-theme'),
                 'size'      => 16 * 0.875, // Value of $font-size-sm.
                 'slug'      => 'small',
-            ),
-            array(
+            ],
+            [
                 'name'      => __('Normal', 'my-theme'),
                 'shortName' => __('N', 'my-theme'),
                 'size'      => 16, // Value of $font-size-base.
                 'slug'      => 'normal',
-            ),
-            array(
+            ],
+            [
                 'name'      => __('Large', 'my-theme'),
                 'shortName' => __('LG', 'my-theme'),
                 'size'      => 16 * 1.25, // Value of $font-size-lg.
                 'slug'      => 'large',
-            ),
-        )
+            ],
+        ]
     );
 
     // Add support for Block Styles.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Scripts
+ * Assets
  *
  * @package My/Theme
  */

@@ -23,7 +23,6 @@ require get_template_directory() . '/vendor/wp-bootstrap/wp-bootstrap-navwalker/
  */
 function set_default_navwalker($args)
 {
-
     // Stop when set.
     if (! empty($args['walker'])) {
         return $args;
@@ -55,7 +54,6 @@ add_filter('wp_nav_menu_args', __NAMESPACE__ . '\set_default_navwalker');
  */
 function nav_menu_mod_classes($items, $args)
 {
-
     $mod_classes = &$GLOBALS['my_theme_nav_menu_mods'];
 
     // Loop items.
@@ -92,7 +90,6 @@ add_filter('wp_nav_menu_objects', __NAMESPACE__ . '\nav_menu_mod_classes', 10, 2
  */
 function get_nav_menu_mods($item)
 {
-
     if (isset($GLOBALS['my_theme_nav_menu_mods'][ $item->ID ])) {
         return $GLOBALS['my_theme_nav_menu_mods'][ $item->ID ];
     }
@@ -114,7 +111,6 @@ function get_nav_menu_mods($item)
  */
 function nav_menu_link_attributes($atts, $item, $nav_menu, $depth)
 {
-
     $mod_classes = get_nav_menu_mods($item);
 
     if (! $mod_classes) {
