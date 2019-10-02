@@ -36,7 +36,6 @@
     "eslint": "^6.1.0",
     "eslint-plugin-import": "^2.18.2",
     "file-loader": "^4.0.0",
-    "friendly-errors-webpack-plugin": "^1.7.0",
     "gulp": "^4.0.2",
     "gulp-wp-pot": "^2.3.5",
     "gulp-zip": "^5.0.0",

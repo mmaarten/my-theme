@@ -8,7 +8,6 @@ const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 const imageminMozjpeg             = require('imagemin-mozjpeg');
 const WebpackBar                  = require('webpackbar');
 const CopyWebpackPlugin           = require('copy-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const config                      = require('./assets/config.json');
 
 module.exports = {
@@ -20,18 +19,7 @@ module.exports = {
     publicPath: `${config.publicPath}/build/`,
   },
   stats: {
-    hash: false,
-    version: false,
-    timings: false,
     children: false,
-    errors: true,
-    errorDetails: true,
-    warnings: false,
-    chunks: false,
-    modules: false,
-    reasons: false,
-    source: false,
-    publicPath: false,
   },
   resolve: {
     // Directories where to look for modules
@@ -133,7 +121,6 @@ module.exports = {
     new CopyWebpackPlugin(config.copy),
     // Elegant ProgressBar and Profiler
     new WebpackBar(),
-    new FriendlyErrorsWebpackPlugin(),
   ],
   optimization: {
     minimizer: [
