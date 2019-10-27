@@ -67,11 +67,12 @@ a {
   }
 }
 
-/**
- * Block alignment
- *
- * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#changing-the-width-of-the-editor
- */
+//
+// Block alignment
+//
+// See https://developer.wordpress.org/block-editor/developers/themes/theme-support/#changing-the-width-of-the-editor
+//
+
 .wp-block {
   @include make-container-max-widths(
     (
@@ -79,19 +80,17 @@ a {
       md: map-get($container-max-widths, "md"),
     )
   );
-}
 
-/* Width of "wide" blocks */
-.wp-block[data-align="wide"] {
-  @include make-container-max-widths(
-    (
-      lg: map-get($container-max-widths, "lg"),
-      xl: map-get($container-max-widths, "xl"),
-    )
-  );
-}
+  &[data-align="wide"] {
+    @include make-container-max-widths(
+      (
+        lg: map-get($container-max-widths, "lg"),
+        xl: map-get($container-max-widths, "xl"),
+      )
+    );
+  }
 
-/* Width of "full-wide" blocks */
-.wp-block[data-align="full"] {
-  max-width: none;
+  &[data-align="full"] {
+    max-width: none;
+  }
 }

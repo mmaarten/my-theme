@@ -74,32 +74,6 @@ if (! is_readable($autoloader)) {
 }
 
 /**
- * Check required plugins.
- *
- * @example
-$plugins = [
-    'advanced-custom-fields/acf.php' => __('Advanced Custom Fields', 'my-theme'),
-];
- *
- */
-$plugins = [];
-if ($plugins) {
-    include_once ABSPATH . 'wp-admin/includes/plugin.php';
-    $active_plugins = array_filter(array_keys($plugins), 'is_plugin_active');
-    $inactive_plugins = array_diff_key($plugins, array_flip($active_plugins));
-    if ($inactive_plugins) {
-        $message = sprintf(
-            // translators: %1$s Theme name, %2$s List of plugins.
-            __('%1$s requires following plugins: %2$s.', 'my-theme'),
-            $theme->get('Name'),
-            implode(', ', $inactive_plugins)
-        );
-        trigger_error($message, is_admin() ? E_USER_WARNING : E_USER_ERROR);
-        return;
-    }
-}
-
-/**
  * Fire up the application.
  */
 require $autoloader;

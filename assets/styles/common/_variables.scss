@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/functions";
+
+// ...
+
+//
+// Editor
+//
+
+// Make sure the used variables are set.
+@import "~bootstrap/scss/variables";
+
+$editor-colors: ();
+$editor-colors: map-merge($theme-colors, $editor-colors);
+
+$editor-font-sizes: (
+  "small"  : $font-size-sm,
+  "normal" : $font-size-base,
+  "large"  : $font-size-lg,
+);

@@ -8,15 +8,18 @@ const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 const imageminMozjpeg             = require('imagemin-mozjpeg');
 const WebpackBar                  = require('webpackbar');
 const CopyWebpackPlugin           = require('copy-webpack-plugin');
-const config                      = require('./assets/config.json');
 
 module.exports = {
   context: path.resolve(__dirname, 'assets'),
-  entry: config.entry,
+  entry: {
+    'main': [ 'styles/main.scss', 'scripts/main.js' ],
+    'editor-styles':  'styles/editor-styles.scss',
+    'customizer': 'scripts/customizer.js',
+  },
   output: {
     filename: 'scripts/[name].js',
     path: path.resolve(__dirname, 'build'),
-    publicPath: `${config.publicPath}/build/`,
+    publicPath: '/wp-content/themes/my-theme/build/',
   },
   stats: {
     children: false,
@@ -118,7 +121,10 @@ module.exports = {
       Popper: 'popper.js/dist/umd/popper.js',
     }),
     // Copy
-    new CopyWebpackPlugin(config.copy),
+    new CopyWebpackPlugin([
+      'images/**/*',
+      'fonts/**/*',
+    ]),
     // Elegant ProgressBar and Profiler
     new WebpackBar(),
   ],
