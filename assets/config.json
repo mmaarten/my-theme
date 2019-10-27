@@ -4,8 +4,8 @@
       "styles/main.scss",
       "scripts/main.js"
   	],
-    "editor": [
-      "styles/editor.scss"
+    "editor-styles": [
+      "styles/editor-styles.scss"
   	],
     "blocks": [
       "styles/blocks.scss"
