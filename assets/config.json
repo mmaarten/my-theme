@@ -1,16 +1,14 @@
 {
   "entry": {
-  	"style": [
-      "styles/style.scss"
+  	"main": [
+      "styles/main.scss",
+      "scripts/main.js"
   	],
-    "script": [
-      "scripts/script.js"
-    ],
-    "editor-styles": [
-      "styles/editor-styles.scss"
+    "editor": [
+      "styles/editor.scss"
   	],
-    "block-styles": [
-      "styles/block-styles.scss"
+    "blocks": [
+      "styles/blocks.scss"
   	],
     "customizer": [
     	"scripts/customizer.js"

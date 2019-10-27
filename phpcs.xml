@@ -3,14 +3,11 @@
   <description>My Theme Coding Standards</description>
 
   <!-- Check all files in this directory and the directories below it. -->
-  <file>.</file>
+  <file>functions.php</file>
+  <file>src</file>
 
   <!-- Only check the PHP files. -->
 	<arg name="extensions" value="php"/>
-
-  <!-- Ignore the vendor directories -->
-  <exclude-pattern>node_modules/*</exclude-pattern>
-  <exclude-pattern>vendor/*</exclude-pattern>
 
   <!-- Show colors in console -->
   <arg value="-colors"/>

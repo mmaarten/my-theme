@@ -1,7 +1,7 @@
 /*!
  * Editor Normalization Styles
  *
- * @link `https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/editor-styles.scss⁩`
+ * @link https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/editor-styles.scss⁩
  */
 @import "~bootstrap/scss/functions";
 @import "common/variables";
@@ -9,22 +9,20 @@
 @import "~bootstrap/scss/mixins";
 
 body {
-  // See `body` ~bootstrap/scss/reboot
+  // See ~bootstrap/scss/reboot
   font-family: $font-family-base;
   @include font-size($font-size-base);
+  font-weight: $font-weight-base;
   line-height: $line-height-base;
   color: $body-color;
-  font-weight: $font-weight-base;
+  text-align: left;
+  background-color: $body-bg;
 }
 
 // See ~bootstrap/scss/reboot
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: $headings-margin-bottom;
-}
-
 // See ~bootstrap/scss/type
 h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
   margin-bottom: $headings-margin-bottom;
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
@@ -61,10 +59,39 @@ ol ol, ul ul, ol ul, ul ol {
 a {
   color: $link-color;
   text-decoration: $link-decoration;
-  background-color: transparent; // Remove the gray background on active links in IE 10.
+  background-color: transparent;
 
   @include hover {
     color: $link-hover-color;
     text-decoration: $link-hover-decoration;
   }
+}
+
+/**
+ * Block alignment
+ *
+ * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#changing-the-width-of-the-editor
+ */
+.wp-block {
+  @include make-container-max-widths(
+    (
+      sm: map-get($container-max-widths, "sm"),
+      md: map-get($container-max-widths, "md"),
+    )
+  );
+}
+
+/* Width of "wide" blocks */
+.wp-block[data-align="wide"] {
+  @include make-container-max-widths(
+    (
+      lg: map-get($container-max-widths, "lg"),
+      xl: map-get($container-max-widths, "xl"),
+    )
+  );
+}
+
+/* Width of "full-wide" blocks */
+.wp-block[data-align="full"] {
+  max-width: none;
 }

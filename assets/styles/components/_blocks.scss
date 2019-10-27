@@ -2,31 +2,34 @@
 // Set spacing and max widths according to the 'align' setting.
 //
 
+$block-max-widths : (
+  sm : map-get($container-max-widths, "sm") - $grid-gutter-width,
+  md : map-get($container-max-widths, "md") - $grid-gutter-width,
+  lg : map-get($container-max-widths, "lg") - $grid-gutter-width,
+  xl : map-get($container-max-widths, "xl") - $grid-gutter-width,
+);
+
 .hentry .entry-header,
 .hentry .entry-footer {
   margin-left: auto;
   margin-right: auto;
 
-  @include make-container-max-widths((
-    "sm" : map-get($container-max-widths, "sm") - $grid-gutter-width,
-    "md" : map-get($container-max-widths, "md") - $grid-gutter-width,
-    "lg" : map-get($container-max-widths, "lg") - $grid-gutter-width,
-    "xl" : map-get($container-max-widths, "xl") - $grid-gutter-width,
-  ));
+  @include make-container-max-widths($block-max-widths);
 }
 
 .hentry .entry-content {
   @include clearfix();
 }
 
+// Select all blocks.
 .hentry .entry-content > * {
-  margin: map-get($spacers, 3) auto;
+  margin-left: auto;
+  margin-right: auto;
 
-  @include make-container-max-widths((
-    "sm" : map-get($container-max-widths, "sm") - $grid-gutter-width,
-    "md" : map-get($container-max-widths, "md") - $grid-gutter-width,
-    "lg" : map-get($container-max-widths, "lg") - $grid-gutter-width,
-  ));
+  // Set vertical spacing
+
+  margin-top: map-get($spacers, 3);
+  margin-bottom: map-get($spacers, 3);
 
   @include media-breakpoint-up( md ) {
     margin-top: map-get($spacers, 4);
@@ -41,11 +44,18 @@
     margin-bottom: 0;
   }
 
+  // Alignment
+
+  @include make-container-max-widths((
+    "sm" : map-get($block-max-widths, "sm"),
+    "md" : map-get($block-max-widths, "md"),
+  ));
+
   &.alignwide {
     clear: both;
-
     @include make-container-max-widths((
-      "xl" : map-get($container-max-widths, "xl") - $grid-gutter-width,
+      "lg" : map-get($block-max-widths, "lg"),
+      "xl" : map-get($block-max-widths, "xl"),
     ));
   }
 

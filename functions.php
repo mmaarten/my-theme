@@ -1,67 +1,21 @@
 <?php
 /**
- * Theme functions and definitions
+ * Boot
  *
  * @package My/Theme
  */
 
-/**
- * Check autoloader.
- */
+namespace My\Theme;
 
-$autoloader = dirname(__FILE__) . '/vendor/autoload.php';
+require get_template_directory() . '/vendor/autoload.php';
 
-if (! is_readable($autoloader)) {
-    trigger_error(
-        sprintf(
-            // translators: %1$s Code to run.
-            __('Autoloader not found. Run %1$s', 'my-theme'),
-            '<code>composer install</code>'
-        ),
-        E_USER_WARNING
-    );
-    return;
-}
+Setup::init();
+Assets::init();
+Widgets::init();
+Navs::init();
+Editor::init();
+Blocks::init();
+Customizer::init();
 
-/**
- * Check build.
- */
-
-$build_file = dirname(__FILE__) . '/build/styles/style.css';
-
-if (! is_readable($build_file)) {
-    trigger_error(
-        sprintf(
-            // translators: %1$s Code to run.
-            __('Not build. Run %1$s', 'my-theme'),
-            '<code>npm install</code>'
-        ),
-        E_USER_WARNING
-    );
-    return;
-}
-
-/**
- * Fire up the application.
- */
-
-// Include autoloader.
-require $autoloader;
-
-// Load common helper functions.
-require get_template_directory() . '/inc/common.php';
-
-// Include files from inside the /inc directory.
-\My\Theme\inc(
-    [
-        'setup.php',              // Set up theme defaults and register support for features.
-        'nav-menus.php',          // Custom navigation menu functions.
-        'widgets.php',            // Register widget areas.
-        'assets.php',             // Enqueue scripts and styles.
-        'template-tags.php',      // Custom template tags for this theme.
-        'template-functions.php', // Functions which enhance the theme by hooking into WordPress.
-        'customizer.php',         // Customizer additions.
-        'editor.php',             // Custom editor features.
-        'blocks.php',             // Block features.
-    ]
-);
+require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/template-tags.php';
