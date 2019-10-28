@@ -2,16 +2,6 @@
  * Animations
  */
 
-@keyframes my-theme-fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes my-theme-fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
 @keyframes my-theme-slideDown {
   from { transform: translateY(-100%); }
   to { transform: none; }

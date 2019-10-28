@@ -2,27 +2,21 @@
 // Set spacing and max widths according to the 'align' setting.
 //
 
-$block-max-widths : (
-  sm : map-get($container-max-widths, "sm") - $grid-gutter-width,
-  md : map-get($container-max-widths, "md") - $grid-gutter-width,
-  lg : map-get($container-max-widths, "lg") - $grid-gutter-width,
-  xl : map-get($container-max-widths, "xl") - $grid-gutter-width,
-);
-
 .hentry .entry-header,
 .hentry .entry-footer {
+  @include make-container-max-widths($block-max-widths);
+  // Center horizontally
   margin-left: auto;
   margin-right: auto;
-
-  @include make-container-max-widths($block-max-widths);
 }
 
 .hentry .entry-content {
   @include clearfix();
 }
 
-// Select all blocks.
+// Select all root blocks.
 .hentry .entry-content > * {
+  // Center horizontally
   margin-left: auto;
   margin-right: auto;
 
@@ -71,7 +65,7 @@ $block-max-widths : (
   &.alignleft {
     @include media-breakpoint-up( md ) {
       float: left;
-      margin-right: ($spacer / 2);
+      margin-right: $grid-gutter-width / 2;
       height: auto;
     }
   }
@@ -79,7 +73,7 @@ $block-max-widths : (
   &.alignright {
     @include media-breakpoint-up( md ) {
       float: right;
-      margin-left: ($spacer / 2);
+      margin-left: $grid-gutter-width / 2;
     }
   }
 

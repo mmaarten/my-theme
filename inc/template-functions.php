@@ -37,8 +37,8 @@ function body_classes($classes)
     ];
 
     // Add classes.
-    foreach ($include as $class => $do_include) {
-        if ($do_include) {
+    foreach ($include as $class => $set) {
+        if ($set) {
             $classes[ $class ] = $class;
         }
     }

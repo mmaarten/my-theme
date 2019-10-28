@@ -78,27 +78,13 @@ if (! is_readable($autoloader)) {
  */
 require $autoloader;
 
-$includes = [
-    'setup.php',
-    'assets.php',
-    'nav-menus.php',
-    'widgets.php',
-    'customizer.php',
-    'editor.php',
-    'template-functions.php',
-    'template-tags.php',
-];
+Config::init();
+Setup::init();
+Assets::init();
+Navs::init();
+Widgets::init();
+Customizer::init();
+Editor::init();
 
-foreach ($includes as $file) {
-    $located = locate_template("inc/$file");
-    if (! $located) {
-        trigger_error(
-            sprintf(
-                // translators: %1$s Path to file.
-                __('Unable to locate file %1$s for inclusion.', 'my-theme'),
-                sprintf('<code>inc/%s</code>', esc_html($file))
-            ),
-            E_USER_ERROR
-        );
-    }
-}
+require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/template-tags.php';

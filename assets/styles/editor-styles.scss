@@ -1,12 +1,16 @@
 /*!
  * Editor Normalization Styles
- *
- * @link https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/editor-styles.scss⁩
  */
 @import "~bootstrap/scss/functions";
 @import "common/variables";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
+
+//
+// Common
+//
+// See https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/editor-styles.scss⁩
+//
 
 body {
   // See ~bootstrap/scss/reboot
