@@ -27,6 +27,7 @@ final class Assets
         wp_enqueue_script(
             'my-theme-main',
             get_template_directory_uri() . '/build/scripts/main.js',
+            ['jquery'],
             wp_get_theme('my-theme')->get('Version')
         );
 

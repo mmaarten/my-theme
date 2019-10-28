@@ -31,10 +31,13 @@ final class Setup
          * If you're building a theme based on My Theme, use a find and replace
          * to change 'my-theme' to the name of your theme in all the template files.
          */
-        load_theme_textdomain('my-theme', get_template_directory() . '/languages');
+        load_theme_textdomain(Config::get('textdomain', 'setup'), Config::get('languages_path', 'setup'));
 
         // Add default posts and comments RSS feed links to head.
-        add_theme_support('automatic-feed-links');
+        if (Config::get('automatic_feed_links', 'setup')) {
+            add_theme_support('automatic-feed-links');
+        }
+
 
         /**
          * Let WordPress manage the document title.
@@ -42,36 +45,45 @@ final class Setup
          * hard-coded <title> tag in the document head, and expect WordPress to
          * provide it for us.
          */
-        add_theme_support('title-tag');
+        if (Config::get('title_tag', 'setup')) {
+            add_theme_support('title-tag');
+        }
 
         /**
          * Enable support for Post Thumbnails on posts and pages.
          *
          * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
          */
-        add_theme_support('post-thumbnails');
+        if (Config::get('post_thumbnails', 'setup')) {
+            add_theme_support('post-thumbnails');
+        }
 
         /**
          * Switch default core markup for search form, comment form, and comments
          * to output valid HTML5.
          */
-        add_theme_support('html5', [
-            'search-form',
-            'comment-form',
-            'comment-list',
-            'gallery',
-            'caption',
-        ]);
+        add_theme_support('html5', Config::get('html5', 'setup'));
 
         /**
          * Add support for core custom logo.
          *
          * @link https://codex.wordpress.org/Theme_Logo
          */
-        add_theme_support('custom-logo');
+        if (Config::get('custom_logo', 'setup')) {
+            add_theme_support('custom-logo');
+        }
 
-        // Add custom image sizes.
-        add_image_size('my-theme-full-width', 1920, 1080);
+        /**
+         * Add custom image sizes.
+         */
+
+        $image_sizes = Config::get('custom_image_sizes', 'setup');
+        if (is_array($image_sizes)) {
+            foreach ($image_sizes as $slug => $size) {
+                $size = wp_parse_args($size, ['width' => 0, 'height' => 0, 'crop' => false]);
+                add_image_size($slug, $size['width'], $size['height'], $size['crop']);
+            }
+        }
     }
 
     /**
@@ -81,7 +93,7 @@ final class Setup
      */
     public static function contentWidth()
     {
-        $GLOBALS['content_width'] = 1920;
+        $GLOBALS['content_width'] = Config::get('content_width', 'setup');
     }
 
     /**
@@ -93,8 +105,11 @@ final class Setup
      */
     public static function imageSizeNamesChoose($sizes)
     {
-        return $sizes + [
-            'my-theme-full-width' => __('Full Page Width', 'my-theme'),
-        ];
+        $my_sizes = Config::get('image_size_names_choose', 'setup');
+        if (is_array($my_sizes)) {
+            $sizes = array_merge($sizes, $my_sizes);
+        }
+
+        return $sizes;
     }
 }

@@ -16,35 +16,47 @@ final class Config
         self::load();
     }
 
-    public static function get($key)
+    public static function get($key, $group = 'common')
     {
-        if (isset(self::$items[$key])) {
-            return self::$items[$key];
+        if (isset(self::$items[$group]) && isset(self::$items[$group][$key])) {
+            return self::$items[$group][$key];
         }
         return null;
     }
 
-    public static function set($key, $value = null)
+    public static function set($key, $value = null, $group = 'common')
     {
         $items = is_array($key) ? $key : [$key => $value];
 
         foreach ($items as $key => $value) {
-            self::$items[$key] = $value;
+            self::$items[$group][$key] = $value;
         }
     }
 
     private static function load()
     {
-        $file = locate_template('config.php');
+        $dir = get_template_directory() . '/config/';
+        foreach (new \DirectoryIterator($dir) as $entry) {
+            if ('php' === $entry->getExtension()) {
+                $file = $entry->getPathname();
+                $group = $entry->getBasename('.php');
+                self::loadFile($file, $group);
+            }
+        }
+    }
 
-        if (! $file) {
-            return;
+    private static function loadFile($file, $group = 'common')
+    {
+        if (! file_exists($file)) {
+            return false;
         }
 
-        include $file;
+        ob_start();
+        $config = include $file;
+        ob_clean();
 
         if (isset($config) && is_array($config)) {
-            self::set($config);
+            self::set($config, null, $group);
         }
     }
 }
