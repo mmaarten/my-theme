@@ -10,20 +10,29 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
-const config = require('./assets/config.json');
+
+const config = Object.assign( {}, require('./assets/config.json'), {
+  paths : {
+    src: path.resolve(__dirname, 'assets'),
+    build: path.resolve(__dirname, 'build'),
+  },
+} );
+
+const isProduction = !! argv.mode && 'production' === argv.mode;
 
 // Set Node environment
-const isProduction = !!((argv.env && argv.env.production) || argv.p);
 if (process.env.NODE_ENV === undefined) {
   process.env.NODE_ENV = isProduction ? 'production' : 'development';
 }
 
+const filename = '[name]_[hash]';
+
 module.exports = {
-  context: path.resolve(__dirname, 'assets'),
+  context: config.paths.src,
   entry : config.entry,
   output: {
-    filename: 'scripts/[name]_[hash].js',
-    path: path.resolve(__dirname, 'build'),
+    filename: `scripts/${filename}.js`,
+    path: config.paths.build,
     publicPath: config.publicPath,
   },
   stats: {
@@ -32,7 +41,7 @@ module.exports = {
   resolve: {
     // Directories where to look for modules
     modules: [
-      path.resolve(__dirname, 'assets'),
+      config.paths.src,
       'node_modules',
     ],
     // Disable extensions filter
@@ -49,6 +58,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /(node_modules)/,
         use: {
+          // Enable next generation JavaScript.
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
@@ -63,7 +73,7 @@ module.exports = {
             loader : MiniCssExtractPlugin.loader,
           },
           {
-            // Interpret @import and url() like import/require() and will resolve them.
+            // Interpret @import and url() like import/require() and resolve them.
             loader: 'css-loader',
             options: { sourceMap: true },
           },
@@ -91,12 +101,12 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
-        include: path.resolve(__dirname, 'assets'),
+        include: config.paths.src,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name]_[hash].[ext]',
+              name: `[path]${filename}.[ext]`,
               limit: 4096,
             },
           },
@@ -111,7 +121,7 @@ module.exports = {
             options: {
               limit: 4096,
               outputPath: 'vendor/',
-              name: '[name]_[hash].[ext]',
+              name: `${filename}.[ext]`,
             },
           },
         ],
@@ -123,7 +133,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
-      filename: 'styles/[name]_[hash].css',
+      filename: `styles/${filename}.css`,
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
