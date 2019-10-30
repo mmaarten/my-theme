@@ -22,48 +22,72 @@ final class Editor
     public static function setup()
     {
         // Set editor colors.
-        if ($colors = Config::get('editor_colors')) {
-            add_theme_support('editor-color-palette', $colors);
-        }
+        add_theme_support('editor-color-palette', [
+            [
+                'name'  => __('Primary', 'my-theme'),
+                'slug'  => 'primary',
+                'color' => '#007bff',
+            ],
+            [
+                'name'  => __('Secondary', 'my-theme'),
+                'slug'  => 'secondary',
+                'color' => '#6c757d',
+            ],
+            [
+                'name'  => __('Light', 'my-theme'),
+                'slug'  => 'light',
+                'color' => '#f8f9fa',
+            ],
+            [
+                'name'  => __('Dark', 'my-theme'),
+                'slug'  => 'dark',
+                'color' => '#343a40',
+            ],
+        ]);
 
         // Set editor font sizes.
-        if ($font_sizes = Config::get('editor_font_sizes')) {
-            add_theme_support('editor-font-sizes', $font_sizes);
-        }
+        add_theme_support('editor-font-sizes', [
+            [
+                'name'      => __('Small', 'my-theme'),
+                'shortName' => __('SM', 'my-theme'),
+                'size'      => 16 * 0.875, // Value of `$font-size-sm`.
+                'slug'      => 'small',
+            ],
+            [
+                'name'      => __('Normal', 'my-theme'),
+                'shortName' => __('N', 'my-theme'),
+                'size'      => 16, // Value of `$font-size-base`.
+                'slug'      => 'normal',
+            ],
+            [
+                'name'      => __('Large', 'my-theme'),
+                'shortName' => __('LG', 'my-theme'),
+                'size'      => 16 * 1.25, // Value of `$font-size-lg`.
+                'slug'      => 'large',
+            ],
+        ]);
 
         // Add support for Block Styles.
         add_theme_support('wp-block-styles');
 
         // Enable align 'wide' and 'full' block settings.
-        if (Config::get('align_wide')) {
-            add_theme_support('align-wide');
-        }
+        add_theme_support('align-wide');
 
         // Enable responsive embeds.
-        if (Config::get('responsive_embeds')) {
-            add_theme_support('responsive-embeds');
-        }
+        add_theme_support('responsive-embeds');
 
         // Disable custom colors.
-        if (Config::get('disable_custom_colors')) {
-            add_theme_support('disable-custom-colors');
-        }
+        // add_theme_support('disable-custom-colors');
 
         // Disable custom font sizes.
-        if (Config::get('disable_custom_font_sizes')) {
-            add_theme_support('disable-custom-font-sizes');
-        }
+        // add_theme_support('disable-custom-font-sizes');
 
         // Add editor normalization style.
-        if ($style = Config::get('editor_style')) {
-            add_theme_support('editor-styles');
-            add_editor_style($style);
-        }
+        add_theme_support('editor-styles');
+        add_editor_style('build/styles/editor-styles.css');
 
         // Use dark editor style.
-        if (Config::get('dark_editor_style')) {
-            add_theme_support('dark-editor-style');
-        }
+        // add_theme_support('dark-editor-style');
     }
 
     /**
@@ -76,8 +100,7 @@ final class Editor
      */
     public static function useForPostType($use_block_editor, $post_type)
     {
-        $use_for = Config::get('use_block_editor_for_post_type');
-        return ! empty($use_for[$post_type]);
+        return $use_block_editor;
     }
 
     /**
@@ -90,6 +113,6 @@ final class Editor
      */
     public static function allowedBlockTypes($allowed_block_types, $post)
     {
-        return Config::get('allowed_block_types');
+        return $allowed_block_types;
     }
 }

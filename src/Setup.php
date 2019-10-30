@@ -31,14 +31,10 @@ final class Setup
          * If you're building a theme based on My Theme, use a find and replace
          * to change 'my-theme' to the name of your theme in all the template files.
          */
-        if ($textdomain = Config::get('textdomain')) {
-            load_theme_textdomain($textdomain, Config::get('languages_dir'));
-        }
+        load_theme_textdomain('my-theme', get_template_directory() . '/languages');
 
         // Add default posts and comments RSS feed links to head.
-        if (Config::get('automatic_feed_links')) {
-            add_theme_support('automatic-feed-links');
-        }
+        add_theme_support('automatic-feed-links');
 
         /**
          * Let WordPress manage the document title.
@@ -46,33 +42,33 @@ final class Setup
          * hard-coded <title> tag in the document head, and expect WordPress to
          * provide it for us.
          */
-        if (Config::get('title_tag')) {
-            add_theme_support('title-tag');
-        }
+        add_theme_support('title-tag');
 
         /**
          * Enable support for Post Thumbnails on posts and pages.
          *
          * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
          */
-        if (Config::get('post_thumbnails')) {
-            add_theme_support('post-thumbnails');
-        }
+        add_theme_support('post-thumbnails');
 
         /**
          * Switch default core markup for search form, comment form, and comments
          * to output valid HTML5.
          */
-        add_theme_support('html5', Config::get('html5'));
+        add_theme_support('html5', [
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption'
+        ]);
 
         /**
          * Add support for core custom logo.
          *
          * @link https://codex.wordpress.org/Theme_Logo
          */
-        if (Config::get('custom_logo')) {
-            add_theme_support('custom-logo');
-        }
+        add_theme_support('custom-logo');
 
         /**
          * Add custom image sizes.
@@ -87,7 +83,7 @@ final class Setup
      */
     public static function contentWidth()
     {
-        $GLOBALS['content_width'] = Config::get('content_width');
+        $GLOBALS['content_width'] = 1290;
     }
 
     /**
@@ -99,10 +95,6 @@ final class Setup
      */
     public static function imageSizeNamesChoose($sizes)
     {
-        $my_sizes = Config::get('image_size_names_choose');
-        if (is_array($my_sizes)) {
-            return array_merge($sizes, $my_sizes);
-        }
         return $sizes;
     }
 }
