@@ -5,6 +5,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 $theme = wp_get_theme('my-theme');
 
 /**
@@ -60,4 +62,12 @@ if (! is_readable($autoloader)) {
  */
 require $autoloader;
 
-\My\Theme\App::getInstance()->init();
+Setup::init();
+Assets::init();
+Navs::init();
+Widgets::init();
+Customizer::init();
+Editor::init();
+
+require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/template-tags.php';
