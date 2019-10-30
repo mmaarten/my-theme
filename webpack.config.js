@@ -1,25 +1,30 @@
-const path                        = require('path');
-const webpack                     = require('webpack');
-const MiniCssExtractPlugin        = require('mini-css-extract-plugin');
-const UglifyJsPlugin              = require('uglifyjs-webpack-plugin');
-const OptimizeCssAssetsPlugin     = require('optimize-css-assets-webpack-plugin');
-const { CleanWebpackPlugin }      = require('clean-webpack-plugin');
+const path = require('path');
+const { argv } = require('yargs');
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
-const imageminMozjpeg             = require('imagemin-mozjpeg');
-const WebpackBar                  = require('webpackbar');
-const CopyWebpackPlugin           = require('copy-webpack-plugin');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const WebpackBar = require('webpackbar');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const config = require('./assets/config.json');
+
+// Set Node environment
+const isProduction = !!((argv.env && argv.env.production) || argv.p);
+if (process.env.NODE_ENV === undefined) {
+  process.env.NODE_ENV = isProduction ? 'production' : 'development';
+}
 
 module.exports = {
   context: path.resolve(__dirname, 'assets'),
-  entry: {
-    'main': [ 'styles/main.scss', 'scripts/main.js' ],
-    'editor-styles':  'styles/editor-styles.scss',
-    'customizer': 'scripts/customizer.js',
-  },
+  entry : config.entry,
   output: {
-    filename: 'scripts/[name].js',
+    filename: 'scripts/[name]_[hash].js',
     path: path.resolve(__dirname, 'build'),
-    publicPath: '/wp-content/themes/my-theme/build/',
+    publicPath: config.publicPath,
   },
   stats: {
     children: false,
@@ -90,7 +95,10 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: { name: '[path][name].[ext]', limit: 4096 },
+            options: {
+              name: '[path][name]_[hash].[ext]',
+              limit: 4096,
+            },
           },
         ],
       },
@@ -100,7 +108,11 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: { name: 'vendor/[name].[ext]', limit: 4096 },
+            options: {
+              limit: 4096,
+              outputPath: 'vendor/',
+              name: '[name]_[hash].[ext]',
+            },
           },
         ],
       },
@@ -111,7 +123,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: 'styles/[name]_[hash].css',
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
@@ -119,6 +131,28 @@ module.exports = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       Popper: 'popper.js/dist/umd/popper.js',
+    }),
+    // Generate a JSON file that matches the original filename with the hashed version
+    new WebpackAssetsManifest({
+      output: 'assets.json',
+      space: 2,
+      writeToDisk: false,
+      replacer: (key, value) => {
+        if (typeof value === 'string') {
+          return value;
+        }
+        const manifest = value;
+        Object.keys(manifest).forEach((src) => {
+          const sourcePath = path.basename(path.dirname(src));
+          const targetPath = path.basename(path.dirname(manifest[src]));
+          if (sourcePath === targetPath) {
+            return;
+          }
+          manifest[`${targetPath}/${src}`] = manifest[src];
+          delete manifest[src];
+        });
+        return manifest;
+      },
     }),
     // Copy
     new CopyWebpackPlugin([
@@ -129,23 +163,10 @@ module.exports = {
     new WebpackBar(),
   ],
   optimization: {
-    minimizer: [
-      // JS minifier
-      new UglifyJsPlugin({
-        test: /\.js(\?.*)?$/i,
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-        uglifyOptions: {
-          warnings: true,
-          output: { comments: false },
-          compress: { drop_console: true },
-        },
-      }),
-      // CSS minifier
+    minimizer : [
       new OptimizeCssAssetsPlugin({
         cssProcessorPluginOptions: {
-          sourceMap: true,
+          sourceMap: false,
           map: { // Remove all source maps
             inline: false,
             annotation: true,
@@ -153,7 +174,6 @@ module.exports = {
           preset: ['default', { discardComments: { removeAll: true } }],
         },
       }),
-      // Image compressor
       new ImageminPlugin({
         test: /\.(png|svg|je?pg|gif)$/,
         optipng: { optimizationLevel: 2 },
@@ -167,6 +187,17 @@ module.exports = {
           ],
         },
         plugins: [imageminMozjpeg({ quality: 75 })],
+      }),
+      new UglifyJsPlugin({
+        test: /\.js(\?.*)?$/i,
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+        uglifyOptions: {
+          warnings: true,
+          output: { comments: false },
+          compress: { drop_console: true },
+        },
       }),
     ],
   },

@@ -12,8 +12,8 @@ final class Assets
     public static function init()
     {
         add_action('wp_enqueue_scripts', [__CLASS__, 'enqueueAssets']);
-        add_filter('style_loader_src', [__CLASS__, 'cacheBuster'], 999, 2);
-        add_filter('script_loader_src', [__CLASS__, 'cacheBuster'], 999, 2);
+        add_filter('style_loader_src', [__CLASS__, 'cacheBuster'], PHP_INT_MAX, 2);
+        add_filter('script_loader_src', [__CLASS__, 'cacheBuster'], PHP_INT_MAX, 2);
     }
 
     public static function enqueueAssets()
@@ -21,6 +21,7 @@ final class Assets
         wp_enqueue_style(
             'my-theme-main',
             get_template_directory_uri() . '/build/styles/main.css',
+            [],
             wp_get_theme('my-theme')->get('Version')
         );
 
@@ -36,31 +37,52 @@ final class Assets
         }
     }
 
+    /**
+     * Cache buster
+     *
+     * During build process a hash is added to the asset filename.
+     * Therefore we need to replace the registered filename with the actual filename.
+     * The mapping is described in /build/assets.json
+     *
+     * @param $src The file URL.
+     * @param $handle The handle.
+     * @return string
+     */
     public static function cacheBuster($src, $handle)
     {
-        $base_url = get_template_directory_uri();
-        $base_path = get_template_directory();
+        $base_url = get_template_directory_uri() . '/build/';
 
+        // Check if theme file.
         if (0 !== stripos($src, $base_url)) {
             return $src;
         }
 
-        if (false !== ($pos = strrpos($src, '?'))) {
-            $query = substr($src, $pos + 1);
-            $without_query = substr($src, 0, -strlen($query) - 1);
-            $query = parse_url($query);
+        // Get query out of $src
+        if (strpos($src, '?')) {
+            list($without_query, $query) = explode('?', $src);
         } else {
-            $query = [];
             $without_query = $src;
+            $query = '';
         }
 
-        $file = str_replace($base_url, $base_path, $without_query);
-        if (! file_exists($file)) {
+        // Get map
+
+        $assets_file = file_get_contents(get_template_directory_uri() . '/build/assets.json');
+
+        if (! file_exists($assets_file)) {
             return $src;
         }
 
-        $query['cache'] = filemtime($file);
+        $map = json_decode($assets_file, true);
 
-        return $without_query . '?' . http_build_query($query);
+        //
+
+        $asset_path = substr($without_query, strlen($base_url));
+
+        if (! isset($map[$asset_path])) {
+            return $src;
+        }
+
+        return $base_url . $map[$asset_path] . '?' . $query;
     }
 }
