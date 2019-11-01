@@ -9,39 +9,27 @@ const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
-
-const config = Object.assign( {}, require('./assets/config.json'), {
-  paths : {
-    src: path.resolve(__dirname, 'assets'),
-    build: path.resolve(__dirname, 'build'),
-  },
-} );
-
-const isProduction = !! argv.mode && 'production' === argv.mode;
-
-// Set Node environment
-if (process.env.NODE_ENV === undefined) {
-  process.env.NODE_ENV = isProduction ? 'production' : 'development';
-}
-
-const filename = '[name]_[hash]';
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 
 module.exports = {
-  context: config.paths.src,
-  entry : config.entry,
-  output: {
-    filename: `scripts/${filename}.js`,
-    path: config.paths.build,
-    publicPath: config.publicPath,
+  ...defaultConfig,
+  context: path.resolve(__dirname, 'assets'),
+  entry : {
+    'main': [ 'styles/main.scss', 'scripts/main.js' ],
+    'editor-styles':  'styles/editor-styles.scss',
+    'customizer': 'scripts/customizer.js',
   },
-  stats: {
-    children: false,
+  output: {
+    ...defaultConfig.output,
+    filename: 'scripts/[name].js',
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/wp-content/themes/my-theme/build/',
   },
   resolve: {
+    ...defaultConfig.resolve,
     // Directories where to look for modules
     modules: [
-      config.paths.src,
+      path.resolve(__dirname, 'assets'),
       'node_modules',
     ],
     // Disable extensions filter
@@ -53,18 +41,9 @@ module.exports = {
   },
   module:
   {
+    ...defaultConfig.module,
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          // Enable next generation JavaScript.
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
-      },
+      ...defaultConfig.module.rules,
       {
         test: /\.(scss|sass|css)$/,
         use: [
@@ -101,12 +80,12 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
-        include: config.paths.src,
+        include: path.resolve(__dirname, 'assets'),
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: `[path]${filename}.[ext]`,
+              name: '[path][name].[ext]',
               limit: 4096,
             },
           },
@@ -121,7 +100,7 @@ module.exports = {
             options: {
               limit: 4096,
               outputPath: 'vendor/',
-              name: `${filename}.[ext]`,
+              name: '[name].[ext]',
             },
           },
         ],
@@ -129,11 +108,12 @@ module.exports = {
     ],
   },
   plugins: [
+    ...defaultConfig.plugins,
     // Remove all files inside output.path director
     new CleanWebpackPlugin(),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
-      filename: `styles/${filename}.css`,
+      filename: 'styles/[name].css',
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
@@ -141,28 +121,6 @@ module.exports = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       Popper: 'popper.js/dist/umd/popper.js',
-    }),
-    // Generate a JSON file that matches the original filename with the hashed version
-    new WebpackAssetsManifest({
-      output: 'assets.json',
-      space: 2,
-      writeToDisk: false,
-      replacer: (key, value) => {
-        if (typeof value === 'string') {
-          return value;
-        }
-        const manifest = value;
-        Object.keys(manifest).forEach((src) => {
-          const sourcePath = path.basename(path.dirname(src));
-          const targetPath = path.basename(path.dirname(manifest[src]));
-          if (sourcePath === targetPath) {
-            return;
-          }
-          manifest[`${targetPath}/${src}`] = manifest[src];
-          delete manifest[src];
-        });
-        return manifest;
-      },
     }),
     // Copy
     new CopyWebpackPlugin([

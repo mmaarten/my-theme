@@ -1,12 +1,12 @@
 # My Theme
 
 Bootstrap driven WordPress starter theme
-based on the [Underscores](https://github.com/automattic/_s) theme by [Automattic](https://automattic.com/).
 
 ## Features
 
 - [Sass](https://sass-lang.com/) for stylesheets
 - [Webpack](https://webpack.js.org/) for compiling assets, optimising images, and concatenating and minifying files
+- [WP Scripts](https://developer.wordpress.org/block-editor/packages/packages-scripts/)
 - [Bootstrap](https://getbootstrap.com/) 4 CSS framework
 - [Fontawesome](https://fontawesome.com/) icon library.
 
@@ -26,18 +26,18 @@ based on the [Underscores](https://github.com/automattic/_s) theme by [Automatti
 
 ## Development
 
-Run `npm install` to install dependencies.
+Run `composer install` to install dependencies.
 
-Run `composer install` to install additional dependencies.
+Run `npm install` to install dependencies.
 
 ### Build commands
 
 Run `npm run start` to compile assets when files change.
 
-Run `npm run build` to compile assets.
+Run `npm run build` to compile and optimize assets.
 
-Run `npm run build:production` to compile and optimize assets.
+#### WordPress CLI commands
 
-Run `npm run pot` to generate POT file.
+Run `wp dist-archive` to create distribution archive. [more info](https://developer.wordpress.org/cli/commands/dist-archive/)
 
-Run `npm run dist-archive` to create a distribution archive.
+Run `wp i18n make-pot . languages/my-theme.pot`. [more info](https://developer.wordpress.org/cli/commands/i18n/make-pot/)

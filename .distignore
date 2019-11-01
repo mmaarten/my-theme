@@ -1,0 +1,8 @@
+# https://developer.wordpress.org/cli/commands/dist-archive/
+.distignore
+.editorconfig
+.git
+.gitignore
+webpack.config.js
+node_modules
+assets
