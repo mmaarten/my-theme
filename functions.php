@@ -62,12 +62,4 @@ if (! is_readable($autoloader)) {
  */
 require $autoloader;
 
-Setup::init();
-Assets::init();
-Navs::init();
-Widgets::init();
-Customizer::init();
-Editor::init();
-
-require get_template_directory() . '/inc/template-functions.php';
-require get_template_directory() . '/inc/template-tags.php';
+App::getInstance()->init();

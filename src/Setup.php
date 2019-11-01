@@ -81,7 +81,7 @@ final class Setup
      */
     public static function contentWidth()
     {
-        $GLOBALS['content_width'] = 1290;
+        $GLOBALS['content_width'] = 1110;
     }
 
     /**
