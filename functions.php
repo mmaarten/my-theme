@@ -5,8 +5,6 @@
  * @package My/Theme
  */
 
-namespace My\Theme;
-
 $theme = wp_get_theme('my-theme');
 
 /**
@@ -62,4 +60,4 @@ if (! is_readable($autoloader)) {
  */
 require $autoloader;
 
-App::getInstance()->init();
+\My\Theme\App::getInstance()->init();

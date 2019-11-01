@@ -16,6 +16,11 @@ final class App
      */
     private static $instance = null;
 
+    /**
+     * Get instance
+     *
+     * @var App
+     */
     public static function getInstance()
     {
         if (is_null(self::$instance)) {
