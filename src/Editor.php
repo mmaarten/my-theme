@@ -18,34 +18,40 @@ final class Editor
 
     /**
      * Setup
+     *
+     * @see https://developer.wordpress.org/block-editor/developers/themes/theme-support/
      */
     public static function setup()
     {
-        // Set editor colors.
+        /**
+         * Set editor colors.
+         */
         add_theme_support('editor-color-palette', [
             [
                 'name'  => __('Primary', 'my-theme'),
                 'slug'  => 'primary',
-                'color' => '#007bff',
+                'color' => '#007bff', // Value of `$primary`.
             ],
             [
                 'name'  => __('Secondary', 'my-theme'),
                 'slug'  => 'secondary',
-                'color' => '#6c757d',
+                'color' => '#6c757d', // Value of `$secondary`.
             ],
             [
                 'name'  => __('Light', 'my-theme'),
                 'slug'  => 'light',
-                'color' => '#f8f9fa',
+                'color' => '#f8f9fa', // Value of `$light`.
             ],
             [
                 'name'  => __('Dark', 'my-theme'),
                 'slug'  => 'dark',
-                'color' => '#343a40',
+                'color' => '#343a40', // Value of `$dark`.
             ],
         ]);
 
-        // Set editor font sizes.
+        /**
+         * Set editor font sizes.
+         */
         add_theme_support('editor-font-sizes', [
             [
                 'name'      => __('Small', 'my-theme'),
@@ -67,27 +73,44 @@ final class Editor
             ],
         ]);
 
-        // Add support for Block Styles.
+        /**
+         * Add support for Block Styles.
+         */
         add_theme_support('wp-block-styles');
 
-        // Enable align 'wide' and 'full' block settings.
+        /**
+         * Enable align 'wide' and 'full' block settings.
+         */
         add_theme_support('align-wide');
 
-        // Enable responsive embeds.
+        /**
+         * Enable responsive embeds.
+         */
         add_theme_support('responsive-embeds');
 
-        // Disable custom colors.
-        // add_theme_support('disable-custom-colors');
+        /**
+         * Disable custom colors.
+         *
+         * @example `add_theme_support('disable-custom-colors');`
+         */
 
-        // Disable custom font sizes.
-        // add_theme_support('disable-custom-font-sizes');
+        /**
+         * Disable custom font sizes.
+         *
+         * @example `add_theme_support('disable-custom-font-sizes');`
+         */
 
-        // Add editor normalization style.
+        /**
+         * Add editor normalization style.
+         */
         add_theme_support('editor-styles');
         add_editor_style('build/styles/editor-styles.css');
 
-        // Use dark editor style.
-        // add_theme_support('dark-editor-style');
+        /**
+         * Use dark editor style.
+         *
+         * @example `add_theme_support('dark-editor-style');`
+         */
     }
 
     /**

@@ -28,8 +28,6 @@ final class Setup
         /**
          * Make theme available for translation.
          * Translations can be filed in the /languages/ directory.
-         * If you're building a theme based on My Theme, use a find and replace
-         * to change 'my-theme' to the name of your theme in all the template files.
          */
         load_theme_textdomain('my-theme', get_template_directory() . '/languages');
 
@@ -52,8 +50,7 @@ final class Setup
         add_theme_support('post-thumbnails');
 
         /**
-         * Switch default core markup for search form, comment form, and comments
-         * to output valid HTML5.
+         * Switch default core markup to output valid HTML5.
          */
         add_theme_support('html5', [
             'search-form',
@@ -72,8 +69,9 @@ final class Setup
 
         /**
          * Add custom image sizes.
+         *
+         * @example add_image_size('my-theme-sample', 800, 600, false);
          */
-        // add_image_size('my-theme-sample', 800, 600, false);
     }
 
     /**

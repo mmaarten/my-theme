@@ -9,80 +9,115 @@ namespace My\Theme;
 
 final class Assets
 {
+    /**
+     * Initialize
+     */
     public static function init()
     {
+        add_action('wp_enqueue_scripts', [__CLASS__, 'registerAssets'], 0);
         add_action('wp_enqueue_scripts', [__CLASS__, 'enqueueAssets']);
-        add_filter('style_loader_src', [__CLASS__, 'cacheBuster'], PHP_INT_MAX, 2);
-        add_filter('script_loader_src', [__CLASS__, 'cacheBuster'], PHP_INT_MAX, 2);
     }
 
-    public static function enqueueAssets()
+    /**
+     * Register scripts and styles.
+     */
+    public static function registerAssets()
     {
-        wp_enqueue_style(
+        self::registerStyle(
             'my-theme-main',
-            get_template_directory_uri() . '/build/styles/main.css',
-            [],
-            wp_get_theme('my-theme')->get('Version')
+            get_template_directory_uri() . '/build/styles/main.css'
         );
 
-        wp_enqueue_script(
+        self::registerScript(
             'my-theme-main',
             get_template_directory_uri() . '/build/scripts/main.js',
-            ['jquery'],
-            wp_get_theme('my-theme')->get('Version')
+            ['jquery']
         );
+    }
+
+    /**
+     * Enqueue scripts and styles.
+     */
+    public static function enqueueAssets()
+    {
+        wp_enqueue_style('my-theme-main');
+        wp_enqueue_script('my-theme-main');
 
         if (is_singular() && comments_open() && get_option('thread_comments')) {
             wp_enqueue_script('comment-reply');
         }
     }
 
+     /**
+      * Registers a script according to `wp_register_script`, additionally loading the translations for the file.
+      *
+      * @param string      $handle   Name of the script. Should be unique.
+      * @param string|bool $src      Full URL of the script, or path of the script relative to the WordPress root directory.
+      * @param array       $deps     Optional. An array of registered script handles this script depends on. Default empty array.
+      * @param bool        $has_i18n Optional. Whether to add a script translation call to this file. Default 'false'.
+      */
+    public static function registerScript($handle, $src, $deps = [], $has_i18n = false)
+    {
+        $asset = self::getAsset($src);
+        wp_register_script($handle, $src, $deps + $asset['dependencies'], $asset['version'], true);
+
+        if ($has_i18n && function_exists('wp_set_script_translations')) {
+            wp_set_script_translations($handle, 'my-theme', get_template_directory() . '/languages');
+        }
+    }
+
     /**
-     * Cache buster
+     * Registers a style according to `wp_register_style`.
      *
-     * During build process a hash is added to the asset filename.
-     * Therefore we need to replace the registered filename with the actual filename.
-     * The mapping is described in /build/assets.json
+     * @param string $handle Name of the stylesheet. Should be unique.
+     * @param string $src    Full URL of the stylesheet, or path of the stylesheet relative to the WordPress root directory.
+     * @param array  $deps   Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
+     * @param string $media  Optional. The media for which this stylesheet has been defined. Default 'all'. Accepts media types like
+     *                       'all', 'print' and 'screen', or media queries like '(orientation: portrait)' and '(max-width: 640px)'.
+     */
+    public static function registerStyle($handle, $src, $deps = [], $media = 'all')
+    {
+        $asset = self::getAsset($src);
+        wp_register_style($handle, $src, $deps + $asset['dependencies'], $asset['version'], $media);
+    }
+
+    /**
+     * Get path
      *
-     * @param $src The file URL.
-     * @param $handle The handle.
+     * @param string $src Full URL of the script or stylesheet.
      * @return string
      */
-    public static function cacheBuster($src, $handle)
+    public static function getPath($src)
     {
-        $base_url = get_template_directory_uri() . '/build/';
+        return str_replace(get_template_directory_uri(), get_template_directory(), $src);
+    }
 
-        // Check if theme file.
-        if (0 !== stripos($src, $base_url)) {
-            return $src;
-        }
+    /**
+     * Get asset data from 'assets.php' file.
+     *
+     * @param string $src Full URL of the script or stylesheet.
+     * @return array
+     */
+    public static function getAsset($src)
+    {
+        $file = str_replace(['.js', '.css'], '.asset.php', self::getPath($src));
+        // All asset.php files are in '/build/scripts/' directory.
+        $file = str_replace('/build/styles/', '/build/scripts/', $file);
 
-        // Get query out of $src
-        if (strpos($src, '?')) {
-            list($without_query, $query) = explode('?', $src);
+        if (file_exists($file)) {
+            $asset = require $file;
         } else {
-            $without_query = $src;
-            $query = '';
+            $asset = [
+                'dependencies' => [],
+                'version'      => filemtime(self::getPath($src)),
+            ];
         }
 
-        // Get map
-
-        $assets_file = file_get_contents(get_template_directory_uri() . '/build/assets.json');
-
-        if (! file_exists($assets_file)) {
-            return $src;
+        // Asset dependencies are for scripts only.
+        if (preg_match('/\.css$/', $src)) {
+            $asset['dependencies'] = [];
         }
 
-        $map = json_decode($assets_file, true);
-
-        //
-
-        $asset_path = substr($without_query, strlen($base_url));
-
-        if (! isset($map[$asset_path])) {
-            return $src;
-        }
-
-        return $base_url . $map[$asset_path] . '?' . $query;
+        return $asset;
     }
 }

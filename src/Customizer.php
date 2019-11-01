@@ -52,11 +52,12 @@ final class Customizer
      */
     public static function previewInit()
     {
-        wp_enqueue_script(
+        Assets::registerScript(
             'my-theme-customizer',
             get_template_directory_uri() . '/build/scripts/customizer.js',
-            wp_get_theme('my-theme')->get('Version'),
-            ["customize-preview"]
+            ['customize-preview']
         );
+
+        wp_enqueue_script('my-theme-customizer');
     }
 }
