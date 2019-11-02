@@ -1,63 +1,64 @@
 <?php
 /**
- * Boot
+ * Fire up the application.
  *
  * @package My/Theme
  */
 
-$theme = wp_get_theme('my-theme');
+namespace My\Theme;
+
+// Load common helper functions.
+require get_template_directory() . '/inc/common.php';
 
 /**
- * Check PHP version.
+ * Ensure compatible version of PHP is used.
  */
-$php_version = '5.4.0';
-if (version_compare(PHP_VERSION, $php_version, '<')) {
-    error_log(
-        sprintf(
-            // translators: %1$s Theme name, %2$s PHP version.
-            __('%1$s requires at least PHP version %2$s.', 'my-theme'),
-            $theme->get('Name'),
-            $php_version
-        )
+if (version_compare('5.4', phpversion(), '>=')) {
+    admin_notice(
+        __('Invalid PHP version. You must be using PHP 5.4 or greater.', 'my-theme'),
+        'error'
     );
     return;
 }
 
 /**
- * Check WordPress version.
+ * Ensure compatible version of WordPress is used.
  */
-$wp_version = '5.0.0';
-if (! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], $wp_version, '<')) {
-    error_log(
-        sprintf(
-            // translators: %1$s Theme name, %2$s WordPress version.
-            __('%1$s requires at least WordPress version %2$s.', 'my-theme'),
-            $theme->get('Name'),
-            $wp_version
-        )
+if (version_compare('5.0', get_bloginfo('version'), '>=')) {
+    admin_notice(
+        __('Invalid WordPress version. You must be using WordPress 5.0 or greater.', 'my-theme'),
+        'error'
     );
     return;
 }
 
 /**
- * Check autoloader.
+ * Ensure autoloader exists.
  */
 $autoloader = dirname(__FILE__) . '/vendor/autoload.php';
-if (! is_readable($autoloader)) {
-    error_log(
+if (! file_exists($autoloader)) {
+    admin_notice(
         sprintf(
-            // translators: %1$s Theme name, %2$s Code to run.
-            __('%1$s installation is not complete. Run %2$s', 'my-theme'),
-            $theme->get('Name'),
-            '<code>composer install</code>'
-        )
+            __('Autoloader not found. Run <code>composer install</code> from the %s directory.', 'my-theme'),
+            basename(__DIR__)
+        ),
+        'error'
     );
     return;
 }
-
-/**
- * Fire up the application.
- */
 require $autoloader;
 
-\My\Theme\App::getInstance()->init();
+/**
+ * Load files located inside the 'inc' directory.
+ * Supports child theme overrides.
+ */
+inc([
+    'setup.php',
+    'assets.php',
+    'nav-menus.php',
+    'customizer.php',
+    'widgets.php',
+    'editor.php',
+    'template-functions.php',
+    'template-tags.php'
+]);

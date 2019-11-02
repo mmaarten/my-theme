@@ -9,45 +9,6 @@ namespace My\Theme;
 
 final class Assets
 {
-    /**
-     * Initialize
-     */
-    public static function init()
-    {
-        add_action('wp_enqueue_scripts', [__CLASS__, 'registerAssets'], 0);
-        add_action('wp_enqueue_scripts', [__CLASS__, 'enqueueAssets']);
-    }
-
-    /**
-     * Register scripts and styles.
-     */
-    public static function registerAssets()
-    {
-        self::registerStyle(
-            'my-theme-main',
-            get_template_directory_uri() . '/build/styles/main.css'
-        );
-
-        self::registerScript(
-            'my-theme-main',
-            get_template_directory_uri() . '/build/scripts/main.js',
-            ['jquery']
-        );
-    }
-
-    /**
-     * Enqueue scripts and styles.
-     */
-    public static function enqueueAssets()
-    {
-        wp_enqueue_style('my-theme-main');
-        wp_enqueue_script('my-theme-main');
-
-        if (is_singular() && comments_open() && get_option('thread_comments')) {
-            wp_enqueue_script('comment-reply');
-        }
-    }
-
      /**
       * Registers a script according to `wp_register_script`, additionally loading the translations for the file.
       *
@@ -105,20 +66,22 @@ final class Assets
      */
     public static function getAsset($src)
     {
-        $file = str_replace(['.js', '.css'], '.asset.php', self::getPath($src));
-        // All asset.php files are in the '/build/scripts/' directory.
+        $path = self::getPath($src);
+        $file = str_replace(['.js', '.css'], '.asset.php', $path);
+        // All asset files are in the '/build/scripts/' directory.
         $file = str_replace('/build/styles/', '/build/scripts/', $file);
 
         if (file_exists($file)) {
             $asset = require $file;
         } else {
+            // Fallback.
             $asset = [
                 'dependencies' => [],
-                'version'      => filemtime(self::getPath($src)),
+                'version'      => filemtime($path),
             ];
         }
 
-        // Asset dependencies are for scripts only.
+        // Dependencies are for scripts only.
         if (preg_match('/\.css$/', $src)) {
             $asset['dependencies'] = [];
         }
