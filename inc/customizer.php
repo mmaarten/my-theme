@@ -42,10 +42,9 @@ add_action('customize_preview_init', function () {
     /**
      * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
      */
-     Assets::registerScript(
-         'my-theme-customizer',
-         get_template_directory_uri() . '/build/scripts/customizer.js',
-         ['customize-preview']
-     );
-     wp_enqueue_script('my-theme-customizer');
+    wp_enqueue_script(
+        'my-theme-customizer',
+        get_template_directory_uri() . '/build/scripts/customizer.js',
+        ['customize-preview']
+    );
 });

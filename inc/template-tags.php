@@ -16,7 +16,8 @@ function posted_on()
 {
     $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
     if (get_the_time('U') !== get_the_modified_time('U')) {
-        $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+        $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>'
+                     . '<time class="updated" datetime="%3$s">%4$s</time>';
     }
 
     $time_string = sprintf(
@@ -40,7 +41,11 @@ function posted_on()
     $byline = sprintf(
         /* translators: %s: post author. */
         esc_html_x('by %s', 'post author', 'my-theme'),
-        '<span class="author vcard"><a class="url fn n" href="' . esc_url(get_author_posts_url(get_the_author_meta('ID'))) . '">' . esc_html(get_the_author()) . '</a></span>'
+        sprintf(
+            '<span class="author vcard"><a class="url fn n" href="%s">%s</a></span>',
+            esc_url(get_author_posts_url(get_the_author_meta('ID'))),
+            esc_html(get_the_author())
+        )
     );
 
     echo '<span class="byline"> ' . $byline . '</span>';
@@ -151,7 +156,6 @@ function post_thumbnail()
  */
 function pagination($args = array())
 {
-
     if ($GLOBALS['wp_query']->max_num_pages <= 1) {
         return;
     }
@@ -196,7 +200,6 @@ function pagination($args = array())
  */
 function post_nav()
 {
-
     // Don't print empty markup if there's nowhere to navigate.
     $previous = ( is_attachment() ) ? get_post(get_post()->post_parent) : get_adjacent_post(false, '', true);
     $next     = get_adjacent_post(false, '', false);
@@ -215,11 +218,17 @@ function post_nav()
         <?php
 
         if (get_previous_post_link()) {
-            previous_post_link('<span class="nav-previous">%link</span>', _x('&laquo; %title', 'Previous post link', 'my-theme'));
+            previous_post_link(
+                '<span class="nav-previous">%link</span>',
+                _x('&laquo; %title', 'Previous post link', 'my-theme')
+            );
         }
 
         if (get_next_post_link()) {
-            next_post_link('<span class="nav-next">%link</span>', _x('%title &raquo;', 'Next post link', 'my-theme'));
+            next_post_link(
+                '<span class="nav-next">%link</span>',
+                _x('%title &raquo;', 'Next post link', 'my-theme')
+            );
         }
 
         ?>
@@ -245,11 +254,9 @@ function post_nav()
  */
 function breadcrumb_nav($before = '', $after = '')
 {
-
     // Check Dependency.
     if (! function_exists('bcn_display_list')) {
-        trigger_error('function `bcn_display_list` does not exist.', E_USER_WARNING);
-
+        trigger_error('function <code>bcn_display_list</code> does not exist.', E_USER_WARNING);
         return;
     }
 
@@ -265,25 +272,21 @@ function breadcrumb_nav($before = '', $after = '')
     $items = str_replace('<li class="', '<li class="breadcrumb-item ', $items);
     $items = preg_replace('/class="(.*?)current-item(.*?)"/', 'class="$1active$2"', $items);
 
-	// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-
     ?>
 
     <?php echo $before; ?>
 
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
 
-            <ol class="breadcrumb">
+        <ol class="breadcrumb">
 
-            <?php echo $items; ?>
+        <?php echo $items; ?>
 
-            </ol><!-- .breadcrumb -->
+        </ol><!-- .breadcrumb -->
 
-        </nav><!-- .breadcrumb-nav -->
+    </nav><!-- .breadcrumb-nav -->
 
-        <?php echo $after; ?>
+    <?php echo $after; ?>
 
-        <?php
-
-		// phpcs:enable
+    <?php
 }

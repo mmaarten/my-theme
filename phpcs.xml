@@ -4,8 +4,8 @@
 
   <!-- Check all files in this directory and the directories below it. -->
   <file>functions.php</file>
-  <file>src</file>
   <file>inc</file>
+  <file>src</file>
 
   <!-- Only check the PHP files. -->
 	<arg name="extensions" value="php"/>

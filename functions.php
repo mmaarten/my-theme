@@ -5,60 +5,73 @@
  * @package My/Theme
  */
 
-namespace My\Theme;
-
-// Load common helper functions.
-require get_template_directory() . '/inc/common.php';
+defined('ABSPATH') || exit;
 
 /**
- * Ensure compatible version of PHP is used.
+ * Check PHP version.
  */
-if (version_compare('5.4', phpversion(), '>=')) {
-    admin_notice(
-        __('Invalid PHP version. You must be using PHP 5.4 or greater.', 'my-theme'),
-        'error'
-    );
-    return;
-}
-
-/**
- * Ensure compatible version of WordPress is used.
- */
-if (version_compare('5.0', get_bloginfo('version'), '>=')) {
-    admin_notice(
-        __('Invalid WordPress version. You must be using WordPress 5.0 or greater.', 'my-theme'),
-        'error'
-    );
-    return;
-}
-
-/**
- * Ensure autoloader exists.
- */
-$autoloader = dirname(__FILE__) . '/vendor/autoload.php';
-if (! file_exists($autoloader)) {
-    admin_notice(
+if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+    error_log(
         sprintf(
-            __('Autoloader not found. Run <code>composer install</code> from the %s directory.', 'my-theme'),
-            basename(__DIR__)
-        ),
-        'error'
+            // translators: 1: PHP version.
+            __('My Theme requires at least PHP version 5.6.0. You are running version %1$s.', 'my-theme'),
+            PHP_VERSION
+        )
+    );
+    return;
+}
+
+/**
+ * Check WordPress version.
+ */
+if (version_compare($GLOBALS['wp_version'], '5.0.0', '<')) {
+    error_log(
+        sprintf(
+            // translators: 1: WordPress version.
+            __('My Theme requires at least WordPress version 5.0.0. You are running version %1$s.', 'my-theme'),
+            $GLOBALS['wp_version']
+        )
+    );
+    return;
+}
+
+/**
+ * Check autoloader.
+ */
+$autoloader = __DIR__ . '/vendor/autoload.php';
+if (!is_readable($autoloader)) {
+    error_log(
+        sprintf(
+            // translators: 1: Composer command. 2: theme directory
+            __('My Theme installation is incomplete. Run %1$s within the %2$s directory.', 'my-theme'),
+            '<code>composer install</code>',
+            '<code>' . str_replace(ABSPATH, '', __DIR__) . '</code>'
+        )
     );
     return;
 }
 require $autoloader;
 
 /**
- * Load files located inside the 'inc' directory.
- * Supports child theme overrides.
+ * Required files.
  */
-inc([
-    'setup.php',
-    'assets.php',
-    'nav-menus.php',
-    'customizer.php',
-    'widgets.php',
-    'editor.php',
-    'template-functions.php',
-    'template-tags.php'
+array_map(function ($file) {
+    $file = "inc/{$file}.php";
+    if (!locate_template($file, true, true)) {
+        trigger_error(
+            // translators: 1: file location.
+            sprintf(__('Error locating %1$s for inclusion.', 'my-theme'), "<code>$file</code>"),
+            E_USER_ERROR
+        );
+    }
+}, [
+    'helpers',
+    'setup',
+    'assets',
+    'widgets',
+    'nav-menus',
+    'customizer',
+    'editor',
+    'template-functions',
+    'template-tags',
 ]);
