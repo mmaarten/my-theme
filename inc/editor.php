@@ -15,9 +15,11 @@ namespace My\Theme;
  * @param string $post_type        The post being checked.
  * @return bool
  */
-add_filter('use_block_editor_for_post_type', function ($use_block_editor, $post_type) {
+function use_block_editor_for_post_type($use_block_editor, $post_type)
+{
     return $use_block_editor;
-}, 10, 2);
+}
+add_filter('use_block_editor_for_post_type', __NAMESPACE__ . '\use_block_editor_for_post_type', 10, 2);
 
 /**
  * Filter the allowed block types for the editor.
@@ -27,6 +29,8 @@ add_filter('use_block_editor_for_post_type', function ($use_block_editor, $post_
  * @param object     $post                The post resource data.
  * @return bool|array
  */
-add_filter('allowed_block_types', function ($allowed_block_types, $post) {
-    return $allowed_block_types;
-}, 10, 2);
+function allowed_block_types($allowed_block_types, $post)
+{
+    return $use_block_editor;
+}
+add_filter('allowed_block_types', __NAMESPACE__ . '\allowed_block_types', 10, 2);

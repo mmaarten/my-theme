@@ -12,7 +12,8 @@ namespace My\Theme;
  *
  * @link https://developer.wordpress.org/reference/functions/add_theme_support/
  */
-add_action('after_setup_theme', function () {
+function setup()
+{
     /**
      * Make theme available for translation.
      * @link https://developer.wordpress.org/reference/functions/load_theme_textdomain/
@@ -173,7 +174,8 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#dark-backgrounds
      * @example add_theme_support('dark-editor-style');
      */
-});
+}
+add_action('after_setup_theme', __NAMESPACE__ . '\setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -181,9 +183,11 @@ add_action('after_setup_theme', function () {
  * @link https://developer.wordpress.com/themes/content-width/
  * @global int $content_width
  */
-add_action('after_setup_theme', function () {
+function content_width()
+{
     $GLOBALS['content_width'] = 1110;
-}, 0);
+}
+add_action('after_setup_theme', __NAMESPACE__ . '\content_width', 0);
 
 /**
  * Modify the list of image sizes that are available in the WordPress Media Library.
@@ -191,6 +195,8 @@ add_action('after_setup_theme', function () {
  * @param array $sizes List of image size names.
  * @return array
  */
-add_filter('image_size_names_choose', function ($sizes) {
+function image_size_names_choose($sizes)
+{
     return $sizes;
-});
+}
+add_filter('image_size_names_choose', __NAMESPACE__ . '\image_size_names_choose');

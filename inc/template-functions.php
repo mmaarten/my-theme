@@ -13,7 +13,8 @@ namespace My\Theme;
  * @param array $classes Classes for the body element.
  * @return array
  */
-add_filter('body_class', function ($classes) {
+function body_class($classes)
+{
     $include = [
         // Common.
         'singular' => is_singular(),
@@ -36,21 +37,26 @@ add_filter('body_class', function ($classes) {
     ];
 
     // Add classes.
-    foreach ($include as $class => $set) {
-        if ($set) {
-            $classes[ $class ] = $class;
+    foreach ($include as $class => $append) {
+        if ($append) {
+            $classes[$class] = $class;
         }
     }
 
     // Return.
     return $classes;
-});
+}
+add_filter('body_class', __NAMESPACE__ . '\body_class');
 
 /**
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.
+ *
+ * @link https://developer.wordpress.org/reference/functions/bloginfo/
  */
-add_action('wp_head', function () {
+function pingback_header()
+{
     if (is_singular() && pings_open()) {
         printf('<link rel="pingback" href="%s">', esc_url(get_bloginfo('pingback_url')));
     }
-});
+}
+add_action('wp_head', __NAMESPACE__ . '\pingback_header');

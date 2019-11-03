@@ -19,6 +19,10 @@ function get_asset($src)
 
     $src_path = str_replace($base_url, $base_path, $src);
 
+    if (!file_exists($src_path)) {
+        return false;
+    }
+
     // Get asset file.
     $asset_file = str_replace(['.js', '.css'], '.asset.php', $src_path);
     $asset_file = str_replace('/build/styles/', '/build/scripts/', $asset_file);
@@ -40,4 +44,23 @@ function get_asset($src)
     }
 
     return $asset;
+}
+
+function apply_asset_data()
+{
+    $collections = [wp_scripts(), wp_styles()];
+    foreach ($collections as $collection) {
+        foreach ($collection->registered as $key => $asset) {
+            // Check if inside theme directory.
+            if (0 !== stripos($asset->src, get_template_directory_uri() . '/build/')) {
+                continue;
+            }
+            // Apply asset.
+            $data = get_asset($asset->src);
+            $asset->deps = $asset->deps + $data['dependencies'];
+            $asset->ver = $data['version'];
+            // Update
+            $collection->registered[$key] = $asset;
+        }
+    }
 }

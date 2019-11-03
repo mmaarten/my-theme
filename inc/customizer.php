@@ -12,7 +12,8 @@ namespace My\Theme;
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-add_action('customize_register', function ($wp_customize) {
+function customize_register($wp_customize)
+{
     $wp_customize->get_setting('blogname')->transport        = 'postMessage';
     $wp_customize->get_setting('blogdescription')->transport = 'postMessage';
 
@@ -36,15 +37,18 @@ add_action('customize_register', function ($wp_customize) {
             ]
         );
     }
-});
+}
+add_action('customize_register', __NAMESPACE__ . '\customize_register');
 
-add_action('customize_preview_init', function () {
-    /**
-     * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
-     */
+/**
+ * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ */
+function customize_preview_script()
+{
     wp_enqueue_script(
         'my-theme-customizer',
         get_template_directory_uri() . '/build/scripts/customizer.js',
         ['customize-preview']
     );
-});
+}
+add_action('customize_preview_init', __NAMESPACE__ . '\customize_preview_script');

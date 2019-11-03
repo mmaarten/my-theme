@@ -10,11 +10,11 @@ defined('ABSPATH') || exit;
 /**
  * Check PHP version.
  */
-if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+if (version_compare(PHP_VERSION, '5.4.0', '<')) {
     error_log(
         sprintf(
             // translators: 1: PHP version.
-            __('My Theme requires at least PHP version 5.6.0. You are running version %1$s.', 'my-theme'),
+            __('My Theme requires at least PHP version 5.4.0. You are running version %1$s.', 'my-theme'),
             PHP_VERSION
         )
     );
