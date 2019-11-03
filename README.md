@@ -34,14 +34,10 @@ Run `npm run build` to compile and optimize assets.
 #### WordPress CLI commands
 Requirement: [wp cli](https://wp-cli.org/)
 
-**Create distribution archive**
-
-Run `wp dist-archive .` inside the `wp-content/themes/my-theme` directory.
+Run `wp dist-archive .` inside the `wp-content/themes/my-theme` directory to create distribution archive.
 
 [more info](https://developer.wordpress.org/cli/commands/dist-archive/)
 
-**Create POT translation file**
-
-Run `wp i18n make-pot . languages/my-theme.pot` inside the `wp-content/themes/my-theme` directory.
+Run `wp i18n make-pot . languages/my-theme.pot` inside the `wp-content/themes/my-theme` directory to create POT file
 
 [more info](https://developer.wordpress.org/cli/commands/i18n/make-pot/)
