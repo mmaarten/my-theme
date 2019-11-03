@@ -57,25 +57,6 @@ function setup()
     add_theme_support('customize-selective-refresh-widgets');
 
     /**
-     * Add image sizes.
-     * @link https://developer.wordpress.org/reference/functions/add_image_size/
-     * @example add_image_size('my-custom-size', 800, 600, false);
-     */
-
-    /**
-     * Register nav menu locations.
-     * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
-     */
-    register_nav_menus([
-        'top-left'     => esc_html__('Top Left', 'my-theme'),
-        'top-right'    => esc_html__('Top Right', 'my-theme'),
-        'main-left'    => esc_html__('Primary Left', 'my-theme'),
-        'main-right'   => esc_html__('Primary Right', 'my-theme'),
-        'footer-left'  => esc_html__('Footer Left', 'my-theme'),
-        'footer-right' => esc_html__('Footer Right', 'my-theme'),
-    ]);
-
-    /**
      * Set editor colors.
      * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#block-color-palettes
      */
@@ -173,6 +154,25 @@ function setup()
      * Adjust the color of the UI to work on dark backgrounds.
      * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#dark-backgrounds
      * @example add_theme_support('dark-editor-style');
+     */
+
+    /**
+     * Register nav menu locations.
+     * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
+     */
+    register_nav_menus([
+        'top-left'     => esc_html__('Top Left', 'my-theme'),
+        'top-right'    => esc_html__('Top Right', 'my-theme'),
+        'main-left'    => esc_html__('Primary Left', 'my-theme'),
+        'main-right'   => esc_html__('Primary Right', 'my-theme'),
+        'footer-left'  => esc_html__('Footer Left', 'my-theme'),
+        'footer-right' => esc_html__('Footer Right', 'my-theme'),
+    ]);
+
+    /**
+     * Add image sizes.
+     * @link https://developer.wordpress.org/reference/functions/add_image_size/
+     * @example add_image_size('my-image-size', 800, 600, false);
      */
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\setup');

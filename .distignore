@@ -3,6 +3,8 @@
 .editorconfig
 .git
 .gitignore
+.gitattributes
+phpcs.xml
 webpack.config.js
 node_modules
 assets

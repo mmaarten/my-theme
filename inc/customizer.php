@@ -45,10 +45,11 @@ add_action('customize_register', __NAMESPACE__ . '\customize_register');
  */
 function customize_preview_script()
 {
-    wp_enqueue_script(
+    Assets::registerScript(
         'my-theme-customizer',
         get_template_directory_uri() . '/build/scripts/customizer.js',
         ['customize-preview']
     );
+    wp_enqueue_script('my-theme-customizer');
 }
 add_action('customize_preview_init', __NAMESPACE__ . '\customize_preview_script');

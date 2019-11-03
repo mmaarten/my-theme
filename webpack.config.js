@@ -16,8 +16,11 @@ module.exports = {
   context: path.resolve(__dirname, 'assets'),
   entry : {
     'main': [ 'styles/main.scss', 'scripts/main.js' ],
-    'editor-styles': 'styles/editor-styles.scss',
     'customizer': 'scripts/customizer.js',
+    'editor-styles': 'styles/editor-styles.scss',
+    'block-editor': 'styles/block-editor.scss',
+    'block-style': 'styles/block-style.scss',
+    'block-sample': 'scripts/blocks/sample/index.js',
   },
   output: {
     ...defaultConfig.output,

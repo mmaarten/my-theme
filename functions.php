@@ -65,13 +65,13 @@ array_map(function ($file) {
         );
     }
 }, [
-    'helpers',
     'setup',
     'assets',
     'widgets',
     'nav-menus',
     'customizer',
     'editor',
+    'blocks',
     'template-functions',
     'template-tags',
 ]);

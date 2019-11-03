@@ -31,6 +31,6 @@ add_filter('use_block_editor_for_post_type', __NAMESPACE__ . '\use_block_editor_
  */
 function allowed_block_types($allowed_block_types, $post)
 {
-    return $use_block_editor;
+    return $allowed_block_types;
 }
 add_filter('allowed_block_types', __NAMESPACE__ . '\allowed_block_types', 10, 2);

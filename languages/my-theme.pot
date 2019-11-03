@@ -1,17 +1,46 @@
-# Copyright (C) 2019 MyTheme
-# This file is distributed under the same license as the MyTheme package.
+# Copyright (C) 2019 
+# This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: MyTheme\n"
+"Project-Id-Version: My Theme 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/my-theme\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2019-11-03T15:09:18+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.2.0\n"
+"X-Domain: my-theme\n"
+
+#. Theme Name of the theme
+msgid "My Theme"
+msgstr ""
+
+#. Theme URI of the theme
+msgid "https://github.com/mmaarten/my-theme"
+msgstr ""
+
+#. translators: 1: PHP version.
+#: functions.php:17
+msgid "My Theme requires at least PHP version 5.4.0. You are running version %1$s."
+msgstr ""
+
+#. translators: 1: WordPress version.
+#: functions.php:31
+msgid "My Theme requires at least WordPress version 5.0.0. You are running version %1$s."
+msgstr ""
+
+#. translators: 1: Composer command. 2: theme directory
+#: functions.php:46
+msgid "My Theme installation is incomplete. Run %1$s within the %2$s directory."
+msgstr ""
+
+#. translators: 1: file location.
+#: functions.php:63
+msgid "Error locating %1$s for inclusion."
+msgstr ""
 
 #: 404.php:26
 msgid "Oops! That page can&rsquo;t be found."
@@ -28,198 +57,6 @@ msgstr ""
 #. translators: %1$s: smiley
 #: 404.php:60
 msgid "Try looking in the monthly archives. %1$s"
-msgstr ""
-
-#. translators: %s: The name of the author.
-#: author.php:37
-msgid "All posts by %s"
-msgstr ""
-
-#. translators: 1: title.
-#: comments.php:35
-msgid "One thought on &ldquo;%1$s&rdquo;"
-msgstr ""
-
-#. translators: 1: comment count number, 2: title.
-#: comments.php:41
-msgctxt "comments title"
-msgid "%1$s thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
-
-#: comments.php:68
-msgid "Comments are closed."
-msgstr ""
-
-#. translators: %1$s Code to run.
-#: functions.php:18
-msgid "Autoloader not found. Run %1$s"
-msgstr ""
-
-#. translators: %1$s Code to run.
-#: functions.php:36
-msgid "Not build. Run %1$s"
-msgstr ""
-
-#: header.php:35
-msgid "Skip to content"
-msgstr ""
-
-#. translators: %s: search query.
-#: search.php:28
-msgid "Search Results for: %s"
-msgstr ""
-
-#: searchform.php:17
-msgctxt "label"
-msgid "Search for:"
-msgstr ""
-
-#: searchform.php:20
-msgctxt "placeholder"
-msgid "Search &hellip;"
-msgstr ""
-
-#: searchform.php:23
-msgid "Search"
-msgstr ""
-
-#: inc/editor.php:20
-msgid "Primary"
-msgstr ""
-
-#: inc/editor.php:25
-msgid "Secondary"
-msgstr ""
-
-#: inc/editor.php:30
-msgid "Light"
-msgstr ""
-
-#: inc/editor.php:35
-msgid "Dark"
-msgstr ""
-
-#: inc/editor.php:48
-msgid "Small"
-msgstr ""
-
-#: inc/editor.php:49
-msgid "SM"
-msgstr ""
-
-#: inc/editor.php:54
-msgid "Normal"
-msgstr ""
-
-#: inc/editor.php:55
-msgid "N"
-msgstr ""
-
-#: inc/editor.php:60
-msgid "Large"
-msgstr ""
-
-#: inc/editor.php:61
-msgid "LG"
-msgstr ""
-
-#: inc/setup.php:53
-msgid "Top Left"
-msgstr ""
-
-#: inc/setup.php:54
-msgid "Top Right"
-msgstr ""
-
-#: inc/setup.php:55
-msgid "Primary Left"
-msgstr ""
-
-#: inc/setup.php:56
-msgid "Primary Right"
-msgstr ""
-
-#: inc/setup.php:57
-msgid "Footer Left"
-msgstr ""
-
-#: inc/setup.php:58
-msgid "Footer Right"
-msgstr ""
-
-#: inc/setup.php:118
-msgid "Full Page Width"
-msgstr ""
-
-#. translators: %s: post date.
-#: inc/template-tags.php:32
-msgctxt "post date"
-msgid "Posted on %s"
-msgstr ""
-
-#. translators: %s: post author.
-#: inc/template-tags.php:42
-msgctxt "post author"
-msgid "by %s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:57
-msgid ", "
-msgstr ""
-
-#. translators: 1: list of categories.
-#: inc/template-tags.php:60
-msgid "Posted in %1$s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:64
-msgctxt "list item separator"
-msgid ", "
-msgstr ""
-
-#. translators: 1: list of tags.
-#: inc/template-tags.php:67
-msgid "Tagged %1$s"
-msgstr ""
-
-#. translators: %s: post title
-#: inc/template-tags.php:77
-msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
-msgstr ""
-
-#. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:94
-msgid "Edit <span class=\"sr-only\">%s</span>"
-msgstr ""
-
-#: inc/template-tags.php:164
-msgid "&laquo;"
-msgstr ""
-
-#: inc/template-tags.php:165
-msgid "&raquo;"
-msgstr ""
-
-#: inc/template-tags.php:166
-msgid "Posts navigation"
-msgstr ""
-
-#: inc/template-tags.php:211
-msgid "Post navigation"
-msgstr ""
-
-#: inc/template-tags.php:218
-msgctxt "Previous post link"
-msgid "&laquo; %title"
-msgstr ""
-
-#: inc/template-tags.php:222
-msgctxt "Next post link"
-msgid "%title &raquo;"
 msgstr ""
 
 #: inc/widgets.php:27
@@ -254,12 +91,171 @@ msgstr ""
 msgid "Footer section."
 msgstr ""
 
-#: page-templates/full-width-fixed.php:3
-msgid "Full Width Fixed"
+#: inc/setup.php:70
+msgid "Top Left"
 msgstr ""
 
-#: page-templates/full-width.php:3
+#: inc/setup.php:71
+msgid "Top Right"
+msgstr ""
+
+#: inc/setup.php:72
+msgid "Primary Left"
+msgstr ""
+
+#: inc/setup.php:73
+msgid "Primary Right"
+msgstr ""
+
+#: inc/setup.php:74
+msgid "Footer Left"
+msgstr ""
+
+#: inc/setup.php:75
+msgid "Footer Right"
+msgstr ""
+
+#: inc/setup.php:84
+msgid "Primary"
+msgstr ""
+
+#: inc/setup.php:89
+msgid "Secondary"
+msgstr ""
+
+#: inc/setup.php:94
+msgid "Light"
+msgstr ""
+
+#: inc/setup.php:99
+msgid "Dark"
+msgstr ""
+
+#: inc/setup.php:111
+msgid "Small"
+msgstr ""
+
+#: inc/setup.php:112
+msgid "SM"
+msgstr ""
+
+#: inc/setup.php:117
+msgid "Normal"
+msgstr ""
+
+#: inc/setup.php:118
+msgid "N"
+msgstr ""
+
+#: inc/setup.php:123
+msgid "Large"
+msgstr ""
+
+#: inc/setup.php:124
+msgid "LG"
+msgstr ""
+
+#. translators: %s: post date.
+#: inc/template-tags.php:33
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr ""
+
+#. translators: %s: post author.
+#: inc/template-tags.php:43
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:62
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: inc/template-tags.php:65
+msgid "Posted in %1$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:69
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: inc/template-tags.php:72
+msgid "Tagged %1$s"
+msgstr ""
+
+#. translators: %s: post title
+#: inc/template-tags.php:82
+msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: inc/template-tags.php:99
+msgid "Edit <span class=\"sr-only\">%s</span>"
+msgstr ""
+
+#: inc/template-tags.php:168
+msgid "&laquo;"
+msgstr ""
+
+#: inc/template-tags.php:169
+msgid "&raquo;"
+msgstr ""
+
+#: inc/template-tags.php:170
+msgid "Posts navigation"
+msgstr ""
+
+#: inc/template-tags.php:214
+msgid "Post navigation"
+msgstr ""
+
+#: inc/template-tags.php:223
+msgctxt "Previous post link"
+msgid "&laquo; %title"
+msgstr ""
+
+#: inc/template-tags.php:230
+msgctxt "Next post link"
+msgid "%title &raquo;"
+msgstr ""
+
+#. translators: 1: title.
+#: comments.php:35
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr ""
+
+#. translators: 1: comment count number, 2: title.
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:68
+msgid "Comments are closed."
+msgstr ""
+
+#. translators: %s: search query.
+#: search.php:28
+msgid "Search Results for: %s"
+msgstr ""
+
+#: header.php:35
+msgid "Skip to content"
+msgstr ""
+
+#. Template Name of the theme
 msgid "Full Width"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Full Width Fixed"
 msgstr ""
 
 #: template-parts/content-none.php:16
@@ -289,4 +285,23 @@ msgstr ""
 
 #: template-parts/main-navigation.php:39
 msgid "Toggle navigation"
+msgstr ""
+
+#. Translators: %s: The name of the author.
+#: author.php:37
+msgid "All posts by %s"
+msgstr ""
+
+#: searchform.php:17
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:20
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: searchform.php:23
+msgid "Search"
 msgstr ""
