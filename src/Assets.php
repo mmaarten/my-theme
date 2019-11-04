@@ -33,10 +33,12 @@ final class Assets
 
     public static function getAsset($src)
     {
+        // Get path to .asset.php file
         $path = self::getPath($src);
         $file = str_replace(['.js', '.css'], '.asset.php', $path);
-        $file = str_replace('/build/styles/', '/build/scripts/', $file); // Assets are in /build/scripts directory.
+        $file = str_replace('/build/styles/', '/build/scripts/', $file); // Assets are in /build/scripts/ directory.
 
+        // Get asset
         if (file_exists($file)) {
             $asset = require $file;
         } else {
@@ -52,6 +54,7 @@ final class Assets
             $asset['dependencies'] = [];
         }
 
+        // Return.
         return $asset;
     }
 
