@@ -20,7 +20,7 @@ module.exports = {
     'editor-styles': 'styles/editor-styles.scss',
     'block-editor': 'styles/block-editor.scss',
     'block-style': 'styles/block-style.scss',
-    'block-sample': 'scripts/blocks/sample/index.js',
+    //'block-sample': 'scripts/blocks/sample/index.js',
   },
   output: {
     ...defaultConfig.output,

@@ -12,7 +12,7 @@ namespace My\Theme;
  */
 function register_block_types()
 {
-    // List of block type class names.
+    // List of block type class names to register.
     $blocks = [
         'Sample',
     ];
@@ -48,11 +48,6 @@ function register_block_assets()
         get_template_directory_uri() . '/build/scripts/block-sample.js'
     );
      */
-
-    Assets::registerScript(
-        'my-theme-block-sample',
-        get_template_directory_uri() . '/build/scripts/block-sample.js'
-    );
 }
 
 // `enqueue_block_assets` hook does not load blocks.
