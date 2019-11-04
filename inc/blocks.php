@@ -54,4 +54,6 @@ function register_block_assets()
         get_template_directory_uri() . '/build/scripts/block-sample.js'
     );
 }
-add_action('enqueue_block_assets', __NAMESPACE__ . '\register_block_assets');
+
+// `enqueue_block_assets` hook does not load blocks.
+add_action('init', __NAMESPACE__ . '\register_block_assets');
