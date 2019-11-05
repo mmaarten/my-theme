@@ -1,5 +1,5 @@
 # My Theme
-Bootstrap driven WordPress starter theme
+Bootstrap driven WordPress starter theme.
 
 ## Features
 - [Sass](https://sass-lang.com/) for stylesheets
