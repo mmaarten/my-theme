@@ -10,8 +10,7 @@ namespace My\Theme;
 /**
  * Register block types
  */
-function register_block_types()
-{
+add_action('after_setup_theme', function () {
     // List of block type class names to register.
     $blocks = [
         'Sample',
@@ -21,21 +20,19 @@ function register_block_types()
         $instance = new $class();
         $instance->registerBlockType();
     }
-}
-add_action('after_setup_theme', __NAMESPACE__ . '\register_block_types', 10, 2);
+}, 10, 2);
 
 /**
  * Register block assets
  */
-function register_block_assets()
-{
+add_action('init', function () {
     // Common
-    Assets::registerStyle(
+    register_style(
         'my-theme-block-editor',
         get_template_directory_uri() . '/build/styles/block-editor.css',
         ['wp-edit-blocks']
     );
-    Assets::registerStyle(
+    register_style(
         'my-theme-block-style',
         get_template_directory_uri() . '/build/styles/block-style.css'
     );
@@ -43,12 +40,9 @@ function register_block_assets()
     /**
      * Individual blocks
      * @example
-    Assets::registerScript(
+    register_script(
         'my-theme-block-sample',
         get_template_directory_uri() . '/build/scripts/block-sample.js'
     );
      */
-}
-
-// `enqueue_block_assets` hook does not load blocks.
-add_action('init', __NAMESPACE__ . '\register_block_assets');
+});

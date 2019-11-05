@@ -13,8 +13,7 @@ namespace My\Theme;
  * @param array $classes Classes for the body element.
  * @return array
  */
-function body_class($classes)
-{
+add_filter('body_class', function ($classes) {
     $include = [
         // Common.
         'singular' => is_singular(),
@@ -45,18 +44,15 @@ function body_class($classes)
 
     // Return.
     return $classes;
-}
-add_filter('body_class', __NAMESPACE__ . '\body_class');
+});
 
 /**
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.
  *
  * @link https://developer.wordpress.org/reference/functions/bloginfo/
  */
-function pingback_header()
-{
+add_action('wp_head', function () {
     if (is_singular() && pings_open()) {
         printf('<link rel="pingback" href="%s">', esc_url(get_bloginfo('pingback_url')));
     }
-}
-add_action('wp_head', __NAMESPACE__ . '\pingback_header');
+});

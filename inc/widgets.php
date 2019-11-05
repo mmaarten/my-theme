@@ -12,8 +12,7 @@ namespace My\Theme;
  *
  * @link https://developer.wordpress.org/reference/functions/register_sidebar/
  */
-function register_sidebars()
-{
+add_action('widgets_init', function () {
     $args = [
         'before_widget' => '<section id="%1$s" class="widget %2$s">',
         'after_widget'  => '</section>',
@@ -52,5 +51,4 @@ function register_sidebars()
             'description' => esc_html__('Footer section.', 'my-theme'),
         ] + $args
     );
-}
-add_action('widgets_init', __NAMESPACE__ . '\register_sidebars');
+});

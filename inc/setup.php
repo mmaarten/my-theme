@@ -9,11 +9,9 @@ namespace My\Theme;
 
 /**
  * Theme setup
- *
  * @link https://developer.wordpress.org/reference/functions/add_theme_support/
  */
-function setup()
-{
+add_action('after_setup_theme', function () {
     /**
      * Make theme available for translation.
      * @link https://developer.wordpress.org/reference/functions/load_theme_textdomain/
@@ -174,29 +172,22 @@ function setup()
      * @link https://developer.wordpress.org/reference/functions/add_image_size/
      * @example add_image_size('my-image-size', 800, 600, false);
      */
-}
-add_action('after_setup_theme', __NAMESPACE__ . '\setup');
+});
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
- *
  * @link https://developer.wordpress.com/themes/content-width/
  * @global int $content_width
  */
-function content_width()
-{
+add_action('after_setup_theme', function () {
     $GLOBALS['content_width'] = 1110;
-}
-add_action('after_setup_theme', __NAMESPACE__ . '\content_width', 0);
+}, 0);
 
 /**
  * Modify the list of image sizes that are available in the WordPress Media Library.
- *
  * @param array $sizes List of image size names.
  * @return array
  */
-function image_size_names_choose($sizes)
-{
+add_filter('image_size_names_choose', function ($sizes) {
     return $sizes;
-}
-add_filter('image_size_names_choose', __NAMESPACE__ . '\image_size_names_choose');
+});
