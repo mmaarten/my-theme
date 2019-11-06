@@ -9,27 +9,27 @@ const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+
+const filename = '[name]_[hash]';
 
 module.exports = {
-  ...defaultConfig,
   context: path.resolve(__dirname, 'assets'),
   entry : {
     'main': [ 'styles/main.scss', 'scripts/main.js' ],
     'customizer': 'scripts/customizer.js',
     'editor-styles': 'styles/editor-styles.scss',
-    'block-editor': 'styles/block-editor.scss',
     'block-style': 'styles/block-style.scss',
-    //'block-sample': 'scripts/blocks/sample/index.js',
   },
   output: {
-    ...defaultConfig.output,
-    filename: 'scripts/[name].js',
+    filename: `scripts/${filename}.js`,
     path: path.resolve(__dirname, 'build'),
     publicPath: '/wp-content/themes/my-theme/build/',
   },
+  stats: {
+    children: false,
+  },
   resolve: {
-    ...defaultConfig.resolve,
     // Directories where to look for modules
     modules: [
       path.resolve(__dirname, 'assets'),
@@ -44,9 +44,17 @@ module.exports = {
   },
   module:
   {
-    ...defaultConfig.module,
     rules: [
-      ...defaultConfig.module.rules,
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
       {
         test: /\.(scss|sass|css)$/,
         use: [
@@ -88,7 +96,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[ext]',
+              name: `[path]${filename}.[ext]`,
               limit: 4096,
             },
           },
@@ -103,7 +111,7 @@ module.exports = {
             options: {
               limit: 4096,
               outputPath: 'vendor/',
-              name: '[name].[ext]',
+              name: `${filename}.[ext]`,
             },
           },
         ],
@@ -111,12 +119,11 @@ module.exports = {
     ],
   },
   plugins: [
-    ...defaultConfig.plugins,
     // Remove all files inside output.path director
     new CleanWebpackPlugin(),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: `styles/${filename}.css`,
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
@@ -130,6 +137,44 @@ module.exports = {
       'images/**/*',
       'fonts/**/*',
     ]),
+    new WebpackAssetsManifest({
+      output: 'assets.json',
+      space: 2,
+      writeToDisk: false,
+      assets: {},
+      replacer: (key, value) => {
+        if (typeof value === 'string') {
+          return value;
+        }
+        const manifest = value;
+        /**
+         * Hack to prepend scripts/ or styles/ to manifest keys
+         *
+         * This might need to be reworked at some point.
+         *
+         * Before:
+         *   {
+         *     "main.js": "scripts/main_abcdef.js"
+         *     "main.css": "styles/main_abcdef.css"
+         *   }
+         * After:
+         *   {
+         *     "scripts/main.js": "scripts/main_abcdef.js"
+         *     "styles/main.css": "styles/main_abcdef.css"
+         *   }
+         */
+        Object.keys(manifest).forEach((src) => {
+          const sourcePath = path.basename(path.dirname(src));
+          const targetPath = path.basename(path.dirname(manifest[src]));
+          if (sourcePath === targetPath) {
+            return;
+          }
+          manifest[`${targetPath}/${src}`] = manifest[src];
+          delete manifest[src];
+        });
+        return manifest;
+      },
+    }),
     // Elegant ProgressBar and Profiler
     new WebpackBar(),
   ],
