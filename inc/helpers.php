@@ -8,22 +8,18 @@
 namespace My\Theme;
 
 /**
- * Get the full asset URL with hashed filename.
- *
  * @param string $asset Relative path from build directory. e.g. 'scripts/main.js'.
- * @return bool|string
+ * @return string
  */
 function asset_path($asset)
 {
-    $file = get_template_directory() . '/build/assets.json';
-    if (!file_exists($file)) {
-        return false;
+    static $paths = null;
+
+    if (is_null($paths)) {
+        $file = get_template_directory() . '/build/assets.json';
+        $paths = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
     }
 
-    $paths = json_decode(file_get_contents($file), true);
-    if (isset($paths[$asset])) {
-        return $paths[$asset];
-    }
-
-    return false;
+    $path = isset($paths[$asset]) ? $paths[$asset] : $asset;
+    return get_template_directory_uri() . '/build/' . $path;
 }

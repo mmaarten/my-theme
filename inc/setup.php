@@ -12,6 +12,7 @@ namespace My\Theme;
  * @link https://developer.wordpress.org/reference/functions/add_theme_support/
  */
 add_action('after_setup_theme', function () {
+
     /**
      * Make theme available for translation.
      * @link https://developer.wordpress.org/reference/functions/load_theme_textdomain/
