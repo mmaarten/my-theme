@@ -1,18 +1,4 @@
 //
-// Block max widths
-//
-// Blocks are placed inside a container component
-// therefore the container horizontal padding is substracted.
-//
-
-$block-max-widths : (
-  sm : map-get($container-max-widths, "sm") - $grid-gutter-width,
-  md : map-get($container-max-widths, "md") - $grid-gutter-width,
-  lg : map-get($container-max-widths, "lg") - $grid-gutter-width,
-  xl : map-get($container-max-widths, "xl") - $grid-gutter-width,
-);
-
-//
 // Set spacing and max widths according to the 'align' setting.
 //
 

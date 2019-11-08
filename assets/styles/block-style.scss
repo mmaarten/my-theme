@@ -3,26 +3,8 @@
  *
  * Used on front-end and editing interface.
  */
-
-@import "common/variables";
+@import "variables";
 @import "~bootstrap/scss/mixins";
-
-//
-// Editor colors
-//
-
-$editor-colors: ();
-$editor-colors: map-merge($theme-colors, $editor-colors);
-
-//
-// Editor font sizes
-//
-
-$editor-font-sizes: (
-  "small"  : $font-size-sm,
-  "normal" : $font-size-base,
-  "large"  : $font-size-lg,
-);
 
 //
 // Editor text colors

@@ -11,20 +11,32 @@ const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
-const filename = '[name]_[hash]';
+const rootPath = process.cwd();
 
-module.exports = {
-  context: path.resolve(__dirname, 'assets'),
+const config = {
   entry : {
     'main': [ 'styles/main.scss', 'scripts/main.js' ],
     'customizer': 'scripts/customizer.js',
     'editor-styles': 'styles/editor-styles.scss',
     'block-style': 'styles/block-style.scss',
   },
+  publicPath : 'wp-content/themes/my-theme',
+  paths: {
+    root: rootPath,
+    assets: path.join(rootPath, 'assets'),
+    dist: path.join(rootPath, 'build'),
+  },
+};
+
+const filename = '[name]_[hash:8]';
+
+module.exports = {
+  context: config.paths.assets,
+  entry : config.entry,
   output: {
     filename: `scripts/${filename}.js`,
-    path: path.resolve(__dirname, 'build'),
-    publicPath: '/wp-content/themes/my-theme/build/',
+    path: config.paths.dist,
+    publicPath: `${config.publicPath}/${path.basename(config.paths.dist)}/`,
   },
   stats: {
     children: false,
@@ -32,7 +44,7 @@ module.exports = {
   resolve: {
     // Directories where to look for modules
     modules: [
-      path.resolve(__dirname, 'assets'),
+      config.paths.assets,
       'node_modules',
     ],
     // Disable extensions filter
@@ -91,7 +103,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
-        include: path.resolve(__dirname, 'assets'),
+        include: config.paths.assets,
         use: [
           {
             loader: 'file-loader',
