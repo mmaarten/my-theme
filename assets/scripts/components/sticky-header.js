@@ -1,14 +1,9 @@
-/**
- * Sticky Header
- */
-(function( $ )
-{
+(function( $ ) {
 	'use strict';
 
 	var elem, spacer, adminBar, isStuck, bottom;
 
-	var init = function()
-	{
+	var init = function() {
 		elem     = document.getElementById( 'sticky-header' );
 		spacer   = document.createElement( 'div' );
 		adminBar = document.getElementById( 'wpadminbar' );
@@ -16,8 +11,7 @@
 		isStuck = false;
 		bottom  = elem.offsetTop + elem.offsetHeight;
 
-		if ( adminBar )
-		{
+		if ( adminBar ) {
 			adminBar.style.position = 'absolute';
 		}
 
@@ -28,11 +22,9 @@
 
 	document.addEventListener( 'DOMContentLoaded', init );
 
-	var stick = function()
-	{
+	var stick = function() {
 		// Stop when already stuck
-		if ( isStuck )
-		{
+		if ( isStuck ) {
 			return;
 		}
 
@@ -52,11 +44,9 @@
 		$( document.body ).trigger( 'theme.masthead.stuck', [ isStuck ] );
 	};
 
-	var unstick = function()
-	{
+	var unstick = function() {
 		// Stop when already unstuck
-		if ( ! isStuck )
-		{
+		if ( ! isStuck ) {
 			return;
 		}
 
@@ -77,13 +67,11 @@
 	{
 		var scrollTop = $( document ).scrollTop();
 
-		if ( scrollTop > bottom )
-		{
+		if ( scrollTop > bottom ) {
 			stick();
 		}
 
-		else if ( scrollTop <= Math.max( bottom - elem.offsetHeight, 0 ) )
-		{
+		else if ( scrollTop <= Math.max( bottom - elem.offsetHeight, 0 ) ) {
 			unstick();
 		}
 	};
