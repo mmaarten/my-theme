@@ -2,6 +2,11 @@
  * Navbar
  */
 
+$site-logo-max-height:    $navbar-brand-height + $navbar-brand-padding-y * 2;
+$site-logo-max-height-lg: $site-logo-max-height * 2;
+
+$navbar-padding-y-lg: $navbar-padding-y * 2;
+
 .navbar {
 
   // Animate background color changes
