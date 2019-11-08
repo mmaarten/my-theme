@@ -1,9 +1,4 @@
 <?php
-/**
- * Navigation menus
- *
- * @package My/Theme
- */
 
 namespace My\Theme;
 

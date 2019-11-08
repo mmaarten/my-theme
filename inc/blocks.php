@@ -1,9 +1,4 @@
 <?php
-/**
- * Blocks
- *
- * @package My/Theme
- */
 
 namespace My\Theme;
 

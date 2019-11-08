@@ -1,9 +1,4 @@
 <?php
-/**
- * Assets
- *
- * @package My/Theme
- */
 
 namespace My\Theme;
 

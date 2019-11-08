@@ -1,9 +1,4 @@
 <?php
-/**
- * Setup
- *
- * @package My/Theme
- */
 
 namespace My\Theme;
 
