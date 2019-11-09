@@ -14,13 +14,7 @@ const WebpackAssetsManifest = require('webpack-assets-manifest');
 const rootPath = process.cwd();
 
 const config = {
-  entry : {
-    'main': [ 'styles/main.scss', 'scripts/main.js' ],
-    'customizer': 'scripts/customizer.js',
-    'editor-styles': 'styles/editor-styles.scss',
-    'block-style': 'styles/block-style.scss',
-  },
-  publicPath : 'wp-content/themes/my-theme',
+  filename : '[name]_[hash]',
   paths: {
     root: rootPath,
     assets: path.join(rootPath, 'assets'),
@@ -28,15 +22,15 @@ const config = {
   },
 };
 
-const filename = '[name]_[hash:8]';
+const userConfig = require(`${config.paths.assets}/config.json`);
 
 module.exports = {
   context: config.paths.assets,
-  entry : config.entry,
+  entry : userConfig.entry,
   output: {
-    filename: `scripts/${filename}.js`,
+    filename: `scripts/${config.filename}.js`,
     path: config.paths.dist,
-    publicPath: `${config.publicPath}/${path.basename(config.paths.dist)}/`,
+    publicPath: `${userConfig.publicPath}/${path.basename(config.paths.dist)}/`,
   },
   stats: {
     children: false,
@@ -59,7 +53,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -108,7 +102,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: `[path]${filename}.[ext]`,
+              name: `[path]${config.filename}.[ext]`,
               limit: 4096,
             },
           },
@@ -123,7 +117,7 @@ module.exports = {
             options: {
               limit: 4096,
               outputPath: 'vendor/',
-              name: `${filename}.[ext]`,
+              name: `${config.filename}.[ext]`,
             },
           },
         ],
@@ -135,7 +129,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
-      filename: `styles/${filename}.css`,
+      filename: `styles/${config.filename}.css`,
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
@@ -149,6 +143,7 @@ module.exports = {
       'images/**/*',
       'fonts/**/*',
     ]),
+    // generate a JSON file that matches the original filename with the hashed version.
     new WebpackAssetsManifest({
       output: 'assets.json',
       space: 2,
@@ -159,22 +154,7 @@ module.exports = {
           return value;
         }
         const manifest = value;
-        /**
-         * Hack to prepend scripts/ or styles/ to manifest keys
-         *
-         * This might need to be reworked at some point.
-         *
-         * Before:
-         *   {
-         *     "main.js": "scripts/main_abcdef.js"
-         *     "main.css": "styles/main_abcdef.css"
-         *   }
-         * After:
-         *   {
-         *     "scripts/main.js": "scripts/main_abcdef.js"
-         *     "styles/main.css": "styles/main_abcdef.css"
-         *   }
-         */
+        // Prepend scripts/ or styles/ to manifest keys
         Object.keys(manifest).forEach((src) => {
           const sourcePath = path.basename(path.dirname(src));
           const targetPath = path.basename(path.dirname(manifest[src]));

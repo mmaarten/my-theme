@@ -1,79 +1,76 @@
-(function( $ ) {
-	'use strict';
+import $ from 'jquery';
 
-	var elem, spacer, adminBar, isStuck, bottom;
+class StickyHeader {
+  static init() {
+    this.elem = document.getElementById( 'sticky-header' );
+		this.spacer = document.createElement( 'div' );
+		this.adminBar = document.getElementById( 'wpadminbar' );
 
-	var init = function() {
-		elem     = document.getElementById( 'sticky-header' );
-		spacer   = document.createElement( 'div' );
-		adminBar = document.getElementById( 'wpadminbar' );
+		this.isStuck = false;
+		this.bottom  = this.elem.offsetTop + this.elem.offsetHeight;
 
-		isStuck = false;
-		bottom  = elem.offsetTop + elem.offsetHeight;
-
-		if ( adminBar ) {
-			adminBar.style.position = 'absolute';
+		if ( this.adminBar ) {
+			this.adminBar.style.position = 'absolute';
 		}
 
-		window.addEventListener( 'scroll', update.bind( this ) );
+		window.addEventListener( 'scroll', this.update.bind( this ) );
 
-		update();
-	};
+		this.update();
+  }
 
-	document.addEventListener( 'DOMContentLoaded', init );
-
-	var stick = function() {
+	static stick() {
 		// Stop when already stuck
-		if ( isStuck ) {
+		if ( this.isStuck ) {
 			return;
 		}
 
 		// Update spacer height
-		spacer.style.height = elem.offsetHeight + 'px';
+		this.spacer.style.height = this.elem.offsetHeight + 'px';
 
 		// Add spacer to DOM
-		elem.parentElement.insertBefore( spacer, elem );
+		this.elem.parentElement.insertBefore( this.spacer, this.elem );
 
 		// Add sticky class
-		elem.classList.add( 'is-stuck' );
+		this.elem.classList.add( 'is-stuck' );
 
 		// Update state
-		isStuck = true;
+		this.isStuck = true;
 
 		// Notify
-		$( document.body ).trigger( 'theme.masthead.stuck', [ isStuck ] );
+		$( document.body ).trigger( 'theme.masthead.stuck', [ this.isStuck ] );
 	};
 
-	var unstick = function() {
+	static unstick() {
 		// Stop when already unstuck
-		if ( ! isStuck ) {
+		if ( ! this.isStuck ) {
 			return;
 		}
 
 		// Remove spacer from DOM
-		elem.parentElement.removeChild( spacer );
+		this.elem.parentElement.removeChild( this.spacer );
 
 		// Remove sticky class
-		elem.classList.remove( 'is-stuck' );
+		this.elem.classList.remove( 'is-stuck' );
 
 		// Update state
-		isStuck = false;
+		this.isStuck = false;
 
 		// Notify
-		$( document.body ).trigger( 'theme.masthead.unstuck', [ isStuck ] );
+		$( document.body ).trigger( 'theme.masthead.unstuck', [ this.isStuck ] );
 	};
 
-	var update = function()
-	{
+	static update() {
 		var scrollTop = $( document ).scrollTop();
 
-		if ( scrollTop > bottom ) {
-			stick();
+		if ( scrollTop > this.bottom ) {
+			this.stick();
 		}
 
-		else if ( scrollTop <= Math.max( bottom - elem.offsetHeight, 0 ) ) {
-			unstick();
+		else if ( scrollTop <= Math.max( this.bottom - this.elem.offsetHeight, 0 ) ) {
+			this.unstick();
 		}
 	};
 
-})( jQuery );
+}
+
+StickyHeader.init();

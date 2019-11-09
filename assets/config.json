@@ -1,0 +1,9 @@
+{
+  "entry": {
+    "main": [ "styles/main.scss", "scripts/main.js" ],
+    "customizer": "scripts/customizer.js",
+    "editor-styles": "styles/editor-styles.scss",
+    "block-style": "styles/block-style.scss"
+  },
+  "publicPath": "/wp-content/themes/my-theme"
+}

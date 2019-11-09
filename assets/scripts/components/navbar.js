@@ -1,12 +1,12 @@
 import $ from 'jquery';
 
 export default class Navbar {
-  constructor(elemId) {
-    this.elem = document.getElementById(elemId);
+  static init() {
+    this.elem = document.getElementById('main-navigation');
     this.originalTheme = this.getTheme();
   }
 
-  getTheme() {
+  static getTheme() {
     let className = [];
 
 		// get `navbar-light` or `navbar-dark`
@@ -25,11 +25,13 @@ export default class Navbar {
 		return className.join( ' ' );
   }
 
-  setTheme(className) {
+  static setTheme(className) {
 		$( this.elem ).removeClass( this.getTheme() ).addClass( className );
   }
 
-  restoreTheme() {
+  static restoreTheme() {
 		this.setTheme( this.originalTheme );
   }
 }
+
+Navbar.init();
