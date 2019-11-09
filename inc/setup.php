@@ -142,7 +142,7 @@ add_action('after_setup_theme', function () {
      * Set editor style.
      * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#editor-styles
      */
-    add_editor_style('build/styles/editor-styles.css');
+    add_editor_style(asset_path('styles/editor-style.css'));
 
     /**
      * Adjust the color of the UI to work on dark backgrounds.

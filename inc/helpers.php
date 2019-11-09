@@ -2,19 +2,15 @@
 
 namespace My\Theme;
 
-/**
- * @param string $asset Relative path from build directory. e.g. 'scripts/main.js'.
- * @return string
- */
 function asset_path($asset)
 {
-    static $paths = null;
+    $manifest_path = get_template_directory() . '/build/assets.json';
+    $manifest = file_exists($manifest_path) ? json_decode(file_get_contents($manifest_path), true) : [];
 
-    if (is_null($paths)) {
-        $file = get_template_directory() . '/build/assets.json';
-        $paths = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
-    }
+    return isset($manifest[$asset]) ? "build/{$manifest[$asset]}" : "build/{$asset}";
+}
 
-    $path = isset($paths[$asset]) ? $paths[$asset] : $asset;
-    return get_template_directory_uri() . '/build/' . $path;
+function asset_uri($asset)
+{
+    return get_template_directory_uri() . '/' . asset_path($asset);
 }
