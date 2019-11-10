@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-class StickyHeader {
+export default class StickyHeader {
   static init() {
     this.elem = document.getElementById( 'sticky-header' );
 		this.spacer = document.createElement( 'div' );
