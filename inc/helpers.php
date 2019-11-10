@@ -2,15 +2,20 @@
 
 namespace My\Theme;
 
+/**
+ * @param string $asset
+ * @return string
+ */
 function asset_path($asset)
 {
-    $manifest_path = get_template_directory() . '/build/assets.json';
-    $manifest = file_exists($manifest_path) ? json_decode(file_get_contents($manifest_path), true) : [];
+    static $manifest = null;
 
-    return isset($manifest[$asset]) ? "build/{$manifest[$asset]}" : "build/{$asset}";
-}
+    if (is_null($manifest)) {
+        $manifest_path = get_template_directory() . '/build/assets.json';
+        $manifest = file_exists($manifest_path) ? json_decode(file_get_contents($manifest_path), true) : [];
+    }
 
-function asset_uri($asset)
-{
-    return get_template_directory_uri() . '/' . asset_path($asset);
+    $path = isset($manifest[$asset]) ? $manifest[$asset] : $asset;
+
+    return get_theme_file_uri("build/$path");
 }
