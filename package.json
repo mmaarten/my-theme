@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack --mode development --devtool source-map --watch"
+    "build": "webpack --env.production",
+    "start": "webpack --watch"
   },
   "keywords": [
     "wordpress",
@@ -40,6 +40,7 @@
     "webpack": "^4.41.2",
     "webpack-assets-manifest": "^3.1.1",
     "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2",
     "webpackbar": "^3.2.0"
   },
   "dependencies": {

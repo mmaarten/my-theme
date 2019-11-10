@@ -1,6 +1,7 @@
 const path = require('path');
 const { argv } = require('yargs');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -11,40 +12,50 @@ const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
+const isProduction = !!((argv.env && argv.env.production) || argv.p);
 const rootPath = process.cwd();
 
+if (undefined === process.env.NODE_ENV) {
+  process.env.NODE_ENV = isProduction ? 'production' : 'development';
+}
+
 const config = {
-  filename : '[name]_[hash]',
   paths: {
     root: rootPath,
     assets: path.join(rootPath, 'assets'),
     dist: path.join(rootPath, 'build'),
   },
+  enabled: {
+    sourceMaps: !isProduction,
+    cacheBusting: isProduction,
+    optimization : isProduction,
+  },
+  cacheBusting: '[name]_[hash]',
 };
 
+const filename = config.enabled.cacheBusting ? config.cacheBusting : '[name]';
 const userConfig = require(`${config.paths.assets}/config.json`);
 
 module.exports = {
   context: config.paths.assets,
   entry : userConfig.entry,
+  devtool: config.enabled.sourceMaps ? '#source-map' : undefined,
+  mode : isProduction ? 'production' : 'development',
   output: {
-    filename: `scripts/${config.filename}.js`,
+    filename: `scripts/${filename}.js`,
     path: config.paths.dist,
-    publicPath: `${userConfig.publicPath}/${path.basename(config.paths.dist)}/`,
+    publicPath: path.join(userConfig.publicPath, path.basename(config.paths.dist)),
   },
   stats: {
     children: false,
   },
   resolve: {
-    // Directories where to look for modules
     modules: [
       config.paths.assets,
       'node_modules',
     ],
-    // Disable extensions filter
     enforceExtension: false,
   },
-  // Exclude dependencies from the output bundles
   externals: {
     jquery: 'jQuery',
   },
@@ -57,41 +68,49 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
-        test: /\.(scss|sass|css)$/,
+        test: /\.css$/,
+        include: config.paths.assets,
         use: [
+          { loader : MiniCssExtractPlugin.loader },
+          { loader: 'css-loader', options: { sourceMap: config.enabled.sourceMaps } },
           {
-            // Extract CSS into separate files
-            loader : MiniCssExtractPlugin.loader,
-          },
-          {
-            // Interpret @import and url() like import/require() and resolve them.
-            loader: 'css-loader',
-            options: { sourceMap: true },
-          },
-          {
-            // Process post CSS actions
             loader: 'postcss-loader',
             options: {
-              sourceMap: true,
+              sourceMap: config.enabled.sourceMaps,
               plugins: function() {
                 return [ require('autoprefixer') ];
               },
             },
           },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        include: config.paths.assets,
+        use: [
+          { loader : MiniCssExtractPlugin.loader },
+          { loader: 'css-loader', options: { sourceMap: config.enabled.sourceMaps } },
           {
-            // Rewrite relative paths in url() statements based on the original source file.
-            loader: 'resolve-url-loader',
-            options: { sourceMap: true },
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: config.enabled.sourceMaps,
+              plugins: function() {
+                return [ require('autoprefixer') ];
+              },
+            },
           },
+          { loader: 'resolve-url-loader', options: { sourceMap: config.enabled.sourceMaps } },
           {
-            // Load a Sass/SCSS file and compile it to CSS.
             loader: 'sass-loader',
-            options: { sourceMap: true },
+            options: {
+              sourceMap: config.enabled.sourceMaps,
+              sourceComments: true,
+            },
           },
         ],
       },
@@ -102,7 +121,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: `[path]${config.filename}.[ext]`,
+              name: `[path]${filename}.[ext]`,
               limit: 4096,
             },
           },
@@ -117,7 +136,7 @@ module.exports = {
             options: {
               limit: 4096,
               outputPath: 'vendor/',
-              name: `${config.filename}.[ext]`,
+              name: `${filename}.[ext]`,
             },
           },
         ],
@@ -129,7 +148,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
-      filename: `styles/${config.filename}.css`,
+      filename: `styles/${filename}.css`,
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
@@ -143,7 +162,7 @@ module.exports = {
       'images/**/*',
       'fonts/**/*',
     ]),
-    // generate a JSON file that matches the original filename with the hashed version.
+    // Generate a JSON file that matches the original filename with the hashed version.
     new WebpackAssetsManifest({
       output: 'assets.json',
       space: 2,
@@ -171,14 +190,10 @@ module.exports = {
     new WebpackBar(),
   ],
   optimization: {
+    minimize: config.enabled.optimization,
     minimizer : [
       new OptimizeCssAssetsPlugin({
         cssProcessorPluginOptions: {
-          sourceMap: false,
-          map: { // Remove all source maps
-            inline: false,
-            annotation: true,
-          },
           preset: ['default', { discardComments: { removeAll: true } }],
         },
       }),
@@ -197,10 +212,6 @@ module.exports = {
         plugins: [imageminMozjpeg({ quality: 75 })],
       }),
       new UglifyJsPlugin({
-        test: /\.js(\?.*)?$/i,
-        cache: true,
-        parallel: true,
-        sourceMap: true,
         uglifyOptions: {
           warnings: true,
           output: { comments: false },
