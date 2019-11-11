@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-06T21:15:53+00:00\n"
+"POT-Creation-Date: 2019-11-11T13:57:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: my-theme\n"
@@ -59,167 +59,167 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: inc/widgets.php:26
+#: inc/widgets.php:21
 msgid "Header"
 msgstr ""
 
-#: inc/widgets.php:27
+#: inc/widgets.php:22
 msgid "Header section."
 msgstr ""
 
-#: inc/widgets.php:34
+#: inc/widgets.php:29
 msgid "Left Sidebar"
 msgstr ""
 
-#: inc/widgets.php:35
+#: inc/widgets.php:30
 msgid "Section on the left side."
 msgstr ""
 
-#: inc/widgets.php:42
+#: inc/widgets.php:37
 msgid "Right Sidebar"
 msgstr ""
 
-#: inc/widgets.php:43
+#: inc/widgets.php:38
 msgid "Section on the right side."
 msgstr ""
 
-#: inc/widgets.php:50
+#: inc/widgets.php:45
 msgid "Footer"
 msgstr ""
 
-#: inc/widgets.php:51
+#: inc/widgets.php:46
 msgid "Footer section."
 msgstr ""
 
-#: inc/setup.php:63
+#: inc/setup.php:59
 msgid "Primary"
 msgstr ""
 
-#: inc/setup.php:68
+#: inc/setup.php:64
 msgid "Secondary"
 msgstr ""
 
-#: inc/setup.php:73
+#: inc/setup.php:69
 msgid "Light"
 msgstr ""
 
-#: inc/setup.php:78
+#: inc/setup.php:74
 msgid "Dark"
 msgstr ""
 
-#: inc/setup.php:90
+#: inc/setup.php:86
 msgid "Small"
 msgstr ""
 
-#: inc/setup.php:91
+#: inc/setup.php:87
 msgid "SM"
 msgstr ""
 
-#: inc/setup.php:96
+#: inc/setup.php:92
 msgid "Normal"
 msgstr ""
 
-#: inc/setup.php:97
+#: inc/setup.php:93
 msgid "N"
 msgstr ""
 
-#: inc/setup.php:102
+#: inc/setup.php:98
 msgid "Large"
 msgstr ""
 
-#: inc/setup.php:103
+#: inc/setup.php:99
 msgid "LG"
 msgstr ""
 
-#: inc/setup.php:162
+#: inc/setup.php:158
 msgid "Top Left"
 msgstr ""
 
-#: inc/setup.php:163
+#: inc/setup.php:159
 msgid "Top Right"
 msgstr ""
 
-#: inc/setup.php:164
+#: inc/setup.php:160
 msgid "Primary Left"
 msgstr ""
 
-#: inc/setup.php:165
+#: inc/setup.php:161
 msgid "Primary Right"
 msgstr ""
 
-#: inc/setup.php:166
+#: inc/setup.php:162
 msgid "Footer Left"
 msgstr ""
 
-#: inc/setup.php:167
+#: inc/setup.php:163
 msgid "Footer Right"
 msgstr ""
 
 #. translators: %s: post date.
-#: inc/template-tags.php:33
+#: inc/template-tags.php:26
 msgctxt "post date"
 msgid "Posted on %s"
 msgstr ""
 
 #. translators: %s: post author.
-#: inc/template-tags.php:43
+#: inc/template-tags.php:36
 msgctxt "post author"
 msgid "by %s"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:62
+#: inc/template-tags.php:55
 msgid ", "
 msgstr ""
 
 #. translators: 1: list of categories.
-#: inc/template-tags.php:65
+#: inc/template-tags.php:58
 msgid "Posted in %1$s"
 msgstr ""
 
 #. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:69
+#: inc/template-tags.php:62
 msgctxt "list item separator"
 msgid ", "
 msgstr ""
 
 #. translators: 1: list of tags.
-#: inc/template-tags.php:72
+#: inc/template-tags.php:65
 msgid "Tagged %1$s"
 msgstr ""
 
 #. translators: %s: post title
-#: inc/template-tags.php:82
+#: inc/template-tags.php:75
 msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
 msgstr ""
 
 #. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:99
+#: inc/template-tags.php:92
 msgid "Edit <span class=\"sr-only\">%s</span>"
 msgstr ""
 
-#: inc/template-tags.php:168
+#: inc/template-tags.php:161
 msgid "&laquo;"
 msgstr ""
 
-#: inc/template-tags.php:169
+#: inc/template-tags.php:162
 msgid "&raquo;"
 msgstr ""
 
-#: inc/template-tags.php:170
+#: inc/template-tags.php:163
 msgid "Posts navigation"
 msgstr ""
 
-#: inc/template-tags.php:214
+#: inc/template-tags.php:207
 msgid "Post navigation"
 msgstr ""
 
-#: inc/template-tags.php:223
+#: inc/template-tags.php:216
 msgctxt "Previous post link"
 msgid "&laquo; %title"
 msgstr ""
 
-#: inc/template-tags.php:230
+#: inc/template-tags.php:223
 msgctxt "Next post link"
 msgid "%title &raquo;"
 msgstr ""
