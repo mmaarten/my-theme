@@ -1,15 +1,11 @@
 /*!
- * Editor normalization styles
- *
- * @package My/Theme
+ * Editor style
  */
-@import "~bootstrap/scss/functions";
-@import "common/variables";
-@import "~bootstrap/scss/variables";
+@import "variables";
 @import "~bootstrap/scss/mixins";
 
 //
-// Common
+// Normalization
 //
 // See https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/editor-styles.scss⁩
 //

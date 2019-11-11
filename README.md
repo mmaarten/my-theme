@@ -1,18 +1,17 @@
 # My Theme
-Bootstrap driven WordPress starter theme
+Bootstrap driven WordPress starter theme.
 
 ## Features
 - [Sass](https://sass-lang.com/) for stylesheets
 - [Webpack](https://webpack.js.org/) for compiling assets, optimising images, and concatenating and minifying files
 - [Bootstrap](https://getbootstrap.com/) 4 CSS framework
 - [Fontawesome](https://fontawesome.com/) icon library.
-- Complete setup for creating block types.
 
 ## Requirements
 - [Node JS](https://nodejs.org)
 - [Composer](https://getcomposer.org/)
 - PHP >= 5.4
-- WordPress >= 5.0
+- [WordPress](https://wordpress.org/) >= 5.0
 
 ## Installation
 1. [Download](https://github.com/mmaarten/my-theme/archive/master.zip) and extract zip into `wp-content/themes/` folder.

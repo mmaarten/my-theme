@@ -2,7 +2,7 @@
 /**
  * Template for displaying search forms
  *
- * @package My_Theme
+ * @package My/Theme
  */
 
 $my_theme_unique_id = uniqid('search-form-');

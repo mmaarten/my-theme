@@ -9,86 +9,118 @@ const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+
+const isProduction = !!((argv.env && argv.env.production) || argv.p);
+const rootPath = process.cwd();
+
+if (undefined === process.env.NODE_ENV) {
+  process.env.NODE_ENV = isProduction ? 'production' : 'development';
+}
+
+const config = {
+  paths: {
+    root: rootPath,
+    assets: path.join(rootPath, 'assets'),
+    dist: path.join(rootPath, 'build'),
+  },
+  enabled: {
+    sourceMaps: !isProduction,
+    cacheBusting: isProduction,
+    optimization : isProduction,
+  },
+  cacheBusting: '[name]_[hash]',
+};
+
+const filename = config.enabled.cacheBusting ? config.cacheBusting : '[name]';
+const userConfig = require(`${config.paths.assets}/config.json`);
 
 module.exports = {
-  ...defaultConfig,
-  context: path.resolve(__dirname, 'assets'),
-  entry : {
-    'main': [ 'styles/main.scss', 'scripts/main.js' ],
-    'customizer': 'scripts/customizer.js',
-    'editor-styles': 'styles/editor-styles.scss',
-    'block-editor': 'styles/block-editor.scss',
-    'block-style': 'styles/block-style.scss',
-    //'block-sample': 'scripts/blocks/sample/index.js',
-  },
+  context: config.paths.assets,
+  entry : userConfig.entry,
+  devtool: config.enabled.sourceMaps ? '#source-map' : undefined,
+  mode : isProduction ? 'production' : 'development',
   output: {
-    ...defaultConfig.output,
-    filename: 'scripts/[name].js',
-    path: path.resolve(__dirname, 'build'),
-    publicPath: '/wp-content/themes/my-theme/build/',
+    filename: `scripts/${filename}.js`,
+    path: config.paths.dist,
+    publicPath: path.join(userConfig.publicPath, path.basename(config.paths.dist)),
+  },
+  stats: {
+    children: false,
   },
   resolve: {
-    ...defaultConfig.resolve,
-    // Directories where to look for modules
     modules: [
-      path.resolve(__dirname, 'assets'),
+      config.paths.assets,
       'node_modules',
     ],
-    // Disable extensions filter
     enforceExtension: false,
   },
-  // Exclude dependencies from the output bundles
   externals: {
     jquery: 'jQuery',
   },
   module:
   {
-    ...defaultConfig.module,
     rules: [
-      ...defaultConfig.module.rules,
       {
-        test: /\.(scss|sass|css)$/,
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        include: config.paths.assets,
         use: [
+          { loader : MiniCssExtractPlugin.loader },
+          { loader: 'css-loader', options: { sourceMap: config.enabled.sourceMaps } },
           {
-            // Extract CSS into separate files
-            loader : MiniCssExtractPlugin.loader,
-          },
-          {
-            // Interpret @import and url() like import/require() and resolve them.
-            loader: 'css-loader',
-            options: { sourceMap: true },
-          },
-          {
-            // Process post CSS actions
             loader: 'postcss-loader',
             options: {
-              sourceMap: true,
+              sourceMap: config.enabled.sourceMaps,
               plugins: function() {
                 return [ require('autoprefixer') ];
               },
             },
           },
+        ],
+      },
+      {
+        test: /\.scss$/,
+        include: config.paths.assets,
+        use: [
+          { loader : MiniCssExtractPlugin.loader },
+          { loader: 'css-loader', options: { sourceMap: config.enabled.sourceMaps } },
           {
-            // Rewrite relative paths in url() statements based on the original source file.
-            loader: 'resolve-url-loader',
-            options: { sourceMap: true },
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: config.enabled.sourceMaps,
+              plugins: function() {
+                return [ require('autoprefixer') ];
+              },
+            },
           },
+          { loader: 'resolve-url-loader', options: { sourceMap: config.enabled.sourceMaps } },
           {
-            // Load a Sass/SCSS file and compile it to CSS.
             loader: 'sass-loader',
-            options: { sourceMap: true },
+            options: {
+              sourceMap: config.enabled.sourceMaps,
+              sourceComments: true,
+            },
           },
         ],
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
-        include: path.resolve(__dirname, 'assets'),
+        include: config.paths.assets,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[ext]',
+              name: `[path]${filename}.[ext]`,
               limit: 4096,
             },
           },
@@ -103,7 +135,7 @@ module.exports = {
             options: {
               limit: 4096,
               outputPath: 'vendor/',
-              name: '[name].[ext]',
+              name: `${filename}.[ext]`,
             },
           },
         ],
@@ -111,12 +143,11 @@ module.exports = {
     ],
   },
   plugins: [
-    ...defaultConfig.plugins,
     // Remove all files inside output.path director
     new CleanWebpackPlugin(),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: `styles/${filename}.css`,
     }),
     // Automatically load modules
     new webpack.ProvidePlugin({
@@ -130,18 +161,38 @@ module.exports = {
       'images/**/*',
       'fonts/**/*',
     ]),
+    // Generate a JSON file that matches the original filename with the hashed version.
+    new WebpackAssetsManifest({
+      output: 'assets.json',
+      space: 2,
+      writeToDisk: false,
+      assets: {},
+      replacer: (key, value) => {
+        if (typeof value === 'string') {
+          return value;
+        }
+        const manifest = value;
+        // Prepend scripts/ or styles/ to manifest keys
+        Object.keys(manifest).forEach((src) => {
+          const sourcePath = path.basename(path.dirname(src));
+          const targetPath = path.basename(path.dirname(manifest[src]));
+          if (sourcePath === targetPath) {
+            return;
+          }
+          manifest[`${targetPath}/${src}`] = manifest[src];
+          delete manifest[src];
+        });
+        return manifest;
+      },
+    }),
     // Elegant ProgressBar and Profiler
     new WebpackBar(),
   ],
   optimization: {
+    minimize: config.enabled.optimization,
     minimizer : [
       new OptimizeCssAssetsPlugin({
         cssProcessorPluginOptions: {
-          sourceMap: false,
-          map: { // Remove all source maps
-            inline: false,
-            annotation: true,
-          },
           preset: ['default', { discardComments: { removeAll: true } }],
         },
       }),
@@ -160,10 +211,6 @@ module.exports = {
         plugins: [imageminMozjpeg({ quality: 75 })],
       }),
       new UglifyJsPlugin({
-        test: /\.js(\?.*)?$/i,
-        cache: true,
-        parallel: true,
-        sourceMap: true,
         uglifyOptions: {
           warnings: true,
           output: { comments: false },

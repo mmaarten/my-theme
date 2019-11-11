@@ -3,15 +3,14 @@
  *
  * Used front-end.
  */
-@import "common/variables";
+@import "variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~@fortawesome/fontawesome-free/css/all.css";
-@import "common/wp-classes";
-@import "utilities/background";
-@import "utilities/text";
-@import "components/images";
-@import "components/comments";
-@import "components/gravity-forms";
-@import "components/navbar";
-@import "components/sticky-header";
-@import "components/blocks";
+@import "wordpress";
+@import "animations";
+@import "images";
+@import "comments";
+@import "gravity-forms";
+@import "navbar";
+@import "sticky-header";
+@import "blocks";
