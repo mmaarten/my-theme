@@ -1,7 +1,6 @@
 const path = require('path');
 const { argv } = require('yargs');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');

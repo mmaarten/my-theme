@@ -34,8 +34,9 @@ add_action('customize_register', function ($wp_customize) {
 });
 
 /**
- * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ * Preview init
  */
 add_action('customize_preview_init', function () {
+    // Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
     wp_enqueue_script('my-theme-customizer', asset_path('scripts/customizer.js'), ['customize-preview'], null);
 });
