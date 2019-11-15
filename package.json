@@ -14,7 +14,6 @@
   "browserslist": [
     "extends @wordpress/browserslist-config"
   ],
-  "author": "",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@babel/core": "^7.7.0",
