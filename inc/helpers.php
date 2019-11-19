@@ -17,6 +17,11 @@ function app(string $id = null, $concrete = null, bool $shared = null)
     return $container->add($id, $concrete, $shared);
 }
 
+/**
+ * @param string $key
+ * @param mixed $default
+ * @return mixed
+ */
 function config(string $key = null, $default = null)
 {
     if (is_null($key)) {
