@@ -8,6 +8,10 @@ namespace My\Theme;
  */
 add_action('after_setup_theme', function () {
 
+    app('assets', function () {
+        return new Assets\Manifest(config('assets.manifest'), config('assets.uri'));
+    });
+
     /**
      * Make theme available for translation.
      * @link https://developer.wordpress.org/reference/functions/load_theme_textdomain/

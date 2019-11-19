@@ -5,16 +5,16 @@
  * @package My/Theme
  */
 
-defined('ABSPATH') || exit;
+namespace My\Theme;
 
 /**
  * Check PHP version.
  */
-if (version_compare(PHP_VERSION, '5.4.0', '<')) {
+if (version_compare(PHP_VERSION, '7.0', '<')) {
     error_log(
         sprintf(
             // translators: 1: PHP version.
-            __('My Theme requires at least PHP version 5.4.0. You are running version %1$s.', 'my-theme'),
+            __('My Theme requires at least PHP version 7.0. You are running version %1$s.', 'my-theme'),
             PHP_VERSION
         )
     );
@@ -24,11 +24,11 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
 /**
  * Check WordPress version.
  */
-if (version_compare($GLOBALS['wp_version'], '5.0.0', '<')) {
+if (version_compare($GLOBALS['wp_version'], '5.0', '<')) {
     error_log(
         sprintf(
             // translators: 1: WordPress version.
-            __('My Theme requires at least WordPress version 5.0.0. You are running version %1$s.', 'my-theme'),
+            __('My Theme requires at least WordPress version 5.0. You are running version %1$s.', 'my-theme'),
             $GLOBALS['wp_version']
         )
     );
@@ -76,3 +76,9 @@ array_map(function ($file) {
     'template-functions',
     'template-tags',
 ]);
+
+Container::getInstance()->add('config', function () {
+    return new Config([
+        'assets' => require __DIR__ . '/config/assets.php',
+    ]);
+});

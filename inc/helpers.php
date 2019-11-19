@@ -2,20 +2,35 @@
 
 namespace My\Theme;
 
+function app(string $id = null, $concrete = null, bool $shared = null)
+{
+    $container = Container::getInstance();
+
+    if (is_null($id)) {
+        return $container;
+    }
+
+    if (is_null($concrete)) {
+        return $container->get($id);
+    }
+
+    return $container->add($id, $concrete, $shared);
+}
+
+function config(string $key = null, $default = null)
+{
+    if (is_null($key)) {
+        return app('config');
+    }
+
+    return app('config')->get($key, $default);
+}
+
 /**
  * @param string $asset
  * @return string
  */
-function asset_path($asset)
+function asset_path(string $asset)
 {
-    static $manifest = null;
-
-    if (is_null($manifest)) {
-        $manifest_path = get_template_directory() . '/build/assets.json';
-        $manifest = file_exists($manifest_path) ? json_decode(file_get_contents($manifest_path), true) : [];
-    }
-
-    $path = isset($manifest[$asset]) ? $manifest[$asset] : $asset;
-
-    return get_theme_file_uri("build/$path");
+    return app('assets')->getURI($asset);
 }
