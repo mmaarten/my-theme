@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-11T13:57:00+00:00\n"
+"POT-Creation-Date: 2019-11-21T00:34:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: my-theme\n"
@@ -22,23 +22,23 @@ msgstr ""
 msgid "https://github.com/mmaarten/my-theme"
 msgstr ""
 
-#. translators: 1: PHP version.
-#: functions.php:17
-msgid "My Theme requires at least PHP version 5.4.0. You are running version %1$s."
+#. translators: 1: Theme name. 2: required PHP version. 3: active PHP version.
+#: functions.php:19
+msgid "%1$s requires at least PHP version %2$s. You are running version %3$s."
 msgstr ""
 
-#. translators: 1: WordPress version.
-#: functions.php:31
-msgid "My Theme requires at least WordPress version 5.0.0. You are running version %1$s."
+#. translators: 1: Theme name. 2: required WordPress version. 3: active WordPress version.
+#: functions.php:35
+msgid "%1$s requires at least WordPress version %2$s. You are running version %3$s."
 msgstr ""
 
-#. translators: 1: Composer command. 2: theme directory
-#: functions.php:46
-msgid "My Theme installation is incomplete. Run %1$s within the %2$s directory."
+#. translators: 1: Theme name. 2: Composer command. 3: theme directory
+#: functions.php:52
+msgid "%1$s installation is incomplete. Run %2$s within the %3$s directory."
 msgstr ""
 
 #. translators: 1: file location.
-#: functions.php:63
+#: functions.php:70
 msgid "Error locating %1$s for inclusion."
 msgstr ""
 
@@ -91,67 +91,67 @@ msgstr ""
 msgid "Footer section."
 msgstr ""
 
-#: inc/setup.php:59
+#: inc/setup.php:66
 msgid "Primary"
 msgstr ""
 
-#: inc/setup.php:64
+#: inc/setup.php:71
 msgid "Secondary"
 msgstr ""
 
-#: inc/setup.php:69
+#: inc/setup.php:76
 msgid "Light"
 msgstr ""
 
-#: inc/setup.php:74
+#: inc/setup.php:81
 msgid "Dark"
 msgstr ""
 
-#: inc/setup.php:86
+#: inc/setup.php:93
 msgid "Small"
 msgstr ""
 
-#: inc/setup.php:87
+#: inc/setup.php:94
 msgid "SM"
 msgstr ""
 
-#: inc/setup.php:92
+#: inc/setup.php:99
 msgid "Normal"
 msgstr ""
 
-#: inc/setup.php:93
+#: inc/setup.php:100
 msgid "N"
 msgstr ""
 
-#: inc/setup.php:98
+#: inc/setup.php:105
 msgid "Large"
 msgstr ""
 
-#: inc/setup.php:99
+#: inc/setup.php:106
 msgid "LG"
 msgstr ""
 
-#: inc/setup.php:158
+#: inc/setup.php:165
 msgid "Top Left"
 msgstr ""
 
-#: inc/setup.php:159
+#: inc/setup.php:166
 msgid "Top Right"
 msgstr ""
 
-#: inc/setup.php:160
+#: inc/setup.php:167
 msgid "Primary Left"
 msgstr ""
 
-#: inc/setup.php:161
+#: inc/setup.php:168
 msgid "Primary Right"
 msgstr ""
 
-#: inc/setup.php:162
+#: inc/setup.php:169
 msgid "Footer Left"
 msgstr ""
 
-#: inc/setup.php:163
+#: inc/setup.php:170
 msgid "Footer Right"
 msgstr ""
 
