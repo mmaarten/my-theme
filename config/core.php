@@ -21,7 +21,7 @@ return [
     'wp_version' => '5.0',
 
     /**
-     * List of files to include.
+     * List of files to load.
      * @var array
      */
     'autoload' => [

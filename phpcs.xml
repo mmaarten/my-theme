@@ -6,6 +6,7 @@
   <file>functions.php</file>
   <file>inc</file>
   <file>src</file>
+  <file>config</file>
 
   <!-- Only check the PHP files. -->
 	<arg name="extensions" value="php"/>
