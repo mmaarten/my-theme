@@ -6,7 +6,7 @@ return [
      * The name of the theme. Used for notices.
      * @var string
      */
-    'theme_name' => wp_get_theme()->get('Name'),
+    'theme_name' => wp_get_theme('my-theme')->get('Name'),
 
     /**
      * Minium required PHP version.
@@ -24,7 +24,7 @@ return [
      * List of files to load.
      * @var array
      */
-    'autoload' => [
+    'autoload_files' => [
         'helpers',
         'setup',
         'assets',
@@ -35,5 +35,13 @@ return [
         'blocks',
         'template-functions',
         'template-tags',
+    ],
+
+    /**
+     * List of config files to load.
+     * @var array
+     */
+    'autoload_config' => [
+        'assets',
     ],
 ];

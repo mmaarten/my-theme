@@ -7,7 +7,7 @@
 
 namespace My\Theme;
 
-$config = require locate_template('config/core.php');
+$config = require get_parent_theme_path('config/core.php');
 
 /**
  * Check required PHP version.
@@ -60,7 +60,7 @@ if (!is_readable($autoloader)) {
 require $autoloader;
 
 /**
- * Load file from inside the `inc` directory.
+ * Load files.
  */
 array_map(function ($file) {
     $file = "inc/{$file}.php";
@@ -71,14 +71,26 @@ array_map(function ($file) {
             E_USER_ERROR
         );
     }
-}, $config['autoload']);
+}, $config['autoload_files']);
 
 /**
- * Required config.
+ * Load config.
  */
 Container::getInstance()->add('config', function () use ($config) {
-    return new Config([
-        'common' => $config,
-        'assets' => require locate_template('config/assets.php'),
-    ]);
+    $items = [];
+    foreach ((array)$config['autoload_config'] as $slug) {
+        $file = "config/{$slug}.php";
+        if ($located = locate_template($file)) {
+            $items[$slug] = require $located;
+        } else {
+            trigger_error(
+                // translators: 1: file location.
+                sprintf(__('Error locating %1$s for inclusion.', 'my-theme'), "<code>$file</code>"),
+                E_USER_ERROR
+            );
+        }
+    }
+    $items['core'] = $config;
+
+    return new Config($items);
 });

@@ -2,6 +2,12 @@
 
 namespace My\Theme;
 
+/**
+ * @param string $id
+ * @param mixed $concrete
+ * @param bool $shared
+ * @return mixed
+ */
 function app(string $id = null, $concrete = null, bool $shared = null)
 {
     $container = Container::getInstance();
