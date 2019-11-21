@@ -79,6 +79,6 @@ array_map(function ($file) {
 Container::getInstance()->add('config', function () use ($config) {
     return new Config([
         'common' => $config,
-        'assets' => locate_template('config/assets.php'),
+        'assets' => require locate_template('config/assets.php'),
     ]);
 });
