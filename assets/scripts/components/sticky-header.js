@@ -37,7 +37,7 @@ export default class StickyHeader {
 		this.isStuck = true;
 
 		// Notify
-		$( document.body ).trigger( 'theme.masthead.stuck', [ this.isStuck ] );
+		$( document.body ).trigger( 'my-theme.masthead.stuck', [ this.isStuck ] );
 	};
 
 	static unstick() {
@@ -56,7 +56,7 @@ export default class StickyHeader {
 		this.isStuck = false;
 
 		// Notify
-		$( document.body ).trigger( 'theme.masthead.unstuck', [ this.isStuck ] );
+		$( document.body ).trigger( 'my-theme.masthead.unstuck', [ this.isStuck ] );
 	};
 
 	static update() {
