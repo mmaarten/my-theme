@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "webpack --env.production",
-    "start": "webpack --watch"
+    "build": "webpack --env.production --config assets/build/webpack.config.js",
+    "start": "webpack --watch --config assets/build/webpack.config.js"
   },
   "keywords": [
     "wordpress",
@@ -14,7 +14,6 @@
   "browserslist": [
     "extends @wordpress/browserslist-config"
   ],
-  "author": "",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@babel/core": "^7.7.0",
@@ -40,6 +39,7 @@
     "webpack": "^4.41.2",
     "webpack-assets-manifest": "^3.1.1",
     "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2",
     "webpackbar": "^3.2.0"
   },
   "dependencies": {

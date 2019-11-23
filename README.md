@@ -2,9 +2,10 @@
 Bootstrap driven WordPress starter theme.
 
 ## Features
-- [Sass](https://sass-lang.com/) for stylesheets
-- [Webpack](https://webpack.js.org/) for compiling assets, optimising images, and concatenating and minifying files
-- [Bootstrap](https://getbootstrap.com/) 4 CSS framework
+- [Sass](https://sass-lang.com/) for stylesheets.
+- [Webpack](https://webpack.js.org/) for compiling assets, optimising images, and concatenating and minifying files.
+- [Bootstrap](https://getbootstrap.com/) 4 CSS framework.
+- [WordPress Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker) for navigations.
 - [Fontawesome](https://fontawesome.com/) icon library.
 
 ## Requirements

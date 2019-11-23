@@ -1,5 +1,4 @@
 const path = require('path');
-const { argv } = require('yargs');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -11,39 +10,18 @@ const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
-const isProduction = !!((argv.env && argv.env.production) || argv.p);
-const rootPath = process.cwd();
-
-if (undefined === process.env.NODE_ENV) {
-  process.env.NODE_ENV = isProduction ? 'production' : 'development';
-}
-
-const config = {
-  paths: {
-    root: rootPath,
-    assets: path.join(rootPath, 'assets'),
-    dist: path.join(rootPath, 'build'),
-  },
-  enabled: {
-    sourceMaps: !isProduction,
-    cacheBusting: isProduction,
-    optimization : isProduction,
-  },
-  cacheBusting: '[name]_[hash]',
-};
-
+const config = require('./config');
 const filename = config.enabled.cacheBusting ? config.cacheBusting : '[name]';
-const userConfig = require(`${config.paths.assets}/config.json`);
 
 module.exports = {
   context: config.paths.assets,
-  entry : userConfig.entry,
+  entry : config.entry,
   devtool: config.enabled.sourceMaps ? '#source-map' : undefined,
-  mode : isProduction ? 'production' : 'development',
+  mode : config.mode,
   output: {
     filename: `scripts/${filename}.js`,
     path: config.paths.dist,
-    publicPath: path.join(userConfig.publicPath, path.basename(config.paths.dist)),
+    publicPath: config.publicPath,
   },
   stats: {
     children: false,

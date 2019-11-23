@@ -13,8 +13,11 @@
     "phpcompatibility/php-compatibility": "^9.2.0"
   },
   "require": {
+    "php": ">=7.0",
     "composer/installers": "^1.5",
-    "wp-bootstrap/wp-bootstrap-navwalker": "^4.2"
+    "wp-bootstrap/wp-bootstrap-navwalker": "^4.2",
+    "league/container": "^3.3",
+    "hassankhan/config": "^2.1"
   },
   "scripts": {
     "phpcs": "./vendor/bin/phpcs",
