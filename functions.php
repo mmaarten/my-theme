@@ -9,13 +9,11 @@ if (version_compare(PHP_VERSION, $config['php_version'], '<')) {
 
     function my_theme_invalid_php_version_notice()
     {
-        $config = $GLOBALS['config'];
-
         $message = sprintf(
             // translators: 1: Theme name. 2: required PHP version. 3: active PHP version.
             __('%1$s requires at least PHP version %2$s. You are running version %3$s.', 'my-theme'),
-            $config['theme_name'],
-            $config['php_version'],
+            $GLOBALS['config']['theme_name'],
+            $GLOBALS['config']['php_version'],
             PHP_VERSION
         );
 
