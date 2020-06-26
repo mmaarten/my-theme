@@ -1,3 +1,4 @@
+const { argv } = require('yargs');
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -10,18 +11,44 @@ const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
-const config = require('./config');
+const rootPath = process.cwd();
+const isProduction = !!((argv.env && argv.env.production) || argv.p);
+
+const config = {
+  paths: {
+    root: rootPath,
+    assets: path.join(rootPath, 'assets'),
+    dist: path.join(rootPath, 'dist'),
+  },
+  enabled: {
+    sourceMaps: !isProduction,
+    cacheBusting: isProduction,
+    optimization : isProduction,
+  },
+  cacheBusting: '[name]_[hash]',
+  entry : {
+    'main': [ 'styles/main.scss', 'scripts/main.js' ],
+    'customizer': 'scripts/customizer.js',
+    'editor-style': 'styles/editor-style.scss',
+    'block-style': 'styles/block-style.scss'
+  }
+};
+
 const filename = config.enabled.cacheBusting ? config.cacheBusting : '[name]';
+
+if (undefined === process.env.NODE_ENV) {
+  process.env.NODE_ENV = isProduction ? 'production' : 'development';
+}
 
 module.exports = {
   context: config.paths.assets,
   entry : config.entry,
   devtool: config.enabled.sourceMaps ? '#source-map' : undefined,
-  mode : config.mode,
+  mode : isProduction ? 'production' : 'development',
   output: {
     filename: `scripts/${filename}.js`,
     path: config.paths.dist,
-    publicPath: config.publicPath,
+    publicPath: `/wp-content/themes/my-theme/${path.basename(config.paths.dist)}/`,
   },
   stats: {
     children: false,
