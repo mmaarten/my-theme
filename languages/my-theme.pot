@@ -1,4 +1,4 @@
-# Copyright (C) 2019 
+# Copyright (C) 2020 
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-11-21T00:34:40+00:00\n"
+"POT-Creation-Date: 2020-06-27T17:46:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.2.0\n"
+"X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: my-theme\n"
 
 #. Theme Name of the theme
@@ -20,26 +20,6 @@ msgstr ""
 
 #. Theme URI of the theme
 msgid "https://github.com/mmaarten/my-theme"
-msgstr ""
-
-#. translators: 1: Theme name. 2: required PHP version. 3: active PHP version.
-#: functions.php:19
-msgid "%1$s requires at least PHP version %2$s. You are running version %3$s."
-msgstr ""
-
-#. translators: 1: Theme name. 2: required WordPress version. 3: active WordPress version.
-#: functions.php:35
-msgid "%1$s requires at least WordPress version %2$s. You are running version %3$s."
-msgstr ""
-
-#. translators: 1: Theme name. 2: Composer command. 3: theme directory
-#: functions.php:52
-msgid "%1$s installation is incomplete. Run %2$s within the %3$s directory."
-msgstr ""
-
-#. translators: 1: file location.
-#: functions.php:70
-msgid "Error locating %1$s for inclusion."
 msgstr ""
 
 #: 404.php:26
@@ -59,36 +39,51 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: inc/widgets.php:21
-msgid "Header"
+#. Translators: %s: The name of the author.
+#: author.php:37
+msgid "All posts by %s"
 msgstr ""
 
-#: inc/widgets.php:22
-msgid "Header section."
+#. translators: 1: title.
+#: comments.php:35
+msgid "One thought on &ldquo;%1$s&rdquo;"
 msgstr ""
 
-#: inc/widgets.php:29
-msgid "Left Sidebar"
+#. translators: 1: comment count number, 2: title.
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:68
+msgid "Comments are closed."
 msgstr ""
 
-#: inc/widgets.php:30
-msgid "Section on the left side."
+#. translators: 1: Theme name. 2: required PHP version. 3: active PHP version.
+#: functions.php:14
+msgid "%1$s requires at least PHP version %2$s. You are running version %3$s."
 msgstr ""
 
-#: inc/widgets.php:37
-msgid "Right Sidebar"
+#. translators: 1: Theme name. 2: required WordPress version. 3: active WordPress version.
+#: functions.php:33
+msgid "%1$s requires at least WordPress version %2$s. You are running version %3$s."
 msgstr ""
 
-#: inc/widgets.php:38
-msgid "Section on the right side."
+#. translators: 1: Theme name. 2: Composer command. 3: theme directory
+#: functions.php:51
+msgid "%1$s installation is incomplete. Run %2$s within the %3$s directory."
 msgstr ""
 
-#: inc/widgets.php:45
-msgid "Footer"
+#. translators: 1: file location.
+#: functions.php:69
+#: functions.php:91
+msgid "Error locating %1$s for inclusion."
 msgstr ""
 
-#: inc/widgets.php:46
-msgid "Footer section."
+#: header.php:29
+msgid "Skip to content"
 msgstr ""
 
 #: inc/setup.php:66
@@ -224,21 +219,44 @@ msgctxt "Next post link"
 msgid "%title &raquo;"
 msgstr ""
 
-#. translators: 1: title.
-#: comments.php:35
-msgid "One thought on &ldquo;%1$s&rdquo;"
+#: inc/widgets.php:21
+msgid "Header"
 msgstr ""
 
-#. translators: 1: comment count number, 2: title.
-#: comments.php:41
-msgctxt "comments title"
-msgid "%1$s thought on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
+#: inc/widgets.php:22
+msgid "Header section."
+msgstr ""
 
-#: comments.php:68
-msgid "Comments are closed."
+#: inc/widgets.php:29
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/widgets.php:30
+msgid "Section on the left side."
+msgstr ""
+
+#: inc/widgets.php:37
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/widgets.php:38
+msgid "Section on the right side."
+msgstr ""
+
+#: inc/widgets.php:45
+msgid "Footer"
+msgstr ""
+
+#: inc/widgets.php:46
+msgid "Footer section."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Full Width Fixed"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Full Width"
 msgstr ""
 
 #. translators: %s: search query.
@@ -246,16 +264,18 @@ msgstr ""
 msgid "Search Results for: %s"
 msgstr ""
 
-#: header.php:29
-msgid "Skip to content"
+#: searchform.php:17
+msgctxt "label"
+msgid "Search for:"
 msgstr ""
 
-#. Template Name of the theme
-msgid "Full Width"
+#: searchform.php:20
+msgctxt "placeholder"
+msgid "Search &hellip;"
 msgstr ""
 
-#. Template Name of the theme
-msgid "Full Width Fixed"
+#: searchform.php:23
+msgid "Search"
 msgstr ""
 
 #: template-parts/content-none.php:16
@@ -285,23 +305,4 @@ msgstr ""
 
 #: template-parts/main-navigation.php:39
 msgid "Toggle navigation"
-msgstr ""
-
-#. Translators: %s: The name of the author.
-#: author.php:37
-msgid "All posts by %s"
-msgstr ""
-
-#: searchform.php:17
-msgctxt "label"
-msgid "Search for:"
-msgstr ""
-
-#: searchform.php:20
-msgctxt "placeholder"
-msgid "Search &hellip;"
-msgstr ""
-
-#: searchform.php:23
-msgid "Search"
 msgstr ""
