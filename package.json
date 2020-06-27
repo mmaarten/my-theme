@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack --env.production",
     "start": "webpack --watch",
-    "bundle": "dir-archiver --src . --dest ../my-theme.zip --exclude .DS_Store .editorconfig .git .gitignore .gitattributes phpcs.xml webpack.config.js node_modules assets composer.json"
+    "bundle": "dir-archiver --src . --dest ../my-theme.zip --exclude .DS_Store .editorconfig .git .gitignore .gitattributes phpcs.xml webpack.config.js node_modules composer.json package.json assets"
   },
   "keywords": [
     "wordpress",
