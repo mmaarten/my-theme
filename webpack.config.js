@@ -113,7 +113,6 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: config.enabled.sourceMaps,
-              sourceComments: true,
             },
           },
         ],
