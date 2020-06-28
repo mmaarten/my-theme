@@ -26,6 +26,7 @@ const config = {
     optimization : isProduction,
   },
   cacheBusting: '[name]_[hash]',
+  publicPath: '/wp-content/themes/my-theme',
   entry : {
     'main': [ 'styles/main.scss', 'scripts/main.js' ],
     'customizer': 'scripts/customizer.js',
@@ -48,7 +49,7 @@ module.exports = {
   output: {
     filename: `scripts/${filename}.js`,
     path: config.paths.dist,
-    publicPath: `/wp-content/themes/my-theme/${path.basename(config.paths.dist)}/`,
+    publicPath: path.join(config.publicPath, path.basename(config.paths.dist)),
   },
   stats: {
     children: false,
