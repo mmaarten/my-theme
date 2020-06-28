@@ -17,7 +17,7 @@ const isProduction = !!((argv.env && argv.env.production) || argv.p);
 const config = {
   paths: {
     root: rootPath,
-    assets: path.join(rootPath, 'assets'),
+    src: path.join(rootPath, 'assets'),
     dist: path.join(rootPath, 'dist'),
   },
   enabled: {
@@ -41,7 +41,7 @@ if (undefined === process.env.NODE_ENV) {
 }
 
 module.exports = {
-  context: config.paths.assets,
+  context: config.paths.src,
   entry : config.entry,
   devtool: config.enabled.sourceMaps ? '#source-map' : undefined,
   mode : isProduction ? 'production' : 'development',
@@ -55,7 +55,7 @@ module.exports = {
   },
   resolve: {
     modules: [
-      config.paths.assets,
+      config.paths.src,
       'node_modules',
     ],
     enforceExtension: false,
@@ -78,7 +78,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: config.paths.assets,
+        include: config.paths.src,
         use: [
           { loader : MiniCssExtractPlugin.loader },
           { loader: 'css-loader', options: { sourceMap: config.enabled.sourceMaps } },
@@ -95,7 +95,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: config.paths.assets,
+        include: config.paths.src,
         use: [
           { loader : MiniCssExtractPlugin.loader },
           { loader: 'css-loader', options: { sourceMap: config.enabled.sourceMaps } },
@@ -119,7 +119,7 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
-        include: config.paths.assets,
+        include: config.paths.src,
         use: [
           {
             loader: 'file-loader',
