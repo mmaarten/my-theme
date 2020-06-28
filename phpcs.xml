@@ -3,10 +3,11 @@
   <description>My Theme Coding Standards</description>
 
   <!-- Check all files in this directory and the directories below it. -->
-  <file>functions.php</file>
-  <file>inc</file>
-  <file>src</file>
-  <file>config</file>
+  <file>.</file>
+
+  <!-- Exclude patterns. -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
 
   <!-- Only check the PHP files. -->
 	<arg name="extensions" value="php"/>
