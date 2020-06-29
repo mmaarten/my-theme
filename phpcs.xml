@@ -24,4 +24,17 @@
   <!-- Use PSR-2 as a base -->
   <rule ref="PSR2"/>
 
+  <!--
+  ####################################################
+  PHP Compatibility
+  https://github.com/PHPCompatibility/PHPCompatibility
+  ####################################################
+  -->
+
+  <!-- Run against the PHPCompatibility ruleset -->
+  <rule ref="PHPCompatibility"/>
+
+  <!-- Check for cross-version support for PHP 7.0 and higher. -->
+  <config name="testVersion" value="7.0-"/>
+
 </ruleset>
