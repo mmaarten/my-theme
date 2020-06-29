@@ -96,7 +96,5 @@ Container::getInstance()->add('config', function () {
             );
         }
     }
-    error_log(print_r($items, true));
-
     return new Config($items);
 });
