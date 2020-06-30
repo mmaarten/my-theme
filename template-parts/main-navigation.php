@@ -15,7 +15,7 @@
 
             <?php if (has_custom_logo()) : ?>
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" rel="home" itemprop="url">
-                    <?php echo wp_get_attachment_image(get_theme_mod('custom_logo'), 'full', false, array( 'class' => 'img-fluid' )); ?>
+                    <?php echo wp_get_attachment_image(get_theme_mod('custom_logo'), 'full', false, ['class' => 'img-fluid']); ?>
                 </a>
             <?php elseif (is_front_page() && is_home()) : ?>
                 <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home" itemprop="url"><?php bloginfo('name'); ?></a></h1>
@@ -44,27 +44,23 @@
 
             <?php
 
-            wp_nav_menu(
-                array(
-                    'theme_location' => 'main-left',
-                    'depth'          => 2,
-                    'container'      => false,
-                    'menu_id'        => 'primary-menu',
-                    'menu_class'     => 'navbar-nav mr-auto main-menu',
-                    'fallback_cb'    => null,
-                )
-            );
+            wp_nav_menu([
+                'theme_location' => 'main-left',
+                'depth'          => 2,
+                'container'      => false,
+                'menu_id'        => 'primary-menu',
+                'menu_class'     => 'navbar-nav mr-auto main-menu',
+                'fallback_cb'    => null,
+            ]);
 
-            wp_nav_menu(
-                array(
-                    'theme_location' => 'main-right',
-                    'depth'          => 2,
-                    'container'      => false,
-                    'menu_id'        => 'primary-menu',
-                    'menu_class'     => 'navbar-nav ml-auto main-menu',
-                    'fallback_cb'    => null,
-                )
-            );
+            wp_nav_menu([
+                'theme_location' => 'main-right',
+                'depth'          => 2,
+                'container'      => false,
+                'menu_id'        => 'primary-menu',
+                'menu_class'     => 'navbar-nav ml-auto main-menu',
+                'fallback_cb'    => null,
+            ]);
 
             ?>
 
