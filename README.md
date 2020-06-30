@@ -31,8 +31,6 @@ Run `npm run start` to compile assets when files change.
 
 Run `npm run build` to compile and optimize assets.
 
-#### WordPress CLI commands
+Run `npm run bundle` to create distribution archive.
 
-Run `wp dist-archive .` to create distribution archive.
-
-Run `wp i18n make-pot . languages/my-theme.pot` to create POT file.
+Run `composer run make-pot` to create translation file.

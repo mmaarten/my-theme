@@ -1,3 +1,4 @@
+const { argv } = require('yargs');
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -10,25 +11,52 @@ const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 
-const config = require('./config');
+const rootPath = process.cwd();
+const isProduction = !!((argv.env && argv.env.production) || argv.p);
+
+const config = {
+  paths: {
+    root: rootPath,
+    src: path.join(rootPath, 'assets'),
+    dist: path.join(rootPath, 'dist'),
+  },
+  enabled: {
+    sourceMaps: !isProduction,
+    cacheBusting: isProduction,
+    optimization : isProduction,
+  },
+  cacheBusting: '[name]_[hash]',
+  publicPath: '/wp-content/themes/my-theme',
+  entry : {
+    'main': [ 'styles/main.scss', 'scripts/main.js' ],
+    'customizer': 'scripts/customizer.js',
+    'editor-style': 'styles/editor-style.scss',
+    'block-style': 'styles/block-style.scss'
+  }
+};
+
 const filename = config.enabled.cacheBusting ? config.cacheBusting : '[name]';
 
+if (undefined === process.env.NODE_ENV) {
+  process.env.NODE_ENV = isProduction ? 'production' : 'development';
+}
+
 module.exports = {
-  context: config.paths.assets,
+  context: config.paths.src,
   entry : config.entry,
   devtool: config.enabled.sourceMaps ? '#source-map' : undefined,
-  mode : config.mode,
+  mode : isProduction ? 'production' : 'development',
   output: {
     filename: `scripts/${filename}.js`,
     path: config.paths.dist,
-    publicPath: config.publicPath,
+    publicPath: path.join(config.publicPath, path.basename(config.paths.dist)),
   },
   stats: {
     children: false,
   },
   resolve: {
     modules: [
-      config.paths.assets,
+      config.paths.src,
       'node_modules',
     ],
     enforceExtension: false,
@@ -51,7 +79,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: config.paths.assets,
+        include: config.paths.src,
         use: [
           { loader : MiniCssExtractPlugin.loader },
           { loader: 'css-loader', options: { sourceMap: config.enabled.sourceMaps } },
@@ -68,7 +96,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: config.paths.assets,
+        include: config.paths.src,
         use: [
           { loader : MiniCssExtractPlugin.loader },
           { loader: 'css-loader', options: { sourceMap: config.enabled.sourceMaps } },
@@ -86,14 +114,13 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: config.enabled.sourceMaps,
-              sourceComments: true,
             },
           },
         ],
       },
       {
         test: /\.(png|svg|jpe?g|gif|woff|woff2|eot|ttf|otf)$/,
-        include: config.paths.assets,
+        include: config.paths.src,
         use: [
           {
             loader: 'file-loader',
