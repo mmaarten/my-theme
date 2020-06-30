@@ -17,25 +17,21 @@ if (! has_nav_menu('footer-left') && ! has_nav_menu('footer-right')) {
 
     <?php
 
-        wp_nav_menu(
-            array(
-                'theme_location' => 'footer-left',
-                'menu_class'     => 'nav flex-column flex-md-row mr-md-auto footer-menu',
-                'container'      => false,
-                'depth'          => 1,
-                'fallback_cb'    => null,
-            )
-        );
+        wp_nav_menu([
+            'theme_location' => 'footer-left',
+            'menu_class'     => 'nav flex-column flex-md-row mr-md-auto footer-menu',
+            'container'      => false,
+            'depth'          => 1,
+            'fallback_cb'    => null,
+        ]);
 
-        wp_nav_menu(
-            array(
-                'theme_location' => 'footer-right',
-                'menu_class'     => 'nav flex-column flex-md-row ml-md-auto footer-menu',
-                'container'      => false,
-                'depth'          => 1,
-                'fallback_cb'    => null,
-            )
-        );
+        wp_nav_menu([
+            'theme_location' => 'footer-right',
+            'menu_class'     => 'nav flex-column flex-md-row ml-md-auto footer-menu',
+            'container'      => false,
+            'depth'          => 1,
+            'fallback_cb'    => null,
+        ]);
 
         ?>
 

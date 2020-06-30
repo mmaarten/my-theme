@@ -25,12 +25,10 @@
 
         <?php
 
-        wp_link_pages(
-            array(
-                'before' => '<div class="page-links">' . esc_html__('Pages:', 'my-theme'),
-                'after'  => '</div>',
-            )
-        );
+        wp_link_pages([
+            'before' => '<div class="page-links">' . esc_html__('Pages:', 'my-theme'),
+            'after'  => '</div>',
+        ]);
 
         ?>
 
