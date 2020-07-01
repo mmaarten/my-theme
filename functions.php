@@ -84,7 +84,7 @@ use My\Theme\Config;
 
 Container::getInstance()->add('config', function () {
     $items = [];
-    foreach (['assets'] as $slug) {
+    foreach (['assets', 'icons'] as $slug) {
         $file = "config/{$slug}.php";
         if ($located = locate_template($file)) {
             $items[$slug] = require $located;

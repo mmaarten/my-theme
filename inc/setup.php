@@ -16,6 +16,13 @@ add_action('after_setup_theme', function () {
     });
 
     /**
+     * Setup icons manager.
+     */
+    app('icons', function () {
+        return new Icons(config('icons'));
+    });
+
+    /**
      * Make theme available for translation.
      * @link https://developer.wordpress.org/reference/functions/load_theme_textdomain/
      */
