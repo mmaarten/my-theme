@@ -25,10 +25,8 @@
 
             <?php
 
-            $my_theme_description = get_bloginfo('description', 'display');
-
-            if ($my_theme_description || is_customize_preview()) {
-                printf('<p class="sr-only site-description">%s</p>', $my_theme_description);
+            if (get_bloginfo('description', 'display') || is_customize_preview()) {
+                printf('<p class="sr-only site-description">%s</p>', get_bloginfo('description', 'display'));
             }
 
             ?>

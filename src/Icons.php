@@ -11,6 +11,11 @@ class Icons
         $this->add($icons);
     }
 
+    public function getIcons()
+    {
+        return $this->icons;
+    }
+
     public function add($key, $svg = null)
     {
         $icons = is_array($key) ? $key : [$key => $svg];
@@ -31,7 +36,7 @@ class Icons
             $svg = $this->icons[$key];
 
             // Add extra attributes to SVG element
-            $atts = 'class="svg-icon" aria-hidden="true" role="img" focusable="false"';
+            $atts = sprintf('class="svg-icon icon-%s" aria-hidden="true" role="img" focusable="false"', esc_attr($key));
 
             if ($size) {
                 $atts .= sprintf(' width="%1$dpx" height="%1$dpx"', $size);
