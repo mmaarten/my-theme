@@ -46,4 +46,6 @@ add_action('widgets_init', function () {
             'description' => esc_html__('Footer section.', 'my-theme'),
         ] + $args
     );
+
+    register_footer_columns(3, $args);
 });
