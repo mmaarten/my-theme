@@ -15,6 +15,8 @@ add_action('after_setup_theme', function () {
 /**
  * Appends an icon to the menu item's title.
  *
+ * Use CSS class -icon-{key}
+ *
  * @param string   $title The menu item's title.
  * @param WP_Post  $item  The current menu item.
  * @param stdClass $args  An object of wp_nav_menu() arguments.
