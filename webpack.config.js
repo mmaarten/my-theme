@@ -139,7 +139,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               limit: 4096,
-              outputPath: 'vendor/',
+              outputPath: '/vendor/',
               name: `${filename}.[ext]`,
             },
           },
