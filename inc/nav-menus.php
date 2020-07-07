@@ -16,13 +16,11 @@ add_filter('wp_nav_menu_args', function ($args) {
 }, PHP_INT_MAX);
 
 /**
- * Convert a menu item link to a button.
+ * Open modal on menu item click.
  *
- * This feature can be applied by using menu item 'CSS Classes' setting in admin area.
- *
- * Usage: Use button CSS classes prefixed by a dash character '-'.
- *
- * e.g. '-btn -btn-primary -btn-sm' adds link CSS classes 'btn btn-primary btn-sm'.
+ * Usage:
+ * - Add CSS classes toggle-modal.
+ * - Set URL setting to refer to model. e.g. #my-modal
  *
  * @param array    $atts      The HTML attributes applied to the menu item's <a> element.
  * @param WP_Post  $item      The current menu item.
@@ -33,47 +31,9 @@ add_filter('wp_nav_menu_args', function ($args) {
  */
 add_filter('nav_menu_link_attributes', function ($atts, $item, $nav_menu, $depth) {
 
-    // Get button classes
-
-    $btn_classes = array();
-
-    foreach ($item->classes as $class) {
-        if (preg_match('/^-(btn-[\w-]+)$/', $class, $matches)) {
-            $btn_classes[ $matches[1] ] = $matches[1];
-        }
+    if (in_array('toggle-modal', $item->classes)) {
+        $atts['data-toggle'] = 'modal';
     }
-
-    // Stop when no classes
-
-    if (! $btn_classes) {
-        return $atts;
-    }
-
-    // Make sure 'btn' class is added
-
-    $btn_classes = ['btn' => 'btn'] + $btn_classes;
-
-    // Make sure 'class' attribute is set.
-
-    if (! isset($atts['class'])) {
-        $atts['class'] = '';
-    }
-
-    // Remove 'nav-link' class
-
-    $atts['class'] = preg_replace('/(^| )nav-link( |$)/', '', $atts['class']);
-
-    // Add button attributes
-
-    $atts['class'] .= ' ' . implode(' ', $btn_classes);
-
-    $atts['role'] = 'button';
-
-    // Sanitize 'class' attribute.
-
-    $atts['class'] = trim($atts['class']);
-
-    // Return
 
     return $atts;
 }, PHP_INT_MAX, 4);
