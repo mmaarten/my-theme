@@ -249,7 +249,11 @@ function breadcrumb_nav($before = '', $after = '')
 {
     // Check Dependency.
     if (! function_exists('bcn_display_list')) {
-        trigger_error('function <code>bcn_display_list</code> does not exist.', E_USER_WARNING);
+        trigger_error(
+            // translators: %s: the name of the coding function.
+            sprintf(__('function %s does not exist.', 'my-theme'), '<code>bcn_display_list</code>'),
+            E_USER_WARNING
+        );
         return;
     }
 
@@ -282,4 +286,153 @@ function breadcrumb_nav($before = '', $after = '')
     <?php echo $after; ?>
 
     <?php
+}
+
+function modal($args = [])
+{
+    static $instance = 0;
+
+    $instance++;
+
+    $args = wp_parse_args($args, [
+        'id'     => '',
+        'title'  => '',
+        'body'   => '',
+        'size'   => '',
+        'center' => false,
+    ]);
+
+    $modal_id = $args['id'] ? $args['id'] : "modal-$instance";
+    $title_id = "$modal_id-title";
+
+    $modal_atts = [
+        'id'          => $modal_id,
+        'class'       => 'modal fade',
+        'tabindex'    => '-1',
+        'role'        => 'dialog',
+        'aria-hidden' => 'true',
+    ];
+
+    if ($args['title']) {
+        $modal_atts['aria-labelledby'] = $title_id;
+    }
+
+    $dialog_atts = [
+        'class' => 'modal-dialog',
+        'role'  => 'document',
+    ];
+
+    if ($args['size']) {
+        $dialog_atts['class'] .= " modal-${$args['size']}";
+    }
+
+    if ($args['center']) {
+        $dialog_atts['class'] .= ' modal-dialog-centered';
+    }
+
+    echo '<div' . html_atts($modal_atts) . '>';
+    echo '<div' . html_atts($dialog_atts) . '>';
+    echo '<div class="modal-content">';
+
+    echo '<div class="modal-header">';
+    if ($args['title']) {
+        echo '<h5 class="modal-title" id="' . esc_attr($title_id) . '">' . $args['title'] . '</h5>';
+    }
+    echo '<button type="button" class="close" data-dismiss="modal" aria-label="' . esc_attr__('Close', 'my-theme') . '">';
+    echo '<span aria-hidden="true">&times;</span>';
+    echo '</button>';
+    echo '</div>'; // .modal-header
+
+    echo '<div class="modal-body">';
+    echo $args['body'];
+    echo '</div>'; // .modal-body
+
+    echo '</div>'; // .modal-content
+    echo '</div>'; // .modal-dialog
+    echo '</div>'; // .modal
+}
+
+function carousel($args = [])
+{
+    static $instance = 0;
+
+    $instance++;
+
+    $args = wp_parse_args($args, [
+        'id'              => '',
+        'indicators'      => false,
+        'controls'        => false,
+        'autoplay'        => true,
+        'render_callback' => null,
+    ]);
+
+    $carousel_id = ! empty($args['id']) ? $args['id'] : "carousel-$instance";
+
+    $atts = [
+        'id'    => $carousel_id,
+        'class' => 'carousel slide',
+    ];
+
+    if ($args['autoplay']) {
+        $atts['data-ride'] = 'carousel';
+    }
+
+    echo '<div' . html_atts($atts) . '>';
+
+    echo '<div class="carousel-inner">';
+
+    if ($args['indicators']) {
+        echo '<ol class="carousel-indicators">';
+
+        for ($i=0; $i < count($items); $i++) {
+            $indicator_atts = [
+                'data-target' => "#$carousel_id",
+                'data-slide-to' => $i,
+            ];
+
+            if ($i === 0) {
+                $indicator_atts['class'] = 'active';
+            }
+
+            echo '<li' . html_atts($indicator_atts) . '></li>';
+        }
+
+        echo '</ol>'; // .carousel-indicators
+    }
+
+    for ($i=0; $i < count($items); $i++) {
+        $item = $items[$i];
+
+        $item_atts = [
+            'class' => 'carousel-item',
+        ];
+
+        if ($i === 0) {
+            $item_atts['class'] .= ' active';
+        }
+
+        echo '<div' . html_atts($item_atts) . '>';
+
+        if (is_callable($args['render_callback'])) {
+            call_user_func($args['render_callback'], $item);
+        }
+
+        echo '</div>'; // .carousel-item
+    }
+
+    echo '</div>'; // .carousel-inner
+
+    if ($args['controls']) {
+        printf('<a class="carousel-control-prev" href="#%s" role="button" data-slide="prev">', esc_attr($carousel_id));
+        echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+        printf('<span class="sr-only">%s</span>', __('Previous', 'my-blocks'));
+        echo '</a>';
+
+        printf('<a class="carousel-control-next" href="#%s" role="button" data-slide="next">', esc_attr($carousel_id));
+        echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+        printf('<span class="sr-only">%s</span>', __('Next', 'my-blocks'));
+        echo '</a>';
+    }
+
+    echo '</div>'; // .carousel
 }
