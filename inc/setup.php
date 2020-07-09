@@ -20,7 +20,7 @@ add_action('after_setup_theme', function () {
      */
     add_theme_support('starter-content', [
         'widgets' => [
-            'sidebar-left' => [],
+            'sidebar-left'  => [],
             'sidebar-right' => [],
         ],
     ]);
