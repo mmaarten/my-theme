@@ -149,7 +149,10 @@ module.exports = {
   },
   plugins: [
     // Remove all files inside output.path director
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      // prevent unchanged files from removal, while copy-webpack-plugin only emit files when they are changed
+      cleanStaleWebpackAssets: false,
+    }),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
       filename: `styles/${filename}.css`,
