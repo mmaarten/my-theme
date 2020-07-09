@@ -83,18 +83,7 @@ use My\Theme\Container;
 use My\Theme\Config;
 
 Container::getInstance()->add('config', function () {
-    $items = [];
-    foreach (['assets'] as $slug) {
-        $file = "config/{$slug}.php";
-        if ($located = locate_template($file)) {
-            $items[$slug] = require $located;
-        } else {
-            trigger_error(
-                // translators: 1: file location.
-                sprintf(__('Error locating %1$s.', 'my-theme'), "<code>$file</code>"),
-                E_USER_ERROR
-            );
-        }
-    }
-    return new Config($items);
+    return new Config([
+        'assets' => require get_theme_file_path('config/assets.php'),
+    ]);
 });

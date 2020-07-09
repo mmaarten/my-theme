@@ -10,7 +10,7 @@ if (! is_active_sidebar('footer')) {
 }
 ?>
 
-<aside class="widget-area" role="complementary">
+<aside id="footer-widgets" class="widget-area" role="complementary">
 
     <div class="container">
 

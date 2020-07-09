@@ -17,25 +17,21 @@ if (! has_nav_menu('top-left') && ! has_nav_menu('top-right')) {
 
     <?php
 
-        wp_nav_menu(
-            array(
-                'theme_location' => 'top-left',
-                'menu_class'     => 'nav mr-auto top-menu',
-                'container'      => false,
-                'depth'          => 1,
-                'fallback_cb'    => null,
-            )
-        );
+        wp_nav_menu([
+            'theme_location' => 'top-left',
+            'menu_class'     => 'nav mr-auto top-menu',
+            'container'      => false,
+            'depth'          => 1,
+            'fallback_cb'    => null,
+        ]);
 
-        wp_nav_menu(
-            array(
-                'theme_location' => 'top-right',
-                'menu_class'     => 'nav ml-auto top-menu',
-                'container'      => false,
-                'depth'          => 1,
-                'fallback_cb'    => null,
-            )
-        );
+        wp_nav_menu([
+            'theme_location' => 'top-right',
+            'menu_class'     => 'nav ml-auto top-menu',
+            'container'      => false,
+            'depth'          => 1,
+            'fallback_cb'    => null,
+        ]);
 
         ?>
 

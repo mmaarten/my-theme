@@ -16,6 +16,16 @@ add_action('after_setup_theme', function () {
     });
 
     /**
+     * Starter Content.
+     */
+    add_theme_support('starter-content', [
+        'widgets' => [
+            'sidebar-left'  => [],
+            'sidebar-right' => [],
+        ],
+    ]);
+
+    /**
      * Make theme available for translation.
      * @link https://developer.wordpress.org/reference/functions/load_theme_textdomain/
      */

@@ -249,7 +249,11 @@ function breadcrumb_nav($before = '', $after = '')
 {
     // Check Dependency.
     if (! function_exists('bcn_display_list')) {
-        trigger_error('function <code>bcn_display_list</code> does not exist.', E_USER_WARNING);
+        trigger_error(
+            // translators: %s: the name of the coding function.
+            sprintf(__('function %s does not exist.', 'my-theme'), '<code>bcn_display_list</code>'),
+            E_USER_WARNING
+        );
         return;
     }
 

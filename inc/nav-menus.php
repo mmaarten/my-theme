@@ -14,3 +14,26 @@ add_filter('wp_nav_menu_args', function ($args) {
     }
     return $args;
 }, PHP_INT_MAX);
+
+/**
+ * Open modal on menu item click.
+ *
+ * Usage:
+ * - Add CSS class toggle-modal.
+ * - Set URL setting to refer to model. e.g. #my-modal
+ *
+ * @param array    $atts      The HTML attributes applied to the menu item's <a> element.
+ * @param WP_Post  $item      The current menu item.
+ * @param stdClass $nav_menu  An object of wp_nav_menu() arguments.
+ * @param int      $depth     Depth of menu item.
+ *
+ * @return array
+ */
+add_filter('nav_menu_link_attributes', function ($atts, $item, $nav_menu, $depth) {
+
+    if (in_array('toggle-modal', $item->classes)) {
+        $atts['data-toggle'] = 'modal';
+    }
+
+    return $atts;
+}, PHP_INT_MAX, 4);
