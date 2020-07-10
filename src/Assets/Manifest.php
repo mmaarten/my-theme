@@ -1,4 +1,9 @@
 <?php
+/**
+ * Assets Manifest
+ *
+ * @package My/Theme
+ */
 
 namespace My\Theme\Assets;
 
