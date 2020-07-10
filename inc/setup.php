@@ -21,13 +21,6 @@ add_action('after_setup_theme', function () {
     });
 
     /**
-     * Setup icons manager.
-     */
-    app('icons', function () {
-        return new Icons(config('icons'));
-    });
-
-    /**
      * Starter Content.
      */
     add_theme_support('starter-content', [
