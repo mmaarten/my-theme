@@ -3,6 +3,16 @@
 namespace My\Theme;
 
 /**
+ * Enqueued block assets for the editing interface.
+ *
+ * @link https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/
+ * @example wp_enqueue_style('my-theme-editor', asset_path('dist/styles/editor.css'), [], null);
+ * @example wp_enqueue_script('my-theme-editor', asset_path('dist/scripts/editor.js'), [], null);
+ */
+add_action('enqueue_block_editor_assets', function () {
+});
+
+/**
  * Filter whether a post is able to be edited in the block editor.
  *
  * @link https://developer.wordpress.org/reference/hooks/use_block_editor_for_post_type/

@@ -16,7 +16,7 @@ $('#main-navigation a.nav-link').each(function(){
     return true;
   }
 
-  // Set hash only
+  // Set hash only.
   this.setAttribute('href', url.hash);
 
   // Remove active state.

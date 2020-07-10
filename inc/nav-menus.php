@@ -29,7 +29,7 @@ add_filter('wp_nav_menu_args', function ($args) {
  *
  * @return array
  */
-add_filter('nav_menu_link_attributes', function ($atts, $item, $nav_menu, $depth) {
+add_filter('nav_menu_link_attributes', function (array $atts, \WP_Post $item, \stdClass $nav_menu, int $depth) {
 
     if (in_array('toggle-modal', $item->classes)) {
         $atts['data-toggle'] = 'modal';
@@ -37,3 +37,22 @@ add_filter('nav_menu_link_attributes', function ($atts, $item, $nav_menu, $depth
 
     return $atts;
 }, PHP_INT_MAX, 4);
+
+/**
+ * Make item title only available for screenreaders.
+ *
+ * Use CSS class -sr-only.
+ *
+ * @param string   $title The menu item's title.
+ * @param WP_Post  $item  The current menu item.
+ * @param stdClass $args  An object of wp_nav_menu() arguments.
+ * @param int      $depth Depth of menu item. Used for padding.
+ */
+add_filter('nav_menu_item_title', function (string $title, \WP_Post $item, \stdClass $args, int $depth) {
+
+    if (in_array('-sr-only', $item->classes)) {
+        $title = sprintf('<span class="sr-only">%s</span>', $title);
+    }
+
+    return $title;
+}, 5, 4);
