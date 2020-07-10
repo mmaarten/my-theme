@@ -71,7 +71,6 @@ array_map(function ($file) {
     'customizer',
     'editor',
     'blocks',
-    'icons',
     'template-functions',
     'template-tags',
 ]);
