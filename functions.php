@@ -71,6 +71,7 @@ array_map(function ($file) {
     'customizer',
     'editor',
     'blocks',
+    'icons',
     'template-functions',
     'template-tags',
 ]);
@@ -85,5 +86,6 @@ use My\Theme\Config;
 Container::getInstance()->add('config', function () {
     return new Config([
         'assets' => require get_theme_file_path('config/assets.php'),
+        'icons'  => require get_theme_file_path('config/icons.php'),
     ]);
 });
