@@ -1,4 +1,9 @@
 <?php
+/**
+ * Editor
+ *
+ * @package My/Theme
+ */
 
 namespace My\Theme;
 
