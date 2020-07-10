@@ -1,4 +1,9 @@
 <?php
+/**
+ * Template Functions
+ *
+ * @package My/Theme
+ */
 
 namespace My\Theme;
 

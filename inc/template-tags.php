@@ -1,4 +1,9 @@
 <?php
+/**
+ * Template Tags
+ *
+ * @package My/Theme
+ */
 
 namespace My\Theme;
 
