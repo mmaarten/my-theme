@@ -1,6 +1,6 @@
 <?php
 /**
- * Sample Block
+ * Button
  *
  * Dependency: Advanced Custom Fields PRO
  *
@@ -11,14 +11,16 @@
 
 namespace My\Theme\BlockTypes;
 
-class Sample extends AbstractBlock
+use function My\Theme\button;
+
+class Button extends AbstractBlock
 {
     /**
      * Constructor
      */
     public function __construct()
     {
-        parent::__construct('sample');
+        parent::__construct('button');
     }
 
     /**
@@ -31,11 +33,33 @@ class Sample extends AbstractBlock
      */
     public function render($block, $content = '', $is_preview = false, $post_id = 0)
     {
+        $align = get_field('align');
+
+        /**
+         * HTML Attributes
+         */
+
         $atts = $this->getHTMLAttributes($block);
+
+        if ($align) {
+            $atts['class'] .= " text-{$align}";
+        }
+
+        /**
+         * Output
+         */
 
         echo '<div ' . acf_esc_attr($atts) . '>';
 
-        var_dump($block);
+        button([
+            'text'     => get_field('text'),
+            'link'     => get_field('link'),
+            'link_tab' => get_field('link_tab'),
+            'type'     => get_field('type'),
+            'outline'  => get_field('outline'),
+            'size'     => get_field('size'),
+            'toggle'   => get_field('toggle'),
+        ]);
 
         echo '</div>';
     }

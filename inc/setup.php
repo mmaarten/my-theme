@@ -190,6 +190,7 @@ add_action('after_setup_theme', function () {
      * @link https://developer.wordpress.org/reference/functions/add_image_size/
      * @example add_image_size('my-image-size', 800, 600, false);
      */
+    add_image_size('my-theme-full-width', 1920, 1080, false);
 });
 
 /**

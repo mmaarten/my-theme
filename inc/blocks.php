@@ -12,7 +12,9 @@ namespace My\Theme;
  */
 add_action('after_setup_theme', function () {
     $blocks = [
-        //'Sample',
+        'Button',
+        'Modal',
+        'Carousel',
     ];
     foreach ($blocks as $block) {
         $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;

@@ -1,3 +1,14 @@
 .acf-block-preview {
   @import "main";
+
+  .modal {
+    display: block;
+    opacity: 1 !important;
+    position: static;
+  }
+
+  .modal-dialog {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }

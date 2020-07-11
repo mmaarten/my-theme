@@ -292,3 +292,263 @@ function breadcrumb_nav($before = '', $after = '')
 
     <?php
 }
+
+/**
+ * Carousel
+ *
+ * @link https://getbootstrap.com/docs/4.0/components/carousel/
+ * @param array $args
+ */
+function carousel($args)
+{
+    static $instance = 0;
+
+    $instance++;
+
+    /**
+     * Arguments
+     */
+
+    $args = wp_parse_args($args, [
+        'id'              => '',
+        'items'           => [],
+        'indicators'      => false,
+        'controls'        => true,
+        'autoplay'        => false,
+        'render_callback' => null,
+    ]);
+
+    $items = is_array($args['items']) ? $args['items'] : [];
+    $carousel_id = !empty($args['id']) ? $args['id'] : "modal-$instance";
+
+    /**
+     * HTML Attributes
+     */
+
+    $atts = [
+        'class'       =>'carousel slide',
+        'id'          => $carousel_id,
+    ];
+
+    if ($args['autoplay']) {
+        $atts['data-ride'] = 'carousel';
+    }
+
+    /**
+     * Output
+     */
+
+    echo '<div' . html_atts($atts) . '>';
+
+    // Indicators
+
+    if ($args['indicators']) {
+        echo '<ol class="carousel-indicators">';
+        for ($i=0; $i < count($items); $i++) {
+            $is_active = $i == 0;
+            $indicator_atts = [
+                'data-target' => "#{$carousel_id}",
+                'data-slide-to' => $i,
+            ];
+
+            if ($is_active) {
+                $indicator_atts['class'] = 'active';
+            }
+            echo '<li' . html_atts($indicator_atts) . '></li>';
+        }
+        echo '</ol>'; // .carousel-indicators
+    }
+
+    // Items
+
+    echo '<div class="carousel-inner">';
+
+    for ($i=0; $i < count($items); $i++) {
+        $item = $items[$i];
+
+        $is_active = $i == 0;
+        $item_atts = ['class' =>  'carousel-item'];
+
+        if ($is_active) {
+            $item_atts['class'] .= ' active';
+        }
+
+        echo '<div' . html_atts($item_atts) . '>';
+
+        if (is_callable($args['render_callback'])) {
+            call_user_func($args['render_callback'], $item, $i);
+        }
+
+        echo '</div>'; // .carousel-item
+    }
+
+    echo '</div>'; // .carousel-inner
+
+    // Controls
+
+    if ($args['controls']) {
+        echo '<a class="carousel-control-prev" href="#' . esc_attr($carousel_id) . '" role="button" data-slide="prev">';
+        echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+        echo '<span class="sr-only">' . esc_attr__('Previous', 'my-theme') . '</span>';
+        echo '</a>';
+
+        echo '<a class="carousel-control-next" href="#' . esc_attr($carousel_id) . '" role="button" data-slide="next">';
+        echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+        echo '<span class="sr-only">' . esc_attr__('Next', 'my-theme') . '</span>';
+        echo '</a>';
+    }
+
+    //
+
+    echo '</div>'; // .carousel
+}
+
+/**
+ * Render Modal
+ *
+ * @link https://getbootstrap.com/docs/4.0/components/modal/
+ * @param array $args
+ */
+function modal($args)
+{
+    static $instance = 0;
+
+    $instance++;
+
+    /**
+     * Arguments
+     */
+
+    $args = wp_parse_args($args, [
+        'id'     => '',
+        'title'  => '',
+        'body'   => '',
+        'size'   => '',
+        'center' => false,
+    ]);
+
+    $modal_id = !empty($args['id']) ? $args['id'] : "modal-$instance";
+    $title_id = "$modal_id-title";
+
+    /**
+     * HTML Attributes
+     */
+
+    // Modal
+
+    $modal_atts = [
+        'class'       =>'modal fade',
+        'id'          => $modal_id,
+        'tabindex'    =>'-1',
+        'role'        =>'dialog',
+        'aria-hidden' =>'true',
+    ];
+
+    if ($args['title']) {
+        $modal_atts['aria-labelledby'] = $title_id;
+    }
+
+    // Dialog
+
+    $dialog_atts = [
+        'class' =>'modal-dialog',
+        'role'  =>'document',
+    ];
+
+    if ($args['size']) {
+        $dialog_atts['class'] .= " modal-{$args['size']}";
+    }
+
+    if ($args['center']) {
+        $dialog_atts['class'] .= ' modal-dialog-centered';
+    }
+
+    /**
+     * Output
+     */
+    ?>
+
+    <div<?php echo html_atts($modal_atts); ?>>
+        <div<?php echo html_atts($dialog_atts); ?>>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <?php if ($args['title']) : ?>
+                    <h5 class="modal-title" id="<?php echo esc_attr($title_id) ?>"><?php echo esc_html($args['title']); ?></h5>
+                    <?php endif; ?>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_attr_e('Close', 'my-theme'); ?>">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div><!-- .modal-header -->
+                <div class="modal-body">
+                    <?php echo $args['body']; ?>
+                </div><!-- .modal-body -->
+            </div><!-- .modal-content -->
+        </div><!-- .modal-dialog -->
+    </div><!-- .modal -->
+
+    <?php
+}
+
+/**
+ * Render Button
+ *
+ * @link https://getbootstrap.com/docs/4.0/components/buttons/
+ * @param array $args
+ */
+function button($args)
+{
+    /**
+     * Arguments
+     */
+
+    $args = wp_parse_args($args, [
+        'text'     => '',
+        'link'     => '',
+        'link_tab' => false,
+        'type'     => 'primary',
+        'outline'  => false,
+        'size'     => '',
+        'toggle'   => '',
+    ]);
+
+    /**
+     * HTML Attributes
+     */
+
+    $atts = ['class' => 'btn', 'role' => 'button'];
+
+    // Type
+    if ($args['type']) {
+        if ($args['outline']) {
+            $atts['class'] .= " btn-outline-{$args['type']}";
+        } else {
+            $atts['class'] .= " btn-{$args['type']}";
+        }
+    }
+
+    // Size
+    if ($args['size']) {
+        $atts['class'] .= " btn-{$args['size']}";
+    }
+
+    // Link
+    if ($args['link']) {
+        $atts['href'] = esc_url($args['link']);
+    }
+
+    // Open link in new window.
+    if ($args['link_tab']) {
+        $atts['target'] = '_blank';
+    }
+
+    // Toggle
+    if ($args['toggle']) {
+        $atts['data-toggle'] = $args['toggle'];
+    }
+
+    /**
+     * Output
+     */
+
+    echo '<a ' . acf_esc_attr($atts) . '>' . $args['text'] . '</a>';
+}
