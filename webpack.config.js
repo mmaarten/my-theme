@@ -30,7 +30,9 @@ const config = {
   entry : {
     'main': [ 'styles/main.scss', 'scripts/main.js' ],
     'editor-style': 'styles/editor-style.scss',
-    'block-style': 'styles/block-style.scss'
+    'block-style': 'styles/block-style.scss',
+    'popper': 'scripts/popper.js',
+    'bootstrap': 'scripts/bootstrap.js'
   }
 };
 
