@@ -63,7 +63,7 @@ array_map(function ($file) {
         );
     }
 }, [
-    'constants.php',
+    'constants',
     'helpers',
     'setup',
     'assets',
