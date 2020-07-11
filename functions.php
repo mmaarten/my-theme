@@ -53,24 +53,16 @@ require $autoloader;
 /**
  * Load files.
  */
-array_map(function ($file) {
-    $file = "inc/{$file}.php";
-    if (!locate_template($file, true, true)) {
-        trigger_error(
-            // translators: 1: file location.
-            sprintf(__('Error locating %1$s for inclusion.', 'my-theme'), "<code>$file</code>"),
-            E_USER_ERROR
-        );
-    }
-}, [
-    'constants',
-    'helpers',
-    'setup',
-    'assets',
-    'widgets',
-    'nav-menus',
-    'editor',
-    'blocks',
-    'template-functions',
-    'template-tags',
-]);
+require_once get_template_directory() . '/inc/constants.php';
+require_once get_template_directory() . '/inc/template-functions.php';
+require_once get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Init
+ */
+My\Theme\Setup::init();
+My\Theme\Assets::init();
+My\Theme\Widgets::init();
+My\Theme\NavMenus::init();
+My\Theme\Editor::init();
+My\Theme\Blocks::init();
