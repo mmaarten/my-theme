@@ -33,12 +33,8 @@ function app($key = null, $value = null, $shared = false)
  * @param mixed $default
  * @return mixed
  */
-function config($key = null, $default = null)
+function config($key, $default = null)
 {
-    if (is_null($key)) {
-        return app('config');
-    }
-
     return app('config')->get($key, $default);
 }
 
