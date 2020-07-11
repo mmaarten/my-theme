@@ -12,6 +12,22 @@ $navbar-padding-y-lg: $navbar-padding-y * 2 !default;
   // Animate background color changes
   @include transition( background-color 300ms ease-in-out );
 
+  // Not expandable
+  .navbar:not([class*="navbar-expand"]) {
+    // Hide large logos
+    .logo-lg:not(.logo-sm) {
+      display: none;
+    }
+  }
+
+  // Header is stuck
+  #sticky-header.is-stuck & {
+    // Hide large logos
+    .logo-lg:not(.logo-sm) {
+      display: none;
+    }
+  }
+
   // Set button spacing
   .nav-item .btn {
     margin-top: $navbar-padding-y;
@@ -57,6 +73,11 @@ $navbar-padding-y-lg: $navbar-padding-y * 2 !default;
 
 // Light theme
 .navbar-light {
+  // Hide light logos
+  .logo-light:not(.logo-dark) {
+    display: none;
+  }
+
   // Give disabled links the default color
   .nav-link.disabled {
     color: $navbar-light-color !important;
@@ -65,6 +86,11 @@ $navbar-padding-y-lg: $navbar-padding-y * 2 !default;
 
 // Dark theme
 .navbar-dark {
+  // Hide dark logos
+  .logo-dark:not(.logo-light) {
+    display: none;
+  }
+
   // Give disabled links the default color
   .nav-link.disabled {
     color: $navbar-dark-color !important;
@@ -91,6 +117,10 @@ $navbar-padding-y-lg: $navbar-padding-y * 2 !default;
 
       // Collapsed
       @include media-breakpoint-down( $breakpoint ) {
+        // Hide large logos
+        .logo-lg:not(.logo-sm) {
+          display: none;
+        }
       }
 
       // Expanded
@@ -114,6 +144,11 @@ $navbar-padding-y-lg: $navbar-padding-y * 2 !default;
           // Make site logo larger
           .site-logo img {
             max-height: $site-logo-max-height-lg;
+          }
+
+          // Hide small logos
+          .logo-sm:not(.logo-lg) {
+            display: none;
           }
         }
       }

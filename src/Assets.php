@@ -24,17 +24,35 @@ final class Assets
     {
         /**
          * Popper
-         *
          * @link https://popper.js.org/
          */
         wp_enqueue_script('popper', get_template_directory_uri() . '/dist/scripts/popper.js', ['jquery'], '1.16.1', true);
 
         /**
          * Bootstrap
-         *
          * @link https://getbootstrap.com/
          */
         wp_enqueue_script('bootstrap', get_template_directory_uri() . '/dist/scripts/bootstrap.js', ['jquery', 'popper'], '4.5.0', true);
+
+        /**
+         * OWL Carousel
+         * @link https://owlcarousel2.github.io/OwlCarousel2/
+         */
+        wp_register_script('owl-carousel', get_template_directory_uri() . '/dist/scripts/owl-carousel.js'), ['jquery'], '2.3.4', true);
+        wp_register_style('owl-carousel', get_template_directory_uri() . '/dist/styles/owl-carousel.css'), [], '2.3.4');
+
+        /**
+         * Fancy Box
+         * @link http://fancyapps.com/fancybox/3/
+         */
+        wp_register_script('fancybox', get_template_directory_uri() . '/dist/scripts/fancybox.js'), ['jquery'], '3.5.7', true);
+        wp_register_style('fancybox', get_template_directory_uri() . '/dist/styles/fancybox.css'), [], '3.5.7');
+
+        /**
+         * jQuery UI Theme
+         * @link https://jqueryui.com/themeroller/
+         */
+        wp_register_style('jquery-ui-theme', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', [], '1.12.1');
 
         /**
          * Theme

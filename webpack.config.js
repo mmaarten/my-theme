@@ -29,7 +29,9 @@ const config = {
     'editor-style': 'styles/editor-style.scss',
     'block-style': 'styles/block-style.scss',
     'popper': 'scripts/popper.js',
-    'bootstrap': 'scripts/bootstrap.js'
+    'bootstrap': 'scripts/bootstrap.js',
+    'owl-carousel': ['styles/owl-carousel.scss', 'scripts/owl-carousel.js'],
+    'fancybox'    : ['styles/fancybox.scss', 'scripts/fancybox.js'],
   }
 };
 
