@@ -27,17 +27,19 @@ add_action('after_setup_theme', function () {
  */
 add_filter('nav_menu_item_title', function ($title, $item, $nav_menu, $depth) {
 
+    // Find icon key
     $key = null;
-
     foreach ($item->classes as $class) {
         if (preg_match('/^-icon-([\w-]+)$/', $class, $matches)) {
             $key = $matches[1];
         }
     }
 
+    // Get icon
     if ($key) {
         $icon = app('icons')->get($key);
         if ($icon) {
+            // Append to title
             $title = "$title $icon";
         }
     }
