@@ -69,7 +69,6 @@ array_map(function ($file) {
     'assets',
     'widgets',
     'nav-menus',
-    'customizer',
     'editor',
     'blocks',
     'icons',
