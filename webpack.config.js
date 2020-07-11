@@ -29,7 +29,6 @@ const config = {
   publicPath: '/wp-content/themes/my-theme',
   entry : {
     'main': [ 'styles/main.scss', 'scripts/main.js' ],
-    'customizer': 'scripts/customizer.js',
     'editor-style': 'styles/editor-style.scss',
     'block-style': 'styles/block-style.scss'
   }
