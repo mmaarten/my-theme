@@ -53,17 +53,39 @@ require $autoloader;
 /**
  * Load files.
  */
-require_once get_template_directory() . '/inc/constants.php';
-require_once get_template_directory() . '/inc/template-functions.php';
-require_once get_template_directory() . '/inc/template-tags.php';
+array_map(function ($file) {
+    $file = "inc/{$file}.php";
+    if (!locate_template($file, true, true)) {
+        trigger_error(
+            // translators: 1: file location.
+            sprintf(__('Error locating %1$s for inclusion.', 'my-theme'), "<code>$file</code>"),
+            E_USER_ERROR
+        );
+    }
+}, [
+    'constants',
+    'helpers',
+    'setup',
+    'assets',
+    'widgets',
+    'nav-menus',
+    'customizer',
+    'editor',
+    'blocks',
+    'icons',
+    'acf',
+    'template-functions',
+    'template-tags',
+]);
 
 /**
- * Init
+ * Setup config.
  */
-My\Theme\Setup::init();
-My\Theme\Assets::init();
-My\Theme\Widgets::init();
-My\Theme\NavMenus::init();
-My\Theme\Editor::init();
-My\Theme\Blocks::init();
-My\Theme\ACF::init();
+use My\Theme\Container;
+use My\Theme\Config;
+
+Container::getInstance()->set('config', function () {
+    return new Config([
+        'icons' => require get_template_directory() . '/config/icons.php',
+    ]);
+}, true);

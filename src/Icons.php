@@ -4,20 +4,11 @@ namespace My\Theme;
 
 class Icons
 {
-    private static $instance = null;
+    protected $icons = [];
 
-    public static function getInstance()
+    public function __construct($icons = [])
     {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-
-    private $icons = [];
-
-    private function __construct()
-    {
+        $this->add($icons);
     }
 
     public function getIcons()
@@ -41,7 +32,7 @@ class Icons
         if (! array_key_exists($key, $this->icons)) {
             trigger_error(sprintf('Unable to find icon %s.', $key), E_USER_WARNING);
 
-            return false;
+            return null;
         }
 
         $svg = $this->icons[ $key ];
