@@ -1,4 +1,9 @@
 <?php
+/**
+ * Icons
+ *
+ * @package My/Theme
+ */
 
 namespace My\Theme;
 
