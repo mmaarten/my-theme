@@ -26,6 +26,7 @@ final class Editor
      */
     public static function enqueueBlockEditorAssets()
     {
+        wp_enqueue_style('my-theme-editor', get_template_directory_uri() . '/dist/styles/editor.css', [], MY_THEME_VERSION);
     }
 
     /**
