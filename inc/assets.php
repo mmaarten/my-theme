@@ -19,7 +19,7 @@ add_action('wp_enqueue_scripts', function () {
         'popper',
         get_template_directory_uri() . 'dist/scripts/popper.js',
         ['jquery'],
-        MY_THEME_VERSION,
+        '1.16.1',
         true
     );
 
@@ -30,7 +30,7 @@ add_action('wp_enqueue_scripts', function () {
         'bootstrap',
         get_template_directory_uri() . 'dist/scripts/bootstrap.js',
         ['jquery'],
-        MY_THEME_VERSION,
+        '4.5.0',
         true
     );
 
