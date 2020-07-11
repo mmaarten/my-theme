@@ -66,3 +66,4 @@ My\Theme\Widgets::init();
 My\Theme\NavMenus::init();
 My\Theme\Editor::init();
 My\Theme\Blocks::init();
+My\Theme\ACF::init();

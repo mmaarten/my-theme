@@ -74,6 +74,16 @@ final class ACF
             }
         }
 
+        // Populate select field with icon names. Usage: set field CSS class to my-theme-icons.
+        if ($field['type'] == 'select' && preg_match('/(^| )my-theme-icons( |$)/', $field['wrapper']['class'])) {
+            $choices = [];
+            $icons = Icons::getInstance()->getIcons();
+            foreach ($icons as $key => $svg) {
+                $choices[$key] = ucwords(str_replace(['-', '_'], ' ', $key));
+            }
+            $field['choices'] = $choices;
+        }
+
         return $field;
     }
 }

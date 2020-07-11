@@ -69,6 +69,22 @@ final class NavMenus
             $title = sprintf('<span class="sr-only">%s</span>', $title);
         }
 
+        // Add icon
+        $icon_key = null;
+
+        foreach ($item->classes as $class) {
+            if (preg_match('/^-icon-([\w-]+)$/', $class, $matches)) {
+                $icon_key = $matches[1];
+            }
+        }
+
+        if ($icon_key) {
+            $icon = Icons::getInstance()->get($icon_key);
+            if ($icon) {
+                $title = "$title $icon";
+            }
+        }
+
         return $title;
     }
 }

@@ -38,15 +38,15 @@ final class Assets
          * OWL Carousel
          * @link https://owlcarousel2.github.io/OwlCarousel2/
          */
-        wp_register_script('owl-carousel', get_template_directory_uri() . '/dist/scripts/owl-carousel.js'), ['jquery'], '2.3.4', true);
-        wp_register_style('owl-carousel', get_template_directory_uri() . '/dist/styles/owl-carousel.css'), [], '2.3.4');
+        wp_register_script('owl-carousel', get_template_directory_uri() . '/dist/scripts/owl-carousel.js', ['jquery'], '2.3.4', true);
+        wp_register_style('owl-carousel', get_template_directory_uri() . '/dist/styles/owl-carousel.css', [], '2.3.4');
 
         /**
          * Fancy Box
          * @link http://fancyapps.com/fancybox/3/
          */
-        wp_register_script('fancybox', get_template_directory_uri() . '/dist/scripts/fancybox.js'), ['jquery'], '3.5.7', true);
-        wp_register_style('fancybox', get_template_directory_uri() . '/dist/styles/fancybox.css'), [], '3.5.7');
+        wp_register_script('fancybox', get_template_directory_uri() . '/dist/scripts/fancybox.js', ['jquery'], '3.5.7', true);
+        wp_register_style('fancybox', get_template_directory_uri() . '/dist/styles/fancybox.css', [], '3.5.7');
 
         /**
          * jQuery UI Theme
