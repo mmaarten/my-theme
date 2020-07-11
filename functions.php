@@ -3,13 +3,13 @@
 /**
  * Check required PHP version.
  */
-if (version_compare(PHP_VERSION, '7.0', '<')) {
+if (version_compare(PHP_VERSION, '5.6', '<')) {
     error_log(
         sprintf(
             // translators: 1: Theme name. 2: required PHP version. 3: active PHP version.
             __('%1$s requires at least PHP version %2$s. You are running version %3$s.', 'my-theme'),
             'My Theme',
-            '7.0',
+            '5.6',
             PHP_VERSION
         )
     );
@@ -63,6 +63,7 @@ array_map(function ($file) {
         );
     }
 }, [
+    'constants.php',
     'helpers',
     'setup',
     'assets',
@@ -73,16 +74,3 @@ array_map(function ($file) {
     'template-functions',
     'template-tags',
 ]);
-
-/**
- * Load config.
- */
-
-use My\Theme\Container;
-use My\Theme\Config;
-
-Container::getInstance()->add('config', function () {
-    return new Config([
-        'assets' => require get_theme_file_path('config/assets.php'),
-    ]);
-});

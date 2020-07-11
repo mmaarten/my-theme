@@ -10,7 +10,7 @@ Bootstrap driven WordPress starter theme.
 ## Requirements
 - [Node JS](https://nodejs.org)
 - [Composer](https://getcomposer.org/)
-- PHP >= 7.0
+- PHP >= 5.6
 - [WordPress](https://wordpress.org/) >= 5.0
 
 ## Installation
