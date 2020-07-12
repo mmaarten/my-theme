@@ -23,6 +23,8 @@ add_filter('wp_nav_menu_args', function ($args) {
 /**
  * Open modal on menu item click.
  *
+ * This feature can be applied by using menu item 'CSS Classes' setting in admin area.
+ *
  * Usage:
  * - Add CSS class toggle-modal.
  * - Set URL setting to refer to model. e.g. #my-modal
@@ -45,6 +47,8 @@ add_filter('nav_menu_link_attributes', function ($atts, $item, $nav_menu, $depth
 
 /**
  * Make item title only available for screenreaders.
+ *
+ * This feature can be applied by using menu item 'CSS Classes' setting in admin area.
  *
  * Use CSS class -sr-only.
  *
