@@ -161,7 +161,7 @@ add_action('after_setup_theme', function () {
     add_theme_support('editor-styles');
 
     /**
-     * Set editor style.
+     * Add editor style.
      * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#editor-styles
      */
     add_editor_style(asset_path('styles/editor-style.css'));
