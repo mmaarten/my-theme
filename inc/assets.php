@@ -16,27 +16,27 @@ add_action('wp_enqueue_scripts', function () {
      * Popper
      * @link https://popper.js.org/
      */
-    wp_enqueue_script('popper', get_template_directory_uri() . '/dist/scripts/popper.js', [], '1.16.1');
+    wp_enqueue_script('popper', asset_path('scripts/popper.js'), [], null);
 
     /**
      * Bootstrap
      * @link https://getbootstrap.com/
      */
-    wp_enqueue_script('bootstrap', get_template_directory_uri() . '/dist/scripts/bootstrap.js', ['jquery'], '4.5.0', true);
+    wp_enqueue_script('bootstrap', asset_path('scripts/bootstrap.js'), ['jquery'], null, true);
 
     /**
      * OWL Carousel
      * @link https://owlcarousel2.github.io/OwlCarousel2/
      */
-    wp_register_script('owl-carousel', get_template_directory_uri() . '/dist/scripts/owl-carousel.js', ['jquery'], '2.3.4', true);
-    wp_register_style('owl-carousel', get_template_directory_uri() . '/dist/styles/owl-carousel.css', [], '2.3.4');
+    wp_register_script('owl-carousel', asset_path('scripts/owl-carousel.js'), ['jquery'], null, true);
+    wp_register_style('owl-carousel', asset_path('styles/owl-carousel.css'), [], null);
 
     /**
      * Fancy Box
      * @link http://fancyapps.com/fancybox/3/
      */
-    wp_register_script('fancybox', get_template_directory_uri() . '/dist/scripts/fancybox.js', ['jquery'], '3.5.7', true);
-    wp_register_style('fancybox', get_template_directory_uri() . '/dist/styles/fancybox.css', [], '3.5.7');
+    wp_register_script('fancybox', asset_path('scripts/fancybox.js'), ['jquery'], null, true);
+    wp_register_style('fancybox', asset_path('styles/fancybox.css'), [], null);
 
     /**
      * jQuery UI Theme
@@ -47,8 +47,8 @@ add_action('wp_enqueue_scripts', function () {
     /**
      * Theme
      */
-    wp_enqueue_style('my-theme-main', get_template_directory_uri() . '/dist/styles/main.css', [], MY_THEME_VERSION);
-    wp_enqueue_script('my-theme-main', get_template_directory_uri() . '/dist/scripts/main.js', ['jquery'], MY_THEME_VERSION, true);
+    wp_enqueue_style('my-theme-main', asset_path('styles/main.css'), [], null);
+    wp_enqueue_script('my-theme-main', asset_path('scripts/main.js'), ['jquery'], null, true);
 
     /**
      * Comment reply

@@ -10,12 +10,12 @@ $gallery-max-columns: 12!default;
   @include make-col-ready($gallery-gutter-width);
 }
 
-@each $breakpoint in map-keys($grid-breakpoints) {
-  $next : breakpoint-next($breakpoint, $grid-breakpoints);
-  $infix: breakpoint-infix($next, $grid-breakpoints);
+@for $n from 1 through $gallery-max-columns {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next : breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
 
-  @include media-breakpoint-up( $next ) {
-    @for $n from 1 through $gallery-max-columns {
+    @include media-breakpoint-up($next) {
       .gallery-columns#{$infix}-#{$n} {
         .gallery-item {
           @include make-col(1, $n);

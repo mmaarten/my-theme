@@ -1,6 +1,25 @@
 .acf-block-preview {
+
+  // Disable mouse events
+  pointer-events: none;
+
+  // Unset WordPress card
+  .card {
+    position: unset;
+    margin-top: unset;
+    padding: unset;
+    min-width: unset;
+    max-width: unset;
+    border: unset;
+    box-shadow: unset;
+    background: unset;
+    box-sizing: unset;
+  }
+
+  // Import front-end styles
   @import "main";
 
+  // Show modal
   .modal {
     display: block;
     opacity: 1 !important;

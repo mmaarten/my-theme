@@ -39,6 +39,15 @@ function config($key, $default = null)
 }
 
 /**
+ * @param string $asset
+ * @return string
+ */
+function asset_path($asset)
+{
+    return app('assets')->getURI($asset);
+}
+
+/**
  * @param array $attributes
  */
 function html_atts($attributes)
@@ -50,6 +59,26 @@ function html_atts($attributes)
     }
 
     return $str;
+}
+
+/**
+ * @param array $data
+ * @param string $prefix
+ * @return string
+ */
+function breakpoint_classes($data, $prefix = '')
+{
+    $breakpoints = ['xs', 'sm', 'md', 'lg', 'xl'];
+    $classes = [];
+    foreach ($breakpoints as $breakpoint) {
+        $infix = $breakpoint === 'xs' ? '' : "$breakpoint-";
+        if (isset($data[$breakpoint])) {
+            $value = $data[$breakpoint];
+            $classes[] = "{$prefix}-{$infix}{$value}";
+        }
+    }
+
+    return implode(' ', $classes);
 }
 
 /**

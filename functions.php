@@ -63,7 +63,6 @@ array_map(function ($file) {
         );
     }
 }, [
-    'constants',
     'helpers',
     'setup',
     'assets',
@@ -85,6 +84,7 @@ use My\Theme\Config;
 
 Container::getInstance()->set('config', function () {
     return new Config([
+        'assets' => require get_template_directory() . '/config/assets.php',
         'icons' => require get_template_directory() . '/config/icons.php',
     ]);
 }, true);

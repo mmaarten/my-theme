@@ -565,16 +565,11 @@ function gallery($args)
         'size'    => 'thumbnail',
         'link'    => '',
         'ids'     => [],
-
     ]);
 
     $gallery_id = !empty($args['id']) ? $args['id'] : "gallery-$instance";
 
-    if (strpos($args['columns'], '=') !== false) {
-        $columns = wp_parse_args($args['columns']);
-    } else {
-        $columns = ['xs' => $args['columns']];
-    }
+    $column_classes = breakpoint_classes($args['columns'], 'gallery-columns');
 
     $attachments = get_posts([
         'post_type'      => 'attachment',
@@ -589,9 +584,8 @@ function gallery($args)
         'class' => 'gallery',
     ];
 
-    foreach ($columns as $breakpoint => $column) {
-        $infix = $breakpoint === 'xs' ? '' : "-$breakpoint";
-        $atts['class'] .= " gallery-columns{$infix}-$column";
+    if ($column_classes) {
+        $atts['class'] .= ' ' . $column_classes;
     }
 
     echo '<div ' . html_atts($atts) . '>';

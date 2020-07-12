@@ -16,6 +16,7 @@ add_action('after_setup_theme', function () {
         'Modal',
         'Carousel',
         'Gallery',
+        'OWLCarousel',
     ];
     foreach ($blocks as $block) {
         $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;
@@ -28,5 +29,5 @@ add_action('after_setup_theme', function () {
  * Enqueue block assets for front-end and editing interface.
  */
 add_action('enqueue_block_assets', function () {
-    wp_enqueue_style('my-theme-blocks', get_template_directory_uri() . '/dist/styles/block-style.css', [], MY_THEME_VERSION);
+    wp_enqueue_style('my-theme-blocks', asset_path('styles/block-style.css'), [], null);
 });

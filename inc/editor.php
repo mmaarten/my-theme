@@ -13,7 +13,7 @@ namespace My\Theme;
  * @link https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/
  */
 add_action('enqueue_block_editor_assets', function () {
-    wp_enqueue_style('my-theme-editor', get_template_directory_uri() . '/dist/styles/editor.css', [], MY_THEME_VERSION);
+    wp_enqueue_style('my-theme-editor', asset_path('styles/editor.css'), [], null);
 });
 
 /**
