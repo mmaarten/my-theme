@@ -33,3 +33,20 @@ Run `npm run build` to compile and optimize assets.
 Run `npm run bundle` to create distribution archive.
 
 Run `composer run make-pot` to create translation file.
+
+## Renaming
+
+Find following and replace them with your theme name:
+
+- package name: My/Theme
+- namespace: My\Theme
+- slug: my-theme
+- title: My Theme
+- my/theme
+
+Rename file: `languages/my-theme.pot`
+
+Update following files for author information:
+- `composer.json`
+- `package.json`
+- `style.css`
