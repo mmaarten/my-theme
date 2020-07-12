@@ -1,9 +1,9 @@
 {
-    "key": "group_5f0b0a4a36600",
-    "title": "Block — OWL Carousel",
+    "key": "group_5f0a2a49dd290",
+    "title": "Block — Carousel",
     "fields": [
         {
-            "key": "field_5f0b0a4a39258",
+            "key": "field_5f0a2a5018a63",
             "label": "ID",
             "name": "id",
             "type": "text",
@@ -22,7 +22,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_5f0b0a4a3929f",
+            "key": "field_5f0a2a5d18a64",
             "label": "Show Indicators",
             "name": "indicators",
             "type": "true_false",
@@ -41,7 +41,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f0b0a4a392e3",
+            "key": "field_5f0a2a7918a65",
             "label": "Show Controls",
             "name": "controls",
             "type": "true_false",
@@ -60,7 +60,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f0b0a4a39397",
+            "key": "field_5f0a2a8518a66",
             "label": "Autoplay",
             "name": "autoplay",
             "type": "true_false",
@@ -79,7 +79,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f0b0a4a39414",
+            "key": "field_5f0a2a9118a67",
             "label": "Items",
             "name": "items",
             "type": "repeater",
@@ -98,7 +98,7 @@
             "button_label": "Add Item",
             "sub_fields": [
                 {
-                    "key": "field_5f0b0a4a45d9a",
+                    "key": "field_5f0a2a9e18a68",
                     "label": "Image",
                     "name": "image",
                     "type": "image",
@@ -120,27 +120,27 @@
                     "max_height": "",
                     "max_size": "",
                     "mime_types": ""
+                },
+                {
+                    "key": "field_5f0a2ab218a69",
+                    "label": "Caption",
+                    "name": "caption",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
                 }
             ]
-        },
-        {
-            "key": "field_5f0b0a5b51111",
-            "label": "Amount of items visible",
-            "name": "items_visible",
-            "type": "text",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 3,
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         }
     ],
     "location": [
@@ -148,7 +148,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/owl-carousel"
+                "value": "acf\/carousel"
             }
         ]
     ],
@@ -160,5 +160,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1594580107
+    "modified": 1594580099
 }
