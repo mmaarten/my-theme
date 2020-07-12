@@ -326,8 +326,8 @@ function carousel($args)
      */
 
     $atts = [
-        'class'       =>'carousel slide',
-        'id'          => $carousel_id,
+        'class' =>'carousel slide',
+        'id'    => $carousel_id,
     ];
 
     if ($args['autoplay']) {
@@ -553,6 +553,11 @@ function button($args)
     echo '<a ' . html_atts($atts) . '>' . $args['text'] . '</a>';
 }
 
+/**
+ * Render Gallery
+ *
+ * @param array $args
+ */
 function gallery($args)
 {
     static $instance = 0;
@@ -652,7 +657,7 @@ function cover_image($attachment_id, $size = 'large', $ratio = '4by3')
 
     echo '<span' . html_atts($atts) . '>';
 
-    echo wp_get_attachment_image($attachment_id, $size, false, ['class' => 'responsive-item invisible']);
+    echo wp_get_attachment_image($attachment_id, $size, false, ['class' => 'embed-responsive-item invisible']);
 
     echo '</span>'; // .cover-image
 }
