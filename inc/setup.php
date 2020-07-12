@@ -14,13 +14,6 @@ namespace My\Theme;
 add_action('after_setup_theme', function () {
 
     /**
-     * Setup assets manager.
-     */
-    app('assets', function () {
-        return new Assets\Manifest(config('assets.manifest'), config('assets.uri'));
-    });
-
-    /**
      * Starter Content.
      */
     add_theme_support('starter-content', [
