@@ -9,6 +9,7 @@ const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const rootPath = process.cwd();
 const isProduction = !!((argv.env && argv.env.production) || argv.p);
@@ -21,6 +22,7 @@ const config = {
   },
   enabled: {
     sourceMaps: !isProduction,
+    cacheBusting: true,
     optimization : isProduction,
   },
   publicPath: '/wp-content/themes/my-theme',
@@ -36,7 +38,7 @@ const config = {
   }
 };
 
-const filename = '[name]';
+const filename = config.enabled.cacheBusting ? '[name]_[hash]' : '[name]';
 
 if (undefined === process.env.NODE_ENV) {
   process.env.NODE_ENV = isProduction ? 'production' : 'development';
@@ -170,6 +172,30 @@ module.exports = {
       'images/**/*',
       'fonts/**/*',
     ]),
+    // Generate a JSON file that matches the original filename with the hashed version.
+    new WebpackAssetsManifest({
+      output: 'assets.json',
+      space: 2,
+      writeToDisk: false,
+      assets: {},
+      replacer: (key, value) => {
+        if (typeof value === 'string') {
+          return value;
+        }
+        const manifest = value;
+        // Prepend scripts/ or styles/ to manifest keys
+        Object.keys(manifest).forEach((src) => {
+          const sourcePath = path.basename(path.dirname(src));
+          const targetPath = path.basename(path.dirname(manifest[src]));
+          if (sourcePath === targetPath) {
+            return;
+          }
+          manifest[`${targetPath}/${src}`] = manifest[src];
+          delete manifest[src];
+        });
+        return manifest;
+      },
+    }),
     // Elegant ProgressBar and Profiler
     new WebpackBar(),
   ],
