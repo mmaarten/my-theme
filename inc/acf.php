@@ -67,5 +67,15 @@ add_filter('acf/load_field', function ($field) {
         $field['choices'] = $choices;
     }
 
+    // Populate select field with image size names. Usage: set field CSS class to my-theme-image-sizes.
+    if ($field['type'] == 'select' && preg_match('/(^| )my-theme-image-sizes( |$)/', $field['wrapper']['class'])) {
+        $field['choices'] = apply_filters('image_size_names_choose', [
+            'thumbnail' => __('Thumbnail', 'my-theme'),
+            'medium'    => __('Medium', 'my-theme'),
+            'large'     => __('Large', 'my-theme'),
+            'full'      => __('Full Size', 'my-theme'),
+        ]);
+    }
+
     return $field;
 });

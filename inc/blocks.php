@@ -15,6 +15,7 @@ add_action('after_setup_theme', function () {
         'Button',
         'Modal',
         'Carousel',
+        'Gallery',
     ];
     foreach ($blocks as $block) {
         $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;

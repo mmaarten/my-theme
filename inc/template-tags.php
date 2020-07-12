@@ -550,5 +550,86 @@ function button($args)
      * Output
      */
 
-    echo '<a ' . acf_esc_attr($atts) . '>' . $args['text'] . '</a>';
+    echo '<a ' . html_atts($atts) . '>' . $args['text'] . '</a>';
+}
+
+function gallery($args)
+{
+    static $instance = 0;
+
+    $instance++;
+
+    $args = wp_parse_args($args, [
+        'id'      => '',
+        'columns' => 4,
+        'size'    => 'thumbnail',
+        'link'    => '',
+        'ids'     => [],
+
+    ]);
+
+    $gallery_id = !empty($args['id']) ? $args['id'] : "gallery-$instance";
+
+    if (strpos($args['columns'], '=') !== false) {
+        $columns = wp_parse_args($args['columns']);
+    } else {
+        $columns = ['xs' => $args['columns']];
+    }
+
+    $attachments = get_posts([
+        'post_type'      => 'attachment',
+        'post_status'    => 'inherit',
+        'post_mime_type' => 'image',
+        'include'        => $args['ids'],
+        'orderby'        => 'post__in',
+    ]);
+
+    $atts = [
+        'id'    => $gallery_id,
+        'class' => 'gallery',
+    ];
+
+    foreach ($columns as $breakpoint => $column) {
+        $infix = $breakpoint === 'xs' ? '' : "-$breakpoint";
+        $atts['class'] .= " gallery-columns{$infix}-$column";
+    }
+
+    echo '<div ' . html_atts($atts) . '>';
+
+    foreach ($attachments as $attachment) {
+        $has_caption = trim($attachment->post_excerpt) ? true : false;
+        $caption_id = "$gallery_id-{$attachment->ID}";
+        $atts = $has_caption ? ['aria-describedby' => $caption_id] : [];
+
+        echo '<figure class="gallery-item">';
+
+        echo '<div class="gallery-icon">';
+
+        if ($args['link'] == 'file') {
+            echo wp_get_attachment_link($attachment->ID, $args['size'], false, false, false, $atts);
+        } elseif ($args['link'] == 'page') {
+            echo wp_get_attachment_link($attachment->ID, $args['size'], true, false, false, $atts);
+        } elseif ($args['link'] == 'lightbox') {
+            list($image_url) = wp_get_attachment_image_src($attachment->ID, 'my-theme-full-width');
+            printf('<a href="%s" data-fancybox="%s">', esc_url($image_url), esc_attr($gallery_id));
+            echo wp_get_attachment_image($attachment->ID, $args['size'], false, $atts);
+            echo '</a>';
+        } else {
+            echo wp_get_attachment_image($attachment->ID, $args['size'], false, $atts);
+        }
+
+        echo '</div>'; // gallery-icon
+
+        if ($has_caption) {
+            printf(
+                '<figcaption class="gallery-caption" id="%s">%s</figcaption>',
+                esc_attr($caption_id),
+                wptexturize($attachment->post_excerpt)
+            );
+        }
+
+        echo '</figure>'; // gallery-item
+    }
+
+    echo '</div>'; // .gallery
 }
