@@ -45,6 +45,11 @@ add_action('wp_enqueue_scripts', function () {
     wp_register_style('jquery-ui-theme', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css', [], '1.12.1');
 
     /**
+     * Google Maps
+     */
+    wp_register_script('google-maps', add_query_arg('key', config('google_maps_api_key'), 'https://maps.googleapis.com/maps/api/js'), [], false, true);
+
+    /**
      * Theme
      */
     wp_enqueue_style('my-theme-main', asset_path('styles/main.css'), [], null);
