@@ -47,7 +47,8 @@ add_action('wp_enqueue_scripts', function () {
     /**
      * Google Maps
      */
-    wp_register_script('google-maps', add_query_arg('key', config('google_maps_api_key'), 'https://maps.googleapis.com/maps/api/js'), [], false, true);
+    $src = add_query_arg('key', config('google_maps_api_key'), 'https://maps.googleapis.com/maps/api/js');
+    wp_register_script('google-maps', $src, [], false, true);
 
     /**
      * Theme
