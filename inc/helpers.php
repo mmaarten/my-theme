@@ -49,6 +49,7 @@ function asset_path($asset)
 
 /**
  * @param array $attributes
+ * @return string
  */
 function html_atts($attributes)
 {
@@ -62,6 +63,11 @@ function html_atts($attributes)
 }
 
 /**
+ * @example
+ * breakpoint_classes(['xs' => 1, 'sm' => 2], 'prefix');
+ * returns
+ * prefix-1 prefix-sm-2
+ *
  * @param array $data
  * @param string $prefix
  * @return string
@@ -82,8 +88,10 @@ function breakpoint_classes($data, $prefix = '')
 }
 
 /**
- * @param int $amount
- * @param array $args
+ * Register a series of sidebars described as footer columns.
+ *
+ * @param int   $amount The amount of sidebars to register.
+ * @param array $args   Extra arguments for register_sidebar function.
  */
 function register_footer_columns($amount, $args = [])
 {
@@ -103,7 +111,9 @@ function register_footer_columns($amount, $args = [])
         register_sidebar(
             [
                 'id'          => 'footer-column-' . $n,
+                // translators: %s: column number
                 'name'        => sprintf(esc_html__('Footer Column %s', 'my-theme'), $n),
+                // translators: %s: column ordinal number
                 'description' => sprintf(esc_html__('%s column in footer section.', 'my-theme'), $ordinals[$n]),
             ] + $args
         );

@@ -568,14 +568,17 @@ function gallery($args)
     ]);
 
     $gallery_id = !empty($args['id']) ? $args['id'] : "gallery-$instance";
+    $attachment_ids = is_array($args['ids']) ? $args['ids'] : [];
 
-    $column_classes = breakpoint_classes($args['columns'], 'gallery-columns');
+    if (! $attachment_ids) {
+        return;
+    }
 
     $attachments = get_posts([
         'post_type'      => 'attachment',
         'post_status'    => 'inherit',
         'post_mime_type' => 'image',
-        'include'        => $args['ids'],
+        'include'        => $attachment_ids,
         'orderby'        => 'post__in',
     ]);
 
@@ -583,6 +586,8 @@ function gallery($args)
         'id'    => $gallery_id,
         'class' => 'gallery',
     ];
+
+    $column_classes = breakpoint_classes($args['columns'], 'gallery-columns');
 
     if ($column_classes) {
         $atts['class'] .= ' ' . $column_classes;

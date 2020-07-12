@@ -57,16 +57,6 @@ add_filter('acf/load_field', function ($field) {
         }
     }
 
-    // Populate select field with icon names. Usage: set field CSS class to my-theme-icons.
-    if ($field['type'] == 'select' && preg_match('/(^| )my-theme-icons( |$)/', $field['wrapper']['class'])) {
-        $choices = [];
-        $icons = app('icons')->getIcons();
-        foreach ($icons as $key => $svg) {
-            $choices[$key] = ucwords(str_replace(['-', '_'], ' ', $key));
-        }
-        $field['choices'] = $choices;
-    }
-
     // Populate select field with image size names. Usage: set field CSS class to my-theme-image-sizes.
     if ($field['type'] == 'select' && preg_match('/(^| )my-theme-image-sizes( |$)/', $field['wrapper']['class'])) {
         $field['choices'] = apply_filters('image_size_names_choose', [
@@ -75,6 +65,16 @@ add_filter('acf/load_field', function ($field) {
             'large'     => __('Large', 'my-theme'),
             'full'      => __('Full Size', 'my-theme'),
         ]);
+    }
+
+    // Populate select field with icon names. Usage: set field CSS class to my-theme-icons.
+    if ($field['type'] == 'select' && preg_match('/(^| )my-theme-icons( |$)/', $field['wrapper']['class'])) {
+        $choices = [];
+        $icons = app('icons')->getIcons();
+        foreach ($icons as $key => $svg) {
+            $choices[$key] = ucwords(str_replace(['-', '_'], ' ', $key));
+        }
+        $field['choices'] = $choices;
     }
 
     return $field;
