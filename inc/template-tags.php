@@ -627,3 +627,27 @@ function gallery($args)
 
     echo '</div>'; // .gallery
 }
+
+/**
+ * @param int $attachment_id
+ * @param string $size
+ * @param string $ratio
+ */
+function cover_image($attachment_id, $size = 'large', $ratio = '4by3')
+{
+    list($image_url) = wp_get_attachment_image_src($attachment_id, $size);
+
+    if (! $image_url) {
+        return;
+    }
+
+    $atts = [
+        'class' => sprintf('cover-image bg-cover bg-center embed-responsive embed-responsive-%s', $ratio),
+    ];
+
+    echo '<span' . html_atts($atts) . '>';
+
+    echo wp_get_attachment_image($attachment_id, $size, false, ['class' => 'responsive-item invisible']);
+
+    echo '</span>'; // .cover-image
+}
