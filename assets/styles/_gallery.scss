@@ -1,17 +1,13 @@
 
 $gallery-gutter-width: 30px !default;
+$gallery-max-columns: 12!default;
 
 .gallery {
   @include make-row($gallery-gutter-width);
-  margin-top: -$gallery-gutter-width/2;
-  margin-bottom: -$gallery-gutter-width/2;
 }
 
 .gallery-item {
   @include make-col-ready($gallery-gutter-width);
-  padding-top: $gallery-gutter-width/2;
-  padding-bottom: $gallery-gutter-width/2;
-  margin: 0;
 }
 
 @each $breakpoint in map-keys($grid-breakpoints) {
@@ -19,7 +15,7 @@ $gallery-gutter-width: 30px !default;
   $infix: breakpoint-infix($next, $grid-breakpoints);
 
   @include media-breakpoint-up( $next ) {
-    @for $n from 1 through 12 {
+    @for $n from 1 through $gallery-max-columns {
       .gallery-columns#{$infix}-#{$n} {
         .gallery-item {
           @include make-col(1, $n);
