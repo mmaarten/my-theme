@@ -122,3 +122,4 @@ $app->get('assets')->init();
 $app->get('widgets')->init();
 $app->get('nav_menus')->init();
 $app->get('blocks')->init();
+$app->get('acf')->init();
