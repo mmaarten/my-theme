@@ -11,7 +11,20 @@ class Widgets
 {
     public function init()
     {
+        add_action('after_setup_theme', [$this, 'addSupport']);
         add_action('widgets_init', [$this, 'registerSidebars']);
+    }
+
+    /**
+     * Register widget areas.
+     */
+    public function addSupport()
+    {
+        /**
+         * Enable selective refresh for widgets in customizer
+         * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
+         */
+        add_theme_support('customize-selective-refresh-widgets');
     }
 
     /**

@@ -11,9 +11,26 @@ class NavMenus
 {
     public function init()
     {
+        add_action('after_setup_theme', [$this, 'registerNavMenus']);
         add_filter('wp_nav_menu_args', [$this, 'setWalker'], PHP_INT_MAX);
         add_filter('nav_menu_link_attributes', [$this, 'navMenuLinkAttributes'], PHP_INT_MAX, 4);
         add_filter('nav_menu_item_title', [$this, 'navMenuItemTitle'], PHP_INT_MAX, 4);
+    }
+
+    /**
+     * Register nav menu locations.
+     * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
+     */
+    public function registerNavMenus()
+    {
+        register_nav_menus([
+            'top-left'     => esc_html__('Top Left', 'my-theme'),
+            'top-right'    => esc_html__('Top Right', 'my-theme'),
+            'main-left'    => esc_html__('Primary Left', 'my-theme'),
+            'main-right'   => esc_html__('Primary Right', 'my-theme'),
+            'footer-left'  => esc_html__('Footer Left', 'my-theme'),
+            'footer-right' => esc_html__('Footer Right', 'my-theme'),
+        ]);
     }
 
     /**

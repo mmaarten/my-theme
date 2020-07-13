@@ -37,13 +37,3 @@ function config($key, $default = null)
 {
     return app('config')->get($key, $default);
 }
-
-/**
- * @param string $key
- * @param int    $size
- * @return string
- */
-function icon($key, $size = null)
-{
-    return app('icons')->get($key, $size);
-}
