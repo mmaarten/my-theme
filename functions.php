@@ -65,53 +65,25 @@ array_map(function ($file) {
 }, [
     'constants',
     'helpers',
+    'setup',
+    'assets',
+    'widgets',
+    'nav-menus',
+    'blocks',
+    'icons',
+    'acf',
     'template-functions',
     'template-tags',
 ]);
 
 /**
- * Setup application.
+ * Setup config.
  */
 use function My\Theme\app;
-use function My\Theme\config;
+use My\Theme\Config;
 
 app('config', function () {
-    return new My\Theme\Config([
+    return new Config([
         'icons' => require get_theme_file_path('config/icons.php'),
     ]);
 });
-
-app('icons', function () {
-    return new My\Theme\Icons(config('icons'));
-});
-
-app('setup', function () {
-    return new My\Theme\Setup();
-});
-
-app('assets', function () {
-    return new My\Theme\Assets();
-});
-
-app('widgets', function () {
-    return new My\Theme\Widgets();
-});
-
-app('nav_menus', function () {
-    return new My\Theme\NavMenus();
-});
-
-app('blocks', function () {
-    return new My\Theme\Blocks();
-});
-
-app('acf', function () {
-    return new My\Theme\ACF();
-});
-
-app('setup')->init();
-app('assets')->init();
-app('widgets')->init();
-app('nav_menus')->init();
-app('blocks')->init();
-app('acf')->init();
