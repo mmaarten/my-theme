@@ -25,10 +25,6 @@ class Blocks
     {
         $blocks = [
             'Button',
-            'Carousel',
-            'Gallery',
-            'Modal',
-            'OWLCarousel',
         ];
         foreach ($blocks as $block) {
             $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;
@@ -42,7 +38,7 @@ class Blocks
      */
     public function enqueueBlockAssets()
     {
-        wp_enqueue_style('my-theme-blocks', asset_path('styles/block-style.css'), [], null);
+        wp_enqueue_style('my-theme-blocks', get_template_directory_uri() . '/dist/styles/block-style.css', [], MY_THEME_VERSION);
     }
 
     /**
@@ -50,7 +46,7 @@ class Blocks
      */
     public function enqueueBlockEditorAssets()
     {
-        wp_enqueue_style('my-theme-editor', asset_path('styles/editor.css'), [], null);
+        wp_enqueue_style('my-theme-editor', get_template_directory_uri() . '/dist/styles/editor.css', [], MY_THEME_VERSION);
     }
 
     /**

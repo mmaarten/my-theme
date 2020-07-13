@@ -162,7 +162,7 @@ class Setup
          * Add editor style.
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#editor-styles
          */
-        add_editor_style(asset_path('styles/editor-style.css'));
+        add_editor_style(get_template_directory_uri() . '/dist/styles/editor-style.css');
 
         /**
          * Adjust the color of the UI to work on dark backgrounds.
@@ -210,6 +210,8 @@ class Setup
      */
     public function imageSizeNamesChoose($sizes)
     {
-        return $sizes;
+        return $sizes + [
+            'my-theme-full-width' => __('Full Width', 'my-theme'),
+        ];
     }
 }

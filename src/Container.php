@@ -52,7 +52,7 @@ final class Container
         return $value;
     }
 
-    public function set($key, $value, $shared = false)
+    public function add($key, $value, $shared = true)
     {
         $this->values[$key] = $value;
         $this->shared[$key] = $shared;

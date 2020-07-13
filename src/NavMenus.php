@@ -42,6 +42,9 @@ class NavMenus
      */
     public function navMenuLinkAttributes($atts, $item, $nav_menu, $depth)
     {
+        /**
+         * Use CSS class toggle-modal to open modal on click.
+         */
         if (in_array('toggle-modal', $item->classes)) {
             $atts['data-toggle'] = 'modal';
         }

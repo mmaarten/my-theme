@@ -63,6 +63,7 @@ array_map(function ($file) {
         );
     }
 }, [
+    'constants',
     'helpers',
     'template-functions',
     'template-tags',
@@ -71,55 +72,46 @@ array_map(function ($file) {
 /**
  * Setup application.
  */
-use My\Theme\Container;
+use function My\Theme\app;
+use function My\Theme\config;
 
-$app = Container::getInstance();
-
-$app->set('config', function () {
+app('config', function () {
     return new My\Theme\Config([
-        'assets' => require get_template_directory() . '/config/assets.php',
-        'icons'  => require get_template_directory() . '/config/icons.php',
+        'icons' => require get_theme_file_path('config/icons.php'),
     ]);
 });
 
-$app->set('assets.manifest', function () use ($app) {
-    $manifest = $app->get('config')->get('assets.manifest');
-    $uri      = $app->get('config')->get('assets.uri');
-    return new My\Theme\Assets\Manifest($manifest, $uri);
+app('icons', function () {
+    return new My\Theme\Icons(config('icons'));
 });
 
-$app->set('icons', function () use ($app) {
-    $icons = $app->get('config')->get('icons');
-    return new My\Theme\Icons($icons);
-});
-
-$app->set('setup', function () {
+app('setup', function () {
     return new My\Theme\Setup();
 });
 
-$app->set('assets', function () {
+app('assets', function () {
     return new My\Theme\Assets();
 });
 
-$app->set('widgets', function () {
+app('widgets', function () {
     return new My\Theme\Widgets();
 });
 
-$app->set('nav_menus', function () {
+app('nav_menus', function () {
     return new My\Theme\NavMenus();
 });
 
-$app->set('blocks', function () {
+app('blocks', function () {
     return new My\Theme\Blocks();
 });
 
-$app->set('acf', function () {
+app('acf', function () {
     return new My\Theme\ACF();
 });
 
-$app->get('setup')->init();
-$app->get('assets')->init();
-$app->get('widgets')->init();
-$app->get('nav_menus')->init();
-$app->get('blocks')->init();
-$app->get('acf')->init();
+app('setup')->init();
+app('assets')->init();
+app('widgets')->init();
+app('nav_menus')->init();
+app('blocks')->init();
+app('acf')->init();
