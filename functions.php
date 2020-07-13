@@ -64,27 +64,61 @@ array_map(function ($file) {
     }
 }, [
     'helpers',
-    'setup',
-    'assets',
-    'widgets',
-    'nav-menus',
-    'editor',
-    'blocks',
-    'icons',
-    'acf',
     'template-functions',
     'template-tags',
 ]);
 
 /**
- * Setup config.
+ * Setup application.
  */
 use My\Theme\Container;
-use My\Theme\Config;
 
-Container::getInstance()->set('config', function () {
-    return new Config([
+$app = Container::getInstance();
+
+$app->set('config', function () {
+    return new My\Theme\Config([
         'assets' => require get_template_directory() . '/config/assets.php',
-        'icons' => require get_template_directory() . '/config/icons.php',
+        'icons'  => require get_template_directory() . '/config/icons.php',
     ]);
-}, true);
+});
+
+$app->set('assets.manifest', function () use ($app) {
+    $manifest = $app->get('config')->get('assets.manifest');
+    $uri      = $app->get('config')->get('assets.uri');
+    return new My\Theme\Assets\Manifest($manifest, $uri);
+});
+
+$app->set('icons', function () use ($app) {
+    $icons = $app->get('config')->get('icons');
+    return new My\Theme\Icons($icons);
+});
+
+$app->set('setup', function () {
+    return new My\Theme\Setup();
+});
+
+$app->set('assets', function () {
+    return new My\Theme\Assets();
+});
+
+$app->set('widgets', function () {
+    return new My\Theme\Widgets();
+});
+
+$app->set('nav_menus', function () {
+    return new My\Theme\NavMenus();
+});
+
+$app->set('blocks', function () {
+    return new My\Theme\Blocks();
+});
+
+$app->set('acf', function () {
+    return new My\Theme\ACF();
+});
+
+$app->get('setup')->init();
+$app->get('assets')->init();
+$app->get('widgets')->init();
+$app->get('nav_menus')->init();
+$app->get('blocks')->init();

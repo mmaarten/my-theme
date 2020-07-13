@@ -11,8 +11,6 @@
 
 namespace My\Theme\BlockTypes;
 
-use function My\Theme\gallery;
-
 class OWLCarousel extends AbstractBlock
 {
     /**
