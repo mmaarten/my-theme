@@ -6,12 +6,11 @@ Bootstrap driven WordPress starter theme.
 - [Webpack](https://webpack.js.org/) for compiling assets, optimising images, and concatenating and minifying files.
 - [Bootstrap](https://getbootstrap.com/) 4 CSS framework.
 - [WordPress Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker) for navigations.
-- [Fontawesome](https://fontawesome.com/) icon library.
 
 ## Requirements
 - [Node JS](https://nodejs.org)
 - [Composer](https://getcomposer.org/)
-- PHP >= 7.0
+- PHP >= 5.6
 - [WordPress](https://wordpress.org/) >= 5.0
 
 ## Installation
@@ -34,3 +33,20 @@ Run `npm run build` to compile and optimize assets.
 Run `npm run bundle` to create distribution archive.
 
 Run `composer run make-pot` to create translation file.
+
+## Renaming
+
+Find following and replace them with your theme name:
+
+- package name: My/Theme
+- namespace: My\Theme
+- slug: my-theme
+- title: My Theme
+- my/theme
+
+Rename file: `languages/my-theme.pot`
+
+Update following files for author information:
+- `composer.json`
+- `package.json`
+- `style.css`

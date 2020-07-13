@@ -8,7 +8,22 @@
 namespace My\Theme;
 
 /**
- * Set default walker
+ * Register nav menu locations.
+ * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
+ */
+add_action('after_setup_theme', function () {
+    register_nav_menus([
+        'top-left'     => esc_html__('Top Left', 'my-theme'),
+        'top-right'    => esc_html__('Top Right', 'my-theme'),
+        'main-left'    => esc_html__('Primary Left', 'my-theme'),
+        'main-right'   => esc_html__('Primary Right', 'my-theme'),
+        'footer-left'  => esc_html__('Footer Left', 'my-theme'),
+        'footer-right' => esc_html__('Footer Right', 'my-theme'),
+    ]);
+});
+
+/**
+ * Set Walker
  *
  * @param array $args Array of wp_nav_menu() arguments.
  * @return array
@@ -21,11 +36,7 @@ add_filter('wp_nav_menu_args', function ($args) {
 }, PHP_INT_MAX);
 
 /**
- * Open modal on menu item click.
- *
- * Usage:
- * - Add CSS class toggle-modal.
- * - Set URL setting to refer to model. e.g. #my-modal
+ * Nav Menu Link Attributes
  *
  * @param array    $atts      The HTML attributes applied to the menu item's <a> element.
  * @param WP_Post  $item      The current menu item.
@@ -34,8 +45,10 @@ add_filter('wp_nav_menu_args', function ($args) {
  *
  * @return array
  */
-add_filter('nav_menu_link_attributes', function (array $atts, \WP_Post $item, \stdClass $nav_menu, int $depth) {
-
+add_filter('nav_menu_link_attributes', function ($atts, $item, $nav_menu, $depth) {
+    /**
+     * Use CSS class toggle-modal to open modal on click.
+     */
     if (in_array('toggle-modal', $item->classes)) {
         $atts['data-toggle'] = 'modal';
     }
@@ -44,17 +57,18 @@ add_filter('nav_menu_link_attributes', function (array $atts, \WP_Post $item, \s
 }, PHP_INT_MAX, 4);
 
 /**
- * Make item title only available for screenreaders.
+ * Nav Menu Item Title
  *
- * Use CSS class -sr-only.
- *
- * @param string   $title The menu item's title.
- * @param WP_Post  $item  The current menu item.
- * @param stdClass $args  An object of wp_nav_menu() arguments.
- * @param int      $depth Depth of menu item. Used for padding.
+ * @param string   $title     The menu item's title.
+ * @param WP_Post  $item      The current menu item.
+ * @param stdClass $nav_menu  An object of wp_nav_menu() arguments.
+ * @param int      $depth     Depth of menu item. Used for padding.
  */
-add_filter('nav_menu_item_title', function (string $title, \WP_Post $item, \stdClass $args, int $depth) {
+add_filter('nav_menu_item_title', function ($title, $item, $nav_menu, $depth) {
 
+    /**
+     * Make title only available for screenreaders. Use CSS class -sr-only.
+     */
     if (in_array('-sr-only', $item->classes)) {
         $title = sprintf('<span class="sr-only">%s</span>', $title);
     }

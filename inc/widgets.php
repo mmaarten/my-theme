@@ -8,9 +8,18 @@
 namespace My\Theme;
 
 /**
- * Register widget areas.
- *
- * @link https://developer.wordpress.org/reference/functions/register_sidebar/
+ * Add Support
+ */
+add_action('after_setup_theme', function () {
+    /**
+     * Enable selective refresh for widgets in customizer
+     * @link https://developer.wordpress.org/themes/advanced-topics/customizer-api/#theme-support-in-sidebars
+     */
+    add_theme_support('customize-selective-refresh-widgets');
+});
+
+/**
+ * Register Widget Areas
  */
 add_action('widgets_init', function () {
     $args = [

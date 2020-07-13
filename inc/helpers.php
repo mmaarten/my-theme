@@ -13,19 +13,19 @@ namespace My\Theme;
  * @param bool $shared
  * @return mixed
  */
-function app(string $id = null, $concrete = null, bool $shared = null)
+function app($key = null, $value = null, $shared = true)
 {
     $container = Container::getInstance();
 
-    if (is_null($id)) {
+    if (is_null($key)) {
         return $container;
     }
 
-    if (is_null($concrete)) {
-        return $container->get($id);
+    if (is_null($value)) {
+        return $container->get($key);
     }
 
-    return $container->add($id, $concrete, $shared);
+    return $container->add($key, $value, $shared);
 }
 
 /**
@@ -33,42 +33,16 @@ function app(string $id = null, $concrete = null, bool $shared = null)
  * @param mixed $default
  * @return mixed
  */
-function config(string $key = null, $default = null)
+function config($key, $default = null)
 {
-    if (is_null($key)) {
-        return app('config');
-    }
-
     return app('config')->get($key, $default);
 }
 
 /**
- * @param string $asset
- * @return string
- */
-function asset_path(string $asset)
-{
-    return app('assets')->getURI($asset);
-}
-
-/**
- * @param array $atts
- * @return string
- */
-function html_atts($atts)
-{
-    $str = '';
-
-    foreach ($atts as $name => $value) {
-        $str .= sprintf(' %s="%s"', esc_attr($name), esc_attr($value));
-    }
-
-    return $str;
-}
-
-/**
- * @param int $amount
- * @param array $args
+ * Register a series of sidebars described as footer columns.
+ *
+ * @param int   $amount The amount of sidebars to register.
+ * @param array $args   Extra arguments for register_sidebar function.
  */
 function register_footer_columns($amount, $args = [])
 {
@@ -88,7 +62,9 @@ function register_footer_columns($amount, $args = [])
         register_sidebar(
             [
                 'id'          => 'footer-column-' . $n,
+                // translators: %s: column number
                 'name'        => sprintf(esc_html__('Footer Column %s', 'my-theme'), $n),
+                // translators: %s: column ordinal number
                 'description' => sprintf(esc_html__('%s column in footer section.', 'my-theme'), $ordinals[$n]),
             ] + $args
         );
