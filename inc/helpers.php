@@ -39,6 +39,15 @@ function config($key, $default = null)
 }
 
 /**
+ * @param string $asset
+ * @return string
+ */
+function asset_path($asset)
+{
+    return app('assets')->getURI($asset);
+}
+
+/**
  * Register a series of sidebars described as footer columns.
  *
  * @param int   $amount The amount of sidebars to register.
