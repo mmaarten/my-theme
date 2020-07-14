@@ -103,7 +103,7 @@ add_action('after_setup_theme', function () {
      * Add editor style.
      * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#editor-styles
      */
-    add_editor_style(get_template_directory_uri() . '/dist/styles/editor-style.css');
+    add_editor_style(asset_path('styles/editor-style.css'));
 
     /**
      * Adjust the color of the UI to work on dark backgrounds.
@@ -130,14 +130,14 @@ add_action('after_setup_theme', function () {
  * Enqueue block assets for front-end and editing interface.
  */
 add_action('enqueue_block_assets', function () {
-    wp_enqueue_style('my-theme-blocks', get_template_directory_uri() . '/dist/styles/block-style.css', [], MY_THEME_VERSION);
+    wp_enqueue_style('my-theme-blocks', asset_path('styles/block-style.css'), [], null);
 });
 
 /**
  * Enqueued block assets for the editing interface.
  */
 add_action('enqueue_block_editor_assets', function () {
-    wp_enqueue_style('my-theme-editor', get_template_directory_uri() . '/dist/styles/editor.css', [], MY_THEME_VERSION);
+    wp_enqueue_style('my-theme-editor', asset_path('styles/editor.css'), [], null);
 });
 
 /**
