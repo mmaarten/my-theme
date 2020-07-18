@@ -9,6 +9,7 @@ const { default: ImageminPlugin } = require('imagemin-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 
 const rootPath = process.cwd();
 const isProduction = !!((argv.env && argv.env.production) || argv.p);
@@ -157,6 +158,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `styles/${filename}.css`,
     }),
+    // Find js files from chunks of css only entries and remove the js file from the compilation.
+    new FixStyleOnlyEntriesPlugin(),
     // Automatically load modules
     new webpack.ProvidePlugin({
       $: 'jquery',
