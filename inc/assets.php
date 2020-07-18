@@ -15,7 +15,7 @@ add_action('wp_enqueue_scripts', function () {
      * Popper
      * @link https://popper.js.org/
      */
-    wp_enqueue_script('popper-js', get_template_directory_uri() . '/dist/scripts/popper.js'), [], '1.16.1';
+    wp_enqueue_script('popper-js', get_template_directory_uri() . '/dist/scripts/popper.js', [], '1.16.1');
 
     /**
      * Bootstrap
