@@ -63,6 +63,7 @@ array_map(function ($file) {
         );
     }
 }, [
+    'constants',
     'helpers',
     'setup',
     'assets',
@@ -80,11 +81,9 @@ array_map(function ($file) {
  */
 use function My\Theme\app;
 use My\Theme\Config;
-use My\Theme\Assets\Manifest;
 
 app('config', function () {
     return new Config([
-        'assets' => require get_theme_file_path('config/assets.php'),
         'icons'  => require get_theme_file_path('config/icons.php'),
     ]);
 });
