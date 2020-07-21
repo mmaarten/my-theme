@@ -83,6 +83,6 @@ use My\Theme\Config;
 
 app('config', function () {
     return new Config([
-        'icons'  => require get_theme_file_path('config/icons.php'),
+        'icons' => require get_theme_file_path('config/icons.php'),
     ]);
 });
