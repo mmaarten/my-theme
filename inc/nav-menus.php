@@ -30,7 +30,7 @@ add_action('after_setup_theme', function () {
  */
 add_filter('wp_nav_menu_args', function ($args) {
     if (empty($args['walker']) && preg_match('/(^| )(nav|navbar-nav)( |$)/', $args['menu_class'])) {
-        $args['walker'] = new NavWalker();
+        $args['walker'] = new BootstrapNavwalker();
     }
     return $args;
 }, PHP_INT_MAX);
