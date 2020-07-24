@@ -116,9 +116,7 @@ add_action('after_setup_theme', function () {
  * Register block types.
  */
 add_action('after_setup_theme', function () {
-    $blocks = [
-        'Button',
-    ];
+    $blocks = [];
     foreach ($blocks as $block) {
         $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;
         $instance = new $classname;
