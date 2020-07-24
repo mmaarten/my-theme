@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "webpack --env.production",
-    "start": "webpack --watch",
+    "build": "webpack --env.production --config=assets/build/webpack.config.js",
+    "start": "webpack --watch --config=assets/build/webpack.config.js",
     "bundle": "dir-archiver --src . --dest ../my-theme.zip --exclude .DS_Store .editorconfig .git .gitignore .gitattributes phpcs.xml webpack.config.js node_modules composer.json package.json assets"
   },
   "keywords": [

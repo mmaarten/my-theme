@@ -65,7 +65,7 @@ add_filter('acf/load_field', function ($field) {
     // Populate select field with icon names. Usage: set field CSS class to my-theme-icons.
     if ($field['type'] == 'select' && preg_match('/(^| )my-theme-icons( |$)/', $field['wrapper']['class'])) {
         $choices = [];
-        $icons = app('icons')->getIcons();
+        $icons = get_icons();
         foreach ($icons as $key => $svg) {
             $choices[$key] = ucwords(str_replace(['-', '_'], ' ', $key));
         }
