@@ -14,7 +14,9 @@ const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const rootPath = process.cwd();
 const isProduction = !!((argv.env && argv.env.production) || argv.p);
 
-const config = {
+let config = require('./config.json');
+
+config = { ...config, ...{
   paths: {
     root: rootPath,
     src: path.join(rootPath, 'assets'),
@@ -24,17 +26,7 @@ const config = {
     sourceMaps: !isProduction,
     optimization : isProduction,
   },
-  publicPath: '/wp-content/themes/my-theme',
-  entry : {
-    'main': [ 'styles/main.scss', 'scripts/main.js' ],
-    'editor-style': 'styles/editor-style.scss',
-    'editor': 'styles/editor.scss',
-    'block-style': 'styles/block-style.scss',
-    // Vendors
-    'popper': 'scripts/popper.js',
-    'bootstrap': 'scripts/bootstrap.js',
-  }
-};
+}};
 
 const filename = '[name]';
 

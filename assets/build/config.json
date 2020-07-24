@@ -1,0 +1,11 @@
+{
+  "publicPath": "/wp-content/themes/my-theme",
+  "entry" : {
+    "main": [ "styles/main.scss", "scripts/main.js" ],
+    "editor-normalization": "styles/editor-normalization.scss",
+    "editor": "styles/editor.scss",
+    "blocks": "styles/blocks.scss",
+    "popper": "scripts/popper.js",
+    "bootstrap": "scripts/bootstrap.js"
+  }
+}
