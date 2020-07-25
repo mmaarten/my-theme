@@ -15,7 +15,7 @@ add_action('wp_enqueue_scripts', function () {
      * Popper
      * @link https://popper.js.org/
      */
-    wp_register_script(
+    wp_enqueue_script(
         'popper-js',
         get_template_directory_uri() . '/dist/scripts/popper.js',
         [],
@@ -26,10 +26,10 @@ add_action('wp_enqueue_scripts', function () {
      * Bootstrap
      * @link https://getbootstrap.com/
      */
-    wp_register_script(
+    wp_enqueue_script(
         'bootstrap',
         get_template_directory_uri() . '/dist/scripts/bootstrap.js',
-        ['jquery', 'popper'],
+        ['jquery', 'popper-js'],
         '4.5.0',
         true
     );
@@ -47,7 +47,7 @@ add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script(
         'my-theme-main',
         get_template_directory_uri() . '/dist/scripts/main.js',
-        ['jquery', 'bootstrap'],
+        ['jquery'],
         MY_THEME_VERSION,
         true
     );
