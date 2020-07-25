@@ -2,6 +2,9 @@
 /**
  * ACF
  *
+ * Dependency: Advanced Custom Fields.
+ *
+ * @link https://www.advancedcustomfields.com/
  * @package My/Theme
  */
 
@@ -9,15 +12,19 @@ namespace My\Theme;
 
 /**
  * Update Settings
+ *
+ * @link https://www.advancedcustomfields.com/resources/acf-settings/
  */
 add_action('acf/init', function () {
     if (function_exists('acf_update_setting')) {
-        // acf_update_setting('google_api_key', 'xxx');
+        // ...code
     }
 });
 
 /**
  * Add Options Page
+ *
+ * @link https://www.advancedcustomfields.com/resources/acf_add_options_page/
  */
 add_action('acf/init', function () {
     if (function_exists('acf_add_options_page')) {
@@ -60,16 +67,6 @@ add_filter('acf/load_field', function ($field) {
             'large'     => __('Large', 'my-theme'),
             'full'      => __('Full Size', 'my-theme'),
         ]);
-    }
-
-    // Populate select field with icon names. Usage: set field CSS class to my-theme-icons.
-    if ($field['type'] == 'select' && preg_match('/(^| )my-theme-icons( |$)/', $field['wrapper']['class'])) {
-        $choices = [];
-        $icons = get_icons();
-        foreach ($icons as $key => $svg) {
-            $choices[$key] = ucwords(str_replace(['-', '_'], ' ', $key));
-        }
-        $field['choices'] = $choices;
     }
 
     return $field;
