@@ -118,6 +118,7 @@ add_action('after_setup_theme', function () {
 add_action('after_setup_theme', function () {
     $blocks = [
         'Button',
+        'Carousel',
     ];
     foreach ($blocks as $block) {
         $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;
