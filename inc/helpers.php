@@ -7,24 +7,6 @@
 
 namespace My\Theme;
 
-function add_icon($key, $svg = null)
-{
-    $icons = Icons::getInstance();
-    $icons->add($key, $svg);
-}
-
-function get_icon($key, $size = null)
-{
-    $icons = Icons::getInstance();
-    return $icons->get($key, $size);
-}
-
-function get_icons()
-{
-    $icons = Icons::getInstance();
-    return $icons->getIcons();
-}
-
 /**
  * Register a series of sidebars described as footer columns.
  *
