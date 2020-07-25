@@ -14,7 +14,7 @@ namespace My\Theme;
  */
 require_once get_template_directory() . '/vendor/wp-bootstrap/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
 
-class NavWalker extends \WP_Bootstrap_Navwalker
+class BootstrapNavWalker extends \WP_Bootstrap_Navwalker
 {
     protected $mods = [];
 
