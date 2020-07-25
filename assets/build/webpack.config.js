@@ -13,10 +13,9 @@ const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 
 const rootPath = process.cwd();
 const isProduction = !!((argv.env && argv.env.production) || argv.p);
+const userConfig = require('./config.json');
 
-let config = require('./config.json');
-
-config = { ...config, ...{
+const config = { ...userConfig, ...{
   paths: {
     root: rootPath,
     src: path.join(rootPath, 'assets'),
