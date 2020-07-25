@@ -6,6 +6,9 @@
     "editor": "styles/editor.scss",
     "blocks": "styles/blocks.scss",
     "popper": "scripts/popper.js",
-    "bootstrap": "scripts/bootstrap.js"
+    "bootstrap": "scripts/bootstrap.js",
+    "owl-carousel": [ "styles/owl-carousel.scss", "scripts/owl-carousel.js" ],
+    "owl-carousel-theme": "styles/owl-carousel-theme.scss",
+    "fancybox": [ "styles/fancybox.scss", "scripts/fancybox.js" ]
   }
 }

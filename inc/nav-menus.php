@@ -23,15 +23,18 @@ add_action('after_setup_theme', function () {
 });
 
 /**
- * Set Walker
+ * Filters the arguments used to display a navigation menu.
  *
  * @param array $args Array of wp_nav_menu() arguments.
  * @return array
  */
 add_filter('wp_nav_menu_args', function ($args) {
+
+    // Set Walker
     if (empty($args['walker']) && preg_match('/(^| )(nav|navbar-nav)( |$)/', $args['menu_class'])) {
         require_once get_template_directory() . '/vendor/wp-bootstrap/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
         $args['walker'] = new \WP_Bootstrap_Navwalker();
     }
+
     return $args;
 }, PHP_INT_MAX);
