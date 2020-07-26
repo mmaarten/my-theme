@@ -70,6 +70,7 @@ array_map(function ($file) {
     'widgets',
     'nav-menus',
     'blocks',
+    'acf',
     'template-functions',
     'template-tags',
 ]);

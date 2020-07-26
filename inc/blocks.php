@@ -116,7 +116,10 @@ add_action('after_setup_theme', function () {
  * Register block types.
  */
 add_action('after_setup_theme', function () {
-    $blocks = [];
+    $blocks = [
+        'Button',
+        'Carousel',
+    ];
     foreach ($blocks as $block) {
         $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;
         $instance = new $classname;
@@ -134,6 +137,11 @@ add_action('enqueue_block_assets', function () {
         [],
         MY_THEME_VERSION
     );
+
+    /**
+     * Disable WordPress front-end styling
+     * @example wp_dequeue_style('wp-block-library');
+     */
 });
 
 /**
