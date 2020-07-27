@@ -2,16 +2,16 @@
 
 namespace My\Theme\BlockTypes;
 
-use function \My\Theme\button;
+use function \My\Theme\modal;
 
-class Button extends AbstractBlock
+class Modal extends AbstractBlock
 {
     /**
      * Constructor
      */
     public function __construct()
     {
-        parent::__construct('button');
+        parent::__construct('modal');
     }
 
     /**
@@ -24,24 +24,16 @@ class Button extends AbstractBlock
      */
     public function render($block, $content = '', $is_preview = false, $post_id = 0)
     {
-        $align = get_field('align');
-
         $atts = $this->getHTMLAttributes($block);
-
-        if ($align) {
-            $atts['class'] .= " text-$align";
-        }
 
         echo '<div ' . acf_esc_attr($atts) . '>';
 
-        button([
-            'text'     => get_field('text'),
-            'link'     => get_field('link'),
-            'link_tab' => get_field('link_tab'),
-            'type'     => get_field('type'),
-            'outline'  => get_field('outline'),
-            'size'     => get_field('size'),
-            'toggle'   => get_field('toggle'),
+        modal([
+            'id'     => get_field('id'),
+            'title'  => get_field('title'),
+            'body'   => get_field('body'),
+            'size'   => get_field('size'),
+            'center' => get_field('center'),
         ]);
 
         echo '</div>';

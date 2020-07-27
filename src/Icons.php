@@ -9,11 +9,20 @@ namespace My\Theme;
 
 class Icons
 {
+    private static $instance = null;
+
+    public static function getInstance()
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
     protected $icons = [];
 
-    public function __construct($icons = [])
+    private function __construct()
     {
-        $this->add($icons);
     }
 
     public function getIcons()
@@ -21,16 +30,7 @@ class Icons
         return $this->icons;
     }
 
-    public function add($key, $svg = null)
-    {
-        $icons = is_array($key) ? $key : [$key => $svg];
-
-        foreach ($icons as $key => $svg) {
-            $this->icons[$key] = $svg;
-        }
-    }
-
-    public function get($key, $size = null)
+    public function getIcon($key, $size = null)
     {
         // Get SVG
 
@@ -60,5 +60,14 @@ class Icons
         // Return
 
         return $svg;
+    }
+
+    public function addIcon($key, $svg = null)
+    {
+        $icons = is_array($key) ? $key : [$key => $svg];
+
+        foreach ($icons as $key => $svg) {
+            $this->icons[$key] = $svg;
+        }
     }
 }

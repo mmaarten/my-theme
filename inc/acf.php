@@ -65,7 +65,7 @@ add_filter('acf/load_field', function ($field) {
     // Populate select field with icon names. Usage: set field CSS class to my-theme-icons.
     if ($field['type'] == 'select' && preg_match('/(^| )my-theme-icons( |$)/', $field['wrapper']['class'])) {
         $choices = [];
-        $icons = app('icons')->getIcons();
+        $icons = get_icons();
         foreach ($icons as $key => $svg) {
             $choices[$key] = ucwords(str_replace(['-', '_'], ' ', $key));
         }
@@ -74,3 +74,123 @@ add_filter('acf/load_field', function ($field) {
 
     return $field;
 }, PHP_INT_MAX);
+
+/**
+ * Nav Menu Link Attributes
+ *
+ * @param array    $atts      The HTML attributes applied to the menu item's <a> element.
+ * @param WP_Post  $item      The current menu item.
+ * @param stdClass $nav_menu  An object of wp_nav_menu() arguments.
+ * @param int      $depth     Depth of menu item.
+ *
+ * @return array
+ */
+add_filter('nav_menu_link_attributes', function ($atts, $item, $nav_menu, $depth) {
+
+    // Check dependency.
+    if (! function_exists('get_field')) {
+        return $atts;
+    }
+
+    // Make sure 'class' attribute is set.
+    if (! isset($atts['class'])) {
+        $atts['class'] = '';
+    }
+
+    /**
+     * Button
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    $options = get_field('button', $item);
+
+    if ($options && $options['type']) {
+        $btn_classes = ['btn'];
+
+        if ($options['outline']) {
+            $btn_classes[] = "btn-outline-{$options['type']}";
+        } else {
+            $btn_classes[] = "btn-{$options['type']}";
+        }
+
+        if ($options['size']) {
+            $btn_classes[] = "btn-{$options['size']}";
+        }
+
+        // Remove 'nav-link' class
+        $atts['class'] = preg_replace('/(^| )nav-link( |$)/', '', $atts['class']);
+
+        // Add button attributes
+        $atts['class'] .= ' ' . implode(' ', $btn_classes);
+        $atts['role'] = 'button';
+    }
+
+    /**
+     * Disable
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    if (get_field('disable', $item)) {
+        $atts['class'] .= ' disabled';
+        $atts['rel'] = 'nofollow';
+    }
+
+    /**
+     * Toggle
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    $toggle = get_field('toggle', $item);
+
+    if ($toggle) {
+        $atts['data-toggle'] = $toggle;
+    }
+
+    /* -------------------------------------------------------------------------------------------------------------- */
+
+    // Sanitize 'class' attribute.
+    $atts['class'] = trim($atts['class']);
+
+    return $atts;
+}, PHP_INT_MAX, 4);
+
+/**
+ * Nav Menu Item Title
+ *
+ * @param string   $title     The menu item's title.
+ * @param WP_Post  $item      The current menu item.
+ * @param stdClass $nav_menu  An object of wp_nav_menu() arguments.
+ * @param int      $depth     Depth of menu item. Used for padding.
+ */
+add_filter('nav_menu_item_title', function ($title, $item, $nav_menu, $depth) {
+
+    // Check dependency.
+    if (! function_exists('get_field')) {
+        return $title;
+    }
+
+    /**
+     * Icon
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    $options = get_field('icon', $item);
+
+    if ($options && $options['type']) {
+        if ($options['hide_title']) {
+            $title = sprintf('<span class="sr-only">%s</span>', $title);
+        }
+        $icon = get_icon($options['type']);
+        if ($icon) {
+            if ('left' == $options['position']) {
+                $title = "$icon $title";
+            } else {
+                $title = "$title $icon";
+            }
+        }
+    }
+
+    /* -------------------------------------------------------------------------------------------------------------- */
+
+    return $title;
+}, PHP_INT_MAX, 4);

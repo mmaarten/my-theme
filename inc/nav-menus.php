@@ -23,55 +23,18 @@ add_action('after_setup_theme', function () {
 });
 
 /**
- * Set Walker
+ * Filters the arguments used to display a navigation menu.
  *
  * @param array $args Array of wp_nav_menu() arguments.
  * @return array
  */
 add_filter('wp_nav_menu_args', function ($args) {
+
+    // Set Walker
     if (empty($args['walker']) && preg_match('/(^| )(nav|navbar-nav)( |$)/', $args['menu_class'])) {
-        $args['walker'] = new NavWalker();
+        require_once get_template_directory() . '/vendor/wp-bootstrap/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
+        $args['walker'] = new \WP_Bootstrap_Navwalker();
     }
+
     return $args;
 }, PHP_INT_MAX);
-
-/**
- * Nav Menu Link Attributes
- *
- * @param array    $atts      The HTML attributes applied to the menu item's <a> element.
- * @param WP_Post  $item      The current menu item.
- * @param stdClass $nav_menu  An object of wp_nav_menu() arguments.
- * @param int      $depth     Depth of menu item.
- *
- * @return array
- */
-add_filter('nav_menu_link_attributes', function ($atts, $item, $nav_menu, $depth) {
-    /**
-     * Use CSS class toggle-modal to open modal on click.
-     */
-    if (in_array('toggle-modal', $item->classes)) {
-        $atts['data-toggle'] = 'modal';
-    }
-
-    return $atts;
-}, PHP_INT_MAX, 4);
-
-/**
- * Nav Menu Item Title
- *
- * @param string   $title     The menu item's title.
- * @param WP_Post  $item      The current menu item.
- * @param stdClass $nav_menu  An object of wp_nav_menu() arguments.
- * @param int      $depth     Depth of menu item. Used for padding.
- */
-add_filter('nav_menu_item_title', function ($title, $item, $nav_menu, $depth) {
-
-    /**
-     * Make title only available for screenreaders. Use CSS class -sr-only.
-     */
-    if (in_array('-sr-only', $item->classes)) {
-        $title = sprintf('<span class="sr-only">%s</span>', $title);
-    }
-
-    return $title;
-}, 5, 4);

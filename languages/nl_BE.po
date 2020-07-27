@@ -8,8 +8,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-07-12 21:17+0200\n"
-"PO-Revision-Date: 2020-07-12 21:31+0200\n"
+"POT-Creation-Date: 2020-07-25 11:47+0200\n"
+"PO-Revision-Date: 2020-07-25 11:53+0200\n"
 "X-Generator: Poedit 1.8.7\n"
 "X-Domain: my-theme\n"
 "Last-Translator: \n"
@@ -22,15 +22,15 @@ msgstr ""
 
 #. Theme URI of the theme
 msgid "https://github.com/mmaarten/my-theme"
-msgstr ""
+msgstr "https://github.com/mmaarten/my-theme"
 
 #. Author of the theme
 msgid "Maarten Menten"
-msgstr ""
+msgstr "Maarten Menten"
 
 #. Author URI of the theme
 msgid "https://profiles.wordpress.org/maartenm/"
-msgstr ""
+msgstr "https://profiles.wordpress.org/maartenm/"
 
 #: 404.php:26
 msgid "Oops! That page can&rsquo;t be found."
@@ -97,135 +97,140 @@ msgstr "%1$s installatie is niet volledig. Run %2$s binnenin de %3$s folder."
 msgid "Error locating %1$s for inclusion."
 msgstr "Fout bij het lokaliseren van %1$s."
 
-#: header.php:29
+#: header.php:35
 msgid "Skip to content"
 msgstr "Meteen naar de inhoud"
 
-#: inc/acf.php:30 inc/acf.php:31
+#: inc/acf.php:32 inc/acf.php:33
 msgid "Site Options"
 msgstr "Site Opties"
 
-#: inc/acf.php:63
+#: inc/acf.php:65
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-#: inc/acf.php:64
+#: inc/acf.php:66
 msgid "Medium"
 msgstr "Middelmatig"
 
-#: inc/acf.php:65 inc/setup.php:120
+#: inc/acf.php:67 inc/blocks.php:59
 msgid "Large"
 msgstr "Groot"
 
-#: inc/acf.php:66
+#: inc/acf.php:68
 msgid "Full Size"
 msgstr "Volledige Grootte"
 
-#: inc/helpers.php:99
+#: inc/blocks.php:20
+msgid "Primary"
+msgstr "Primair"
+
+#: inc/blocks.php:25
+msgid "Secondary"
+msgstr "Secundair"
+
+#: inc/blocks.php:30
+msgid "Light"
+msgstr "Licht"
+
+#: inc/blocks.php:35
+msgid "Dark"
+msgstr "Donker"
+
+#: inc/blocks.php:47
+msgid "Small"
+msgstr "Klein"
+
+#: inc/blocks.php:48
+msgid "SM"
+msgstr "SM"
+
+#: inc/blocks.php:53
+msgid "Normal"
+msgstr "Normaal"
+
+#: inc/blocks.php:54
+msgid "N"
+msgstr "N"
+
+#: inc/blocks.php:60
+msgid "LG"
+msgstr "LG"
+
+#: inc/helpers.php:19
 msgid "First"
 msgstr "Eerste"
 
-#: inc/helpers.php:100
+#: inc/helpers.php:20
 msgid "Second"
 msgstr "Tweede"
 
-#: inc/helpers.php:101
+#: inc/helpers.php:21
 msgid "Thirth"
 msgstr "Derde"
 
-#: inc/helpers.php:102
+#: inc/helpers.php:22
 msgid "Fourth"
 msgstr "Vierde"
 
-#: inc/helpers.php:103
+#: inc/helpers.php:23
 msgid "Fifth"
 msgstr "Vijfde"
 
-#: inc/helpers.php:104
+#: inc/helpers.php:24
 msgid "Sixth"
 msgstr "Zesde"
 
-#: inc/helpers.php:105
+#: inc/helpers.php:25
 msgid "Seventh"
 msgstr "Zevende"
 
-#: inc/helpers.php:106
+#: inc/helpers.php:26
 msgid "Eighth"
 msgstr "Achtste"
 
-#: inc/helpers.php:107
+#: inc/helpers.php:27
 msgid "Ninth"
 msgstr "Negende"
 
 #. translators: %s: column number
-#: inc/helpers.php:115
+#: inc/helpers.php:35
 msgid "Footer Column %s"
 msgstr "Footer kolom %s"
 
 #. translators: %s: column ordinal number
-#: inc/helpers.php:117
+#: inc/helpers.php:37
 msgid "%s column in footer section."
-msgstr "%s kolom in footer sectie"
+msgstr "%s kolom in footer sectie."
 
-#: inc/setup.php:81
-msgid "Primary"
-msgstr "Primair"
-
-#: inc/setup.php:86
-msgid "Secondary"
-msgstr "Secundair"
-
-#: inc/setup.php:91
-msgid "Light"
-msgstr "Licht"
-
-#: inc/setup.php:96
-msgid "Dark"
-msgstr "Donker"
-
-#: inc/setup.php:108
-msgid "Small"
-msgstr "Klein"
-
-#: inc/setup.php:109
-msgid "SM"
-msgstr "SM"
-
-#: inc/setup.php:114
-msgid "Normal"
-msgstr "Normaal"
-
-#: inc/setup.php:115
-msgid "N"
-msgstr "N"
-
-#: inc/setup.php:121
-msgid "LG"
-msgstr "LG"
-
-#: inc/setup.php:180
+#: inc/nav-menus.php:16
 msgid "Top Left"
 msgstr "Boven Links"
 
-#: inc/setup.php:181
+#: inc/nav-menus.php:17
 msgid "Top Right"
 msgstr "Boven Rechts"
 
-#: inc/setup.php:182
+#: inc/nav-menus.php:18
 msgid "Primary Left"
-msgstr "Primair links"
+msgstr "Primair Links"
 
-#: inc/setup.php:183
+#: inc/nav-menus.php:19
 msgid "Primary Right"
 msgstr "Primair Rechts"
 
-#: inc/setup.php:184
+#: inc/nav-menus.php:20
 msgid "Footer Left"
-msgstr "Footer links"
+msgstr "Footer Links"
 
-#: inc/setup.php:185
+#: inc/nav-menus.php:21
 msgid "Footer Right"
-msgstr "Footer rechts"
+msgstr "Footer Rechts"
+
+#. Template Name of the theme
+#: inc/setup.php:87
+msgid "Full Width"
+msgstr "Volledige Breedte"
 
 #. translators: %s: post date.
 #: inc/template-tags.php:31
@@ -263,12 +268,12 @@ msgstr "Getagd %1$s"
 #. translators: %s: post title
 #: inc/template-tags.php:80
 msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
-msgstr "Laat een reactie achter<span class=\"sr-only\"> op %s</span>"
+msgstr "Laat een reactie achter<span class=“sr-only”> op %s</span>"
 
 #. translators: %s: Name of current post. Only visible to screen readers
 #: inc/template-tags.php:97
 msgid "Edit <span class=\"sr-only\">%s</span>"
-msgstr "Bewerk <span class=\"sr-only\">%s</span>"
+msgstr "Bewerk <span class=“sr-only”>%s</span>"
 
 #: inc/template-tags.php:166
 msgid "&laquo;"
@@ -301,57 +306,41 @@ msgstr "%title &raquo;"
 msgid "function %s does not exist."
 msgstr "functie %s bestaat niet."
 
-#: inc/template-tags.php:392
-msgid "Previous"
-msgstr "Vorige"
-
-#: inc/template-tags.php:397
-msgid "Next"
-msgstr "Volgende"
-
-#: inc/template-tags.php:478
-msgid "Close"
-msgstr "Sluiten"
-
-#: inc/widgets.php:26
+#: inc/widgets.php:35
 msgid "Header"
 msgstr "Header"
 
-#: inc/widgets.php:27
+#: inc/widgets.php:36
 msgid "Header section."
 msgstr "Header sectie."
 
-#: inc/widgets.php:34
+#: inc/widgets.php:43
 msgid "Left Sidebar"
 msgstr "Linker zijbalk"
 
-#: inc/widgets.php:35
+#: inc/widgets.php:44
 msgid "Section on the left side."
 msgstr "Sectie aan de linkerkant."
 
-#: inc/widgets.php:42
+#: inc/widgets.php:51
 msgid "Right Sidebar"
 msgstr "Rechter Zijbalk"
 
-#: inc/widgets.php:43
+#: inc/widgets.php:52
 msgid "Section on the right side."
 msgstr "Sectie aan de rechterkant."
 
-#: inc/widgets.php:50
+#: inc/widgets.php:59
 msgid "Footer"
 msgstr "Footer"
 
-#: inc/widgets.php:51
+#: inc/widgets.php:60
 msgid "Footer section."
 msgstr "Footer sectie."
 
 #. Template Name of the theme
 msgid "Full Width Fixed"
 msgstr "Volledige Breedte (vast)"
-
-#. Template Name of the theme
-msgid "Full Width"
-msgstr "Volledige Breedte"
 
 #. translators: %s: search query.
 #: search.php:28

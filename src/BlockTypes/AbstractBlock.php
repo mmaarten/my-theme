@@ -1,13 +1,4 @@
 <?php
-/**
- * Abstract Block
- *
- * Dependency: Advanced Custom Fields PRO
- *
- * @link https://www.advancedcustomfields.com/pro
- *
- * @package My/Theme/BlockTypes
- */
 
 namespace My\Theme\BlockTypes;
 

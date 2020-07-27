@@ -7,35 +7,33 @@
 
 namespace My\Theme;
 
-/**
- * @param string $id
- * @param mixed $concrete
- * @param bool $shared
- * @return mixed
- */
-function app($key = null, $value = null, $shared = true)
+function get_icons()
 {
-    $container = Container::getInstance();
-
-    if (is_null($key)) {
-        return $container;
-    }
-
-    if (is_null($value)) {
-        return $container->get($key);
-    }
-
-    return $container->add($key, $value, $shared);
+    $icons = Icons::getInstance();
+    return $icons->getIcons();
 }
 
-/**
- * @param string $key
- * @param mixed $default
- * @return mixed
- */
-function config($key, $default = null)
+function get_icon($key, $size = null)
 {
-    return app('config')->get($key, $default);
+    $icons = Icons::getInstance();
+    return $icons->getIcon($key, $size);
+}
+
+function add_icon($key, $svg = null)
+{
+    $icons = Icons::getInstance();
+    $icons->AddIcon($key, $svg);
+}
+
+function html_atts($attributes)
+{
+    $str = '';
+
+    foreach ($attributes as $name => $value) {
+        $str .= sprintf(' %s="%s"', esc_attr($name), esc_attr($value));
+    }
+
+    return $str;
 }
 
 /**

@@ -1,9 +1,9 @@
 {
-    "key": "group_5f0868a4925d2",
+    "key": "group_5f1c802b93a23",
     "title": "Block — Button",
     "fields": [
         {
-            "key": "field_5f0868b1864a2",
+            "key": "field_5f1c802c0152d",
             "label": "Text",
             "name": "text",
             "type": "text",
@@ -22,7 +22,7 @@
             "maxlength": 255
         },
         {
-            "key": "field_5f086b319e748",
+            "key": "field_5f1c802c01586",
             "label": "Link",
             "name": "link",
             "type": "link",
@@ -37,12 +37,12 @@
             "return_format": "url"
         },
         {
-            "key": "field_5f0868ff03c2b",
+            "key": "field_5f1c802c015d0",
             "label": "Open link in new window",
             "name": "link_tab",
             "type": "true_false",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -56,12 +56,12 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f08692203c2c",
+            "key": "field_5f1c802c01618",
             "label": "Type",
             "name": "type",
             "type": "select",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -83,7 +83,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_5f08698f03c2e",
+            "key": "field_5f1c802c01662",
             "label": "Outline",
             "name": "outline",
             "type": "true_false",
@@ -102,12 +102,12 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5f08696203c2d",
+            "key": "field_5f1c802c016aa",
             "label": "Size",
             "name": "size",
             "type": "select",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -128,7 +128,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_5f0869a603c2f",
+            "key": "field_5f1c802c016f3",
             "label": "Toggle",
             "name": "toggle",
             "type": "select",
@@ -153,7 +153,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_5f086adfdcecc",
+            "key": "field_5f1c802c017b0",
             "label": "Alignment",
             "name": "align",
             "type": "select",
@@ -196,5 +196,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1594580096
+    "modified": 1595773073
 }
