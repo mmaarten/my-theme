@@ -24,13 +24,7 @@ class Modal extends AbstractBlock
      */
     public function render($block, $content = '', $is_preview = false, $post_id = 0)
     {
-        $align = get_field('align');
-
         $atts = $this->getHTMLAttributes($block);
-
-        if ($align) {
-            $atts['class'] .= " text-$align";
-        }
 
         echo '<div ' . acf_esc_attr($atts) . '>';
 
