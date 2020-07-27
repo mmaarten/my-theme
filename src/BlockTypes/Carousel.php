@@ -132,9 +132,10 @@ class Carousel extends AbstractBlock
     }
 
     /**
-     * Render Carousel
+     * Render Carousel Item
      *
-     * @param array $args
+     * @param array $item
+     * @param int   $index
      */
     public function renderCarouselItem($item, $index)
     {
