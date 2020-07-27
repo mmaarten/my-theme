@@ -246,6 +246,7 @@ function post_nav()
  * @uses bcn_display_list()
  *
  * @link https://wordpress.org/plugins/breadcrumb-navxt/
+ * @link https://getbootstrap.com/docs/4.0/components/breadcrumb/
  *
  * @param string $before The HTML to render before the navigation.
  * @param string $after  The HTML to render after the navigation.
@@ -291,4 +292,222 @@ function breadcrumb_nav($before = '', $after = '')
     <?php echo $after; ?>
 
     <?php
+}
+
+/**
+ * Button
+ *
+ * @link https://getbootstrap.com/docs/4.0/components/buttons/
+ * @param array $args
+ */
+public function button($args)
+{
+    $args = wp_parse_args($args, [
+        'text'     => '',
+        'link'     => '',
+        'link_tab' => false,
+        'type'     => 'primary',
+        'outline'  => false,
+        'size'     => '',
+        'toggle'   => '',
+    ]);
+
+    $atts = [
+        'class' => 'btn',
+        'role'  => 'button',
+    ];
+
+    if ($args['link']) {
+        $atts['href'] = esc_url($args['link']);
+    }
+
+    if ($args['link_tab']) {
+        $atts['target'] = '_blank';
+    }
+
+    if ($args['type']) {
+        if ($args['outline']) {
+            $atts['class'] .= " btn-outline-{$args['type']}";
+        } else {
+            $atts['class'] .= " btn-{$args['type']}";
+        }
+    }
+
+    if ($args['size']) {
+        $atts['class'] .= " btn-{$args['size']}";
+    }
+
+    if ($args['toggle']) {
+        $atts['data-toggle'] = $args['toggle'];
+    }
+
+    echo '<a' . html_atts($atts) . '>' . $args['text'] . '</a>';
+}
+
+/**
+ * Carousel
+ *
+ * @link https://getbootstrap.com/docs/4.0/components/carousel/
+ * @param array $args
+ */
+function carousel($args)
+{
+    static $instance = 0;
+
+    $instance++;
+
+    $args = wp_parse_args($args, [
+        'items'           => [],
+        'controls'        => true,
+        'indicators'      => false,
+        'autoplay'        => true,
+        'render_callback' => null,
+    ]);
+
+    $carousel_id = !empty($args['id']) ? $args['id'] : "carousel-$instance";
+    $items       = is_array($args['items']) ? $args['items'] : [];
+
+    if (! $items) {
+        return;
+    }
+
+    $atts = [
+        'id'    => $carousel_id,
+        'class' => 'carousel slide',
+    ];
+
+    if ($args['autoplay']) {
+        $atts['data-ride'] = 'carousel';
+    }
+
+    echo '<div' . html_atts($atts) . '>';
+
+    // Indicators
+    if ($args['indicators']) {
+        echo '<ol class="carousel-indicators">';
+        for ($i=0; $i < count($items); $i++) {
+            $is_active = $i === 0;
+            $indicator_atts = [
+                'data-target' => "#$carousel_id",
+                'data-slide-to' => $i,
+            ];
+            if ($is_active) {
+                $indicator_atts['class'] = 'active';
+            }
+            echo '<li' . html_atts($indicator_atts) . '></li>';
+        }
+        echo '</ol>'; // .carousel-indicators
+    }
+
+    // Items
+    echo '<div class="carousel-inner">';
+
+    for ($i=0; $i < count($items); $i++) {
+        $item = $items[$i];
+        $is_active = $i === 0;
+        $item_atts = [
+            'class' => 'carousel-item',
+        ];
+        if ($is_active) {
+            $item_atts['class'] .= ' active';
+        }
+
+        echo '<div' . html_atts($item_atts) . '>';
+
+        if (is_callable($args['render_callback'])) {
+            call_user_func($args['render_callback'], $item, $i);
+        }
+
+        echo '</div>'; // .carousel-item
+    }
+
+    echo '</div>'; // .carousel-inner
+
+    // Controls
+    if ($args['controls']) {
+        echo '<a class="carousel-control-prev" href="#' . esc_attr($carousel_id) . '" role="button" data-slide="prev">';
+        echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+        echo '<span class="sr-only">' . esc_html__('Previous', 'my-theme') . '</span>';
+        echo '</a>';
+        echo '<a class="carousel-control-next" href="#' . esc_attr($carousel_id) . '" role="button" data-slide="next">';
+        echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+        echo '<span class="sr-only">' . esc_html__('Next', 'my-theme') . '</span>';
+        echo '</a>';
+    }
+
+    echo '</div>'; // .carousel
+}
+
+/**
+ * Modal
+ *
+ * @link https://getbootstrap.com/docs/4.0/components/modal/
+ * @param array $args
+ */
+function modal($args)
+{
+    static $instance = 0;
+
+    $instance++;
+
+    $args = wp_parse_args($args, [
+        'title'  => '',
+        'body'   => '',
+        'footer' => '',
+        'size'   => '',
+        'center' => false,
+    ]);
+
+    $modal_id = !empty($args['id']) ? $args['id'] : "modal-$instance";
+    $title_id = "$modal_id-title";
+
+    $modal_atts = [
+        'id'          => $carousel_id,
+        'class'       => 'modal',
+        'tabindex'    => -1,
+        'role'        => 'dialog',
+        'aria-hidden' => 'true',
+    ];
+
+    if ($args['title']) {
+        $modal_atts['aria-labelledby'] = $title_id;
+    }
+
+    $dialog_atts = [
+        'class' => 'modal-dialog',
+        'role'  => 'document',
+    ];
+
+    if ($args['size']) {
+        $dialog_atts['class'] .= " {$args['size']}";
+    }
+
+    if ($args['center']) {
+        $dialog_atts['class'] .= ' modal-dialog-centered';
+    }
+
+    echo '<div' . html_atts($modal_atts) . '>';
+    echo '<div' . html_atts($dialog_atts) . '>';
+    echo '<div class="model-content">';
+
+    echo '<div class="modal-header">';
+    if ($args['title']) {
+        printf('<h5 class="modal-title" id="%s">%s</h5>', esc_attr($title_id), $args['title']);
+    }
+    echo '<button type="button" class="close" data-dismiss="modal" aria-label="' . esc_attr__('Close', 'my-theme') . '">';
+    echo '<span aria-hidden="true">&times;</span>';
+    echo '</button>';
+    echo '</div>'; // .modal-header
+
+    echo '<div class="modal-body">';
+    echo $args['body'];
+    echo '</div>'; // .modal-body
+
+    echo '<div class="modal-footer">';
+    echo $args['footer'];
+    echo '</div>'; // .modal-footer
+
+    echo '</div>'; // .modal-content
+    echo '</div>'; // .modal-dialog
+    echo '</div>'; // .modal
 }

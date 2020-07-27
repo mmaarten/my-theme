@@ -2,6 +2,8 @@
 
 namespace My\Theme\BlockTypes;
 
+use function \My\Theme\button;
+
 class Button extends AbstractBlock
 {
     /**
@@ -32,7 +34,7 @@ class Button extends AbstractBlock
 
         echo '<div ' . acf_esc_attr($atts) . '>';
 
-        $this->renderButton([
+        button([
             'text'     => get_field('text'),
             'link'     => get_field('link'),
             'link_tab' => get_field('link_tab'),
@@ -43,54 +45,5 @@ class Button extends AbstractBlock
         ]);
 
         echo '</div>';
-    }
-
-    /**
-     * Render Button
-     *
-     * @param array $args
-     */
-    public function renderButton($args)
-    {
-        $args = wp_parse_args($args, [
-            'text'     => '',
-            'link'     => '',
-            'link_tab' => false,
-            'type'     => 'primary',
-            'outline'  => false,
-            'size'     => '',
-            'toggle'   => '',
-        ]);
-
-        $atts = [
-            'class' => 'btn',
-            'role'  => 'button',
-        ];
-
-        if ($args['link']) {
-            $atts['href'] = esc_url($args['link']);
-        }
-
-        if ($args['link_tab']) {
-            $atts['target'] = '_blank';
-        }
-
-        if ($args['type']) {
-            if ($args['outline']) {
-                $atts['class'] .= " btn-outline-{$args['type']}";
-            } else {
-                $atts['class'] .= " btn-{$args['type']}";
-            }
-        }
-
-        if ($args['size']) {
-            $atts['class'] .= " btn-{$args['size']}";
-        }
-
-        if ($args['toggle']) {
-            $atts['data-toggle'] = $args['toggle'];
-        }
-
-        echo '<a ' . acf_esc_attr($atts) . '>' . $args['text'] . '</a>';
     }
 }

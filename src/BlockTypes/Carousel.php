@@ -2,6 +2,8 @@
 
 namespace My\Theme\BlockTypes;
 
+use function \My\Theme\carousel;
+
 class Carousel extends AbstractBlock
 {
     /**
@@ -26,7 +28,7 @@ class Carousel extends AbstractBlock
 
         echo '<div ' . acf_esc_attr($atts) . '>';
 
-        $this->renderCarousel([
+        carousel([
             'id'              => get_field('id'),
             'items'           => get_field('items'),
             'controls'        => get_field('controls'),
@@ -36,99 +38,6 @@ class Carousel extends AbstractBlock
         ]);
 
         echo '</div>';
-    }
-
-    /**
-     * Render Carousel
-     *
-     * @param array $args
-     */
-    public function renderCarousel($args)
-    {
-        static $instance = 0;
-
-        $instance++;
-
-        $args = wp_parse_args($args, [
-            'items'           => [],
-            'controls'        => true,
-            'indicators'      => false,
-            'autoplay'        => true,
-            'render_callback' => null,
-        ]);
-
-        $carousel_id = !empty($args['id']) ? $args['id'] : "carousel-$instance";
-        $items       = is_array($args['items']) ? $args['items'] : [];
-
-        if (! $items) {
-            return;
-        }
-
-        $atts = [
-            'id'    => $carousel_id,
-            'class' => 'carousel slide',
-        ];
-
-        if ($args['autoplay']) {
-            $atts['data-ride'] = 'carousel';
-        }
-
-        echo '<div ' . acf_esc_attr($atts) . '>';
-
-        // Indicators
-        if ($args['indicators']) {
-            echo '<ol class="carousel-indicators">';
-            for ($i=0; $i < count($items); $i++) {
-                $is_active = $i === 0;
-                $indicator_atts = [
-                    'data-target' => "#$carousel_id",
-                    'data-slide-to' => $i,
-                ];
-                if ($is_active) {
-                    $indicator_atts['class'] = 'active';
-                }
-                echo '<li ' . acf_esc_attr($indicator_atts) . '></li>';
-            }
-            echo '</ol>'; // .carousel-indicators
-        }
-
-        // Items
-        echo '<div class="carousel-inner">';
-
-        for ($i=0; $i < count($items); $i++) {
-            $item = $items[$i];
-            $is_active = $i === 0;
-            $item_atts = [
-                'class' => 'carousel-item',
-            ];
-            if ($is_active) {
-                $item_atts['class'] .= ' active';
-            }
-
-            echo '<div ' . acf_esc_attr($item_atts) . '>';
-
-            if (is_callable($args['render_callback'])) {
-                call_user_func($args['render_callback'], $item, $i);
-            }
-
-            echo '</div>'; // .carousel-item
-        }
-
-        echo '</div>'; // .carousel-inner
-
-        // Controls
-        if ($args['controls']) {
-            echo '<a class="carousel-control-prev" href="#' . esc_attr($carousel_id) . '" role="button" data-slide="prev">';
-            echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-            echo '<span class="sr-only">' . esc_html__('Previous', 'my-theme') . '</span>';
-            echo '</a>';
-            echo '<a class="carousel-control-next" href="#' . esc_attr($carousel_id) . '" role="button" data-slide="next">';
-            echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-            echo '<span class="sr-only">' . esc_html__('Next', 'my-theme') . '</span>';
-            echo '</a>';
-        }
-
-        echo '</div>'; // .carousel
     }
 
     /**
