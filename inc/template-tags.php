@@ -300,7 +300,7 @@ function breadcrumb_nav($before = '', $after = '')
  * @link https://getbootstrap.com/docs/4.0/components/buttons/
  * @param array $args
  */
-public function button($args)
+function button($args)
 {
     $args = wp_parse_args($args, [
         'text'     => '',
