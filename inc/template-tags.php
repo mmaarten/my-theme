@@ -503,9 +503,11 @@ function modal($args)
     echo $args['body'];
     echo '</div>'; // .modal-body
 
-    echo '<div class="modal-footer">';
-    echo $args['footer'];
-    echo '</div>'; // .modal-footer
+    if ($args['footer']) {
+        echo '<div class="modal-footer">';
+        echo $args['footer'];
+        echo '</div>'; // .modal-footer
+    }
 
     echo '</div>'; // .modal-content
     echo '</div>'; // .modal-dialog
