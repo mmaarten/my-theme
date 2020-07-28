@@ -68,7 +68,7 @@ add_action('bcn_widget_display_types', function ($instance) {
     printf(
         '<option value="bootstrap"%s>%s</option>',
         selected('bootstrap', $instance['type'], false),
-        esc_html__('Bootstrap', 'my-theme')
+        esc_html_x('Bootstrap breadcrumb navigation', 'my-theme', 'Bootstrap: name of application')
     );
 });
 
