@@ -117,7 +117,7 @@ add_action('after_setup_theme', function () {
  */
 add_action('after_setup_theme', function () {
     $blocks = [
-        'Button',
+        'Buttons',
         'Carousel',
         'Modal',
     ];
