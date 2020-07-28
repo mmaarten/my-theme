@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-07-25T09:45:36+00:00\n"
+"POT-Creation-Date: 2020-07-28T16:37:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: my-theme\n"
@@ -93,25 +93,25 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: inc/acf.php:32
-#: inc/acf.php:33
+#: inc/acf.php:25
+#: inc/acf.php:26
 msgid "Site Options"
 msgstr ""
 
-#: inc/acf.php:65
+#: inc/acf.php:58
 msgid "Thumbnail"
 msgstr ""
 
-#: inc/acf.php:66
+#: inc/acf.php:59
 msgid "Medium"
 msgstr ""
 
-#: inc/acf.php:67
+#: inc/acf.php:60
 #: inc/blocks.php:59
 msgid "Large"
 msgstr ""
 
-#: inc/acf.php:68
+#: inc/acf.php:61
 msgid "Full Size"
 msgstr ""
 
@@ -151,49 +151,49 @@ msgstr ""
 msgid "LG"
 msgstr ""
 
-#: inc/helpers.php:19
+#: inc/helpers.php:48
 msgid "First"
 msgstr ""
 
-#: inc/helpers.php:20
+#: inc/helpers.php:49
 msgid "Second"
 msgstr ""
 
-#: inc/helpers.php:21
+#: inc/helpers.php:50
 msgid "Thirth"
 msgstr ""
 
-#: inc/helpers.php:22
+#: inc/helpers.php:51
 msgid "Fourth"
 msgstr ""
 
-#: inc/helpers.php:23
+#: inc/helpers.php:52
 msgid "Fifth"
 msgstr ""
 
-#: inc/helpers.php:24
+#: inc/helpers.php:53
 msgid "Sixth"
 msgstr ""
 
-#: inc/helpers.php:25
+#: inc/helpers.php:54
 msgid "Seventh"
 msgstr ""
 
-#: inc/helpers.php:26
+#: inc/helpers.php:55
 msgid "Eighth"
 msgstr ""
 
-#: inc/helpers.php:27
+#: inc/helpers.php:56
 msgid "Ninth"
 msgstr ""
 
 #. translators: %s: column number
-#: inc/helpers.php:35
+#: inc/helpers.php:64
 msgid "Footer Column %s"
 msgstr ""
 
 #. translators: %s: column ordinal number
-#: inc/helpers.php:37
+#: inc/helpers.php:66
 msgid "%s column in footer section."
 msgstr ""
 
@@ -222,7 +222,7 @@ msgid "Footer Right"
 msgstr ""
 
 #. Template Name of the theme
-#: inc/setup.php:87
+#: inc/setup.php:133
 msgid "Full Width"
 msgstr ""
 
@@ -296,8 +296,20 @@ msgid "%title &raquo;"
 msgstr ""
 
 #. translators: %s: the name of the coding function.
-#: inc/template-tags.php:259
+#: inc/template-tags.php:260
 msgid "function %s does not exist."
+msgstr ""
+
+#: inc/template-tags.php:430
+msgid "Previous"
+msgstr ""
+
+#: inc/template-tags.php:434
+msgid "Next"
+msgstr ""
+
+#: inc/template-tags.php:497
+msgid "Close"
 msgstr ""
 
 #: inc/widgets.php:35
