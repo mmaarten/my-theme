@@ -60,7 +60,7 @@ export default class StickyHeader {
 	};
 
 	static update() {
-		var scrollTop = $( document ).scrollTop();
+		var scrollTop = document.documentElement.scrollTop;
 
 		if ( scrollTop > this.bottom ) {
 			this.stick();
