@@ -44,7 +44,7 @@ get_header();
                     // End of the Loop.
                 endwhile;
 
-                My\Theme\Templates::pagination();
+                My\Theme\pagination();
             else :
                     // Include the template for displaying a message that posts cannot be found.
                     get_template_part('template-parts/content', 'none');

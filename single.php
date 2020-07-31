@@ -29,7 +29,7 @@ get_header();
                 // Include the template for the content.
                 get_template_part('template-parts/content', 'single');
 
-                My\Theme\Templates::postNav();
+                My\Theme\post_nav();
 
                 // If comments are open or we have at least one comment, load up the comment template.
                 if (comments_open() || get_comments_number()) :

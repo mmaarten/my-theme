@@ -64,6 +64,16 @@ array_map(function ($file) {
     }
 }, [
     'constants',
+    'helpers',
+    'setup',
+    'assets',
+    'widgets',
+    'nav-menus',
+    'blocks',
+    'acf',
+    'breadcrumbs',
+    'template-tags',
+    'template-functions',
 ]);
 
 /**
