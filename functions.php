@@ -64,13 +64,22 @@ array_map(function ($file) {
     }
 }, [
     'constants',
-    'helpers',
-    'setup',
-    'assets',
-    'widgets',
-    'nav-menus',
-    'blocks',
-    'acf',
-    'template-functions',
-    'template-tags',
+]);
+
+/**
+ * Initialize classes
+ */
+array_map(function ($class) {
+    $child_ns = apply_filters('my_theme_child_ns', false);
+    $class = $child_ns && class_exists("$child_ns\\$class") ? "$child_ns\\$class" : "My\Theme\\$class";
+    call_user_func([$class, 'init']);
+}, [
+  'Setup',
+  'Assets',
+  'Widgets',
+  'NavMenus',
+  'Blocks',
+  'Breadcrumbs',
+  'ACF',
+  'Hooks',
 ]);

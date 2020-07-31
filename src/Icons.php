@@ -9,38 +9,24 @@ namespace My\Theme;
 
 class Icons
 {
-    private static $instance = null;
+    protected static $icons = [];
 
-    public static function getInstance()
+    public static function getIcons()
     {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance;
+        return self::$icons;
     }
 
-    protected $icons = [];
-
-    private function __construct()
-    {
-    }
-
-    public function getIcons()
-    {
-        return $this->icons;
-    }
-
-    public function getIcon($key, $size = null)
+    public static function get($key, $size = null)
     {
         // Get SVG
 
-        if (! array_key_exists($key, $this->icons)) {
+        if (! array_key_exists($key, self::$icons)) {
             trigger_error(sprintf('Unable to find icon %s.', $key), E_USER_WARNING);
 
             return null;
         }
 
-        $svg = $this->icons[ $key ];
+        $svg = self::$icons[ $key ];
 
         // Add extra attributes to SVG element
 
@@ -62,12 +48,12 @@ class Icons
         return $svg;
     }
 
-    public function addIcon($key, $svg = null)
+    public static function add($key, $svg = null)
     {
         $icons = is_array($key) ? $key : [$key => $svg];
 
         foreach ($icons as $key => $svg) {
-            $this->icons[$key] = $svg;
+            self::$icons[$key] = $svg;
         }
     }
 }
