@@ -14,9 +14,10 @@ class Breadcrumbs
     /**
      * Initialize
      */
-    public static function init() {
-      add_action('bcn_widget_display_types', [__CLASS__, 'WidgetDisplayTypes']);
-      add_action('bcn_widget_display_trail', [__CLASS__, 'WidgetDisplayTrail']);
+    public static function init()
+    {
+        add_action('bcn_widget_display_types', [__CLASS__, 'widgetDisplayTypes']);
+        add_action('bcn_widget_display_trail', [__CLASS__, 'widgetDisplayTrail']);
     }
 
     /**
@@ -73,22 +74,22 @@ class Breadcrumbs
     /**
      * Adds 'Bootstrap' option to the Breadcrumb NavXT widget type list.
      */
-    public static function WidgetDisplayTypes($instance)
+    public static function widgetDisplayTypes($instance)
     {
-      printf(
-          '<option value="bootstrap"%s>%s</option>',
-          selected('bootstrap', $instance['type'], false),
-          esc_html_x('Bootstrap breadcrumb navigation', 'my-theme', 'Bootstrap: name of application')
-      );
+        printf(
+            '<option value="bootstrap"%s>%s</option>',
+            selected('bootstrap', $instance['type'], false),
+            esc_html_x('Bootstrap breadcrumb navigation', 'my-theme', 'Bootstrap: name of application')
+        );
     }
 
     /**
      * Renders our breadcrumb navigation by use of the Breadcrumb NavXT widget.
      */
-    public static function WidgetDisplayTrail($instance)
+    public static function widgetDisplayTrail($instance)
     {
-      if ('bootstrap' === $instance['type']) {
-          breadcrumb_nav();
-      }
+        if ('bootstrap' === $instance['type']) {
+            breadcrumb_nav();
+        }
     }
 }

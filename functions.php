@@ -65,13 +65,6 @@ array_map(function ($file) {
 }, [
     'constants',
     'helpers',
-    'setup',
-    'assets',
-    'widgets',
-    'nav-menus',
-    'breadcrumbs',
-    'blocks',
-    'acf',
     'template-functions',
     'template-tags',
 ]);
@@ -80,7 +73,9 @@ array_map(function ($file) {
  * Initialize classes
  */
 array_map(function ($class) {
-  call_user_func(["\My\Theme\\$class", 'init']);
+    $child_ns = apply_filters('my_theme_child_ns', false);
+    $class = $child_ns && class_exists("$child_ns\\$class") ? "$child_ns\\$class" : "My\Theme\\$class";
+    call_user_func([$class, 'init']);
 }, [
   'Setup',
   'Assets',

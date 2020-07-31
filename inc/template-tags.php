@@ -406,8 +406,8 @@ function modal($args)
     $title_id = "$modal_id-title";
 
     $modal_atts = [
-        'id'          => $carousel_id,
-        'class'       => 'modal',
+        'id'          => $modal_id,
+        'class'       => 'modal fade',
         'tabindex'    => -1,
         'role'        => 'dialog',
         'aria-hidden' => 'true',
@@ -432,7 +432,7 @@ function modal($args)
 
     echo '<div' . html_atts($modal_atts) . '>';
     echo '<div' . html_atts($dialog_atts) . '>';
-    echo '<div class="model-content">';
+    echo '<div class="modal-content">';
 
     echo '<div class="modal-header">';
     if ($args['title']) {
