@@ -7,4 +7,4 @@
 
 namespace My\Theme;
 
-defined('MY_THEME_VERSION') or define('MY_THEME_VERSION', '1.0');
+defined('MY_THEME_VERSION') or define('MY_THEME_VERSION', wp_get_theme('my-theme')->version);
