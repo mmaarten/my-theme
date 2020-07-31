@@ -75,3 +75,18 @@ array_map(function ($file) {
     'template-functions',
     'template-tags',
 ]);
+
+/**
+ * Initialize classes
+ */
+array_map(function ($class) {
+  call_user_func(["\My\Theme\\$class", 'init']);
+}, [
+  'Setup',
+  'Assets',
+  'Widgets',
+  'NavMenus',
+  'Blocks',
+  'Breadcrumbs',
+  'ACF',
+]);
