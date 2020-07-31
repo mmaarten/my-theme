@@ -125,7 +125,7 @@ class NavMenus
 
         // Adds icon.
         if (!empty($mods['icon'])) {
-            $icon = get_icon($mods['icon']);
+            $icon = Icons::get($mods['icon']);
             if ($icon) {
                 $title = "$title $icon";
             }
