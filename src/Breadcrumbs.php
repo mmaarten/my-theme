@@ -89,7 +89,7 @@ class Breadcrumbs
     public static function widgetDisplayTrail($instance)
     {
         if ('bootstrap' === $instance['type']) {
-            breadcrumb_nav();
+            self::render();
         }
     }
 }

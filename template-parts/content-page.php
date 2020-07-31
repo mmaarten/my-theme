@@ -17,7 +17,7 @@
 
     </header><!-- .entry-header -->
 
-    <?php My\Theme\post_thumbnail(); ?>
+    <?php My\Theme\Templates::postThumbnail(); ?>
 
     <div class="entry-content">
 

@@ -18,7 +18,7 @@
         <?php if ('post' === get_post_type()) : ?>
         <div class="entry-meta">
 
-            <?php My\Theme\posted_on(); ?>
+            <?php My\Theme\Templates::postedOn(); ?>
 
         </div><!-- .entry-meta -->
 
@@ -26,7 +26,7 @@
 
     </header><!-- .entry-header -->
 
-    <?php My\Theme\post_thumbnail(); ?>
+    <?php My\Theme\Templates::postThumbnail(); ?>
 
     <div class="entry-summary">
 
@@ -36,7 +36,7 @@
 
     <footer class="entry-footer">
 
-        <?php My\Theme\entry_footer(); ?>
+        <?php My\Theme\Templates::entryFooter(); ?>
 
     </footer><!-- .entry-footer -->
 

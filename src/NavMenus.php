@@ -67,6 +67,10 @@ class NavMenus
                     self::$mods[$item->ID]['btn'][$class] = $class;
                 } elseif (preg_match('/^icon-(.+)/', $class, $matches)) {
                     self::$mods[$item->ID]['icon'] = $matches[1];
+                } elseif (preg_match('/^toggle-(.+)/', $class, $matches)) {
+                    self::$mods[$item->ID]['toggle'] = $matches[1];
+                } elseif ($class === 'nolabel') {
+                    self::$mods[$item->ID]['nolabel'] = true;
                 } else {
                     $item_classes[] = $class;
                 }
@@ -95,7 +99,6 @@ class NavMenus
             $atts['class'] = '';
         }
 
-        // Create button.
         if (!empty($mods['btn'])) {
             $btn_classes = $mods['btn'];
             // Remove 'nav-link' class
@@ -103,6 +106,10 @@ class NavMenus
             // Add button attributes
             $atts['class'] .= ' ' . implode(' ', $btn_classes);
             $atts['role'] = 'button';
+        }
+
+        if (!empty($mods['toggle'])) {
+            $atts['data-toggle'] = $mods['toggle'];
         }
 
         // Sanitize 'class' attribute.
@@ -123,11 +130,21 @@ class NavMenus
     {
         $mods = isset(self::$mods[$item->ID]) ? self::$mods[$item->ID] : [];
 
+        // Make title available for screenreaders only.
+        if (!empty($mods['nolabel'])) {
+            $title = sprintf('<span class="sr-only">%s</span>', $title);
+        }
+
         // Adds icon.
         if (!empty($mods['icon'])) {
             $icon = Icons::get($mods['icon']);
+            $position = in_array('-icon-left', $item->classes) ? 'left' : 'right';
             if ($icon) {
-                $title = "$title $icon";
+                if ($position == 'left') {
+                    $title = "$icon $title";
+                } else {
+                    $title = "$title $icon";
+                }
             }
         }
 

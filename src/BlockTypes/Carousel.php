@@ -2,7 +2,7 @@
 
 namespace My\Theme\BlockTypes;
 
-use function \My\Theme\carousel;
+use \My\Theme\Templates;
 
 class Carousel extends AbstractBlock
 {
@@ -28,7 +28,7 @@ class Carousel extends AbstractBlock
 
         echo '<div ' . acf_esc_attr($atts) . '>';
 
-        carousel([
+        Templates::carousel([
             'id'              => get_field('id'),
             'items'           => get_field('items'),
             'controls'        => get_field('controls'),

@@ -64,9 +64,6 @@ array_map(function ($file) {
     }
 }, [
     'constants',
-    'helpers',
-    'template-functions',
-    'template-tags',
 ]);
 
 /**
@@ -84,4 +81,5 @@ array_map(function ($class) {
   'Blocks',
   'Breadcrumbs',
   'ACF',
+  'Hooks',
 ]);
