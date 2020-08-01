@@ -1,0 +1,17 @@
+
+// Editor text colors
+@each $color, $value in $editor-colors {
+  @include text-emphasis-variant(".has-#{$color}-color", $value);
+}
+
+// Editor font sizes
+@each $font-size, $value in $editor-font-sizes {
+  .has-#{$font-size}-font-size {
+    @include font-size($value !important);
+  }
+}
+
+// Editor Background colors
+@each $color, $value in $editor-colors {
+  @include bg-variant(".has-#{$color}-background-color", $value);
+}
