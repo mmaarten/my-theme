@@ -13,7 +13,7 @@ if (! has_nav_menu('top-left') && ! has_nav_menu('top-right')) {
 
 ?>
 
-<nav id="top-navigation" class="d-none d-md-flex site-navigation" role="navigation">
+<nav id="top-navigation" class="d-none d-lg-flex site-navigation" role="navigation">
 
     <div class="container d-flex">
 
