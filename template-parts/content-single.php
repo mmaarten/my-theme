@@ -7,6 +7,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -18,7 +20,7 @@
         <?php if ('post' === get_post_type()) : ?>
         <div class="entry-meta">
 
-            <?php My\Theme\posted_on(); ?>
+            <?php Templates::postedOn(); ?>
 
         </div><!-- .entry-meta -->
 
@@ -26,7 +28,7 @@
 
     </header><!-- .entry-header -->
 
-    <?php My\Theme\post_thumbnail(); ?>
+    <?php Templates::postThumbnail(); ?>
 
     <div class="entry-content">
 
@@ -36,7 +38,7 @@
 
     <footer class="entry-footer">
 
-        <?php My\Theme\entry_footer(); ?>
+        <?php Templates::entryFooter(); ?>
 
     </footer><!-- .entry-footer -->
 

@@ -2,7 +2,7 @@
 
 namespace My\Theme\BlockTypes;
 
-use function \My\Theme\button;
+use \My\Theme\Templates;
 
 class Buttons extends AbstractBlock
 {
@@ -42,7 +42,7 @@ class Buttons extends AbstractBlock
 
                 echo '<li class="list-inline-item">';
 
-                button([
+                Templates::button([
                     'text'     => get_sub_field('text'),
                     'link'     => get_sub_field('link'),
                     'link_tab' => get_sub_field('link_tab'),

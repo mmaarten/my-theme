@@ -7,6 +7,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 get_header();
 
 ?>

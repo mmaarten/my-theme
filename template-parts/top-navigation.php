@@ -5,6 +5,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 if (! has_nav_menu('top-left') && ! has_nav_menu('top-right')) {
     return;
 }

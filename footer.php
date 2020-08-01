@@ -9,6 +9,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 ?>
 
         </div><!-- #content -->

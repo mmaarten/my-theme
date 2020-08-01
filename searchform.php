@@ -5,6 +5,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 $my_theme_unique_id = uniqid('search-form-');
 
 ?>

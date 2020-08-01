@@ -5,6 +5,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 ?>
 
 <nav id="main-navigation" class="navbar navbar-expand-lg navbar-light bg-light site-navigation">

@@ -9,6 +9,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
