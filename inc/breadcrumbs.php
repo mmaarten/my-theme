@@ -17,7 +17,7 @@ namespace My\Theme;
  * @param string $before The HTML to render before the navigation.
  * @param string $after  The HTML to render after the navigation.
  */
-public static function breadcrumb_nav($before = '', $after = '')
+function breadcrumb_nav($before = '', $after = '')
 {
     // Check Dependency.
     if (! function_exists('bcn_display_list')) {
@@ -80,7 +80,7 @@ add_action('bcn_widget_display_types', __NAMESPACE__ . '\breadcrumb_widget_displ
 function breadcrumb_widget_display_trail($instance)
 {
     if ('bootstrap' === $instance['type']) {
-        self::render();
+        breadcrumb_nav();
     }
 }
 

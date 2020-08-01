@@ -57,7 +57,7 @@ add_action('widgets_init', __NAMESPACE__ . '\register_sidebars');
  * @param int   $amount The amount of sidebars to register.
  * @param array $args   Extra arguments for register_sidebar function.
  */
-public static function register_footer_columns($amount, $args = [])
+function register_footer_columns($amount, $args = [])
 {
     $ordinals = [
       1 => __('First', 'my-theme'),

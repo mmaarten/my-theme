@@ -16,6 +16,7 @@ function register_block_types()
       'Buttons',
       'Carousel',
       'Modal',
+      'Spacer',
     ];
     foreach ($blocks as $block) {
         $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;
