@@ -72,6 +72,7 @@ array_map(function ($file) {
     'blocks',
     'acf',
     'breadcrumbs',
+    'icons',
     'template-tags',
     'template-functions',
 ]);
