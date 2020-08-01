@@ -74,6 +74,7 @@ array_map(function ($file) {
     'acf',
     'breadcrumbs',
     'icons',
+    'login-form',
     'template-tags',
     'template-functions',
 ]);
