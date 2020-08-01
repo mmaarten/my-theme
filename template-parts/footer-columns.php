@@ -5,6 +5,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 if (! array_filter(['footer-column-1', 'footer-column-2', 'footer-column-3'], 'is_active_sidebar')) {
     return;
 }

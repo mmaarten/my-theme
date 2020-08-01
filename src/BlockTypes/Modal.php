@@ -2,7 +2,7 @@
 
 namespace My\Theme\BlockTypes;
 
-use function \My\Theme\modal;
+use \My\Theme\Templates;
 
 class Modal extends AbstractBlock
 {
@@ -28,7 +28,7 @@ class Modal extends AbstractBlock
 
         echo '<div ' . acf_esc_attr($atts) . '>';
 
-        modal([
+        Templates::modal([
             'id'     => get_field('id'),
             'title'  => get_field('title'),
             'body'   => get_field('body'),

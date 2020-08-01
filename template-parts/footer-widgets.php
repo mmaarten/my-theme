@@ -5,6 +5,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 if (! is_active_sidebar('footer')) {
     return;
 }

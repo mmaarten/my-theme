@@ -7,6 +7,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 ?>
 
 <section class="no-results not-found">

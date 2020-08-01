@@ -7,6 +7,8 @@
  * @package My/Theme
  */
 
+namespace My\Theme;
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -17,7 +19,7 @@
 
     </header><!-- .entry-header -->
 
-    <?php My\Theme\post_thumbnail(); ?>
+    <?php Templates::postThumbnail(); ?>
 
     <div class="entry-content">
 
