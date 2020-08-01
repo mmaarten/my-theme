@@ -6,6 +6,7 @@ Bootstrap driven WordPress starter theme.
 - [Webpack](https://webpack.js.org/) for compiling assets, optimising images, and concatenating and minifying files.
 - [Bootstrap](https://getbootstrap.com/) 4 CSS framework.
 - [WordPress Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker) for navigations.
+- [Advanced Custom Fields](https://www.advancedcustomfields.com/) integration.
 
 ## Requirements
 - [Node JS](https://nodejs.org)

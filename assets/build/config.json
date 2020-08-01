@@ -5,6 +5,7 @@
     "editor-normalization": "styles/editor-normalization.scss",
     "editor": "styles/editor.scss",
     "blocks": "styles/blocks.scss",
+    "customizer": "scripts/customizer.js",
     "popper": "scripts/popper.js",
     "bootstrap": "scripts/bootstrap.js",
     "owl-carousel": [ "styles/owl-carousel.scss", "scripts/owl-carousel.js" ],

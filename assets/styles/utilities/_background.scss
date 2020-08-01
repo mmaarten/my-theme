@@ -1,0 +1,48 @@
+
+//
+// Background position
+//
+
+@each $x in ( 'left', 'center', 'right' ) {
+	@each $y in ( 'top', 'center', 'bottom' ) {
+		@if ( $x == $y ) {
+			.bg-#{ $x } {
+				background-position: unquote( $x ) !important;
+			}
+		}
+		.bg-#{ $x }-#{ $y } {
+			background-position: unquote( $x ) unquote( $y ) !important;
+		}
+	}
+}
+
+//
+// Background size
+//
+
+@each $value in ( 'cover', 'contain' ) {
+	.bg-#{ $value } {
+		background-size: unquote( $value ) !important;
+	}
+}
+
+//
+// Background repeat
+//
+
+@each $value in ( 'repeat', 'repeat-x', 'repeat-y', 'no-repeat' ) {
+	.bg-#{ $value } {
+		background-repeat: unquote( $value ) !important;
+	}
+}
+
+//
+// Parallax
+//
+
+.parallax {
+	background-attachment: fixed !important;
+  background-position: center;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}

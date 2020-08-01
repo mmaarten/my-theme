@@ -2,16 +2,14 @@
 
 namespace My\Theme\BlockTypes;
 
-use function \My\Theme\modal;
-
-class Modal extends AbstractBlock
+class Spacer extends AbstractBlock
 {
     /**
      * Constructor
      */
     public function __construct()
     {
-        parent::__construct('modal');
+        parent::__construct('spacer');
     }
 
     /**
@@ -24,18 +22,20 @@ class Modal extends AbstractBlock
      */
     public function render($block, $content = '', $is_preview = false, $post_id = 0)
     {
+        $sizes = get_field('sizes');
+
+        $classes = [];
+        foreach ($sizes as $breakpoint => $size) {
+            $infix = $breakpoint === 'xs' ? '' : "-$breakpoint";
+            $classes[] = "has-spacing$infix-$size";
+        }
+
         $atts = $this->getHTMLAttributes($block);
 
-        echo '<div ' . acf_esc_attr($atts) . '>';
+        if ($classes) {
+            $atts['class'] .= ' ' . implode(' ', $classes);
+        }
 
-        modal([
-            'id'     => get_field('id'),
-            'title'  => get_field('title'),
-            'body'   => get_field('body'),
-            'size'   => get_field('size'),
-            'center' => get_field('center'),
-        ]);
-
-        echo '</div>';
+        echo '<div ' . acf_esc_attr($atts) . '></div>';
     }
 }

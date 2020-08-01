@@ -18,34 +18,18 @@ class Icons
 
     public static function get($key, $size = null)
     {
-        // Get SVG
-
-        if (! array_key_exists($key, self::$icons)) {
-            trigger_error(sprintf('Unable to find icon %s.', $key), E_USER_WARNING);
-
-            return null;
+        if (array_key_exists($key, self::$icons)) {
+            $repl = '<svg class="svg-icon" aria-hidden="true" role="img" focusable="false" ';
+            if ($size) {
+                $repl .= sprintf('width="%1$dpx" height="%1$dpx" ', $size);
+            }
+            $svg  = preg_replace('/^<svg /', $repl, trim(self::$icons[$key])); // Add extra attributes to SVG code.
+            $svg  = preg_replace("/([\n\t]+)/", ' ', $svg); // Remove newlines & tabs.
+            $svg  = preg_replace('/>\s*</', '><', $svg);    // Remove whitespace between SVG tags.
+            return $svg;
         }
 
-        $svg = self::$icons[ $key ];
-
-        // Add extra attributes to SVG element
-
-        $atts = 'class="svg-icon" aria-hidden="true" role="img" focusable="false"';
-
-        if ($size) {
-            $atts .= sprintf(' width="%1$dpx" height="%1$dpx"', $size);
-        }
-
-        $svg = preg_replace('/^<svg /', "<svg $atts", $svg);
-
-        // Sanitize SVG
-
-        $svg = preg_replace("/([\n\t]+)/", ' ', $svg); // Remove newlines & tabs.
-        $svg = preg_replace('/>\s*</', '><', $svg); // Remove white space between SVG tags.
-
-        // Return
-
-        return $svg;
+        return null;
     }
 
     public static function add($key, $svg = null)
