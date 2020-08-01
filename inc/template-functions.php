@@ -1,6 +1,6 @@
 <?php
 /**
- * Hooks
+ * Template functions
  *
  * @package My/Theme
  */

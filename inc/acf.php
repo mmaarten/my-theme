@@ -1,4 +1,9 @@
 <?php
+/**
+ * Advanced Custom Fields
+ *
+ * @package My/Theme
+ */
 
 namespace My\Theme;
 

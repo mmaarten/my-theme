@@ -1,6 +1,6 @@
 <?php
 /**
- * Assets
+ * Blocks
  *
  * @package My/Theme
  */
