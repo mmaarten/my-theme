@@ -4,7 +4,7 @@
 //
 
 @each $color, $value in $editor-colors {
-  @include text-emphasis-variant(".has-#{$color}-color", $value);
+  @include text-emphasis-variant(".has-#{$color}-text-color", $value);
 }
 
 //
