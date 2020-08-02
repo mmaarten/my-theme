@@ -9,13 +9,29 @@ namespace My\Theme;
 
 class Icons
 {
+    /**
+     * Icons
+     *
+     * @var array
+     */
     protected static $icons = [];
 
+    /**
+     * Get icons
+     *
+     * @return array
+     */
     public static function getIcons()
     {
         return self::$icons;
     }
 
+    /**
+     * Get icon
+     *
+     * @param string   $key
+     * @param null|int $size
+     */
     public static function get($key, $size = null)
     {
         if (array_key_exists($key, self::$icons)) {
@@ -32,6 +48,12 @@ class Icons
         return null;
     }
 
+    /**
+     * Add icon
+     *
+     * @param string|array $key
+     * @param null|string  $svg
+     */
     public static function add($key, $svg = null)
     {
         $icons = is_array($key) ? $key : [$key => $svg];

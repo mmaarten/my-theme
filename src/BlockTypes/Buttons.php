@@ -1,4 +1,9 @@
 <?php
+/**
+ * Buttons
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme\BlockTypes;
 

@@ -1,21 +1,41 @@
 <?php
+/**
+ * Navigation Menus
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 
 class NavMenus
 {
+    /**
+     * Mods
+     *
+     * @var array
+     */
     protected static $mods = [];
 
+    /**
+     * Init
+     */
     public static function init()
     {
-        add_filter('wp_nav_menu_args', [__CLASS__, 'setBootstrapNavwalker'], PHP_INT_MAX);
+        add_filter('wp_nav_menu_args', [__CLASS__, 'navMenuArgs'], PHP_INT_MAX);
         add_filter('wp_get_nav_menu_items', [__CLASS__, 'navMenuItems'], PHP_INT_MAX, 2);
         add_filter('nav_menu_link_attributes', [__CLASS__, 'navMenuLinkAttributes'], PHP_INT_MAX, 4);
         add_filter('nav_menu_item_title', [__CLASS__, 'navMenuItemTitle'], PHP_INT_MAX, 4);
     }
 
-    public static function setBootstrapNavwalker($args)
+    /**
+     * Filters the arguments used to display a navigation menu.
+     *
+     * @param array $args Array of wp_nav_menu() arguments.
+     * @return array
+     */
+    public static function navMenuArgs($args)
     {
+        // Set Bootstrap navwalker when Bootstrap css class is used.
         if (empty($args['walker']) && preg_match('/(^| )(nav|navbar-nav)( |$)/', $args['menu_class'])) {
             require_once get_template_directory() . '/vendor/wp-bootstrap/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
             $args['walker'] = new \WP_Bootstrap_Navwalker();
@@ -23,6 +43,14 @@ class NavMenus
         return $args;
     }
 
+    /**
+     * Filters the navigation menu items being returned.
+     *
+     * @param array  $items An array of menu item post objects.
+     * @param object $menu  The menu object.
+     * @param array  $args  An array of arguments used to retrieve menu item objects.
+     * @return array
+     */
     public static function navMenuItems($items, $args)
     {
         if (is_admin()) {
@@ -51,6 +79,23 @@ class NavMenus
         return $items;
     }
 
+    /**
+     * Filters the HTML attributes applied to a menu item's anchor element.
+     *
+     * @param array $atts {
+     *     The HTML attributes applied to the menu item's `<a>` element, empty strings are ignored.
+     *
+     *     @type string $title        Title attribute.
+     *     @type string $target       Target attribute.
+     *     @type string $rel          The rel attribute.
+     *     @type string $href         The href attribute.
+     *     @type string $aria_current The aria-current attribute.
+     * }
+     * @param WP_Post  $item  The current menu item.
+     * @param stdClass $args  An object of wp_nav_menu() arguments.
+     * @param int      $depth Depth of menu item. Used for padding.
+     * @return array
+     */
     public static function navMenuLinkAttributes($atts, $item, $args, $depth)
     {
         $mods = isset(self::$mods[$item->ID]) ? self::$mods[$item->ID] : [];
@@ -86,6 +131,7 @@ class NavMenus
      * @param WP_Post  $item  The current menu item.
      * @param stdClass $args  An object of wp_nav_menu() arguments.
      * @param int      $depth Depth of menu item. Used for padding.
+     * @return string
      */
     public static function navMenuItemTitle($title, $item, $args, $depth)
     {

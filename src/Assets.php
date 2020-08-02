@@ -1,14 +1,25 @@
 <?php
+/**
+ * Assets
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 
 class Assets
 {
+    /**
+     * Init
+     */
     public static function init()
     {
         add_action('wp_enqueue_scripts', [__CLASS__, 'enqueueScripts']);
     }
 
+    /**
+     * Enqueue scripts ands styles
+     */
     public static function enqueueScripts()
     {
         /**

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Spacer
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme\BlockTypes;
 

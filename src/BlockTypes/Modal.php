@@ -1,4 +1,9 @@
 <?php
+/**
+ * Modal
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme\BlockTypes;
 

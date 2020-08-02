@@ -1,15 +1,28 @@
 <?php
+/**
+ * Advanced Custom Fields
+ *
+ * Dependency: Advanced Custom Fields
+ * @link https://www.advancedcustomfields.com/
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 
 class ACF
 {
+    /**
+     * Init
+     */
     public static function init()
     {
         add_action('acf/init', [__CLASS__, 'addOptionsPage']);
         add_filter('acf/load_field', [__CLASS__, 'loadField'], PHP_INT_MAX);
     }
 
+    /**
+     * Add options page
+     */
     public static function addOptionsPage()
     {
         if (function_exists('acf_add_options_page')) {
@@ -22,6 +35,12 @@ class ACF
         }
     }
 
+    /**
+     * Alter field settings
+     *
+     * @param array $field
+     * @return array
+     */
     public static function loadField($field)
     {
         // Populate select field with editor color names. Usage: set field CSS class to my-theme-editor-colors.

@@ -1,14 +1,27 @@
 <?php
+/**
+ * Customizer
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 
 class Customizer
 {
+    /**
+     * Init
+     */
     public static function init()
     {
         add_action('customize_preview_init', [__CLASS__, 'previewInit']);
     }
 
+    /**
+     * Register
+     *
+     * @param WP_Customize_Manager $customizer
+     */
     public static function register($customizer)
     {
         $customizer->get_setting('blogname')->transport        = 'postMessage';
@@ -35,6 +48,9 @@ class Customizer
         );
     }
 
+    /**
+     * Preview Init
+     */
     public static function previewInit()
     {
         wp_enqueue_script(

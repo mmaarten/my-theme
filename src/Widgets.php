@@ -1,14 +1,25 @@
 <?php
+/**
+ * Widgets
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 
 class Widgets
 {
+    /**
+     * Init
+     */
     public static function init()
     {
         add_action('widgets_init', [__CLASS__, 'registerSidebars']);
     }
 
+    /**
+     * Register widget areas
+     */
     public static function registerSidebars()
     {
         $args = [
@@ -53,6 +64,12 @@ class Widgets
         self::registerFooterColumns(3, $args);
     }
 
+    /**
+     * Register sidebars described as footer columns.
+     *
+     * @param int   $amount
+     * @param array $args Arguments for the register_sidebar() function.
+     */
     public static function registerFooterColumns($amount, $args = [])
     {
         $ordinals = [
