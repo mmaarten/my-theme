@@ -1,4 +1,9 @@
 <?php
+/**
+ * Hooks
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 

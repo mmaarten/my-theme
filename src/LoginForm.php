@@ -1,4 +1,10 @@
 <?php
+/**
+ * Login Form
+ *
+ * @link https://codex.wordpress.org/Customizing_the_Login_Form/
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 

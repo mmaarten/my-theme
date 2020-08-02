@@ -1,4 +1,9 @@
 <?php
+/**
+ * Widgets
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 

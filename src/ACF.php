@@ -1,4 +1,11 @@
 <?php
+/**
+ * Advanced Custom Fields
+ *
+ * Dependency: Advanced Custom Fields
+ * @link https://www.advancedcustomfields.com/
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 

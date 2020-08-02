@@ -1,4 +1,11 @@
 <?php
+/**
+ * Breadcrumbs
+ *
+ * Dependency: Breadrumb NavXT
+ * @link https://wordpress.org/plugins/breadcrumb-navxt/
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 

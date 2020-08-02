@@ -1,4 +1,9 @@
 <?php
+/**
+ * Customizer
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme;
 
