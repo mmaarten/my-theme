@@ -71,31 +71,3 @@ a {
     text-decoration: $link-hover-decoration;
   }
 }
-
-//
-// Block alignment
-//
-// See https://developer.wordpress.org/block-editor/developers/themes/theme-support/#changing-the-width-of-the-editor
-//
-
-.wp-block {
-  @include make-container-max-widths(
-    (
-      sm: map-get($container-max-widths, "sm"),
-      md: map-get($container-max-widths, "md"),
-    )
-  );
-
-  &[data-align="wide"] {
-    @include make-container-max-widths(
-      (
-        lg: map-get($container-max-widths, "lg"),
-        xl: map-get($container-max-widths, "xl"),
-      )
-    );
-  }
-
-  &[data-align="full"] {
-    max-width: none;
-  }
-}
