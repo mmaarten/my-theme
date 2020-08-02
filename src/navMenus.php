@@ -4,9 +4,12 @@ namespace My\Theme;
 
 class NavMenus
 {
+    protected static $mods = [];
+
     public static function init()
     {
         add_filter('wp_nav_menu_args', [__CLASS__, 'setBootstrapNavwalker'], PHP_INT_MAX);
+        add_filter('wp_get_nav_menu_items', [__CLASS__, 'navMenuItems'], PHP_INT_MAX, 2);
         add_filter('nav_menu_link_attributes', [__CLASS__, 'navMenuLinkAttributes'], PHP_INT_MAX, 4);
         add_filter('nav_menu_item_title', [__CLASS__, 'navMenuItemTitle'], PHP_INT_MAX, 4);
     }
@@ -20,30 +23,54 @@ class NavMenus
         return $args;
     }
 
+    public static function navMenuItems($items, $args)
+    {
+        if (is_admin()) {
+            return $items;
+        }
+
+        // Get specific CSS classes out if item and store them for later use.
+        foreach ($items as &$item) {
+            $item_classes = [];
+            foreach ($item->classes as $class) {
+                if (preg_match('/^btn($|-.+)/', $class)) {
+                    self::$mods[$item->ID]['btn'][$class] = $class;
+                } elseif (preg_match('/^icon-(.+)/', $class, $matches)) {
+                    self::$mods[$item->ID]['icon'] = $matches[1];
+                } elseif ($class == 'nolabel') {
+                    self::$mods[$item->ID]['nolabel'] = true;
+                } elseif (preg_match('/^toggle-(.+)/', $class, $matches)) {
+                    self::$mods[$item->ID]['toggle'] = $matches[1];
+                } else {
+                    $item_classes[] = $class;
+                }
+            }
+            $item->classes = $item_classes;
+        }
+
+        return $items;
+    }
+
     public static function navMenuLinkAttributes($atts, $item, $args, $depth)
     {
+        $mods = isset(self::$mods[$item->ID]) ? self::$mods[$item->ID] : [];
+
         // Make sure class attribute is set.
         if (! isset($atts['class'])) {
             $atts['class'] = '';
         }
 
         // Create button
-        $btn_classes = [];
-        foreach ($item->classes as $class) {
-            if (preg_match('/^-(btn(?:$|-.+))/', $class, $matches)) {
-                list (, $btn_class) = $matches;
-                $btn_classes[$btn_class] = $btn_class;
-            }
-        }
-        if ($btn_classes) {
+        if (! empty($mods['btn'])) {
+            $btn_classes = $mods['btn'];
             $atts['class'] = preg_replace('/(^| )nav-link( |$)/', '', $atts['class']);
             $atts['class'] .= ' ' . implode(' ', $btn_classes);
             $atts['role'] = 'button';
         }
 
-        // Toggle modal
-        if (in_array('toggle-modal', $item->classes)) {
-            $atts['data-toggle'] = 'modal';
+        // Toggle
+        if (! empty($mods['toggle'])) {
+            $atts['data-toggle'] = $mods['toggle'];
         }
 
         // Sanitize class attribute
@@ -62,19 +89,19 @@ class NavMenus
      */
     public static function navMenuItemTitle($title, $item, $args, $depth)
     {
-        // Adds icon
-        $key = null;
-        foreach ($item->classes as $class) {
-            if (preg_match('/^-icon-(.+)/', $class, $matches)) {
-                list(, $key) = $matches;
-            }
-        }
-        if ($key && $icon = Icons::get($key)) {
-            if (in_array('-nolabel', $item->classes)) {
-                $title = sprintf('<span class="sr-only">%s</span>', $title);
-            }
+        $mods = isset(self::$mods[$item->ID]) ? self::$mods[$item->ID] : [];
 
-            $title = "$title $icon";
+        // Hides title
+        if (! empty($mods['nolabel'])) {
+            $title = sprintf('<span class="sr-only">%s</span>', $title);
+        }
+
+        // Adds icon
+        if (! empty($mods['icon'])) {
+            $key = $mods['icon'];
+            if ($icon = Icons::get($key)) {
+                $title = "$title $icon";
+            }
         }
 
         return $title;
