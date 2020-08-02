@@ -62,6 +62,7 @@ class NavMenus
      */
     public static function navMenuItemTitle($title, $item, $args, $depth)
     {
+        // Adds icon
         $key = null;
         foreach ($item->classes as $class) {
             if (preg_match('/^-icon-(.+)/', $class, $matches)) {
