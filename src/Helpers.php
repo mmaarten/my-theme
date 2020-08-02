@@ -9,6 +9,12 @@ namespace My\Theme;
 
 class Helpers
 {
+    /**
+     * Render HTML attributes
+     *
+     * @param array $attributes
+     * @return string
+     */
     public static function htmlAtts($attributes)
     {
         $str = '';

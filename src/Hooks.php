@@ -9,6 +9,9 @@ namespace My\Theme;
 
 class Hooks
 {
+    /**
+     * Init
+     */
     public static function init()
     {
         add_filter('body_class', [__CLASS__, 'bodyClass'], PHP_INT_MAX);

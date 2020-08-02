@@ -1,4 +1,9 @@
 <?php
+/**
+ * Carousel
+ *
+ * @package My\Theme
+ */
 
 namespace My\Theme\BlockTypes;
 

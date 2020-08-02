@@ -9,6 +9,9 @@ namespace My\Theme;
 
 class Blocks
 {
+    /**
+     * Init
+     */
     public static function init()
     {
         add_action('after_setup_theme', [__CLASS__, 'registerBlockTypes'], 0);

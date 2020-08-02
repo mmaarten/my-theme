@@ -10,6 +10,9 @@ namespace My\Theme;
 
 class LoginForm
 {
+    /**
+     * Init
+     */
     public static function init()
     {
         add_filter('login_headerurl', [__CLASS__, 'headerURL'], PHP_INT_MAX);
@@ -17,16 +20,29 @@ class LoginForm
         add_action('login_enqueue_scripts', [__CLASS__, 'enqueueScripts']);
     }
 
+    /**
+     * Filter header URL
+     *
+     * @return string
+     */
     public static function headerURL()
     {
         return home_url();
     }
 
+    /**
+     * Filter header title
+     *
+     * @return string
+     */
     public static function headerTitle()
     {
         return get_bloginfo('name');
     }
 
+    /**
+     * Enqueue scripts and styles
+     */
     public static function enqueueScripts()
     {
         $logo_url = null;

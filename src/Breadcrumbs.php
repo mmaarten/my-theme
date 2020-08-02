@@ -11,6 +11,9 @@ namespace My\Theme;
 
 class Breadcrumbs
 {
+    /**
+     * Init
+     */
     public static function init()
     {
         add_action('bcn_widget_display_types', [__CLASS__, 'widgetDisplayTypes']);
