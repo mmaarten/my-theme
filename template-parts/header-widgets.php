@@ -12,7 +12,7 @@ if (! is_active_sidebar('header')) {
 }
 ?>
 
-<aside class="widget-area" role="complementary">
+<aside id="header-widgets" class="widget-area" role="complementary">
 
     <div class="container">
 
