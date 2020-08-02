@@ -21,27 +21,36 @@
                     "key": "field_5f248dfc73bc6",
                     "label": "Extra Small Devices",
                     "name": "xs",
-                    "type": "range",
+                    "type": "select",
                     "instructions": "",
-                    "required": 0,
+                    "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "min": 1,
-                    "max": 5,
-                    "step": "",
-                    "prepend": "",
-                    "append": ""
+                    "choices": [
+                        "No Spacing",
+                        "Extra Small",
+                        "Small",
+                        "Medium",
+                        "Large",
+                        "Extra Large"
+                    ],
+                    "default_value": 3,
+                    "allow_null": 0,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
                 },
                 {
                     "key": "field_5f248e2473bc7",
                     "label": "Small Devices",
                     "name": "sm",
-                    "type": "range",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -50,18 +59,27 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "min": 1,
-                    "max": 5,
-                    "step": "",
-                    "prepend": "",
-                    "append": ""
+                    "choices": [
+                        "No Spacing",
+                        "Extra Small",
+                        "Small",
+                        "Medium",
+                        "Large",
+                        "Extra Large"
+                    ],
+                    "default_value": false,
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
                 },
                 {
                     "key": "field_5f248e2973bc8",
                     "label": "Medium Devices",
                     "name": "md",
-                    "type": "range",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -70,18 +88,27 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": 4,
-                    "min": 1,
-                    "max": 5,
-                    "step": "",
-                    "prepend": "",
-                    "append": ""
+                    "choices": [
+                        "No Spacing",
+                        "Extra Small",
+                        "Small",
+                        "Medium",
+                        "Large",
+                        "Extra Large"
+                    ],
+                    "default_value": false,
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
                 },
                 {
                     "key": "field_5f248e3073bc9",
                     "label": "Large Devices",
                     "name": "lg",
-                    "type": "range",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -90,18 +117,27 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "min": 1,
-                    "max": 5,
-                    "step": "",
-                    "prepend": "",
-                    "append": ""
+                    "choices": [
+                        "No Spacing",
+                        "Extra Small",
+                        "Small",
+                        "Medium",
+                        "Large",
+                        "Extra Large"
+                    ],
+                    "default_value": false,
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
                 },
                 {
                     "key": "field_5f248e3773bca",
                     "label": "Extra Large Devices",
                     "name": "xl",
-                    "type": "range",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -110,12 +146,21 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "",
-                    "min": 1,
-                    "max": 5,
-                    "step": "",
-                    "prepend": "",
-                    "append": ""
+                    "choices": [
+                        "No Spacing",
+                        "Extra Small",
+                        "Small",
+                        "Medium",
+                        "Large",
+                        "Extra Large"
+                    ],
+                    "default_value": false,
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "return_format": "value",
+                    "ajax": 0,
+                    "placeholder": ""
                 }
             ]
         }
@@ -137,5 +182,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1596231687
+    "modified": 1596372641
 }
