@@ -25,15 +25,11 @@ export default class Navbar {
   }
 
   static setTheme( className ) {
-    $(this.elem)
-      .removeClass( this.getTheme() )
-      .addClass( className );
+    $(this.elem).removeClass( this.getTheme() ).addClass( className );
   }
 
   static restoreTheme() {
-    $(this.elem)
-      .removeClass( this.getTheme() )
-      .addClass( this.originalTheme );
+    $(this.elem).removeClass( this.getTheme() ).addClass( this.originalTheme );
   }
 }
 
