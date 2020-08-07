@@ -105,7 +105,7 @@ class NavMenus
             $atts['class'] = '';
         }
 
-        // Create button
+        // Create button. Use Bootstrap button CSS classes.
         if (! empty($mods['btn'])) {
             $btn_classes = $mods['btn'];
             $atts['class'] = preg_replace('/(^| )nav-link( |$)/', '', $atts['class']);
@@ -113,7 +113,7 @@ class NavMenus
             $atts['role'] = 'button';
         }
 
-        // Toggle
+        // Toggle. Use CSS class `toggle-{context}`.
         if (! empty($mods['toggle'])) {
             $atts['data-toggle'] = $mods['toggle'];
         }
@@ -137,12 +137,12 @@ class NavMenus
     {
         $mods = isset(self::$mods[$item->ID]) ? self::$mods[$item->ID] : [];
 
-        // Hides title
+        // Hides title. Use CSS class `nolabel`.
         if (! empty($mods['nolabel'])) {
             $title = sprintf('<span class="sr-only">%s</span>', $title);
         }
 
-        // Adds icon
+        // Adds icon. Use CSS class `icon-{key}`.
         if (! empty($mods['icon'])) {
             $key = $mods['icon'];
             if ($icon = Icons::get($key)) {
