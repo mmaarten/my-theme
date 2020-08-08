@@ -127,7 +127,7 @@ class Templates
             ?>
 
             <div class="post-thumbnail">
-            <?php the_post_thumbnail(); ?>
+                <?php the_post_thumbnail(); ?>
             </div><!-- .post-thumbnail -->
 
         <?php else : ?>
@@ -135,13 +135,9 @@ class Templates
                 <?php
                 the_post_thumbnail(
                     'post-thumbnail',
-                    array(
-                        'alt' => the_title_attribute(
-                            array(
-                                'echo' => false,
-                            )
-                        ),
-                    )
+                    [
+                        'alt' => the_title_attribute(['echo' => false]),
+                    ]
                 );
                 ?>
             </a>
