@@ -4,165 +4,31 @@
     "fields": [
         {
             "key": "field_5f248df273bc5",
-            "label": "Sizes",
-            "name": "sizes",
-            "type": "group",
+            "label": "Size",
+            "name": "size",
+            "type": "select",
             "instructions": "Set the height of spacing per screen size.",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_5f248dfc73bc6",
-                    "label": "Extra Small Devices",
-                    "name": "xs",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [
-                        "No Spacing",
-                        "Extra Small",
-                        "Small",
-                        "Medium",
-                        "Large",
-                        "Extra Large"
-                    ],
-                    "default_value": 3,
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5f248e2473bc7",
-                    "label": "Small Devices",
-                    "name": "sm",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [
-                        "No Spacing",
-                        "Extra Small",
-                        "Small",
-                        "Medium",
-                        "Large",
-                        "Extra Large"
-                    ],
-                    "default_value": false,
-                    "allow_null": 1,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5f248e2973bc8",
-                    "label": "Medium Devices",
-                    "name": "md",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [
-                        "No Spacing",
-                        "Extra Small",
-                        "Small",
-                        "Medium",
-                        "Large",
-                        "Extra Large"
-                    ],
-                    "default_value": false,
-                    "allow_null": 1,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5f248e3073bc9",
-                    "label": "Large Devices",
-                    "name": "lg",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [
-                        "No Spacing",
-                        "Extra Small",
-                        "Small",
-                        "Medium",
-                        "Large",
-                        "Extra Large"
-                    ],
-                    "default_value": false,
-                    "allow_null": 1,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5f248e3773bca",
-                    "label": "Extra Large Devices",
-                    "name": "xl",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [
-                        "No Spacing",
-                        "Extra Small",
-                        "Small",
-                        "Medium",
-                        "Large",
-                        "Extra Large"
-                    ],
-                    "default_value": false,
-                    "allow_null": 1,
-                    "multiple": 0,
-                    "ui": 0,
-                    "return_format": "value",
-                    "ajax": 0,
-                    "placeholder": ""
-                }
-            ]
+            "choices": {
+                "1": "Extra Small",
+                "2": "Small",
+                "3": "Medium",
+                "4": "Large",
+                "5": "Extra Large"
+            },
+            "default_value": 3,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -182,5 +48,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1596372641
+    "modified": 1596997297
 }

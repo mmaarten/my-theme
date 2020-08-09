@@ -1,11 +1,11 @@
 
-@each $breakpoint in map-keys($grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
-    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
-    @each $size, $length in $spacers {
-      .has-spacing#{$infix}-#{$size} {
-        height: $length !important;
-      }
+@each $size, $length in $spacers {
+  .has-spacing-#{$size} {
+    @include media-breakpoint-down("md") {
+      height: $length / 2 !important;
+    }
+    @include media-breakpoint-up("md") {
+      height: $length !important;
     }
   }
 }
