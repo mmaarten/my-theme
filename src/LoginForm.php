@@ -3,7 +3,7 @@
  * Login Form
  *
  * @link https://codex.wordpress.org/Customizing_the_Login_Form/
- * @package My\Theme
+ * @package My/Theme
  */
 
 namespace My\Theme;

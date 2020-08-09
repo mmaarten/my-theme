@@ -4,7 +4,7 @@
  *
  * Dependency: Breadrumb NavXT
  * @link https://wordpress.org/plugins/breadcrumb-navxt/
- * @package My\Theme
+ * @package My/Theme
  */
 
 namespace My\Theme;

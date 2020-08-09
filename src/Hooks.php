@@ -2,7 +2,7 @@
 /**
  * Hooks
  *
- * @package My\Theme
+ * @package My/Theme
  */
 
 namespace My\Theme;
