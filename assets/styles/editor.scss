@@ -4,7 +4,22 @@
  * Used in editing interface.
  */
 
+@import "variables";
+@import "~bootstrap/scss/mixins";
 @import "block-types/spacer/editor";
+
+// Block alignment
+.wp-block {
+
+  @include make-container-max-widths((
+    "sm" : map-get($block-max-widths, "sm"),
+    "md" : map-get($block-max-widths, "md"),
+  ));
+
+  &[data-align="wide"] {
+    @include make-container-max-widths($block-max-widths);
+  }
+}
 
 .acf-block-preview {
 

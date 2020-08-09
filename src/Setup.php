@@ -2,7 +2,7 @@
 /**
  * Setup
  *
- * @package My\Theme
+ * @package My/Theme
  */
 
 namespace My\Theme;
@@ -139,14 +139,14 @@ class Setup
         /**
          * Disable custom colors.
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-custom-colors-in-block-color-palettes
-         * @example add_theme_support('disable-custom-colors');
          */
+        // add_theme_support('disable-custom-colors');
 
         /**
          * Disable custom font sizes.
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-custom-font-sizes
-         * @example add_theme_support('disable-custom-font-sizes');
          */
+        // add_theme_support('disable-custom-font-sizes');
 
         /**
          * Enable editor styles
@@ -163,8 +163,8 @@ class Setup
         /**
          * Adjust the color of the UI to work on dark backgrounds.
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#dark-backgrounds
-         * @example add_theme_support('dark-editor-style');
          */
+        // add_theme_support('dark-editor-style');
 
         /**
          * Register nav menu locations.

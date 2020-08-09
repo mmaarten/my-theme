@@ -4,7 +4,7 @@
  *
  * Dependency: Advanced Custom Fields
  * @link https://www.advancedcustomfields.com/
- * @package My\Theme
+ * @package My/Theme
  */
 
 namespace My\Theme;
