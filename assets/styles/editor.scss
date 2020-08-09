@@ -21,6 +21,12 @@
   }
 }
 
+// Block vertical spacing
+.editor-styles-wrapper .block-editor-block-list__block {
+  margin-top: map-get($spacers, 3);
+  margin-bottom: map-get($spacers, 3);
+}
+
 .acf-block-preview {
 
   // Disable mouse events
