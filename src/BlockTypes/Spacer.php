@@ -27,18 +27,12 @@ class Spacer extends AbstractBlock
      */
     public function render($block, $content = '', $is_preview = false, $post_id = 0)
     {
-        $sizes = get_field('sizes');
-
-        $classes = [];
-        foreach ($sizes as $breakpoint => $size) {
-            $infix = $breakpoint === 'xs' ? '' : "-$breakpoint";
-            $classes[] = "has-spacing$infix-$size";
-        }
+        $size = get_field('size');
 
         $atts = $this->getHTMLAttributes($block);
 
-        if ($classes) {
-            $atts['class'] .= ' ' . implode(' ', $classes);
+        if ($size) {
+            $atts['class'] .= sprintf(' has-spacing-%d', $size);
         }
 
         echo '<div ' . acf_esc_attr($atts) . '></div>';
