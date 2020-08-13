@@ -23,8 +23,15 @@
 
 // Block vertical spacing
 .editor-styles-wrapper .block-editor-block-list__block {
-  margin-top: map-get($spacers, 3);
-  margin-bottom: map-get($spacers, 3);
+  &:not([data-type="core/heading"]):not([data-type="core/paragraph"]) {
+    margin-top: map-get($spacers, 3);
+    margin-bottom: map-get($spacers, 3);
+
+    @include media-breakpoint-up( md ) {
+      margin-top: map-get($spacers, 4);
+      margin-bottom: map-get($spacers, 4);
+    }
+  }
 }
 
 .acf-block-preview {
