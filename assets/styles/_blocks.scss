@@ -16,31 +16,13 @@
 
 // Select all root blocks.
 .hentry .entry-content > * {
-  // Center horizontally
+
+  //
+  // Block alignment
+  //
+
   margin-left: auto;
   margin-right: auto;
-
-  // Set vertical spacing
-
-  &:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6):not(p) {
-    margin-top: map-get($spacers, 3);
-    margin-bottom: map-get($spacers, 3);
-
-    @include media-breakpoint-up( md ) {
-      margin-top: map-get($spacers, 4);
-      margin-bottom: map-get($spacers, 4);
-    }
-  }
-
-  > *:first-child {
-    margin-top: 0;
-  }
-
-  > *:last-child {
-    margin-bottom: 0;
-  }
-
-  // Alignment
 
   @include make-container-max-widths((
     "sm" : map-get($block-max-widths, "sm"),
