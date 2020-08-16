@@ -57,11 +57,14 @@
 
   &.alignfull {
     clear: both;
+    max-width: none;
     // Stretch outside container to fit viewport width.
-    position: relative;
-    left: -#{$grid-gutter-width/2};
-    width: calc(100% + (#{$grid-gutter-width}));
-    max-width: calc(100% + (#{$grid-gutter-width}));
+    .has-no-sidebars .container-fluid & {
+      position: relative;
+      left: -#{$grid-gutter-width/2};
+      width: calc(100% + (#{$grid-gutter-width}));
+      max-width: calc(100% + (#{$grid-gutter-width}));
+    }
   }
 
   &.alignleft {

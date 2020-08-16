@@ -15,6 +15,7 @@ class Widgets
     public static function init()
     {
         add_action('widgets_init', [__CLASS__, 'registerSidebars']);
+        add_filter('body_class', [__CLASS__, 'bodyClass'], PHP_INT_MAX);
     }
 
     /**
@@ -95,5 +96,25 @@ class Widgets
                 ] + $args
             );
         }
+    }
+
+    public static function hasSidebars()
+    {
+        if (array_filter(['page-templates/full-width.php', 'page-templates/full-width-fixed.php'], 'is_page_template')) {
+            return false;
+        }
+
+        return array_filter(['sidebar-left', 'sidebar-right'], 'is_active_sidebar') ? true : false;
+    }
+
+    public static function bodyClass($classes)
+    {
+        if (self::hasSidebars()) {
+            $classes[] = 'has-sidebars';
+        } else {
+            $classes[] = 'has-no-sidebars';
+        }
+
+        return $classes;
     }
 }

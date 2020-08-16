@@ -25,15 +25,18 @@ $editor-font-sizes: map-merge(
     "small"  : $font-size-sm,
     "normal" : $font-size-base,
     "large"  : $font-size-lg,
+    "h-1"  : $h1-font-size,
+    "h-2"  : $h2-font-size,
+    "h-3"  : $h3-font-size,
+    "h-4"  : $h4-font-size,
+    "h-5"  : $h5-font-size,
+    "h-6"  : $h6-font-size,
   ),
   $editor-font-sizes
 );
 
 //
 // Block max widths
-//
-// Blocks are placed inside a container component
-// therefore the container horizontal padding is substracted.
 //
 
 $block-max-widths: () !default;
