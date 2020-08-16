@@ -117,6 +117,12 @@ class Setup
                'slug'      => 'large',
            ],
            [
+            'name'      => __('Lead', 'my-theme'),
+            'shortName' => __('Lead', 'my-theme'),
+            'size'      => 16 * 1.25,
+            'slug'      => 'lead',
+            ],
+           [
                 'name'      => __('Heading 1', 'my-theme'),
                 'shortName' => __('H1', 'my-theme'),
                 'size'      => 16 * 2.5,
