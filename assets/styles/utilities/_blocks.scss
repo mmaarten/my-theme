@@ -17,6 +17,31 @@
   }
 }
 
+.has-h-1-font-size,
+.has-h-2-font-size,
+.has-h-3-font-size,
+.has-h-4-font-size,
+.has-h-5-font-size,
+.has-h-6-font-size {
+  font-weight: $headings-font-weight !important;
+}
+
+.has-display-1-font-size {
+  font-weight: $display1-weight !important;
+}
+
+.has-display-2-font-size {
+  font-weight: $display2-weight !important;
+}
+
+.has-display-3-font-size {
+  font-weight: $display3-weight !important;
+}
+
+.has-display-4-font-size {
+  font-weight: $display4-weight !important;
+}
+
 //
 // Editor background colors
 //
