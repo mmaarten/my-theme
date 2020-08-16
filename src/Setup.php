@@ -116,6 +116,66 @@ class Setup
                'size'      => 16 * 1.25,
                'slug'      => 'large',
            ],
+           [
+                'name'      => __('Heading 1', 'my-theme'),
+                'shortName' => __('H1', 'my-theme'),
+                'size'      => 16 * 2.5,
+                'slug'      => 'h1',
+           ],
+            [
+                'name'      => __('Heading 2', 'my-theme'),
+                'shortName' => __('H2', 'my-theme'),
+                'size'      => 16 * 2,
+                'slug'      => 'h2',
+            ],
+            [
+                'name'      => __('Heading 3', 'my-theme'),
+                'shortName' => __('H3', 'my-theme'),
+                'size'      => 16 * 1.75,
+                'slug'      => 'h3',
+            ],
+            [
+                'name'      => __('Heading 4', 'my-theme'),
+                'shortName' => __('H4', 'my-theme'),
+                'size'      => 16 * 1.5,
+                'slug'      => 'h4',
+            ],
+            [
+                'name'      => __('Heading 5', 'my-theme'),
+                'shortName' => __('H5', 'my-theme'),
+                'size'      => 16 * 1.25,
+                'slug'      => 'h5',
+            ],
+            [
+                'name'      => __('Heading 6', 'my-theme'),
+                'shortName' => __('H6', 'my-theme'),
+                'size'      => 16,
+                'slug'      => 'h6',
+            ],
+           [
+                'name'      => __('Display 1', 'my-theme'),
+                'shortName' => __('D1', 'my-theme'),
+                'size'      => 16 * 6,
+                'slug'      => 'display1',
+            ],
+           [
+                'name'      => __('Display 2', 'my-theme'),
+                'shortName' => __('D2', 'my-theme'),
+                'size'      => 16 * 5.5,
+                'slug'      => 'display2',
+           ],
+           [
+                'name'      => __('Display 3', 'my-theme'),
+                'shortName' => __('D3', 'my-theme'),
+                'size'      => 16 * 4.5,
+                'slug'      => 'display3',
+           ],
+           [
+                'name'      => __('Display 4', 'my-theme'),
+                'shortName' => __('D4', 'my-theme'),
+                'size'      => 16 * 3.5,
+                'slug'      => 'display4',
+           ],
          ]);
 
         /**
