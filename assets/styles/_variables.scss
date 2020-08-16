@@ -2,6 +2,18 @@
 
 $enable-responsive-font-sizes: true;
 
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: ($spacer * .25), // 4px
+  2: ($spacer * .5),  // 8px
+  3: $spacer,         // 16px
+  4: ($spacer * 1.5), // 24px
+  5: ($spacer * 2),   // 32px
+  6: ($spacer * 3),   // 48px
+  7: ($spacer * 4),   // 64px
+);
+
 //
 // Make sure all variables are set.
 //
@@ -13,7 +25,12 @@ $enable-responsive-font-sizes: true;
 //
 
 $editor-colors: () !default;
-$editor-colors: map-merge($theme-colors, $editor-colors);
+$editor-colors: map-merge((
+  "primary"   : map-get($theme-colors, "primary"),
+  "secondary" : map-get($theme-colors, "secondary"),
+  "light"     : map-get($theme-colors, "light"),
+  "dark"      : map-get($theme-colors, "dark"),
+), $editor-colors);
 
 //
 // Editor font sizes
@@ -42,10 +59,10 @@ $editor-font-sizes: map-merge(
 $block-max-widths: () !default;
 $block-max-widths: map-merge(
   (
-    sm : map-get($container-max-widths, "sm") - $grid-gutter-width,
-    md : map-get($container-max-widths, "md") - $grid-gutter-width,
-    lg : map-get($container-max-widths, "lg") - $grid-gutter-width,
-    xl : map-get($container-max-widths, "xl") - $grid-gutter-width,
+    "sm" : map-get($container-max-widths, "sm") - $grid-gutter-width,
+    "md" : map-get($container-max-widths, "md") - $grid-gutter-width,
+    "lg" : map-get($container-max-widths, "lg") - $grid-gutter-width,
+    "xl" : map-get($container-max-widths, "xl") - $grid-gutter-width,
   ),
   $block-max-widths
 );
