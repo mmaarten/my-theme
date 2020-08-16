@@ -117,12 +117,6 @@ class Setup
                'slug'      => 'large',
            ],
            [
-            'name'      => __('Lead', 'my-theme'),
-            'shortName' => __('Lead', 'my-theme'),
-            'size'      => 16 * 1.25,
-            'slug'      => 'lead',
-            ],
-           [
                 'name'      => __('Heading 1', 'my-theme'),
                 'shortName' => __('H1', 'my-theme'),
                 'size'      => 16 * 2.5,
@@ -158,30 +152,6 @@ class Setup
                 'size'      => 16,
                 'slug'      => 'h-6',
             ],
-           [
-                'name'      => __('Display 1', 'my-theme'),
-                'shortName' => __('D1', 'my-theme'),
-                'size'      => 16 * 6,
-                'slug'      => 'display-1',
-            ],
-           [
-                'name'      => __('Display 2', 'my-theme'),
-                'shortName' => __('D2', 'my-theme'),
-                'size'      => 16 * 5.5,
-                'slug'      => 'display-2',
-           ],
-           [
-                'name'      => __('Display 3', 'my-theme'),
-                'shortName' => __('D3', 'my-theme'),
-                'size'      => 16 * 4.5,
-                'slug'      => 'display-3',
-           ],
-           [
-                'name'      => __('Display 4', 'my-theme'),
-                'shortName' => __('D4', 'my-theme'),
-                'size'      => 16 * 3.5,
-                'slug'      => 'display-4',
-           ],
          ]);
 
         /**
