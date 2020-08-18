@@ -29,7 +29,7 @@ class Carousel extends AbstractBlock
      */
     public function render($block, $content = '', $is_preview = false, $post_id = 0)
     {
-        $atts = $this->getHTMLAttributes($block);
+        $atts = $this->getBlockHTMLAttributes($block);
 
         echo '<div ' . acf_esc_attr($atts) . '>';
 

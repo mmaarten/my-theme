@@ -54,7 +54,7 @@ abstract class AbstractBlock
      * @param array $block
      * @return array
      */
-    public function getHTMLAttributes($block)
+    public function getBlockHTMLAttributes($block)
     {
         $atts = [];
 

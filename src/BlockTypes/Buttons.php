@@ -31,7 +31,7 @@ class Buttons extends AbstractBlock
     {
         $align = get_field('align');
 
-        $atts = $this->getHTMLAttributes($block);
+        $atts = $this->getBlockHTMLAttributes($block);
 
         if ($align) {
             $atts['class'] .= " text-$align";

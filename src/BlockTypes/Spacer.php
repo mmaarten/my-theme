@@ -29,7 +29,7 @@ class Spacer extends AbstractBlock
     {
         $sizes = get_field('sizes');
 
-        $atts = $this->getHTMLAttributes($block);
+        $atts = $this->getBlockHTMLAttributes($block);
 
         foreach ($sizes as $breakpoint => $size) {
             $infix = 'xs' === $breakpoint ? '' : "-$breakpoint";
