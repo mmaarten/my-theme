@@ -52,7 +52,7 @@ class Setup
          * Enable HTML5 markup support
          * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
          */
-        add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption']);
+        add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script']);
 
         /**
          * Add support for core custom logo.
