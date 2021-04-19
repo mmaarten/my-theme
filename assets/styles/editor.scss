@@ -8,22 +8,6 @@
 @import "~bootstrap/scss/mixins";
 @import "block-types/spacer/editor";
 
-.wp-block {
-
-  //
-  // Block alignment
-  //
-
-  @include make-container-max-widths((
-    "sm" : map-get($block-max-widths, "sm"),
-    "md" : map-get($block-max-widths, "md"),
-  ));
-
-  &[data-align="wide"] {
-    @include make-container-max-widths($block-max-widths);
-  }
-}
-
 //
 // Block vertical spacing
 //
