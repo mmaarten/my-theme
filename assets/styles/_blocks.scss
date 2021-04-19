@@ -1,72 +1,54 @@
 //
-// Set spacing and max widths according to the 'align' setting.
+// Set max widths according to the 'align' setting.
 //
-
-.hentry .entry-header,
-.hentry .entry-footer {
-  @include make-container-max-widths($block-max-widths);
-  // Center horizontally
+.entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.wp-block-separator):not(.woocommerce),
+*[class*="inner-container"] > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.wp-block-separator):not(.woocommerce) {
   margin-left: auto;
   margin-right: auto;
-}
-
-.hentry .entry-content {
-  @include clearfix();
-}
-
-// Select all root blocks.
-.hentry .entry-content > * {
-
-  //
-  // Block alignment
-  //
-
-  margin-left: auto;
-  margin-right: auto;
-
   @include make-container-max-widths((
-    "sm" : map-get($block-max-widths, "sm"),
-    "md" : map-get($block-max-widths, "md"),
+    "sm" : map-get($container-max-widths, "sm") - $grid-gutter-width,
+    "md" : map-get($container-max-widths, "md") - $grid-gutter-width,
   ));
+}
 
-  &.alignwide {
-    clear: both;
-    @include make-container-max-widths((
-      "lg" : map-get($block-max-widths, "lg"),
-      "xl" : map-get($block-max-widths, "xl"),
-    ));
-  }
+.alignwide {
+  clear: both;
+  margin-left: auto;
+  margin-right: auto;
+  @include make-container-max-widths((
+    "lg" : map-get($container-max-widths, "lg") - $grid-gutter-width,
+    "xl" : map-get($container-max-widths, "xl") - $grid-gutter-width,
+  ));
+}
 
-  &.alignfull {
-    clear: both;
-    max-width: none;
-    // Stretch outside container to fit viewport width.
-    .has-no-sidebars .container-fluid & {
-      position: relative;
-      left: -#{$grid-gutter-width/2};
-      width: calc(100% + (#{$grid-gutter-width}));
-      max-width: calc(100% + (#{$grid-gutter-width}));
-    }
+.alignfull {
+  clear: both;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: none;
+  // Stretch outside container to match viewport width.
+  .container-fluid .entry-content > & {
+    margin-left: -($grid-gutter-width/2);
+    margin-right: -($grid-gutter-width/2);
   }
+}
 
-  &.alignleft {
-    @include media-breakpoint-up( md ) {
-      float: left;
-      margin-right: $grid-gutter-width / 2;
-      height: auto;
-    }
+.alignleft {
+  @include media-breakpoint-up(md) {
+    float: left;
+    margin-right: $grid-gutter-width / 2;
   }
+}
 
-  &.alignright {
-    @include media-breakpoint-up( md ) {
-      float: right;
-      margin-left: $grid-gutter-width / 2;
-    }
+.alignright {
+  @include media-breakpoint-up(md) {
+    float: right;
+    margin-left: $grid-gutter-width / 2;
   }
+}
 
-  &.aligncenter {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
