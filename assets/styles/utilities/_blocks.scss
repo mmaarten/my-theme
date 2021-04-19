@@ -8,6 +8,14 @@
 }
 
 //
+// Editor background colors
+//
+
+@each $color, $value in $editor-colors {
+  @include bg-variant(".has-#{$color}-background-color", $value);
+}
+
+//
 // Editor font sizes
 //
 
@@ -15,12 +23,4 @@
   .has-#{$font-size}-font-size {
     @include font-size($value !important);
   }
-}
-
-//
-// Editor background colors
-//
-
-@each $color, $value in $editor-colors {
-  @include bg-variant(".has-#{$color}-background-color", $value);
 }
