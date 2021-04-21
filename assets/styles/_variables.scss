@@ -1,6 +1,10 @@
 @import "~bootstrap/scss/functions";
 
-$enable-responsive-font-sizes: true;
+//
+// Custom variables
+//
+
+// ...
 
 //
 // Make sure all variables are set.
@@ -13,7 +17,12 @@ $enable-responsive-font-sizes: true;
 //
 
 $editor-colors: () !default;
-$editor-colors: map-merge($theme-colors, $editor-colors);
+$editor-colors: map-merge((
+  "primary"   : map-get($theme-colors, "primary"),
+  "secondary" : map-get($theme-colors, "secondary"),
+  "light"     : map-get($theme-colors, "light"),
+  "dark"      : map-get($theme-colors, "dark"),
+), $editor-colors);
 
 //
 // Editor font sizes
@@ -33,19 +42,4 @@ $editor-font-sizes: map-merge(
     "h-6"  : $h6-font-size,
   ),
   $editor-font-sizes
-);
-
-//
-// Block max widths
-//
-
-$block-max-widths: () !default;
-$block-max-widths: map-merge(
-  (
-    sm : map-get($container-max-widths, "sm") - $grid-gutter-width,
-    md : map-get($container-max-widths, "md") - $grid-gutter-width,
-    lg : map-get($container-max-widths, "lg") - $grid-gutter-width,
-    xl : map-get($container-max-widths, "xl") - $grid-gutter-width,
-  ),
-  $block-max-widths
 );

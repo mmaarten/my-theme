@@ -8,29 +8,14 @@
 @import "~bootstrap/scss/mixins";
 @import "block-types/spacer/editor";
 
-// Block alignment
-.wp-block {
-
-  @include make-container-max-widths((
-    "sm" : map-get($block-max-widths, "sm"),
-    "md" : map-get($block-max-widths, "md"),
-  ));
-
-  &[data-align="wide"] {
-    @include make-container-max-widths($block-max-widths);
-  }
-}
-
+//
 // Block vertical spacing
+//
+
 .editor-styles-wrapper .block-editor-block-list__block {
   &:not([data-type="core/heading"]):not([data-type="core/paragraph"]) {
-    margin-top: map-get($spacers, 3);
-    margin-bottom: map-get($spacers, 3);
-
-    @include media-breakpoint-up( md ) {
-      margin-top: map-get($spacers, 4);
-      margin-bottom: map-get($spacers, 4);
-    }
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 

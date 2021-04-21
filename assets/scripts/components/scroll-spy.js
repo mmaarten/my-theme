@@ -12,6 +12,7 @@ const url = require('url');
     var linkURL = url.parse( link.getAttribute('href') );
     if (linkURL.hash && linkURL.origin === currentURL.origin && linkURL.pathname === currentURL.pathname ) {
       link.setAttribute('href', linkURL.hash);
+      link.parentNode.classList.remove('active');
     }
   });
 

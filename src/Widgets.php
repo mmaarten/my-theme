@@ -100,11 +100,11 @@ class Widgets
 
     public static function hasSidebars()
     {
-        if (array_filter(['page-templates/full-width.php', 'page-templates/full-width-fixed.php'], 'is_page_template')) {
+        if (is_page_template('page-templates/full-width.php') || is_page_template('page-templates/full-width-fixed.php')) {
             return false;
         }
 
-        return array_filter(['sidebar-left', 'sidebar-right'], 'is_active_sidebar') ? true : false;
+        return is_active_sidebar('sidebar-left') || is_active_sidebar('sidebar-right');
     }
 
     public static function bodyClass($classes)

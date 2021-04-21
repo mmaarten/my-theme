@@ -31,7 +31,7 @@ class Buttons extends AbstractBlock
     {
         $align = get_field('align');
 
-        $atts = $this->getHTMLAttributes($block);
+        $atts = $this->getBlockHTMLAttributes($block);
 
         if ($align) {
             $atts['class'] .= " text-$align";
@@ -57,10 +57,10 @@ class Buttons extends AbstractBlock
                     'toggle'   => get_sub_field('toggle'),
                 ]);
 
-                echo '</li>'; // .inline-list
+                echo '</li>'; // .inline-list-item
             }
 
-            echo '</ul>'; // .inline-list-item
+            echo '</ul>'; // .inline-list
         }
 
         echo '</div>';
