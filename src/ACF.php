@@ -31,6 +31,7 @@ class ACF
               'menu_title'  => __('Site Options', 'my-theme'),
               'menu_slug'   => 'theme-options',
               'parent_slug' => null,
+              'capability'  => 'manage_options',
             ]);
         }
     }
