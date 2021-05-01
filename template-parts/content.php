@@ -28,7 +28,11 @@ namespace My\Theme;
 
     </header><!-- .entry-header -->
 
-    <?php Templates::postThumbnail(); ?>
+    <div class="post-thumbnail">
+
+        <?php the_post_thumbnail('large'); ?>
+
+    </div><!-- .post-thumbnail -->
 
     <div class="entry-summary">
 

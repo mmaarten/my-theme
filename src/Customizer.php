@@ -27,25 +27,19 @@ class Customizer
         $customizer->get_setting('blogname')->transport        = 'postMessage';
         $customizer->get_setting('blogdescription')->transport = 'postMessage';
 
-        $customizer->selective_refresh->add_partial(
-            'blogname',
-            array(
-                'selector'        => '.site-title a',
-                'render_callback' => function () {
-                    bloginfo('name');
-                },
-            )
-        );
+        $customizer->selective_refresh->add_partial('blogname', [
+            'selector'        => '.site-title a',
+            'render_callback' => function () {
+                bloginfo('name');
+            },
+        ]);
 
-        $customizer->selective_refresh->add_partial(
-            'blogdescription',
-            array(
-                'selector'        => '.site-description',
-                'render_callback' => function () {
-                    bloginfo('description');
-                },
-            )
-        );
+        $customizer->selective_refresh->add_partial('blogdescription', [
+            'selector'        => '.site-description',
+            'render_callback' => function () {
+                bloginfo('description');
+            },
+        ]);
     }
 
     /**

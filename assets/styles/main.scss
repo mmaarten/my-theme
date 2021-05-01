@@ -3,9 +3,9 @@
  *
  * Used in front-end.
  */
+
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
-@import "utilities/background";
 @import "wordpress";
 @import "animations";
 @import "images";
@@ -13,5 +13,6 @@
 @import "navbar";
 @import "sticky-header";
 @import "blocks";
-@import "gravity-forms";
 @import "icons";
+@import "gravity-forms";
+@import "jetpack";

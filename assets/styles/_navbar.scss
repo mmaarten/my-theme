@@ -2,11 +2,6 @@
  * Navbar
  */
 
-$site-logo-max-height:    $navbar-brand-height + $navbar-brand-padding-y * 2 !default;
-$site-logo-max-height-lg: $site-logo-max-height * 2 !default;
-
-$navbar-padding-y-lg: $navbar-padding-y * 2 !default;
-
 .navbar {
 
   // Animate background color changes
@@ -49,7 +44,7 @@ $navbar-padding-y-lg: $navbar-padding-y * 2 !default;
 
     // Make image fit vertically
     img {
-      max-height: $site-logo-max-height;
+      max-height: $navbar-brand-height + $navbar-brand-padding-y * 2;
       width: auto;
     }
   }
@@ -108,19 +103,7 @@ $navbar-padding-y-lg: $navbar-padding-y * 2 !default;
 
         // Not stuck
         #sticky-header:not(.is-stuck) & {
-
-          /**
-           * Large navbar
-           */
-
-          // Increase vertical padding.
-          padding-top: $navbar-padding-y-lg;
-          padding-bottom: $navbar-padding-y-lg;
-
-          // Make site logo larger
-          .site-logo img {
-            max-height: $site-logo-max-height-lg;
-          }
+          // Make navbar larger
         }
       }
     }

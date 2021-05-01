@@ -14,7 +14,7 @@ class Blocks
      */
     public static function init()
     {
-        add_action('after_setup_theme', [__CLASS__, 'registerBlockTypes'], 0);
+        add_action('after_setup_theme', [__CLASS__, 'registerBlockTypes']);
         add_action('enqueue_block_assets', [__CLASS__, 'enqueueBlockAssets']);
         add_action('enqueue_block_editor_assets', [__CLASS__, 'enqueueBlockEditorAssets']);
         add_filter('use_block_editor_for_post_type', [__CLASS__, 'useBlockEditorForPostType'], PHP_INT_MAX, 2);
@@ -22,19 +22,17 @@ class Blocks
     }
 
     /**
-     * Register block types.
+     * Register block types
      */
     public static function registerBlockTypes()
     {
         $blocks = [
-          'Buttons',
-          'Carousel',
-          'Modal',
-          'Spacer',
+            'Buttons',
+            'Spacer',
         ];
         foreach ($blocks as $block) {
-            $classname = __NAMESPACE__ . '\\BlockTypes\\' . $block;
-            $instance = new $classname;
+            $class = __NAMESPACE__ . '\\BlockTypes\\' . $block;
+            $instance = new $class;
             $instance->registerBlockType();
         }
     }

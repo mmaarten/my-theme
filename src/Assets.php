@@ -14,16 +14,13 @@ class Assets
      */
     public static function init()
     {
-        add_action('after_setup_theme', [__CLASS__, 'registerScripts']);
         add_action('wp_enqueue_scripts', [__CLASS__, 'enqueueScripts']);
     }
 
     /**
-     * Register scripts ands styles
-     *
-     * By using 'after_setup_theme' hook we can also enqueue for blocks.
+     * Enqueue scripts ands styles
      */
-    public static function registerScripts()
+    public static function enqueueScripts()
     {
         /**
          * Owl Carousel
@@ -70,22 +67,11 @@ class Assets
             '3.5.7'
         );
 
-       /**
-        * jQuery UI Theme
-        * @link https://jqueryui.com/themeroller/
-        */
-        wp_register_style(
-            'jquery-ui-theme',
-            'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css',
-            [],
-            '1.12.1'
-        );
-
         /**
          * Popper
          * @link https://popper.js.org/
          */
-        wp_register_script(
+        wp_enqueue_script(
             'popper-js',
             get_template_directory_uri() . '/dist/scripts/popper.js',
             [],
@@ -97,7 +83,7 @@ class Assets
         * Bootstrap
         * @link https://getbootstrap.com/
         */
-        wp_register_script(
+        wp_enqueue_script(
             'bootstrap',
             get_template_directory_uri() . '/dist/scripts/bootstrap.js',
             ['jquery', 'popper-js'],
@@ -108,32 +94,20 @@ class Assets
        /**
         * Theme
         */
-        wp_register_style(
+        wp_enqueue_style(
             'my-theme-main',
             get_template_directory_uri() . '/dist/styles/main.css',
             [],
             MY_THEME_VERSION
         );
 
-        wp_register_script(
+        wp_enqueue_script(
             'my-theme-main',
             get_template_directory_uri() . '/dist/scripts/main.js',
             ['jquery', 'bootstrap'],
             MY_THEME_VERSION,
             true
         );
-    }
-
-    /**
-     * Enqueue scripts ands styles
-     */
-    public static function enqueueScripts()
-    {
-        /**
-         * Theme
-         */
-        wp_enqueue_style('my-theme-main');
-        wp_enqueue_script('my-theme-main');
 
         /**
          * Comment reply

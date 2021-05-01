@@ -15,7 +15,6 @@ class Widgets
     public static function init()
     {
         add_action('widgets_init', [__CLASS__, 'registerSidebars']);
-        add_filter('body_class', [__CLASS__, 'bodyClass'], PHP_INT_MAX);
     }
 
     /**
@@ -62,59 +61,28 @@ class Widgets
             ] + $args
         );
 
-        self::registerFooterColumns(3, $args);
-    }
+        register_sidebar(
+            [
+              'id'          => 'footer-column-1',
+              'name'        => esc_html__('Footer column 1', 'my-theme'),
+              'description' => esc_html__('First column in footer section.', 'my-theme'),
+            ] + $args
+        );
 
-    /**
-     * Register sidebars described as footer columns.
-     *
-     * @param int   $amount
-     * @param array $args Arguments for the register_sidebar() function.
-     */
-    public static function registerFooterColumns($amount, $args = [])
-    {
-        $ordinals = [
-          1 => __('First', 'my-theme'),
-          2 => __('Second', 'my-theme'),
-          3 => __('Thirth', 'my-theme'),
-          4 => __('Fourth', 'my-theme'),
-          5 => __('Fifth', 'my-theme'),
-          6 => __('Sixth', 'my-theme'),
-          7 => __('Seventh', 'my-theme'),
-          8 => __('Eighth', 'my-theme'),
-          9 => __('Ninth', 'my-theme'),
-        ];
+        register_sidebar(
+            [
+              'id'          => 'footer-column-2',
+              'name'        => esc_html__('Footer column 2', 'my-theme'),
+              'description' => esc_html__('Second column in footer section.', 'my-theme'),
+            ] + $args
+        );
 
-        for ($n=1; $n <= $amount; $n++) {
-            register_sidebar(
-                [
-                  'id'          => 'footer-column-' . $n,
-                  // translators: %s: column number
-                  'name'        => sprintf(esc_html__('Footer Column %s', 'my-theme'), $n),
-                  // translators: %s: column ordinal number
-                  'description' => sprintf(esc_html__('%s column in footer section.', 'my-theme'), $ordinals[$n]),
-                ] + $args
-            );
-        }
-    }
-
-    public static function hasSidebars()
-    {
-        if (is_page_template('page-templates/full-width.php') || is_page_template('page-templates/full-width-fixed.php')) {
-            return false;
-        }
-
-        return is_active_sidebar('sidebar-left') || is_active_sidebar('sidebar-right');
-    }
-
-    public static function bodyClass($classes)
-    {
-        if (self::hasSidebars()) {
-            $classes[] = 'has-sidebars';
-        } else {
-            $classes[] = 'has-no-sidebars';
-        }
-
-        return $classes;
+        register_sidebar(
+            [
+              'id'          => 'footer-column-3',
+              'name'        => esc_html__('Footer column 3', 'my-theme'),
+              'description' => esc_html__('Thirth column in footer section.', 'my-theme'),
+            ] + $args
+        );
     }
 }
