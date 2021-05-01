@@ -16,13 +16,13 @@
                 "id": ""
             },
             "choices": {
-                "1": "Extra small",
+                "1": "Extra Small",
                 "2": "Small",
                 "3": "Medium",
                 "4": "Large",
-                "5": "Extra large"
+                "5": "Extra Large"
             },
-            "default_value": 3,
+            "default_value": 4,
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -48,5 +48,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1619103771
+    "modified": 1619866224
 }

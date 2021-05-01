@@ -27,10 +27,8 @@ class Hooks
     public static function bodyClass($classes)
     {
         $include = [
-            // Common.
             'singular' => is_singular(),
             'hfeed'    => ! is_singular(),
-            // Browsers & devices.
             'iphone'   => $GLOBALS['is_iphone'],
             'chrome'   => $GLOBALS['is_chrome'],
             'safari'   => $GLOBALS['is_safari'],
@@ -42,7 +40,6 @@ class Hooks
             'lynx'     => $GLOBALS['is_lynx'],
             'ie'       => $GLOBALS['is_IE'],
             'edge'     => $GLOBALS['is_edge'],
-            // Mobile.
             'mobile'   => wp_is_mobile(),
             'desktop'  => ! wp_is_mobile(),
         ];

@@ -1,15 +1,15 @@
-# Copyright (C) 2020 Maarten Menten
+# Copyright (C) 2021 Maarten Menten
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: My Theme 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/my-theme\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/_my-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-07-28T16:37:07+00:00\n"
+"POT-Creation-Date: 2021-04-28T15:07:04+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: my-theme\n"
@@ -30,368 +30,354 @@ msgstr ""
 msgid "https://profiles.wordpress.org/maartenm/"
 msgstr ""
 
-#: 404.php:26
+#: 404.php:28
 msgid "Oops! That page can&rsquo;t be found."
 msgstr ""
 
-#: 404.php:32
+#: 404.php:34
 msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
 msgstr ""
 
-#: 404.php:40
+#: 404.php:42
 msgid "Most Used Categories"
 msgstr ""
 
 #. translators: %1$s: smiley
-#: 404.php:60
+#: 404.php:62
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
 #. Translators: %s: The name of the author.
-#: author.php:37
+#: author.php:39
 msgid "All posts by %s"
 msgstr ""
 
 #. translators: 1: title.
-#: comments.php:35
+#: comments.php:37
 msgid "One thought on &ldquo;%1$s&rdquo;"
 msgstr ""
 
 #. translators: 1: comment count number, 2: title.
-#: comments.php:41
+#: comments.php:43
 msgctxt "comments title"
 msgid "%1$s thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] ""
 msgstr[1] ""
 
-#: comments.php:68
+#: comments.php:70
 msgid "Comments are closed."
 msgstr ""
 
-#. translators: 1: Theme name. 2: required PHP version. 3: active PHP version.
-#: functions.php:10
-msgid "%1$s requires at least PHP version %2$s. You are running version %3$s."
-msgstr ""
-
-#. translators: 1: Theme name. 2: required WordPress version. 3: active WordPress version.
-#: functions.php:26
-msgid "%1$s requires at least WordPress version %2$s. You are running version %3$s."
-msgstr ""
-
 #. translators: 1: Theme name. 2: Composer command. 3: theme directory
-#: functions.php:43
+#: functions.php:10
 msgid "%1$s installation is incomplete. Run %2$s within the %3$s directory."
 msgstr ""
 
-#. translators: 1: file location.
-#: functions.php:61
-msgid "Error locating %1$s for inclusion."
-msgstr ""
-
-#: header.php:35
+#: header.php:37
 msgid "Skip to content"
-msgstr ""
-
-#: inc/acf.php:25
-#: inc/acf.php:26
-msgid "Site Options"
-msgstr ""
-
-#: inc/acf.php:58
-msgid "Thumbnail"
-msgstr ""
-
-#: inc/acf.php:59
-msgid "Medium"
-msgstr ""
-
-#: inc/acf.php:60
-#: inc/blocks.php:59
-msgid "Large"
-msgstr ""
-
-#: inc/acf.php:61
-msgid "Full Size"
-msgstr ""
-
-#: inc/blocks.php:20
-msgid "Primary"
-msgstr ""
-
-#: inc/blocks.php:25
-msgid "Secondary"
-msgstr ""
-
-#: inc/blocks.php:30
-msgid "Light"
-msgstr ""
-
-#: inc/blocks.php:35
-msgid "Dark"
-msgstr ""
-
-#: inc/blocks.php:47
-msgid "Small"
-msgstr ""
-
-#: inc/blocks.php:48
-msgid "SM"
-msgstr ""
-
-#: inc/blocks.php:53
-msgid "Normal"
-msgstr ""
-
-#: inc/blocks.php:54
-msgid "N"
-msgstr ""
-
-#: inc/blocks.php:60
-msgid "LG"
-msgstr ""
-
-#: inc/helpers.php:48
-msgid "First"
-msgstr ""
-
-#: inc/helpers.php:49
-msgid "Second"
-msgstr ""
-
-#: inc/helpers.php:50
-msgid "Thirth"
-msgstr ""
-
-#: inc/helpers.php:51
-msgid "Fourth"
-msgstr ""
-
-#: inc/helpers.php:52
-msgid "Fifth"
-msgstr ""
-
-#: inc/helpers.php:53
-msgid "Sixth"
-msgstr ""
-
-#: inc/helpers.php:54
-msgid "Seventh"
-msgstr ""
-
-#: inc/helpers.php:55
-msgid "Eighth"
-msgstr ""
-
-#: inc/helpers.php:56
-msgid "Ninth"
-msgstr ""
-
-#. translators: %s: column number
-#: inc/helpers.php:64
-msgid "Footer Column %s"
-msgstr ""
-
-#. translators: %s: column ordinal number
-#: inc/helpers.php:66
-msgid "%s column in footer section."
-msgstr ""
-
-#: inc/nav-menus.php:16
-msgid "Top Left"
-msgstr ""
-
-#: inc/nav-menus.php:17
-msgid "Top Right"
-msgstr ""
-
-#: inc/nav-menus.php:18
-msgid "Primary Left"
-msgstr ""
-
-#: inc/nav-menus.php:19
-msgid "Primary Right"
-msgstr ""
-
-#: inc/nav-menus.php:20
-msgid "Footer Left"
-msgstr ""
-
-#: inc/nav-menus.php:21
-msgid "Footer Right"
-msgstr ""
-
-#. Template Name of the theme
-#: inc/setup.php:133
-msgid "Full Width"
-msgstr ""
-
-#. translators: %s: post date.
-#: inc/template-tags.php:31
-msgctxt "post date"
-msgid "Posted on %s"
-msgstr ""
-
-#. translators: %s: post author.
-#: inc/template-tags.php:41
-msgctxt "post author"
-msgid "by %s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:60
-msgid ", "
-msgstr ""
-
-#. translators: 1: list of categories.
-#: inc/template-tags.php:63
-msgid "Posted in %1$s"
-msgstr ""
-
-#. translators: used between list items, there is a space after the comma
-#: inc/template-tags.php:67
-msgctxt "list item separator"
-msgid ", "
-msgstr ""
-
-#. translators: 1: list of tags.
-#: inc/template-tags.php:70
-msgid "Tagged %1$s"
-msgstr ""
-
-#. translators: %s: post title
-#: inc/template-tags.php:80
-msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
-msgstr ""
-
-#. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-tags.php:97
-msgid "Edit <span class=\"sr-only\">%s</span>"
-msgstr ""
-
-#: inc/template-tags.php:166
-msgid "&laquo;"
-msgstr ""
-
-#: inc/template-tags.php:167
-msgid "&raquo;"
-msgstr ""
-
-#: inc/template-tags.php:168
-msgid "Posts navigation"
-msgstr ""
-
-#: inc/template-tags.php:212
-msgid "Post navigation"
-msgstr ""
-
-#: inc/template-tags.php:221
-msgctxt "Previous post link"
-msgid "&laquo; %title"
-msgstr ""
-
-#: inc/template-tags.php:228
-msgctxt "Next post link"
-msgid "%title &raquo;"
-msgstr ""
-
-#. translators: %s: the name of the coding function.
-#: inc/template-tags.php:260
-msgid "function %s does not exist."
-msgstr ""
-
-#: inc/template-tags.php:430
-msgid "Previous"
-msgstr ""
-
-#: inc/template-tags.php:434
-msgid "Next"
-msgstr ""
-
-#: inc/template-tags.php:497
-msgid "Close"
-msgstr ""
-
-#: inc/widgets.php:35
-msgid "Header"
-msgstr ""
-
-#: inc/widgets.php:36
-msgid "Header section."
-msgstr ""
-
-#: inc/widgets.php:43
-msgid "Left Sidebar"
-msgstr ""
-
-#: inc/widgets.php:44
-msgid "Section on the left side."
-msgstr ""
-
-#: inc/widgets.php:51
-msgid "Right Sidebar"
-msgstr ""
-
-#: inc/widgets.php:52
-msgid "Section on the right side."
-msgstr ""
-
-#: inc/widgets.php:59
-msgid "Footer"
-msgstr ""
-
-#: inc/widgets.php:60
-msgid "Footer section."
 msgstr ""
 
 #. Template Name of the theme
 msgid "Full Width Fixed"
 msgstr ""
 
+#. Template Name of the theme
+#: src/Setup.php:266
+msgid "Full Width"
+msgstr ""
+
 #. translators: %s: search query.
-#: search.php:28
+#: search.php:30
 msgid "Search Results for: %s"
 msgstr ""
 
-#: searchform.php:17
+#: searchform.php:19
 msgctxt "label"
 msgid "Search for:"
 msgstr ""
 
-#: searchform.php:20
+#: searchform.php:22
 msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr ""
 
-#: searchform.php:23
+#: searchform.php:25
 msgid "Search"
 msgstr ""
 
-#: template-parts/content-none.php:16
+#: src/ACF.php:29
+#: src/ACF.php:30
+msgid "Site Options"
+msgstr ""
+
+#. translators: %s: the name of the coding function.
+#: src/Breadcrumbs.php:37
+msgid "function %s does not exist."
+msgstr ""
+
+#: src/Setup.php:83
+msgid "Primary"
+msgstr ""
+
+#: src/Setup.php:88
+msgid "Secondary"
+msgstr ""
+
+#: src/Setup.php:93
+msgid "Light"
+msgstr ""
+
+#: src/Setup.php:98
+msgid "Dark"
+msgstr ""
+
+#: src/Setup.php:110
+msgid "Small"
+msgstr ""
+
+#: src/Setup.php:111
+msgid "SM"
+msgstr ""
+
+#: src/Setup.php:116
+msgid "Normal"
+msgstr ""
+
+#: src/Setup.php:117
+msgid "N"
+msgstr ""
+
+#: src/Setup.php:122
+msgid "Large"
+msgstr ""
+
+#: src/Setup.php:123
+msgid "LG"
+msgstr ""
+
+#: src/Setup.php:128
+msgid "Heading 1"
+msgstr ""
+
+#: src/Setup.php:129
+msgid "H1"
+msgstr ""
+
+#: src/Setup.php:134
+msgid "Heading 2"
+msgstr ""
+
+#: src/Setup.php:135
+msgid "H2"
+msgstr ""
+
+#: src/Setup.php:140
+msgid "Heading 3"
+msgstr ""
+
+#: src/Setup.php:141
+msgid "H3"
+msgstr ""
+
+#: src/Setup.php:146
+msgid "Heading 4"
+msgstr ""
+
+#: src/Setup.php:147
+msgid "H4"
+msgstr ""
+
+#: src/Setup.php:152
+msgid "Heading 5"
+msgstr ""
+
+#: src/Setup.php:153
+msgid "H5"
+msgstr ""
+
+#: src/Setup.php:158
+msgid "Heading 6"
+msgstr ""
+
+#: src/Setup.php:159
+msgid "H6"
+msgstr ""
+
+#: src/Setup.php:218
+msgid "Top Left"
+msgstr ""
+
+#: src/Setup.php:219
+msgid "Top Right"
+msgstr ""
+
+#: src/Setup.php:220
+msgid "Primary Left"
+msgstr ""
+
+#: src/Setup.php:221
+msgid "Primary Right"
+msgstr ""
+
+#: src/Setup.php:222
+msgid "Footer Left"
+msgstr ""
+
+#: src/Setup.php:223
+msgid "Footer Right"
+msgstr ""
+
+#. translators: %s: post date.
+#: src/Templates.php:34
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr ""
+
+#. translators: %s: post author.
+#: src/Templates.php:44
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: src/Templates.php:63
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of categories.
+#: src/Templates.php:66
+msgid "Posted in %1$s"
+msgstr ""
+
+#. translators: used between list items, there is a space after the comma
+#: src/Templates.php:70
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#. translators: 1: list of tags.
+#: src/Templates.php:73
+msgid "Tagged %1$s"
+msgstr ""
+
+#. translators: %s: post title
+#: src/Templates.php:83
+msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
+msgstr ""
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: src/Templates.php:100
+msgid "Edit <span class=\"sr-only\">%s</span>"
+msgstr ""
+
+#: src/Templates.php:130
+msgid "&laquo;"
+msgstr ""
+
+#: src/Templates.php:131
+msgid "&raquo;"
+msgstr ""
+
+#: src/Templates.php:132
+msgid "Posts navigation"
+msgstr ""
+
+#: src/Templates.php:176
+msgid "Post navigation"
+msgstr ""
+
+#: src/Templates.php:185
+msgctxt "Previous post link"
+msgid "&laquo; %title"
+msgstr ""
+
+#: src/Templates.php:192
+msgctxt "Next post link"
+msgid "%title &raquo;"
+msgstr ""
+
+#: src/Widgets.php:35
+msgid "Header"
+msgstr ""
+
+#: src/Widgets.php:36
+msgid "Header section."
+msgstr ""
+
+#: src/Widgets.php:43
+msgid "Left Sidebar"
+msgstr ""
+
+#: src/Widgets.php:44
+msgid "Section on the left side."
+msgstr ""
+
+#: src/Widgets.php:51
+msgid "Right Sidebar"
+msgstr ""
+
+#: src/Widgets.php:52
+msgid "Section on the right side."
+msgstr ""
+
+#: src/Widgets.php:59
+msgid "Footer"
+msgstr ""
+
+#: src/Widgets.php:60
+msgid "Footer section."
+msgstr ""
+
+#: src/Widgets.php:67
+msgid "Footer column 1"
+msgstr ""
+
+#: src/Widgets.php:68
+msgid "First column in footer section."
+msgstr ""
+
+#: src/Widgets.php:75
+msgid "Footer column 2"
+msgstr ""
+
+#: src/Widgets.php:76
+msgid "Second column in footer section."
+msgstr ""
+
+#: src/Widgets.php:83
+msgid "Footer column 3"
+msgstr ""
+
+#: src/Widgets.php:84
+msgid "Thirth column in footer section."
+msgstr ""
+
+#: template-parts/content-none.php:18
 msgid "Nothing Found"
 msgstr ""
 
 #. translators: 1: link to WP admin new post page.
-#: template-parts/content-none.php:28
+#: template-parts/content-none.php:30
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
-#: template-parts/content-none.php:41
+#: template-parts/content-none.php:43
 msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
 msgstr ""
 
-#: template-parts/content-none.php:46
+#: template-parts/content-none.php:48
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr ""
 
-#: template-parts/content-page.php:29
+#: template-parts/content-page.php:35
 msgid "Pages:"
 msgstr ""
 
-#: template-parts/content-page.php:39
+#: template-parts/content-page.php:45
 msgid "Edit"
 msgstr ""
 
-#: template-parts/main-navigation.php:37
+#: template-parts/main-navigation.php:39
 msgid "Toggle navigation"
 msgstr ""

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Include autoloader.
  */
@@ -24,21 +23,19 @@ require $autoloader;
 require_once get_theme_file_path('inc/constants.php');
 
 /**
- * Init classes
+ * Initialize classes
  */
 array_map(function ($class) {
-    $child_ns = apply_filters('my_theme_child_ns', null);
-    $class = $child_ns && class_exists("$child_ns\\$class") ? "$child_ns\\$class" : "My\Theme\\$class";
-    call_user_func([$class, 'init']);
+    call_user_func(["\My\Theme\\$class", 'init']);
 }, [
     'Setup',
     'Assets',
     'Widgets',
     'NavMenus',
-    'Customizer',
     'Blocks',
-    'ACF',
-    'Breadcrumbs',
-    'LoginForm',
     'Hooks',
+    'Customizer',
+    'Jetpack',
+    'Breadcrumbs',
+    'ACF',
 ]);

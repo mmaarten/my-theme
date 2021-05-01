@@ -6,7 +6,6 @@
 
 @import "variables";
 @import "~bootstrap/scss/mixins";
-@import "block-types/spacer/editor";
 
 //
 // Block vertical spacing
@@ -20,10 +19,8 @@
 }
 
 .acf-block-preview {
-
   // Disable mouse events
   pointer-events: none;
-
   // Unset WordPress card
   .card {
     position: unset;
@@ -36,19 +33,6 @@
     background: unset;
     box-sizing: unset;
   }
-
   // Import front-end styles
   @import "main";
-
-  // Show modal
-  .modal {
-    display: block;
-    opacity: 1 !important;
-    position: static;
-  }
-
-  .modal-dialog {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
 }

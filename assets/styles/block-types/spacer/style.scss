@@ -1,16 +1,42 @@
-//
-// Spacer Block
-//
 
-@each $index, $value in $spacers {
-  $index-mobile : 0;
-  @if $index > 0 { $index-mobile: $index - 1 };
-  .has-spacing-#{$index} {
-    @if $index > 0 {
-      height: map-get($spacers, $index-mobile) !important;
-    }
-    @include media-breakpoint-up(md) {
-      height: $value !important;
-    }
+.has-spacing-1 {
+  height: map-get($spacers, 0) !important;
+}
+
+.has-spacing-2 {
+  height: map-get($spacers, 1) !important;
+}
+
+.has-spacing-3 {
+  height: map-get($spacers, 2) !important;
+}
+
+.has-spacing-4 {
+  height: map-get($spacers, 3) !important;
+}
+
+.has-spacing-5 {
+  height: map-get($spacers, 4) !important;
+}
+
+@include media-breakpoint-up(md) {
+  .has-spacing-1 {
+    height: map-get($spacers, 1) !important;
+  }
+
+  .has-spacing-2 {
+    height: map-get($spacers, 2) !important;
+  }
+
+  .has-spacing-3 {
+    height: map-get($spacers, 3) !important;
+  }
+
+  .has-spacing-4 {
+    height: map-get($spacers, 4) !important;
+  }
+
+  .has-spacing-5 {
+    height: map-get($spacers, 5) !important;
   }
 }

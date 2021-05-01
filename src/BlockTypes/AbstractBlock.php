@@ -1,64 +1,22 @@
 <?php
 /**
- * Abstract block
+ * Abstract Block
  *
- * @package My/Theme
+ * @package My/Theme/BlockTypes
  */
 
 namespace My\Theme\BlockTypes;
 
-abstract class AbstractBlock
+class AbstractBlock
 {
     /**
-     * Block name.
+     * Get Block HTML attributes
      *
-     * @var string
+     * @param array  $block The block settings and attributes.
      */
-    protected $name = '';
-
-    /**
-     * Block title.
-     *
-     * @var string
-     */
-    protected $title = '';
-
-    /**
-     * Block description.
-     *
-     * @var string
-     */
-    protected $description = '';
-
-    /**
-     * Constructor
-     *
-     * @param string $name
-     * @param array  $args
-     */
-    public function __construct($name, $args = [])
-    {
-        $args = wp_parse_args($args, [
-            'title'       => ucwords(str_replace(['-', '_'], ' ', $name)),
-            'description' => '',
-        ]);
-
-        $this->name        = $name;
-        $this->title       = $args['title'];
-        $this->description = $args['description'];
-    }
-
-    /**
-     * Get Block HTML Attributes.
-     *
-     * @param array $block
-     * @return array
-     */
-    public function getBlockHTMLAttributes($block)
+    protected static function getBlockHTMLAttributes($block)
     {
         $atts = [];
-
-        // Add block specific class name. e.g. wp-block-acf-{name}
         $atts['class'] = 'wp-block-' . str_replace('/', '-', $block['name']);
 
         if (! empty($block['anchor'])) {
@@ -77,42 +35,79 @@ abstract class AbstractBlock
     }
 
     /**
-     * Registers the block type with WordPress.
+     * Name
      *
-     * @uses acf_register_block_type()
+     * @var string
+     */
+    protected $name = '';
+
+    /**
+     * Title
+     *
+     * @var string
+     */
+    protected $title = '';
+
+    /**
+     * Description
+     *
+     * @var string
+     */
+    protected $description = '';
+
+    /**
+     * Constructor
+     *
+     * @param string $name
+     * @param string $title
+     * @param array  $args
+     */
+    public function __construct($name, $title, $args = [])
+    {
+        $args = wp_parse_args($args, [
+            'description' => '',
+        ]);
+
+        $this->name        = $name;
+        $this->title       = $title;
+        $this->description = $args['description'];
+    }
+
+    /**
+     * Register block type
+     *
+     * @uses acf_register_block_type
      */
     public function registerBlockType()
     {
         if (function_exists('acf_register_block_type')) {
-            acf_register_block_type([
-                'name'            => $this->name,
-                'title'           => $this->title,
-                'description'     => $this->description,
-                'render_callback' => [$this, 'render'],
-                'enqueue_assets'  => [$this, 'enqueueAssets'],
-                'category'        => 'common',
-                'supports'        => [
-                    'align'  => ['wide', 'full'],
-                    'anchor' => true,
-                ],
-            ]);
+            acf_register_block_type(array(
+                'name'              => $this->name,
+                'title'             => $this->title,
+                'description'       => $this->description,
+                'render_callback'   => [$this, 'render'],
+                'category'          => 'common',
+                'enqueue_assets'    => [$this, 'enqueueAssets'],
+            ));
         }
     }
 
     /**
-     * Enqueues scripts and styles for front-end and back-end.
+     * Render
+     *
+     * @param array  $block The block settings and attributes.
+     * @param string $content The block inner HTML (empty).
+     * @param bool   $is_preview True during AJAX preview.
+     * @param mixed  $post_id The post ID this block is saved to.
      */
-    public function enqueueAssets()
+    public function render($block, $content = '', $is_preview = false, $post_id = 0)
     {
     }
 
     /**
-     * Render Block Callback.
-     *
-     * @param array $block The block settings and attributes.
-     * @param string $content The block inner HTML (empty).
-     * @param bool $is_preview True during AJAX preview.
-     * @param (int|string) $post_id The post ID this block is saved to.
+     * Enqueue assets
      */
-    abstract public function render($block, $content = '', $is_preview = false, $post_id = 0);
+    public function enqueueAssets()
+    {
+    }
 }

@@ -35,7 +35,7 @@ class Icons
     public static function get($key, $size = null)
     {
         if (array_key_exists($key, self::$icons)) {
-            $repl = '<svg class="svg-icon" aria-hidden="true" role="img" focusable="false" ';
+            $repl = sprintf('<svg class="svg-icon svg-icon-%s" aria-hidden="true" role="img" focusable="false" ', sanitize_html_class($key));
             if ($size) {
                 $repl .= sprintf('width="%1$dpx" height="%1$dpx" ', $size);
             }
