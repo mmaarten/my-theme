@@ -7,7 +7,7 @@
 
 namespace My\Theme\BlockTypes;
 
-class AbstractBlock
+abstract class AbstractBlock
 {
     /**
      * Get Block HTML attributes
