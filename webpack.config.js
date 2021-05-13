@@ -10,8 +10,5 @@ module.exports = {
     'customizer': './assets/scripts/customizer.js',
     'popper': './assets/scripts/popper.js',
     'bootstrap': './assets/scripts/bootstrap.js',
-    'owl-carousel': [ './assets/styles/owl-carousel.scss', './assets/scripts/owl-carousel.js' ],
-    'owl-carousel-theme': './assets/styles/owl-carousel-theme.scss',
-    'fancybox': [ './assets/styles/fancybox.scss', './assets/scripts/fancybox.js' ]
   },
 };

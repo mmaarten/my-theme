@@ -23,39 +23,6 @@ class Assets
     public static function enqueueScripts()
     {
         /**
-         * Owl Carousel
-         * @link https://owlcarousel2.github.io/OwlCarousel2/
-         */
-        self::registerScript(
-            'owl-carousel',
-            get_template_directory_uri() . '/build/owl-carousel.js'
-        );
-
-        self::registerStyle(
-            'owl-carousel',
-            get_template_directory_uri() . '/build/owl-carousel.css'
-        );
-
-        self::registerStyle(
-            'owl-carousel-theme',
-            get_template_directory_uri() . '/build/owl-carousel-theme.css'
-        );
-
-       /**
-        * Fancybox
-        * @link http://fancyapps.com/fancybox/3/
-        */
-        self::registerScript(
-            'fancybox',
-            get_template_directory_uri() . '/build/fancybox.js'
-        );
-
-        self::registerStyle(
-            'fancybox',
-            get_template_directory_uri() . '/build/fancybox.css'
-        );
-
-        /**
          * Popper
          * @link https://popper.js.org/
          */

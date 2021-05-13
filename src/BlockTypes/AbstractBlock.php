@@ -100,9 +100,7 @@ abstract class AbstractBlock
      * @param bool   $is_preview True during AJAX preview.
      * @param mixed  $post_id The post ID this block is saved to.
      */
-    public function render($block, $content = '', $is_preview = false, $post_id = 0)
-    {
-    }
+    abstract public function render($block, $content = '', $is_preview = false, $post_id = 0);
 
     /**
      * Enqueue assets
