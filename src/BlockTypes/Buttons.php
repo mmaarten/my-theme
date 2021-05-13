@@ -87,10 +87,7 @@ class Buttons extends AbstractBlock
             'toggle'   => '',
         ]);
 
-        $atts = [
-            'class' => 'btn',
-            'role'  => 'button',
-        ];
+        $atts = ['class' => 'btn', 'role'  => 'button'];
 
         if ($args['link']) {
             $atts['href'] = $args['link'];
