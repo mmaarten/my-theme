@@ -47,12 +47,10 @@ class Customizer
      */
     public static function previewInit()
     {
-        wp_enqueue_script(
+        Assets::enqueueScript(
             'my-theme-customizer',
-            get_template_directory_uri() . '/dist/scripts/customizer.js',
-            ['customize-preview'],
-            MY_THEME_VERSION,
-            true
+            get_template_directory_uri() . '/build/customizer.js',
+            ['customize-preview']
         );
     }
 }

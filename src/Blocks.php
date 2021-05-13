@@ -42,11 +42,9 @@ class Blocks
      */
     public static function enqueueBlockAssets()
     {
-        wp_enqueue_style(
+        Assets::enqueueStyle(
             'my-theme-blocks',
-            get_template_directory_uri() . '/dist/styles/blocks.css',
-            [],
-            MY_THEME_VERSION
+            get_template_directory_uri() . '/build/blocks.css'
         );
 
         /**
@@ -60,11 +58,9 @@ class Blocks
      */
     public static function enqueueBlockEditorAssets()
     {
-        wp_enqueue_style(
+        Assets::enqueueStyle(
             'my-theme-editor',
-            get_template_directory_uri() . '/dist/styles/editor.css',
-            [],
-            MY_THEME_VERSION
+            get_template_directory_uri() . '/build/editor.css'
         );
     }
 

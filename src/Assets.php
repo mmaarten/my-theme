@@ -26,87 +26,66 @@ class Assets
          * Owl Carousel
          * @link https://owlcarousel2.github.io/OwlCarousel2/
          */
-        wp_register_script(
+        self::registerScript(
             'owl-carousel',
-            get_template_directory_uri() . '/dist/scripts/owl-carousel.js',
-            [],
-            '2.3.4',
-            true
+            get_template_directory_uri() . '/build/owl-carousel.js'
         );
 
-        wp_register_style(
+        self::registerStyle(
             'owl-carousel',
-            get_template_directory_uri() . '/dist/styles/owl-carousel.css',
-            [],
-            '2.3.4'
+            get_template_directory_uri() . '/build/owl-carousel.css'
         );
 
-        wp_register_style(
+        self::registerStyle(
             'owl-carousel-theme',
-            get_template_directory_uri() . '/dist/styles/owl-carousel-theme.css',
-            [],
-            MY_THEME_VERSION
+            get_template_directory_uri() . '/build/owl-carousel-theme.css'
         );
 
        /**
         * Fancybox
         * @link http://fancyapps.com/fancybox/3/
         */
-        wp_register_script(
+        self::registerScript(
             'fancybox',
-            get_template_directory_uri() . '/dist/scripts/fancybox.js',
-            [],
-            '3.5.7',
-            true
+            get_template_directory_uri() . '/build/fancybox.js'
         );
 
-        wp_register_style(
+        self::registerStyle(
             'fancybox',
-            get_template_directory_uri() . '/dist/styles/fancybox.css',
-            [],
-            '3.5.7'
+            get_template_directory_uri() . '/build/fancybox.css'
         );
 
         /**
          * Popper
          * @link https://popper.js.org/
          */
-        wp_enqueue_script(
+        self::enqueueScript(
             'popper-js',
-            get_template_directory_uri() . '/dist/scripts/popper.js',
-            [],
-            '1.16.1',
-            true
+            get_template_directory_uri() . '/build/popper.js'
         );
 
        /**
         * Bootstrap
         * @link https://getbootstrap.com/
         */
-        wp_enqueue_script(
+        self::enqueueScript(
             'bootstrap',
-            get_template_directory_uri() . '/dist/scripts/bootstrap.js',
-            ['jquery', 'popper-js'],
-            '4.5.0',
-            true
+            get_template_directory_uri() . '/build/bootstrap.js',
+            ['jquery', 'popper-js']
         );
 
        /**
         * Theme
         */
-        wp_enqueue_style(
+        self::enqueueStyle(
             'my-theme-main',
-            get_template_directory_uri() . '/dist/styles/main.css',
-            [],
-            MY_THEME_VERSION
+            get_template_directory_uri() . '/build/main.css'
         );
 
-        wp_enqueue_script(
+        self::enqueueScript(
             'my-theme-main',
-            get_template_directory_uri() . '/dist/scripts/main.js',
-            ['jquery', 'bootstrap'],
-            MY_THEME_VERSION,
-            true
+            get_template_directory_uri() . '/build/main.js',
+            ['jquery', 'bootstrap']
         );
 
         /**
@@ -115,5 +94,56 @@ class Assets
         if (is_singular() && comments_open() && get_option('thread_comments')) {
             wp_enqueue_script('comment-reply');
         }
+    }
+
+    public static function registerScript($handle, $src, $deps = [], $has_i18n = false)
+    {
+        $asset = self::getAsset($src);
+
+        wp_register_script($handle, $src, $asset['dependencies'] + $deps, $asset['version'], true);
+
+        if ($has_i18n) {
+            wp_set_script_translations($handle, 'my-theme', get_template_directory() . '/languages');
+        }
+    }
+
+    public static function registerStyle($handle, $src, $deps = [], $media = 'all')
+    {
+        $asset = self::getAsset($src);
+
+        wp_register_style($handle, $src, $deps, $asset['version'], $media);
+    }
+
+    public static function enqueueScript($handle, $src = '', $deps = [], $has_i18n = true)
+    {
+        if (! wp_script_is($handle, 'registered')) {
+            self::registerScript($handle, $src, $deps, $has_i18n);
+        }
+
+        wp_enqueue_script($handle);
+    }
+
+    public static function enqueueStyle($handle, $src = '', $deps = [], $media = 'all')
+    {
+        if (! wp_style_is($handle, 'registered')) {
+            self::registerStyle($handle, $src, $deps, $media);
+        }
+
+        wp_enqueue_style($handle);
+    }
+
+    public static function getAsset($src)
+    {
+        $path = str_replace(WP_CONTENT_URL, WP_CONTENT_DIR, $src);
+        $file = str_replace(['.js', '.css'], '.asset.php', $path);
+
+        if (file_exists($file)) {
+            return require $file;
+        }
+
+        return [
+            'dependencies' => [],
+            'version'      => wp_get_theme('my-theme')->version,
+        ];
     }
 }

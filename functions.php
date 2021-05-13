@@ -18,11 +18,6 @@ if (!is_readable($autoloader)) {
 require $autoloader;
 
 /**
- * Load constants
- */
-require_once get_theme_file_path('inc/constants.php');
-
-/**
  * Initialize classes
  */
 array_map(function ($class) {
