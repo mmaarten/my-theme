@@ -25,6 +25,7 @@
   ],
   "license": "GPL-2.0-or-later",
   "devDependencies": {
+    "@wordpress/base-styles": "^3.4.4",
     "@wordpress/scripts": "^15.0.1",
     "classnames": "^2.3.1",
     "dir-archiver": "^1.1.1"
