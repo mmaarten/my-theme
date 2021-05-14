@@ -70,7 +70,6 @@ const RowEdit = ( props ) => {
           allowedBlocks={ ALLOWED_BLOCKS }
           template={ BLOCKS_TEMPLATE }
           orientation="horizontal"
-          renderAppender={ false }
         />
       </div>
     </>

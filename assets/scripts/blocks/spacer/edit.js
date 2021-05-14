@@ -14,6 +14,12 @@ export default ( props ) => {
     'aria-hidden': 'true',
   });
 
+  const sizeOptions = [
+    { label: __( 'Small', 'my-theme' ), value: 3 },
+    { label: __( 'Medium', 'my-theme' ), value: 4 },
+    { label: __( 'Large', 'my-theme' ), value: 5 },
+  ];
+
   return (
     <>
       <InspectorControls>
@@ -21,12 +27,7 @@ export default ( props ) => {
           <BreakpointToolbar
             onChange={ ( breakpoint ) => {
 
-              console.log( breakpoint, get( sizes, breakpoint ) );
-              let options = [
-                { label: __( 'Small', 'my-theme' ), value: 3 },
-                { label: __( 'Medium', 'my-theme' ), value: 4 },
-                { label: __( 'Large', 'my-theme' ), value: 5 },
-              ];
+              let options = [ ...sizeOptions ];
 
               if ( 'xs' !== breakpoint ) {
                 options = [
