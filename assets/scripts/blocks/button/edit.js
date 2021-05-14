@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { RichText, InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import { PanelBody, TextControl, ToggleControl, SelectControl } from '@wordpress/components';
 import { getButtonClasses } from './common';
+import { URLControl } from '../../components';
 
 export default ( props ) => {
   const { attributes, setAttributes } = props;
@@ -14,7 +15,7 @@ export default ( props ) => {
     <>
       <InspectorControls>
         <PanelBody title={ __( 'Link Settings', 'my-theme' ) } initialOpen={ true }>
-          <TextControl
+          <URLControl
             label={ __( 'Link', 'my-theme' ) }
             value={ link }
             onChange={ ( link ) => setAttributes( { link } ) }
