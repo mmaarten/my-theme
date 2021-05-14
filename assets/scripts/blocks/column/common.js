@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import { map, get } from 'lodash';
 
 export const getColumnClasses = ( attributes ) => {
@@ -27,5 +26,5 @@ export const getColumnClasses = ( attributes ) => {
     };
   } );
 
-  return classnames( classes );
+  return classes;
 }
