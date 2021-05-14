@@ -4,7 +4,7 @@ export const getGridColumns = () => {
 };
 
 export const getGridBreakpoints = () => {
-  return ['xs', 'sm', 'md', 'lg', 'xl'];
+  return ['xs', 'md', 'xl'];
 };
 
 export const getBreakpointInfix = ( breakpoint ) => {
