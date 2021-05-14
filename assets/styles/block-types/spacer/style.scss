@@ -1,42 +1,13 @@
 
-.has-spacing-1 {
-  height: map-get($spacers, 0) !important;
-}
-
-.has-spacing-2 {
-  height: map-get($spacers, 1) !important;
-}
-
-.has-spacing-3 {
-  height: map-get($spacers, 2) !important;
-}
-
-.has-spacing-4 {
-  height: map-get($spacers, 3) !important;
-}
-
-.has-spacing-5 {
-  height: map-get($spacers, 4) !important;
-}
-
-@include media-breakpoint-up(md) {
-  .has-spacing-1 {
-    height: map-get($spacers, 1) !important;
-  }
-
-  .has-spacing-2 {
-    height: map-get($spacers, 2) !important;
-  }
-
-  .has-spacing-3 {
-    height: map-get($spacers, 3) !important;
-  }
-
-  .has-spacing-4 {
-    height: map-get($spacers, 4) !important;
-  }
-
-  .has-spacing-5 {
-    height: map-get($spacers, 5) !important;
+.wp-block-acf-spacer {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      @each $key, $value in $spacers {
+        &.has-spacing#{$infix}-#{$key} {
+          height: $value;
+        }
+      }
+    }
   }
 }
