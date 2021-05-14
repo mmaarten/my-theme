@@ -3,18 +3,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: My Theme 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/_my-theme\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/my-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-04-28T15:07:04+00:00\n"
+"POT-Creation-Date: 2021-05-14T11:59:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: my-theme\n"
 
 #. Theme Name of the theme
+#: assets/scripts/blocks/column/index.js:13
+#: assets/scripts/blocks/row/index.js:12
+#: build/blocks.js:713
+#: build/blocks.js:959
 msgid "My Theme"
 msgstr ""
 
@@ -84,6 +88,10 @@ msgstr ""
 
 #. Template Name of the theme
 #: src/Setup.php:266
+#: assets/scripts/blocks/button/edit.js:56
+#: assets/scripts/blocks/row/edit.js:34
+#: build/blocks.js:245
+#: build/blocks.js:866
 msgid "Full Width"
 msgstr ""
 
@@ -117,22 +125,34 @@ msgid "function %s does not exist."
 msgstr ""
 
 #: src/Setup.php:83
+#: assets/scripts/blocks/button/edit.js:32
+#: build/blocks.js:200
 msgid "Primary"
 msgstr ""
 
 #: src/Setup.php:88
+#: assets/scripts/blocks/button/edit.js:33
+#: build/blocks.js:203
 msgid "Secondary"
 msgstr ""
 
 #: src/Setup.php:93
+#: assets/scripts/blocks/button/edit.js:34
+#: build/blocks.js:206
 msgid "Light"
 msgstr ""
 
 #: src/Setup.php:98
+#: assets/scripts/blocks/button/edit.js:35
+#: build/blocks.js:209
 msgid "Dark"
 msgstr ""
 
 #: src/Setup.php:110
+#: assets/scripts/blocks/button/edit.js:48
+#: assets/scripts/blocks/spacer/edit.js:26
+#: build/blocks.js:229
+#: build/blocks.js:1114
 msgid "Small"
 msgstr ""
 
@@ -149,6 +169,10 @@ msgid "N"
 msgstr ""
 
 #: src/Setup.php:122
+#: assets/scripts/blocks/button/edit.js:50
+#: assets/scripts/blocks/spacer/edit.js:28
+#: build/blocks.js:235
+#: build/blocks.js:1120
 msgid "Large"
 msgstr ""
 
@@ -329,28 +353,50 @@ msgstr ""
 msgid "Footer section."
 msgstr ""
 
-#: src/Widgets.php:67
-msgid "Footer column 1"
-msgstr ""
-
-#: src/Widgets.php:68
-msgid "First column in footer section."
-msgstr ""
-
-#: src/Widgets.php:75
-msgid "Footer column 2"
-msgstr ""
-
 #: src/Widgets.php:76
-msgid "Second column in footer section."
+msgid "First"
+msgstr ""
+
+#: src/Widgets.php:77
+msgid "Second"
+msgstr ""
+
+#: src/Widgets.php:78
+msgid "Thirth"
+msgstr ""
+
+#: src/Widgets.php:79
+msgid "Fourth"
+msgstr ""
+
+#: src/Widgets.php:80
+msgid "Fifth"
+msgstr ""
+
+#: src/Widgets.php:81
+msgid "Sixth"
+msgstr ""
+
+#: src/Widgets.php:82
+msgid "Seventh"
 msgstr ""
 
 #: src/Widgets.php:83
-msgid "Footer column 3"
+msgid "Eighth"
 msgstr ""
 
 #: src/Widgets.php:84
-msgid "Thirth column in footer section."
+msgid "Ninth"
+msgstr ""
+
+#. translators: %1$s: column number
+#: src/Widgets.php:92
+msgid "Footer column %1$s"
+msgstr ""
+
+#. translators: %1$s: column ordinal number
+#: src/Widgets.php:94
+msgid "%1$s column in footer section."
 msgstr ""
 
 #: template-parts/content-none.php:18
@@ -380,4 +426,215 @@ msgstr ""
 
 #: template-parts/main-navigation.php:39
 msgid "Toggle navigation"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:16
+#: build/blocks.js:176
+msgid "Link Settings"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:18
+#: build/blocks.js:179
+msgid "Link"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:23
+#: build/blocks.js:187
+msgid "Open in new window"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:28
+#: build/blocks.js:195
+msgid "Style Settings"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:30
+#: build/blocks.js:198
+msgid "Type"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:41
+#: build/blocks.js:219
+msgid "Outline"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:46
+#: assets/scripts/blocks/spacer/edit.js:40
+#: build/blocks.js:227
+#: build/blocks.js:1132
+msgid "Size"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:49
+#: assets/scripts/blocks/spacer/edit.js:27
+#: build/blocks.js:232
+#: build/blocks.js:1117
+msgid "Medium"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:61
+#: build/blocks.js:253
+msgid "Toggle Settings"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:63
+#: build/blocks.js:256
+msgid "Toggle"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:65
+#: assets/scripts/blocks/row/edit.js:45
+#: build/blocks.js:258
+#: build/blocks.js:880
+msgid "- Select -"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:66
+#: build/blocks.js:261
+msgid "Modal"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:67
+#: build/blocks.js:264
+msgid "Collapse"
+msgstr ""
+
+#: assets/scripts/blocks/button/edit.js:80
+#: build/blocks.js:282
+msgid "Button text..."
+msgstr ""
+
+#: assets/scripts/blocks/button/index.js:9
+#: build/blocks.js:311
+msgid "Button"
+msgstr ""
+
+#: assets/scripts/blocks/button/index.js:10
+#: build/blocks.js:312
+msgid "Displays a button."
+msgstr ""
+
+#: assets/scripts/blocks/buttons/edit.js:24
+#: build/blocks.js:431
+msgid "Justify Content"
+msgstr ""
+
+#: assets/scripts/blocks/buttons/edit.js:26
+#: build/blocks.js:433
+msgid "Left"
+msgstr ""
+
+#: assets/scripts/blocks/buttons/edit.js:27
+#: build/blocks.js:436
+msgid "Center"
+msgstr ""
+
+#: assets/scripts/blocks/buttons/edit.js:28
+#: build/blocks.js:439
+msgid "Right"
+msgstr ""
+
+#: assets/scripts/blocks/buttons/index.js:9
+#: build/blocks.js:478
+msgid "Buttons"
+msgstr ""
+
+#: assets/scripts/blocks/buttons/index.js:10
+#: build/blocks.js:479
+msgid "Displays buttons."
+msgstr ""
+
+#: assets/scripts/blocks/column/index.js:10
+#: build/blocks.js:710
+msgid "Column"
+msgstr ""
+
+#: assets/scripts/blocks/column/index.js:11
+#: build/blocks.js:711
+msgid "Displays a column."
+msgstr ""
+
+#: assets/scripts/blocks/row/edit.js:29
+#: build/blocks.js:855
+msgid "Container"
+msgstr ""
+
+#: assets/scripts/blocks/row/edit.js:33
+#: build/blocks.js:863
+msgid "Fixed Width"
+msgstr ""
+
+#: assets/scripts/blocks/row/edit.js:38
+#: build/blocks.js:870
+msgid "No Gutters"
+msgstr ""
+
+#: assets/scripts/blocks/row/edit.js:46
+#: build/blocks.js:883
+msgid "Top"
+msgstr ""
+
+#: assets/scripts/blocks/row/edit.js:47
+#: build/blocks.js:886
+msgid "Middle"
+msgstr ""
+
+#: assets/scripts/blocks/row/edit.js:48
+#: build/blocks.js:889
+msgid "Bottom"
+msgstr ""
+
+#: assets/scripts/blocks/row/index.js:9
+#: build/blocks.js:956
+msgid "Row"
+msgstr ""
+
+#: assets/scripts/blocks/row/index.js:10
+#: build/blocks.js:957
+msgid "Displays a row."
+msgstr ""
+
+#: assets/scripts/blocks/spacer/edit.js:33
+#: build/blocks.js:1126
+msgid "- Inherit from smaller -"
+msgstr ""
+
+#: assets/scripts/blocks/spacer/index.js:9
+#: build/blocks.js:1168
+msgid "Spacer"
+msgstr ""
+
+#: assets/scripts/blocks/spacer/index.js:10
+#: build/blocks.js:1169
+msgid "Displays a spacer."
+msgstr ""
+
+#: assets/scripts/components/breakpoint-toolbar/index.js:17
+#: build/blocks.js:1242
+#: build/editor.js:118
+msgid "Extra Small Devices"
+msgstr ""
+
+#: assets/scripts/components/breakpoint-toolbar/index.js:23
+#: build/blocks.js:1251
+#: build/editor.js:127
+msgid "Small Devices"
+msgstr ""
+
+#: assets/scripts/components/breakpoint-toolbar/index.js:29
+#: build/blocks.js:1260
+#: build/editor.js:136
+msgid "Medium Devices"
+msgstr ""
+
+#: assets/scripts/components/breakpoint-toolbar/index.js:35
+#: build/blocks.js:1269
+#: build/editor.js:145
+msgid "Large Devices"
+msgstr ""
+
+#: assets/scripts/components/breakpoint-toolbar/index.js:41
+#: build/blocks.js:1278
+#: build/editor.js:154
+msgid "Extra Large Devices"
 msgstr ""
