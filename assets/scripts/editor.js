@@ -1,6 +1,5 @@
 import { unregisterBlockType } from '@wordpress/blocks';
 import domReady from '@wordpress/dom-ready';
-import { map } from 'lodash';
 
 import './components/';
 
