@@ -6,7 +6,8 @@
 
 @import "variables";
 @import "~bootstrap/scss/mixins";
-@import "block-types/spacer/style";
+@import "../scripts/blocks/buttons/style";
+@import "../scripts/blocks/spacer/style";
 
 //
 // Editor text colors

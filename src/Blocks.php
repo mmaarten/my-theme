@@ -27,6 +27,9 @@ class Blocks
     public static function registerBlockTypes()
     {
         $blocks = [
+            'Row',
+            'Column',
+            'Button',
             'Buttons',
             'Spacer',
         ];
@@ -42,6 +45,11 @@ class Blocks
      */
     public static function enqueueBlockAssets()
     {
+        Assets::enqueueScript(
+            'my-theme-blocks',
+            get_template_directory_uri() . '/build/blocks.js'
+        );
+
         Assets::enqueueStyle(
             'my-theme-blocks',
             get_template_directory_uri() . '/build/blocks.css'
@@ -58,6 +66,11 @@ class Blocks
      */
     public static function enqueueBlockEditorAssets()
     {
+        Assets::enqueueScript(
+            'my-theme-editor',
+            get_template_directory_uri() . '/build/editor.js'
+        );
+
         Assets::enqueueStyle(
             'my-theme-editor',
             get_template_directory_uri() . '/build/editor.css'

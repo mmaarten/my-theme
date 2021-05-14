@@ -1,16 +1,16 @@
 <?php
 /**
- * Buttons block
+ * Row block
  *
  * @package My/Theme/BlockTypes
  */
 
 namespace My\Theme\BlockTypes;
 
-class Buttons extends AbstractBlock
+class Row extends AbstractBlock
 {
     public function __construct()
     {
-        parent::__construct('buttons');
+        parent::__construct('row');
     }
 }

@@ -1,0 +1,9 @@
+.wp-block-my-spacer {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(#000, .05) 5px,
+    rgba(#000, .05) 10px
+  );
+}
