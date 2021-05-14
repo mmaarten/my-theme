@@ -1,54 +1,60 @@
 import { __ } from '@wordpress/i18n';
-import { Toolbar } from '@wordpress/components';
+import { Toolbar, ToolbarButton } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
+import { mobile, desktop, tablet } from '@wordpress/icons';
+import { map, get } from 'lodash';
+import { getGridBreakpoints } from '../../helpers';
 
 const BreakpointToolbar = ( {
-  breakpoint,
+  activeBreakpoint,
   setState,
   onChange,
 } ) => {
 
+  const controls = {
+    xs : {
+      icon: mobile,
+      label: __( 'Extra Small Devices', 'my-theme' ),
+    },
+    sm : {
+      icon: tablet,
+      label: __( 'Small Devices', 'my-theme' ),
+    },
+    md : {
+      icon: tablet,
+      label: __( 'Medium Devices', 'my-theme' ),
+    },
+    lg : {
+      icon: desktop,
+      label: __( 'Large Devices', 'my-theme' ),
+    },
+    xl : {
+      icon: desktop,
+      label: __( 'Extra Large Devices', 'my-theme' ),
+    }
+  };
+
   return (
     <>
-      <Toolbar
-        controls={ [
-          {
-            icon: 'smartphone',
-            title: __( 'Extra Small Devices', 'my-theme' ),
-            isActive: 'xs' === breakpoint,
-            onClick: () => { setState( { breakpoint: 'xs' } ) },
-          },
-          {
-            icon: 'smartphone',
-            title: __( 'Small Devices', 'my-theme' ),
-            isActive: 'sm' === breakpoint,
-            onClick: () => { setState( { breakpoint: 'sm' } ) },
-          },
-          {
-            icon: 'tablet',
-            title: __( 'Medium Devices', 'my-theme' ),
-            isActive: 'md' === breakpoint,
-            onClick: () => { setState( { breakpoint: 'md' } ) },
-          },
-          {
-            icon: 'desktop',
-            title: __( 'Large Devices', 'my-theme' ),
-            isActive: 'lg' === breakpoint,
-            onClick: () => { setState( { breakpoint: 'lg' } ) },
-          },
-          {
-            icon: 'desktop',
-            title: __( 'Extra Large Devices', 'my-theme' ),
-            isActive: 'xl' === breakpoint,
-            onClick: () => { setState( { breakpoint: 'xl' } ) },
-          }
-        ] }
-      />
-      { onChange && onChange( breakpoint ) }
+      <Toolbar label={ __( 'Devices navigation', 'my-theme' ) } className="my-theme-breakpoint-toolbar">
+        { map( getGridBreakpoints(), ( breakpoint, index ) => {
+          let control = get( controls, breakpoint );
+          return control && (
+            <ToolbarButton
+              key={ index }
+              icon={ control.icon }
+              label={ control.label }
+              onClick={ () => { setState( { activeBreakpoint : breakpoint } ) } }
+              isPressed={ breakpoint === activeBreakpoint }
+            />
+          )
+        } ) }
+      </Toolbar>
+      { onChange && onChange( activeBreakpoint ) }
     </>
   );
 };
 
 export default withState( {
-  breakpoint: 'md',
+  activeBreakpoint: 'xs',
 } )( BreakpointToolbar );
