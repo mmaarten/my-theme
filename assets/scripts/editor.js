@@ -13,8 +13,8 @@ const unregisterBlockTypes = () => {
     'core/spacer',
   ];
 
-  map( blockTypes, ( name ) => {
-    unregisterBlockType( name )
+  blockTypes.forEach( ( name ) => {
+    unregisterBlockType( name );
   } );
 };
 
