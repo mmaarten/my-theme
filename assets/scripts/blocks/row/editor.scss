@@ -1,0 +1,111 @@
+/**
+ * Setup container
+ */
+
+.wp-block-my-row {
+
+  &.has-fluid-container {
+    @include make-container();
+  }
+
+  &.has-fixed-container {
+    @include make-container();
+    @include make-container-max-widths();
+  }
+}
+
+/**
+ * Setup grid
+ */
+
+.wp-block-my-row {
+  > .block-editor-inner-blocks {
+    > .block-editor-block-list__layout {
+      @include make-row();
+
+      > .wp-block[data-type="my/column"] {
+        @include make-col-ready();
+        max-width: none;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        // Disable max width on all inner blocks.
+        .wp-block {
+          max-width: none;
+        }
+
+        .block-editor-block-list__block[data-align="full"] {
+          margin-left: 0;
+          margin-right: 0;
+        }
+
+        // Loop breakpoints
+        @each $breakpoint in map-keys($grid-breakpoints) {
+          $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+          // Above breakpoint.
+          @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+
+            // Make flexbox column.
+            &.has-col#{$infix} {
+              flex-basis: 0;
+              flex-grow: 1;
+              min-width: 0;
+              max-width: 100%;
+            }
+
+            // Make flexbox column and set width.
+            @for $i from 1 through $grid-columns {
+              &.has-col#{$infix}-#{$i} {
+                @include make-col($i, $grid-columns);
+              }
+            }
+
+            // Order
+            @for $i from 0 through $grid-columns {
+              &.has-order#{$infix}-#{$i} { order: $i; }
+            }
+
+            // Offset
+            @for $i from 0 through ($grid-columns - 1) {
+              @if not ($infix == "" and $i == 0) {
+                &.has-offset#{$infix}-#{$i} {
+                  @include make-col-offset($i, $grid-columns);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Vertical alignment
+.wp-block-my-row {
+  &.has-align-items-start > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    align-items: flex-start !important;
+  }
+  &.has-align-items-center > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    align-items: center !important;
+  }
+  &.has-align-items-end > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    align-items: flex-end !important;
+  }
+}
+
+// No gutters.
+.wp-block-my-row.has-no-gutters {
+  > .block-editor-inner-blocks {
+    > .block-editor-block-list__layout {
+      margin-left: 0;
+      margin-right: 0;
+
+      > .wp-block[data-type="my/column"][class*="has-col"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+}

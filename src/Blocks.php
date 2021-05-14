@@ -27,6 +27,9 @@ class Blocks
     public static function registerBlockTypes()
     {
         $blocks = [
+            'Row',
+            'Column',
+            'Button',
             'Buttons',
             'Spacer',
         ];
@@ -42,11 +45,14 @@ class Blocks
      */
     public static function enqueueBlockAssets()
     {
-        wp_enqueue_style(
+        Assets::enqueueScript(
             'my-theme-blocks',
-            get_template_directory_uri() . '/dist/styles/blocks.css',
-            [],
-            MY_THEME_VERSION
+            get_template_directory_uri() . '/build/blocks.js'
+        );
+
+        Assets::enqueueStyle(
+            'my-theme-blocks',
+            get_template_directory_uri() . '/build/blocks.css'
         );
 
         /**
@@ -60,11 +66,14 @@ class Blocks
      */
     public static function enqueueBlockEditorAssets()
     {
-        wp_enqueue_style(
+        Assets::enqueueScript(
             'my-theme-editor',
-            get_template_directory_uri() . '/dist/styles/editor.css',
-            [],
-            MY_THEME_VERSION
+            get_template_directory_uri() . '/build/editor.js'
+        );
+
+        Assets::enqueueStyle(
+            'my-theme-editor',
+            get_template_directory_uri() . '/build/editor.css'
         );
     }
 

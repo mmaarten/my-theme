@@ -6,22 +6,20 @@
 
 @import "variables";
 @import "~bootstrap/scss/mixins";
+@import "../scripts/blocks/row/editor";
+@import "../scripts/blocks/button/editor";
+@import "../scripts/blocks/buttons/editor";
+@import "../scripts/blocks/spacer/editor";
 
-//
-// Block vertical spacing
-//
-
-.editor-styles-wrapper .block-editor-block-list__block {
-  &:not([data-type="core/heading"]):not([data-type="core/paragraph"]) {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+// Removes block vertical spacing.
+.block-editor-block-list__block {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.acf-block-preview {
-  // Disable mouse events
-  pointer-events: none;
-  // Unset WordPress card
+// Block preview
+.my-theme-block-preview {
+  // Unset WordPress card.
   .card {
     position: unset;
     margin-top: unset;
@@ -33,6 +31,6 @@
     background: unset;
     box-sizing: unset;
   }
-  // Import front-end styles
+  // Import front-end styles.
   @import "main";
 }
