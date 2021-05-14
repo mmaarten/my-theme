@@ -6,6 +6,8 @@
 
 @import "variables";
 @import "~bootstrap/scss/mixins";
+@import "../scripts/components/image-control/style";
+@import "../scripts/components/url-control/style";
 @import "../scripts/blocks/row/editor";
 @import "../scripts/blocks/button/editor";
 @import "../scripts/blocks/buttons/editor";
