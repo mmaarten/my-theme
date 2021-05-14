@@ -1,4 +1,5 @@
 import { map, get } from 'lodash';
+import { getBreakpointInfix, getGridBreakpoints } from '../../helpers';
 
 export const getColumnClasses = ( attributes ) => {
   const { width, offset, order } = attributes;
@@ -9,8 +10,8 @@ export const getColumnClasses = ( attributes ) => {
   // Add `col` class for when no width is set.
   classes[ FALLBACK_CLASS ] = true;
 
-  map( ['xs', 'sm', 'md', 'lg', 'xl'], ( breakpoint ) => {
-    let infix = 'xs' === breakpoint ? '' : `-${breakpoint}`;
+  map( getGridBreakpoints(), ( breakpoint ) => {
+    let infix = getBreakpointInfix( breakpoint );
 
     let breakpointWidth = get( width, breakpoint );
     let breakpointOffset = get( offset, breakpoint );

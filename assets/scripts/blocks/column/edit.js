@@ -5,12 +5,13 @@ import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
 import { get, assign } from 'lodash';
 import { BreakpointToolbar } from '../../components';
-
-const GRID_COLUMNS = 12;
+import { getGridColumns } from '../../helpers';
 
 const ColumnEdit = ( props ) => {
   const { attributes, setAttributes, className, hasChildBlocks } = props;
   const { width, offset, order } = attributes;
+
+  const GRID_COLUMNS = getGridColumns();
 
   const blockProps = useBlockProps();
 
