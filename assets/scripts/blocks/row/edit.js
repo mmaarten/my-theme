@@ -72,10 +72,9 @@ class RowEdit extends Component {
           <InnerBlocks
             allowedBlocks={ ALLOWED_BLOCKS }
             template={ BLOCKS_TEMPLATE }
-            __experimentalMoverDirection="horizontal"
-            __experimentalTagName="div"
+            orientation="horizontal"
             renderAppender={ false }
-            />
+          />
         </div>
       </>
     );
