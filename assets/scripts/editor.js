@@ -1,1 +1,28 @@
+import { unregisterBlockType } from '@wordpress/blocks';
+import domReady from '@wordpress/dom-ready';
+import { map } from 'lodash';
+
 import './components/';
+
+const unregisterBlockTypes = () => {
+  const blockTypes = [
+    'core/buttons',
+    'core/button',
+    'core/columns',
+    'core/column',
+    'core/spacer',
+  ];
+
+  map( blockTypes, ( name ) => {
+    unregisterBlockType( name )
+  } );
+};
+
+domReady( () => {
+
+  //
+  // Unregister block types.
+  //
+  unregisterBlockTypes();
+
+} );
