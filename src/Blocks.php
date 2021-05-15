@@ -16,7 +16,6 @@ class Blocks
     {
         add_action('after_setup_theme', [__CLASS__, 'registerBlockTypes']);
         add_action('enqueue_block_assets', [__CLASS__, 'enqueueBlockAssets']);
-        add_action('enqueue_block_editor_assets', [__CLASS__, 'enqueueBlockEditorAssets']);
         add_filter('use_block_editor_for_post_type', [__CLASS__, 'useBlockEditorForPostType'], PHP_INT_MAX, 2);
         add_filter('allowed_block_types', [__CLASS__, 'allowedBlockTypes'], PHP_INT_MAX, 2);
     }
@@ -26,13 +25,7 @@ class Blocks
      */
     public static function registerBlockTypes()
     {
-        $blocks = [
-            'Row',
-            'Column',
-            'Button',
-            'Buttons',
-            'Spacer',
-        ];
+        $blocks = [];
         foreach ($blocks as $block) {
             $class = __NAMESPACE__ . '\\BlockTypes\\' . $block;
             $instance = new $class;
@@ -45,11 +38,6 @@ class Blocks
      */
     public static function enqueueBlockAssets()
     {
-        Assets::enqueueScript(
-            'my-theme-blocks',
-            get_template_directory_uri() . '/build/blocks.js'
-        );
-
         Assets::enqueueStyle(
             'my-theme-blocks',
             get_template_directory_uri() . '/build/blocks.css'
@@ -59,22 +47,6 @@ class Blocks
          * Disable WordPress front-end styling
          */
         // wp_dequeue_style('wp-block-library');
-    }
-
-    /**
-     * Enqueued block assets for the editing interface.
-     */
-    public static function enqueueBlockEditorAssets()
-    {
-        Assets::enqueueScript(
-            'my-theme-editor',
-            get_template_directory_uri() . '/build/editor.js'
-        );
-
-        Assets::enqueueStyle(
-            'my-theme-editor',
-            get_template_directory_uri() . '/build/editor.css'
-        );
     }
 
     /**
