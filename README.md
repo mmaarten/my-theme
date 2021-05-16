@@ -8,11 +8,11 @@ Bootstrap driven WordPress starter theme.
 - [Advanced Custom Fields](https://www.advancedcustomfields.com/) for options page.
 
 ## Block library
-- row
-- column
-- buttons
-- button
-- spacer
+- Bootstrap row
+- Bootstrap column
+- Bootstrap buttons
+- Bootstrap button
+- Bootstrap spacer
 
 ## Requirements
 - [Node JS](https://nodejs.org)
