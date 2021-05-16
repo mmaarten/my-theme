@@ -26,7 +26,7 @@ class Blocks
      */
     public static function registerBlockTypes()
     {
-        $blocks = ['Sample'];
+        $blocks = [];
         foreach ($blocks as $block) {
             $class = __NAMESPACE__ . '\\BlockTypes\\' . $block;
             $instance = new $class;
