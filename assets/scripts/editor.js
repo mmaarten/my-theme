@@ -16,7 +16,7 @@ import { unregisterBlockType } from '@wordpress/blocks';
 
 domReady( () => {
 
-  // Unregister blocks
+  // Unregister block types.
   [
     'core/column',
     'core/columns',
