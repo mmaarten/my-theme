@@ -26,7 +26,13 @@ class Blocks
      */
     public static function registerBlockTypes()
     {
-        $blocks = [];
+        $blocks = [
+            'Row',
+            'Column',
+            'Buttons',
+            'Button',
+            'Spacer',
+        ];
         foreach ($blocks as $block) {
             $class = __NAMESPACE__ . '\\BlockTypes\\' . $block;
             $instance = new $class;
@@ -40,15 +46,15 @@ class Blocks
     public static function enqueueBlockAssets()
     {
         Assets::enqueueScript(
-            'my-theme-blocks',
-            get_template_directory_uri() . '/build/blocks.js',
+            'my-theme-blocks-script',
+            get_template_directory_uri() . '/build/blocks-script.js',
             [],
             true
         );
 
         Assets::enqueueStyle(
-            'my-theme-blocks',
-            get_template_directory_uri() . '/build/blocks.css'
+            'my-theme-blocks-style',
+            get_template_directory_uri() . '/build/blocks-style.css'
         );
 
         /**
@@ -63,15 +69,15 @@ class Blocks
     public static function enqueueBlockEditorAssets()
     {
         Assets::enqueueScript(
-            'my-theme-editor',
-            get_template_directory_uri() . '/build/editor.js',
+            'my-theme-editor-script',
+            get_template_directory_uri() . '/build/editor-script.js',
             [],
             true
         );
 
         Assets::enqueueStyle(
-            'my-theme-editor',
-            get_template_directory_uri() . '/build/editor.css'
+            'my-theme-editor-style',
+            get_template_directory_uri() . '/build/editor-style.css'
         );
     }
 

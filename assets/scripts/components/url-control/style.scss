@@ -1,0 +1,6 @@
+@import '~@wordpress/base-styles/colors';
+
+.my-theme-url-input .block-editor-url-input__input[type=text] {
+  width: 100%;
+  border: 1px solid $gray-700;
+}

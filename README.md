@@ -5,7 +5,14 @@ Bootstrap driven WordPress starter theme.
 - [WP Scripts](https://www.npmjs.com/package/@wordpress/scripts) for compiling assets.
 - [Bootstrap](https://getbootstrap.com/) 4 CSS framework.
 - [WordPress Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker) for navigations.
-- [Advanced Custom Fields](https://www.advancedcustomfields.com/) for options page and block types.
+- [Advanced Custom Fields](https://www.advancedcustomfields.com/) for options page.
+
+## Block library
+- row
+- column
+- buttons
+- button
+- spacer
 
 ## Requirements
 - [Node JS](https://nodejs.org)

@@ -7,6 +7,16 @@
 @import "variables";
 @import "~bootstrap/scss/mixins";
 
+// Controls
+@import "./../scripts/components/breakpoint-toolbar/style";
+@import "./../scripts/components/url-control/style";
+
+// Blocks
+@import "./../scripts/block-library/row/editor";
+@import "./../scripts/block-library/button/editor";
+@import "./../scripts/block-library/buttons/editor";
+@import "./../scripts/block-library/spacer/editor";
+
 // Removes block vertical spacing.
 .block-editor-block-list__block {
   margin-top: 0;
