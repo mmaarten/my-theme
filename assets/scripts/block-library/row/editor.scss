@@ -1,0 +1,69 @@
+.wp-block-my-theme-row {
+
+  > .block-editor-inner-blocks {
+    @include make-container();
+
+    > .block-editor-block-list__layout {
+      @include make-row();
+
+      // Inner blocks (deep)
+      .wp-block {
+        max-width: none;
+      }
+
+      // Inner blocks
+      > .wp-block {
+        margin-left: 0;
+        margin-right: 0;
+        @include make-col-ready();
+      }
+
+      // Inner blocks
+      > .block-editor-block-list__block {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      @include make-grid-columns();
+    }
+  }
+}
+
+//
+// Settings
+//
+
+.wp-block-my-theme-row  {
+
+  // Container
+
+  &.has-container > .block-editor-inner-blocks {
+    @include make-container-max-widths();
+  }
+
+  // No gutters
+
+  &.has-no-gutters > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    margin-left: 0;
+    margin-right: 0;
+
+    > .wp-block {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  // Vertical alignment
+
+  &.has-align-items-start > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    align-items: flex-start;
+  }
+
+  &.has-align-items-center > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    align-items: center;
+  }
+
+  &.has-align-items-end > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    align-items: flex-end;
+  }
+}
