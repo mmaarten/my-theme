@@ -17,7 +17,7 @@ namespace My\Theme;
 
     <div class="card-body">
 
-        <?php the_title('<h5 class="card-title">', '</h5>'); ?>
+        <?php the_title('<h3 class="h5 card-title">', '</h3>'); ?>
 
         <div class="card-text">
 
