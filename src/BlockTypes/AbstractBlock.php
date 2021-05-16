@@ -10,27 +10,69 @@ namespace My\Theme\BlockTypes;
 abstract class AbstractBlock
 {
     /**
-     * Namespace
+     * Get block HTML attributes
      *
-     * @var string
+     * @param array $block
+     * @return array
      */
-    protected $namespace = 'my';
+    public static function getBlockHTMLAttributes($block)
+    {
+        $atts = [];
+
+        $atts['class'] = 'wp-block-' . str_replace('/', '-', $block['name']);
+
+        if (! empty($block['className'])) {
+            $atts['class'] .= " {$block['className']}";
+        }
+
+        if (! empty($block['align'])) {
+            $atts['class'] .= " align{$block['align']}";
+        }
+
+        if (! empty($block['anchor'])) {
+            $atts['id'] = $block['anchor'];
+        }
+
+        return $atts;
+    }
 
     /**
      * Block name
      *
      * @var string
      */
-    protected $block_name = '';
+    protected $name = '';
+
+    /**
+     * Block title
+     *
+     * @var string
+     */
+    protected $title = '';
+
+    /**
+     * Block description
+     *
+     * @var string
+     */
+    protected $description = '';
 
     /**
      * Constructor
      *
-     * @param string $block_name
+     * @param string $name
+     * @param string $title
+     * @param array  $args
      */
-    public function __construct($block_name)
+    public function __construct($name, $title, $args = [])
     {
-        $this->block_name = $block_name;
+        $args = wp_parse_args($args, [
+            'description' => '',
+        ]);
+
+        $this->name = $name;
+        $this->title = $title;
+        $this->description = $args['description'];
     }
 
     /**
@@ -38,103 +80,40 @@ abstract class AbstractBlock
      */
     public function registerBlockType()
     {
-        register_block_type($this->getBlockType(), [
-            'render_callback' => $this->getBlockTypeRenderCallback(),
-            'attributes'      => $this->getBlockTypeAttributes(),
-            'editor_script'   => $this->getBlockTypeEditorScript(),
-            'editor_style'    => $this->getBlockTypeEditorStyle(),
-            'script'          => $this->getBlockTypeScript(),
-            'style'           => $this->getBlockTypeStyle(),
-            'supports'        => $this->getBlockTypeSupports(),
-        ]);
+        if (function_exists('acf_register_block_type')) {
+            acf_register_block_type([
+                'name'            => $this->name,
+                'title'           => $this->title,
+                'description'     => $this->description,
+                'render_callback' => [$this, 'render'],
+                'enqueue_assets'  => [$this, 'enqueueAssets'],
+                'supports'        => $this->getBlockTypeSupports(),
+            ]);
+        }
     }
 
     /**
      * Render
      *
-     * @param array    $attributes
-     * @param string   $content.
-     * @param WP_Block $block
+     * @param   array      $block      The block settings and attributes.
+     * @param   string     $content    The block inner HTML (empty).
+     * @param   bool       $is_preview True during AJAX preview.
+     * @param   int|string $post_id    The post ID this block is saved to.
      */
-    protected function render($attributes, $content, $block)
+    abstract public function render($block, $content = '', $is_preview = false, $post_id = 0);
+
+    /**
+     * Enqueue assets for front-end and back-end.
+     */
+    protected function enqueueAssets()
     {
     }
 
-    /**
-     * Get block type
-     */
-    protected function getBlockType()
-    {
-        return $this->namespace . '/' . $this->block_name;
-    }
-
-    /**
-     * Get block type attributes
-     *
-     * @return array|null
-     */
-    protected function getBlockTypeAttributes()
-    {
-        return null;
-    }
-
-    /**
-     * Get block type render callback
-     *
-     * @return callable
-     */
-    protected function getBlockTypeRenderCallback()
-    {
-        return [$this, 'render'];
-    }
-
-    /**
-     * Get block type editor script
-     *
-     * @return array|string
-     */
-    protected function getBlockTypeEditorScript()
-    {
-        return 'my-theme-editor';
-    }
-
-    /**
-     * Get block type editor style
-     *
-     * @return array|string
-     */
-    protected function getBlockTypeEditorStyle()
-    {
-        return 'my-theme-editor';
-    }
-
-    /**
-     * Get block type script
-     *
-     * @return array|string
-     */
-    protected function getBlockTypeScript()
-    {
-        return 'my-theme-blocks';
-    }
-
-    /**
-     * Get block type style
-     *
-     * @return array|string
-     */
-    protected function getBlockTypeStyle()
-    {
-        return 'my-theme-blocks';
-    }
-
-    /**
-     * Get block type supports
-     *
-     * @return array
-     */
     protected function getBlockTypeSupports()
     {
-        return [];
+        return [
+            'align'  => ['wide', 'full'],
+            'anchor' => true,
+        ];
     }
 }

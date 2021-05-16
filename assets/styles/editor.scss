@@ -6,10 +6,6 @@
 
 @import "variables";
 @import "~bootstrap/scss/mixins";
-@import "../scripts/blocks/row/editor";
-@import "../scripts/blocks/button/editor";
-@import "../scripts/blocks/buttons/editor";
-@import "../scripts/blocks/spacer/editor";
 
 // Removes block vertical spacing.
 .block-editor-block-list__block {
@@ -18,7 +14,9 @@
 }
 
 // Block preview
-.my-theme-block-preview {
+.acf-block-preview {
+pointer-events: none;
+
   // Unset WordPress card.
   .card {
     position: unset;

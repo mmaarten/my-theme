@@ -26,13 +26,7 @@ class Blocks
      */
     public static function registerBlockTypes()
     {
-        $blocks = [
-            'Row',
-            'Column',
-            'Button',
-            'Buttons',
-            'Spacer',
-        ];
+        $blocks = [];
         foreach ($blocks as $block) {
             $class = __NAMESPACE__ . '\\BlockTypes\\' . $block;
             $instance = new $class;
@@ -47,7 +41,9 @@ class Blocks
     {
         Assets::enqueueScript(
             'my-theme-blocks',
-            get_template_directory_uri() . '/build/blocks.js'
+            get_template_directory_uri() . '/build/blocks.js',
+            [],
+            true
         );
 
         Assets::enqueueStyle(
@@ -68,7 +64,9 @@ class Blocks
     {
         Assets::enqueueScript(
             'my-theme-editor',
-            get_template_directory_uri() . '/build/editor.js'
+            get_template_directory_uri() . '/build/editor.js',
+            [],
+            true
         );
 
         Assets::enqueueStyle(
