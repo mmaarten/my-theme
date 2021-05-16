@@ -4,31 +4,31 @@
  * Used in editing interface.
  */
 
- @import "variables";
- @import "~bootstrap/scss/mixins";
+@import "variables";
+@import "~bootstrap/scss/mixins";
 
- // Removes block vertical spacing.
- .block-editor-block-list__block {
-   margin-top: 0;
-   margin-bottom: 0;
- }
+// Removes block vertical spacing.
+.block-editor-block-list__block {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
- // Block preview
- .acf-block-preview {
-  pointer-events: none;
+// Block preview
+.acf-block-preview {
+pointer-events: none;
 
-   // Unset WordPress card.
-   .card {
-     position: unset;
-     margin-top: unset;
-     padding: unset;
-     min-width: unset;
-     max-width: unset;
-     border: unset;
-     box-shadow: unset;
-     background: unset;
-     box-sizing: unset;
-   }
-   // Import front-end styles.
-   @import "main";
- }
+  // Unset WordPress card.
+  .card {
+    position: unset;
+    margin-top: unset;
+    padding: unset;
+    min-width: unset;
+    max-width: unset;
+    border: unset;
+    box-shadow: unset;
+    background: unset;
+    box-sizing: unset;
+  }
+  // Import front-end styles.
+  @import "main";
+}

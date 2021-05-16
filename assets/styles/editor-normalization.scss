@@ -2,16 +2,12 @@
  * Editor Normalization Styles
  *
  * Used in editing interface.
+ *
+ * @link https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/editor-styles.scss
  */
 
 @import "variables";
 @import "~bootstrap/scss/mixins";
-
-//
-// Normalization
-//
-// See https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/editor-styles.scss
-//
 
 body {
   // See ~bootstrap/scss/reboot
