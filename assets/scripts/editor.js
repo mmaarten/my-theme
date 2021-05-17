@@ -10,7 +10,6 @@ import './../scripts/block-library/blocks/column';
 import './../scripts/block-library/blocks/buttons';
 import './../scripts/block-library/blocks/button';
 import './../scripts/block-library/blocks/spacer';
-import './../scripts/block-library/blocks/sample';
 
 import domReady from '@wordpress/dom-ready';
 import { unregisterBlockType } from '@wordpress/blocks';
