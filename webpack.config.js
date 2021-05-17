@@ -3,7 +3,8 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 module.exports = {
 	...defaultConfig,
 	entry : {
-    'main': [ './assets/styles/main.scss', './assets/scripts/main.js' ],
+    'main-script': './assets/scripts/main.js',
+    'main-style': './assets/styles/main.scss',
     'editor-normalization': './assets/styles/editor-normalization.scss',
     'editor-script': './assets/scripts/editor.js',
     'editor-style': './assets/styles/editor.scss',
