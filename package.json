@@ -27,7 +27,7 @@
   "devDependencies": {
     "@wordpress/base-styles": "^3.4.4",
     "@wordpress/icons": "^3.0.0",
-    "@wordpress/scripts": "^15.0.1",
+    "@wordpress/scripts": "^16.0.0",
     "copy-webpack-plugin": "^6.4.1",
     "dir-archiver": "^1.1.1"
   },
