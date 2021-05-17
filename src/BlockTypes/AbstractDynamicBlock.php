@@ -19,22 +19,21 @@ abstract class AbstractDynamicBlock extends AbstractBlock
     {
         $atts = [];
 
-        return $atts;
-    }
+        $atts['class'] = 'wp-block-' . str_replace('/', '-', $block->name);
 
-    /**
-     * Register block type
-     */
-    public function registerBlockType()
-    {
-        register_block_type($this->getBlockTypeName(), [
-            'script'          => $this->getBlockTypeScript(),
-            'style'           => $this->getBlockTypeStyle(),
-            'editor_script'   => $this->getBlockTypeEditorScript(),
-            'editor_style'    => $this->getBlockTypeEditorStyle(),
-            'attributes'      => $this->getBlockTypeAttributes(),
-            'render_callback' => $this->getBlockTypeRenderCallback()
-        ]);
+        if (! empty($block->attributes['className'])) {
+            $atts['class'] .= " {$block->attributes['className']}";
+        }
+
+        if (! empty($block->attributes['align'])) {
+            $atts['class'] .= " align{$block->attributes['align']}";
+        }
+
+        if (! empty($block->attributes['anchor'])) {
+            $atts['id'] = $block->attributes['anchor'];
+        }
+
+        return $atts;
     }
 
     /**
@@ -56,7 +55,7 @@ abstract class AbstractDynamicBlock extends AbstractBlock
     {
         return array(
             'type' => 'string',
-            'enum' => array( 'left', 'center', 'right', 'wide', 'full' ),
+            'enum' => ['left', 'center', 'right', 'wide', 'full'],
         );
     }
 
@@ -101,24 +100,4 @@ abstract class AbstractDynamicBlock extends AbstractBlock
             'default' => $default,
         );
     }
-
-    /**
-     * Get block type render callback
-     *
-     * @return array
-     */
-    protected function getBlockTypeRenderCallback()
-    {
-        return [$this, 'render'];
-    }
-
-    /**
-     * Render the block. Extended by children.
-     *
-     * @param array    $attributes Block attributes.
-     * @param string   $content    Block content.
-     * @param WP_Block $block
-     * @return string Rendered block type output.
-     */
-    abstract protected function render($attributes, $content, $block);
 }

@@ -45,13 +45,13 @@ class Assets
         * Theme
         */
         self::enqueueStyle(
-            'my-theme-main',
-            get_template_directory_uri() . '/build/main.css'
+            'my-theme-main-style',
+            get_template_directory_uri() . '/build/main-style.css'
         );
 
         self::enqueueScript(
-            'my-theme-main',
-            get_template_directory_uri() . '/build/main.js',
+            'my-theme-main-script',
+            get_template_directory_uri() . '/build/main-script.js',
             ['jquery', 'bootstrap']
         );
 

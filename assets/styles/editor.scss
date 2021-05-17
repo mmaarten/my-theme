@@ -8,14 +8,15 @@
 @import "~bootstrap/scss/mixins";
 
 // Controls
-@import "./../scripts/components/breakpoint-toolbar/style";
-@import "./../scripts/components/url-control/style";
+@import "./../scripts/block-library/components/breakpoint-toolbar/style";
+@import "./../scripts/block-library/components/url-control/style";
+@import "./../scripts/block-library/components/image-control/style";
 
 // Blocks
-@import "./../scripts/block-library/row/editor";
-@import "./../scripts/block-library/button/editor";
-@import "./../scripts/block-library/buttons/editor";
-@import "./../scripts/block-library/spacer/editor";
+@import "./../scripts/block-library/blocks/row/editor";
+@import "./../scripts/block-library/blocks/button/editor";
+@import "./../scripts/block-library/blocks/buttons/editor";
+@import "./../scripts/block-library/blocks/spacer/editor";
 
 // Removes block vertical spacing.
 .block-editor-block-list__block {
@@ -24,9 +25,7 @@
 }
 
 // Block preview
-.acf-block-preview {
-pointer-events: none;
-
+.my-theme-block-preview {
   // Unset WordPress card.
   .card {
     position: unset;

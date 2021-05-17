@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { RichText, InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl, SelectControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, SelectControl } from '@wordpress/components';
 import { getButtonClasses } from './common';
 import { URLControl } from '../../components';
-import { getSetting, getSelectOptions } from '../../helpers';
 
 export default ( props ) => {
   const { attributes, setAttributes } = props;
