@@ -32,6 +32,7 @@ class Blocks
             'Buttons',
             'Button',
             'Spacer',
+            'Sample',
         ];
         foreach ($blocks as $block) {
             $class = __NAMESPACE__ . '\\BlockTypes\\' . $block;

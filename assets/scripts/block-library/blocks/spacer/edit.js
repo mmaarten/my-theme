@@ -4,7 +4,6 @@ import { PanelBody, SelectControl } from '@wordpress/components';
 import { get, assign } from 'lodash';
 import { BreakpointToolbar } from '../../components';
 import { getSpacerClasses } from './common';
-import { getSelectOptions, getSetting } from '../../helpers';
 
 export default ( props ) => {
   const { attributes, setAttributes } = props;
