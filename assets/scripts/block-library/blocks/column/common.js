@@ -1,10 +1,10 @@
-import { getBreakpointInfix, getGridBreakpoints } from '../../helpers';
+import { getBreakpointInfix, getConfig } from '../../helpers';
 import { map, get } from 'lodash';
 import classnames from 'classnames';
 
 export const getColumnClasses = ( attributes ) => {
   const { width, offset, order } = attributes;
-  const breakpoints = getGridBreakpoints();
+  const breakpoints = getConfig( 'gridBreakpoints' );
   const FALLBACK_CLASS = 'col';
 
   let classes = { [ FALLBACK_CLASS ] : true };
