@@ -41,7 +41,7 @@ get_header();
                     the_post();
 
                     // Include the template for the content.
-                    get_template_part('template-parts/content', 'search');
+                    get_template_part('template-parts/loop', 'search');
 
                     // End of the Loop.
                 endwhile;
@@ -49,7 +49,7 @@ get_header();
                 Templates::pagination();
             else :
                     // Include the template for displaying a message that posts cannot be found.
-                    get_template_part('template-parts/content', 'none');
+                    get_template_part('template-parts/loop', 'none');
             endif;
 
             ?>
