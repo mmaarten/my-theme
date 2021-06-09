@@ -20,9 +20,9 @@ namespace My\Theme;
                     <?php echo wp_get_attachment_image(get_theme_mod('custom_logo'), 'full', false, ['class' => 'img-fluid']); ?>
                 </a>
             <?php elseif (is_front_page() && is_home()) : ?>
-                <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home" itemprop="url"><?php bloginfo('name'); ?></a></h1>
+                <h1 class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home" itemprop="url"><?php echo esc_html(get_bloginfo('name')); ?></a></h1>
             <?php else : ?>
-                <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home" itemprop="url"><?php bloginfo('name'); ?></a></p>
+                <p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home" itemprop="url"><?php echo esc_html(get_bloginfo('name')); ?></a></p>
             <?php endif; ?>
 
             <?php
