@@ -49,7 +49,7 @@ class Customizer
     {
         Assets::enqueueScript(
             'my-theme-customizer',
-            get_template_directory_uri() . '/build/customizer.js',
+            get_theme_file_uri('build/customizer.js'),
             ['customize-preview']
         );
     }

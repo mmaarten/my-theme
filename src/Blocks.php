@@ -47,14 +47,14 @@ class Blocks
     {
         Assets::enqueueScript(
             'my-theme-blocks-script',
-            get_template_directory_uri() . '/build/blocks-script.js',
+            get_theme_file_uri('build/blocks-script.js'),
             [],
             true
         );
 
         Assets::enqueueStyle(
             'my-theme-blocks-style',
-            get_template_directory_uri() . '/build/blocks-style.css'
+            get_theme_file_uri('build/blocks-style.css')
         );
 
         /**
@@ -70,14 +70,14 @@ class Blocks
     {
         Assets::enqueueScript(
             'my-theme-editor-script',
-            get_template_directory_uri() . '/build/editor-script.js',
+            get_theme_file_uri('build/editor-script.js'),
             [],
             true
         );
 
         Assets::enqueueStyle(
             'my-theme-editor-style',
-            get_template_directory_uri() . '/build/editor-style.css'
+            get_theme_file_uri('build/editor-style.css')
         );
     }
 

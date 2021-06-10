@@ -202,7 +202,7 @@ class Setup
          * Add editor style.
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#editor-styles
          */
-        add_editor_style(get_template_directory_uri() . '/build/editor-normalization.css');
+        add_editor_style(get_theme_file_uri('build/editor-normalization.css'));
 
         /**
          * Adjust the color of the UI to work on dark backgrounds.
