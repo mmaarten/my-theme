@@ -14,7 +14,7 @@ class Setup
      */
     public static function init()
     {
-        //add_action('after_setup_theme', [__CLASS__, 'setup']);
+        add_action('after_setup_theme', [__CLASS__, 'setup']);
         add_filter('image_size_names_choose', [__CLASS__, 'imageSizeNamesChoose'], PHP_INT_MAX);
     }
 
