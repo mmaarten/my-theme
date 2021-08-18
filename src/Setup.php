@@ -92,18 +92,6 @@ class Setup
         add_theme_support('responsive-embeds');
 
         /**
-         * Disable custom colors.
-         * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-custom-colors-in-block-color-palettes
-         */
-        // add_theme_support('disable-custom-colors');
-
-        /**
-         * Disable custom font sizes.
-         * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#disabling-custom-font-sizes
-         */
-        // add_theme_support('disable-custom-font-sizes');
-
-        /**
          * Enable editor styles
          * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/#editor-styles
          */
