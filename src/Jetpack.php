@@ -32,7 +32,7 @@ class Jetpack
         add_theme_support('infinite-scroll', [
             'container' => 'main',
             'footer'    => 'page',
-            'render' => [__CLASS__, 'renderInfiniteScroll'],
+            'render'    => [__CLASS__, 'renderInfiniteScroll'],
         ]);
 
         // Add theme support for Responsive Videos.
