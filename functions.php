@@ -9,7 +9,7 @@ if (!is_readable($autoloader)) {
         sprintf(
             // translators: 1: Theme name. 2: Composer command. 3: theme directory
             __('%1$s installation is incomplete. Run %2$s within the %3$s directory.', 'my-theme'),
-            wp_get_theme('my-theme')->headers->Name,
+            wp_get_theme('my-theme')->Name,
             '<code>composer install</code>',
             '<code>' . str_replace(ABSPATH, '', __DIR__) . '</code>'
         )
