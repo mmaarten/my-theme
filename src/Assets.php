@@ -110,7 +110,7 @@ class Assets
 
         return [
             'dependencies' => [],
-            'version'      => wp_get_theme('my-theme')->Version,
+            'version'      => wp_get_theme('my-theme')->get('Version'),
         ];
     }
 }
