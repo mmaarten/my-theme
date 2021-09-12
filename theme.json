@@ -2,7 +2,12 @@
   "version": 1,
   "settings": {
     "color": {
-      "custom": true,
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "duotone": [],
+      "gradients": [],
+      "link": false,
       "palette": [
         {
           "name": "Primary",
@@ -23,61 +28,97 @@
           "name": "Dark",
           "slug": "dark",
           "color": "#343a40"
+        },
+        {
+          "name": "White",
+          "slug": "white",
+          "color": "#ffffff"
         }
       ]
     },
     "typography": {
-      "customFontSize": true,
+      "customFontSize": false,
+      "customLineHeight": false,
+      "dropCap": false,
       "fontSizes": [
         {
           "name": "Small",
-          "slug": "sm",
+          "slug": "small",
           "size": "0.875rem"
         },
         {
           "name": "Normal",
-          "slug": "N",
+          "slug": "normal",
           "size": "1rem"
         },
         {
           "name": "Large",
-          "slug": "LG",
+          "slug": "large",
           "size": "1.25rem"
-        },
-        {
-          "name": "Heading 1",
-          "slug": "h-1",
-          "size": "2.5rem"
-        },
-        {
-          "name": "Heading 2",
-          "slug": "h-2",
-          "size": "2rem"
-        },
-        {
-          "name": "Heading 3",
-          "slug": "h-3",
-          "size": "1.75rem"
-        },
-        {
-          "name": "Heading 4",
-          "slug": "h-4",
-          "size": "1.5rem"
-        },
-        {
-          "name": "Heading 5",
-          "slug": "h-5",
-          "size": "1.25rem"
-        },
-        {
-          "name": "Heading 6",
-          "slug": "h-6",
-          "size": "1rem"
         }
       ]
     },
     "layout": {
-      "contentSize": "1110px"
+      "contentSize": "1110px",
+      "wideSize": "1000px"
+    },
+    "blocks": {
+      "core/heading" : {
+        "typography" : {
+          "fontSizes": [
+            {
+              "name": "Heading 1",
+              "slug": "h-1",
+              "size": "2.5rem"
+            },
+            {
+              "name": "Heading 2",
+              "slug": "h-2",
+              "size": "2rem"
+            },
+            {
+              "name": "Heading 3",
+              "slug": "h-3",
+              "size": "1.75rem"
+            },
+            {
+              "name": "Heading 4",
+              "slug": "h-4",
+              "size": "1.5rem"
+            },
+            {
+              "name": "Heading 5",
+              "slug": "h-5",
+              "size": "1.25rem"
+            },
+            {
+              "name": "Heading 6",
+              "slug": "h-6",
+              "size": "1rem"
+            },
+            {
+              "name": "Display 1",
+              "slug": "display-1",
+              "size": "6rem"
+            },
+            {
+              "name": "Display 2",
+              "slug": "display-2",
+              "size": "5.5rem"
+            },
+            {
+              "name": "Display 3",
+              "slug": "display-3",
+              "size": "4.5rem"
+            },
+            {
+              "name": "Display 4",
+              "slug": "display-4",
+              "size": "3.5rem"
+            }
+          ]
+        }
+      }
     }
   }
 }
