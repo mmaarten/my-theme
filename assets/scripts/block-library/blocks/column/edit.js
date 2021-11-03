@@ -5,9 +5,9 @@ import { compose } from '@wordpress/compose';
 import { withSelect } from '@wordpress/data';
 import { get, assign } from 'lodash';
 import { BreakpointToolbar } from '../../components';
-import { getGridColumns } from '../../helpers';
+import { getConfig } from '../../helpers';
 
-const GRID_COLUMNS = getGridColumns();
+const GRID_COLUMNS = getConfig( 'gridColumns' );
 
 const ColumnEdit = ( props ) => {
   const { attributes, setAttributes, hasChildBlocks } = props;

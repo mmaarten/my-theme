@@ -27,13 +27,13 @@
   "devDependencies": {
     "@wordpress/base-styles": "^3.4.4",
     "@wordpress/icons": "^3.0.0",
-    "@wordpress/scripts": "^15.0.1",
+    "@wordpress/scripts": "^16.0.0",
+    "classnames": "^2.3.1",
+    "copy-webpack-plugin": "^6.4.1",
     "dir-archiver": "^1.1.1"
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
-    "copy-webpack-plugin": "^6.4.1",
-    "file-loader": "^6.2.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "underscores-for-npm": "^1.0.0"

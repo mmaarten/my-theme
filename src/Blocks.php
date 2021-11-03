@@ -18,7 +18,7 @@ class Blocks
         add_action('enqueue_block_assets', [__CLASS__, 'enqueueBlockAssets']);
         add_action('enqueue_block_editor_assets', [__CLASS__, 'enqueueBlockEditorAssets']);
         add_filter('use_block_editor_for_post_type', [__CLASS__, 'useBlockEditorForPostType'], PHP_INT_MAX, 2);
-        add_filter('allowed_block_types', [__CLASS__, 'allowedBlockTypes'], PHP_INT_MAX, 2);
+        add_filter('allowed_block_types_all', [__CLASS__, 'allowedBlockTypes'], PHP_INT_MAX, 2);
     }
 
     /**
@@ -47,14 +47,14 @@ class Blocks
     {
         Assets::enqueueScript(
             'my-theme-blocks-script',
-            get_template_directory_uri() . '/build/blocks-script.js',
+            get_theme_file_uri('build/blocks-script.js'),
             [],
             true
         );
 
         Assets::enqueueStyle(
             'my-theme-blocks-style',
-            get_template_directory_uri() . '/build/blocks-style.css'
+            get_theme_file_uri('build/blocks-style.css')
         );
 
         /**
@@ -70,14 +70,14 @@ class Blocks
     {
         Assets::enqueueScript(
             'my-theme-editor-script',
-            get_template_directory_uri() . '/build/editor-script.js',
+            get_theme_file_uri('build/editor-script.js'),
             [],
             true
         );
 
         Assets::enqueueStyle(
             'my-theme-editor-style',
-            get_template_directory_uri() . '/build/editor-style.css'
+            get_theme_file_uri('build/editor-style.css')
         );
     }
 
@@ -96,11 +96,12 @@ class Blocks
     /**
      * Filter the allowed block types for the editor.
      *
-     * @param bool|array $allowed_block_types Array of block type slugs, or boolean to enable/disable all.
-     * @param object     $post                The post resource data.
+     * @param bool|array $allowed_block_types               Array of block type slugs, or boolean to enable/disable all.
+     *                                                      Default true (all registered block types supported).
+     * @param WP_Block_Editor_Context $block_editor_context The current block editor context.
      * @return bool|array
      */
-    public static function allowedBlockTypes($allowed_block_types, $post)
+    public static function allowedBlockTypes($allowed_block_types, $block_editor_context)
     {
         return $allowed_block_types;
     }

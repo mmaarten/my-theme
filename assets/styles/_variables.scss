@@ -1,45 +1,5 @@
 @import "~bootstrap/scss/functions";
 
-//
-// Custom variables
-//
-
 // ...
 
-//
-// Make sure all variables are set.
-//
-
 @import "~bootstrap/scss/variables";
-
-//
-// Editor colors
-//
-
-$editor-colors: () !default;
-$editor-colors: map-merge((
-  "primary"   : map-get($theme-colors, "primary"),
-  "secondary" : map-get($theme-colors, "secondary"),
-  "light"     : map-get($theme-colors, "light"),
-  "dark"      : map-get($theme-colors, "dark"),
-), $editor-colors);
-
-//
-// Editor font sizes
-//
-
-$editor-font-sizes: () !default;
-$editor-font-sizes: map-merge(
-  (
-    "small"  : $font-size-sm,
-    "normal" : $font-size-base,
-    "large"  : $font-size-lg,
-    "h-1"    : $h1-font-size,
-    "h-2"    : $h2-font-size,
-    "h-3"    : $h3-font-size,
-    "h-4"    : $h4-font-size,
-    "h-5"    : $h5-font-size,
-    "h-6"    : $h6-font-size,
-  ),
-  $editor-font-sizes
-);

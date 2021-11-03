@@ -29,7 +29,7 @@ get_header();
                 the_post();
 
                 // Include the template for the content.
-                get_template_part('template-parts/content', 'single');
+                get_template_part('template-parts/loop', 'single');
 
                 Templates::postNav();
 

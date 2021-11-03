@@ -6,16 +6,15 @@
     > .block-editor-block-list__layout {
       @include make-row();
 
-      // Inner blocks (deep)
-      .wp-block {
-        max-width: none;
-      }
-
       // Inner blocks
       > .wp-block {
         margin-left: 0;
         margin-right: 0;
         @include make-col-ready();
+
+        .wp-block {
+          max-width: none;
+        }
       }
 
       // Inner blocks
@@ -24,6 +23,7 @@
         margin-bottom: 0;
       }
 
+      // include bootstrap column classes.
       @include make-grid-columns();
     }
   }

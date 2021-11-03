@@ -1,5 +1,5 @@
-const CopyPlugin = require("copy-webpack-plugin");
-const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+const CopyPlugin = require('copy-webpack-plugin');
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 
 module.exports = {
 	...defaultConfig,

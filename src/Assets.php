@@ -28,7 +28,7 @@ class Assets
          */
         self::enqueueScript(
             'popper-js',
-            get_template_directory_uri() . '/build/popper.js'
+            get_theme_file_uri('build/popper.js')
         );
 
        /**
@@ -37,7 +37,7 @@ class Assets
         */
         self::enqueueScript(
             'bootstrap',
-            get_template_directory_uri() . '/build/bootstrap.js',
+            get_theme_file_uri('build/bootstrap.js'),
             ['jquery', 'popper-js']
         );
 
@@ -46,12 +46,12 @@ class Assets
         */
         self::enqueueStyle(
             'my-theme-main-style',
-            get_template_directory_uri() . '/build/main-style.css'
+            get_theme_file_uri('build/main-style.css')
         );
 
         self::enqueueScript(
             'my-theme-main-script',
-            get_template_directory_uri() . '/build/main-script.js',
+            get_theme_file_uri('build/main-script.js'),
             ['jquery', 'bootstrap']
         );
 
@@ -110,7 +110,7 @@ class Assets
 
         return [
             'dependencies' => [],
-            'version'      => wp_get_theme('my-theme')->version,
+            'version'      => wp_get_theme('my-theme')->get('Version'),
         ];
     }
 }
