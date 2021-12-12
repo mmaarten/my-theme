@@ -38,7 +38,7 @@ namespace My\Theme;
 
         <?php the_excerpt(); ?>
 
-    </div><!-- .entry-content -->
+    </div><!-- .entry-summary -->
 
     <footer class="entry-footer">
 
