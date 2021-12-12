@@ -52,40 +52,5 @@ class Widgets
             'name'        => esc_html__('Footer', 'my-theme'),
             'description' => esc_html__('Footer section.', 'my-theme'),
         ] + $args);
-
-        self::registerFooterColumns(3, $args);
-    }
-
-    /**
-     * Register footer columns
-     *
-     * @param int   $amount
-     * @param array $args
-     */
-    public static function registerFooterColumns($amount, $args = [])
-    {
-        $ordinals = [
-            1 => __('First', 'my-theme'),
-            2 => __('Second', 'my-theme'),
-            3 => __('Thirth', 'my-theme'),
-            4 => __('Fourth', 'my-theme'),
-            5 => __('Fifth', 'my-theme'),
-            6 => __('Sixth', 'my-theme'),
-            7 => __('Seventh', 'my-theme'),
-            8 => __('Eighth', 'my-theme'),
-            9 => __('Ninth', 'my-theme'),
-        ];
-
-        for ($n = 1; $n <= $amount; $n++) {
-            register_sidebar(
-                [
-                  'id'          => sprintf('footer-column-%s', $n),
-                  // translators: %1$s: column number
-                  'name'        => esc_html(sprintf(__('Footer column %1$s', 'my-theme'), $n)),
-                  // translators: %1$s: column ordinal number
-                  'description' => esc_html(sprintf(__('%1$s column in footer section.', 'my-theme'), $ordinals[$n])),
-                ] + $args
-            );
-        }
     }
 }
