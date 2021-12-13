@@ -46,7 +46,7 @@ get_header();
 
     </div><!-- #primary -->
 
-</div><!-- .container -->
+</div><!-- .container-fluid -->
 
 <?php
 
