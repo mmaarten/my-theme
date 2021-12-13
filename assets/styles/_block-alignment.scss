@@ -38,14 +38,14 @@
 }
 
 .alignleft {
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up("md") {
     float: left;
     margin-right: $grid-gutter-width / 2;
   }
 }
 
 .alignright {
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up("md") {
     float: right;
     margin-left: $grid-gutter-width / 2;
   }
