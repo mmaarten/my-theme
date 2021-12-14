@@ -1,6 +1,7 @@
 {
   "name": "@my/theme",
   "version": "1.0.0",
+  "license": "GPL-2.0-or-later",
   "private": true,
   "scripts": {
     "build": "wp-scripts build",
@@ -18,12 +19,6 @@
     "test:unit": "wp-scripts test-unit-js",
     "bundle": "dir-archiver --src . --dest ../my-theme.zip --exclude webpack.config.js .DS_Store .editorconfig .git .gitignore .gitattributes phpcs.xml node_modules composer.json package.json assets"
   },
-  "keywords": [
-    "wordpress",
-    "theme",
-    "bootstrap"
-  ],
-  "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@wordpress/base-styles": "^3.4.4",
     "@wordpress/icons": "^3.0.0",
