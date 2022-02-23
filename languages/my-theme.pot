@@ -287,12 +287,12 @@ msgstr ""
 
 #. translators: %s: post title
 #: src/Templates.php:83
-msgid "Leave a Comment<span class=\"sr-only\"> on %s</span>"
+msgid "Leave a Comment<span class=\"visually-hidden\"> on %s</span>"
 msgstr ""
 
 #. translators: %s: Name of current post. Only visible to screen readers
 #: src/Templates.php:100
-msgid "Edit <span class=\"sr-only\">%s</span>"
+msgid "Edit <span class=\"visually-hidden\">%s</span>"
 msgstr ""
 
 #: src/Templates.php:130

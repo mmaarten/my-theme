@@ -28,7 +28,7 @@ namespace My\Theme;
             <?php
 
             if (get_bloginfo('description', 'display') || is_customize_preview()) {
-                printf('<p class="sr-only site-description">%s</p>', get_bloginfo('description', 'display'));
+                printf('<p class="visually-hidden site-description">%s</p>', get_bloginfo('description', 'display'));
             }
 
             ?>

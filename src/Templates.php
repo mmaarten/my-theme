@@ -80,7 +80,7 @@ class Templates
                 sprintf(
                     wp_kses(
                         /* translators: %s: post title */
-                        __('Leave a Comment<span class="sr-only"> on %s</span>', 'my-theme'),
+                        __('Leave a Comment<span class="visually-hidden"> on %s</span>', 'my-theme'),
                         array(
                             'span' => array(
                                 'class' => array(),
@@ -97,7 +97,7 @@ class Templates
             sprintf(
                 wp_kses(
                     /* translators: %s: Name of current post. Only visible to screen readers */
-                    __('Edit <span class="sr-only">%s</span>', 'my-theme'),
+                    __('Edit <span class="visually-hidden">%s</span>', 'my-theme'),
                     array(
                         'span' => array(
                             'class' => array(),
@@ -173,7 +173,7 @@ class Templates
 
         <nav class="container navigation post-navigation">
 
-            <h2 class="sr-only"><?php esc_html_e('Post navigation', 'my-theme'); ?></h2>
+            <h2 class="visually-hidden"><?php esc_html_e('Post navigation', 'my-theme'); ?></h2>
 
             <div class="row nav-links justify-content-between">
 
