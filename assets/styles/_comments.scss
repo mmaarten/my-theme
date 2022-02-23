@@ -6,10 +6,6 @@
   @extend .list-unstyled;
 }
 
-.comment-form-comment {
-  @extend .form-group;
-}
-
 .comment-form {
   select,
   textarea,
