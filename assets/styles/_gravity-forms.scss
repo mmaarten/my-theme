@@ -77,6 +77,50 @@ legend.gfield_label {
   }
 }
 
+// List group
+.gfield_list_group {
+  @extend .row;
+  @extend .gx-2;
+  align-items: center;
+
+  &:not(:last-child) {
+    @extend .mb-3;
+  }
+
+  > .gfield_list_group_item,
+  > .gfield_list_icons {
+    @extend .col;
+  }
+
+  .gfield_list_icons {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    > button {
+      @extend .btn;
+      @extend .btn-secondary;
+
+      + button {
+        @extend .ms-2;
+      }
+    }
+  }
+}
+
+// Time (needs class `gfield_time`)
+.gfield_time {
+  .ginput_complex {
+    @extend .row;
+    @extend .gx-2;
+    align-items: center;
+
+    > * {
+      @extend .col-auto;
+    }
+  }
+}
+
+
 // Left
 .ginput_left {
   @extend .float-start;
