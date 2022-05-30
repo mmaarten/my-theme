@@ -7,64 +7,7 @@
  */
 
 @import "variables";
+@import "mixins";
 @import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/utilities";
-
-body {
-  // See ~bootstrap/scss/reboot
-  font-family: $font-family-base;
-  @include font-size($font-size-base);
-  font-weight: $font-weight-base;
-  line-height: $line-height-base;
-  color: $body-color;
-  text-align: left;
-  background-color: $body-bg;
-}
-
-// See ~bootstrap/scss/reboot
-// See ~bootstrap/scss/type
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: $headings-margin-bottom;
-  font-family: $headings-font-family;
-  font-weight: $headings-font-weight;
-  line-height: $headings-line-height;
-  color: $headings-color;
-}
-
-// See ~bootstrap/scss/type
-h1 { @include font-size($h1-font-size); }
-h2 { @include font-size($h2-font-size); }
-h3 { @include font-size($h3-font-size); }
-h4 { @include font-size($h4-font-size); }
-h5 { @include font-size($h5-font-size); }
-h6 { @include font-size($h6-font-size); }
-
-// See ~bootstrap/scss/reboot
-p {
-  margin-top: 0;
-  margin-bottom: $paragraph-margin-bottom;
-}
-
-// See ~bootstrap/scss/reboot
-ol, ul {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-// See ~bootstrap/scss/reboot
-ol ol, ul ul, ol ul, ul ol {
-  margin-bottom: 0;
-}
-
-// See ~bootstrap/scss/reboot
-a {
-  color: $link-color;
-  text-decoration: $link-decoration;
-  background-color: transparent;
-
-  @include hover {
-    color: $link-hover-color;
-    text-decoration: $link-hover-decoration;
-  }
-}

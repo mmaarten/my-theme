@@ -81,7 +81,7 @@ class Assets
         wp_register_style($handle, $src, $deps, $asset['version'], $media);
     }
 
-    public static function enqueueScript($handle, $src = '', $deps = [], $has_i18n = true)
+    public static function enqueueScript($handle, $src = '', $deps = [], $has_i18n = false)
     {
         if (! wp_script_is($handle, 'registered')) {
             self::registerScript($handle, $src, $deps, $has_i18n);

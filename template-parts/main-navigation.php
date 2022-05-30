@@ -28,7 +28,7 @@ namespace My\Theme;
             <?php
 
             if (get_bloginfo('description', 'display') || is_customize_preview()) {
-                printf('<p class="sr-only site-description">%s</p>', get_bloginfo('description', 'display'));
+                printf('<p class="visually-hidden site-description">%s</p>', get_bloginfo('description', 'display'));
             }
 
             ?>
@@ -36,7 +36,7 @@ namespace My\Theme;
         </div><!-- .site-branding -->
 
         <?php if (has_nav_menu('main-left') || has_nav_menu('main-right')) : ?>
-        <button class="navbar-toggler menu-toggle" type="button" data-toggle="collapse" data-target="#mainNavigationContent" aria-controls="mainNavigationContent" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'my-theme'); ?>">
+        <button class="navbar-toggler menu-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigationContent" aria-controls="mainNavigationContent" aria-expanded="false" aria-label="<?php esc_attr_e('Toggle navigation', 'my-theme'); ?>">
             <span class="navbar-toggler-icon"></span>
         </button>
 

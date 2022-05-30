@@ -16,7 +16,7 @@ export default ( props ) => {
         value={ text }
         href={ link ? link : undefined }
         target={ linkTab ? '_blank' : undefined }
-        data-toggle={ toggle ? toggle : undefined }
+        data-bs-toggle={ toggle ? toggle : undefined }
         role="button"
       />
     </div>

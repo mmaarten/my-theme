@@ -16,7 +16,7 @@ $my_theme_unique_id = uniqid('search-form-');
     <div class="input-group">
 
         <label for="<?php echo esc_attr($my_theme_unique_id); ?>">
-            <span class="sr-only"><?php echo esc_html_x('Search for:', 'label', 'my-theme'); ?></span>
+            <span class="visually-hidden"><?php echo esc_html_x('Search for:', 'label', 'my-theme'); ?></span>
         </label>
 
         <input type="search" id="<?php echo esc_attr($my_theme_unique_id); ?>" class="form-control" placeholder="<?php echo esc_attr_x('Search &hellip;', 'placeholder', 'my-theme'); ?>" value="<?php echo get_search_query(); ?>" name="s" />

@@ -28,17 +28,17 @@ namespace My\Theme;
 
     </header><!-- .entry-header -->
 
+    <?php if (has_post_thumbnail()) : ?>
     <div class="post-thumbnail">
-
         <?php the_post_thumbnail('large'); ?>
-
     </div><!-- .post-thumbnail -->
+    <?php endif; ?>
 
     <div class="entry-summary">
 
         <?php the_excerpt(); ?>
 
-    </div><!-- .entry-content -->
+    </div><!-- .entry-summary -->
 
     <footer class="entry-footer">
 

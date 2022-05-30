@@ -139,7 +139,7 @@ class NavMenus
 
         // Hides title. Use CSS class `nolabel`.
         if (! empty($mods['nolabel'])) {
-            $title = sprintf('<span class="sr-only">%s</span>', $title);
+            $title = sprintf('<span class="visually-hidden">%s</span>', $title);
         }
 
         // Adds icon. Use CSS class `icon-{key}`.
