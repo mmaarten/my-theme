@@ -8,6 +8,12 @@ registerBlockType( 'my-theme/sample', {
   title: __( 'Sample', 'my-theme' ),
   description: __( 'Sample.', 'my-theme' ),
   category: 'common',
+  attributes: {
+		attribute: {
+			type: 'string',
+			default: '',
+		}
+	},
   edit ( props ) {
     return <Block { ...props } />
   },
